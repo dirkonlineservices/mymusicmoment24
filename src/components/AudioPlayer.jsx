@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Music, Heart, Sparkles, Disc } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Sparkles, Disc } from "lucide-react";
 import { trackAudioEvent } from "../lib/gtmPreview";
 
 const PLAYLIST = [
@@ -10,34 +10,34 @@ const PLAYLIST = [
     vocal: "Duett (M/W)",
     duration: 38,
     file: "/audio/hochzeit-probe.mp3",
-    noteFreqs: [261.63, 329.63, 392.0, 523.25, 440.0, 349.23, 392.0], // C4, E4, G4, C5, A4, F4, G4
+    noteFreqs: [261.63, 329.63, 392.0, 523.25, 440.0, 349.23, 392.0],
   },
   {
     id: "geburtstag",
     title: "Das Beste Alter (Geburtstagstrack)",
     genre: "Akustik-Pop / Feelgood",
-    vocal: "Männlich",
+    vocal: "M\u00e4nnlich",
     duration: 34,
     file: "/audio/geburtstag-probe.mp3",
-    noteFreqs: [293.66, 369.99, 440.0, 587.33, 493.88], // D major feel
+    noteFreqs: [293.66, 369.99, 440.0, 587.33, 493.88],
   },
   {
     id: "liebeslied",
-    title: "Für Immer Du (Jubiläum & Liebe)",
+    title: "F\u00fcr Immer Du (Jubil\u00e4um & Liebe)",
     genre: "R&B / Slow Jam",
     vocal: "Weiblich",
     duration: 42,
     file: "/audio/ballade-probe.mp3",
-    noteFreqs: [220.0, 261.63, 329.63, 392.0, 440.0], // A minor feel
+    noteFreqs: [220.0, 261.63, 329.63, 392.0, 440.0],
   },
   {
     id: "party",
     title: "Feierabend Helden (Partytrack)",
     genre: "Dance / Pop Uptempo",
-    vocal: "Männlich / Duo",
+    vocal: "M\u00e4nnlich / Duo",
     duration: 30,
     file: "/audio/party-probe.mp3",
-    noteFreqs: [329.63, 392.0, 493.88, 587.33], // E minor dance
+    noteFreqs: [329.63, 392.0, 493.88, 587.33],
   },
 ];
 
@@ -53,7 +53,6 @@ export default function AudioPlayer() {
   const oscillatorRef = useRef(null);
   const timerRef = useRef(null);
 
-  // Play melodic harmonic synth notes for rich listening experience
   const startSynth = () => {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -72,7 +71,6 @@ export default function AudioPlayer() {
       const freqs = currentTrack.noteFreqs;
       osc.frequency.setValueAtTime(freqs[0], ctx.currentTime);
 
-      // Simple melodic arpeggiation
       freqs.forEach((freq, idx) => {
         osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.4);
       });
@@ -82,9 +80,7 @@ export default function AudioPlayer() {
       gain.connect(ctx.destination);
       osc.start();
       oscillatorRef.current = { osc, gain };
-    } catch (e) {
-      console.log("Web Audio fallback initialized");
-    }
+    } catch (e) {}
   };
 
   const stopSynth = () => {
@@ -113,7 +109,6 @@ export default function AudioPlayer() {
           const next = prev + 0.5;
           const pct = Math.floor((next / currentTrack.duration) * 100);
 
-          // Milestone tracking for GTM DataLayer
           if (pct >= 25 && !milestonesFired[25]) {
             trackAudioEvent("progress_25", currentTrack.title, { percentage: 25 });
             setMilestonesFired((m) => ({ ...m, 25: true }));
@@ -166,59 +161,59 @@ export default function AudioPlayer() {
   const progressPercent = Math.min((currentTime / currentTrack.duration) * 100, 100);
 
   return (
-    <section id="hoerproben" className="w-full max-w-4xl mx-auto my-12 px-4">
-      <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl shadow-orange-950/20 backdrop-blur-sm">
+    <section id="hoerproben" className="w-full max-w-4xl mx-auto my-12 sm:my-20 px-4">
+      <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl backdrop-blur-sm">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 sm:pb-6 border-b border-slate-800">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Echte KI-Hörproben
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full mb-2">
+              <Sparkles className="w-3.5 h-3.5" /> Echte KI-H\u00f6rproben
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Höre den Unterschied: Dein Song mit Gänsehaut-Faktor
+            <h2 className="text-xl sm:text-3xl font-bold text-white">
+              H\u00f6re den Unterschied: Dein Song mit G\u00e4nsehaut-Faktor
             </h2>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
-            <Disc className="w-4 h-4 text-orange-400 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
+            <Disc className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
             <span>Studio-Mastering 48kHz / 24-Bit</span>
           </div>
         </div>
 
-        {/* Playlist Selector Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-8">
+        {/* Playlist Selector Buttons (Responsive Grid) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 mb-6 sm:mb-8">
           {PLAYLIST.map((track, idx) => (
             <button
               key={track.id}
               onClick={() => selectTrack(idx)}
-              className={`text-left p-3 rounded-xl border transition-all ${
+              className={`text-left p-3 rounded-xl sm:rounded-2xl border transition-all ${
                 idx === currentTrackIndex
-                  ? "bg-orange-500/15 border-orange-500/50 text-white shadow-lg shadow-orange-500/10"
+                  ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
                   : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-800"
               }`}
             >
-              <span className="text-xs font-medium block text-orange-400 mb-1">{track.genre}</span>
-              <p className="text-sm font-semibold truncate text-slate-200">{track.title}</p>
+              <span className="text-[11px] font-semibold block text-amber-400 mb-0.5 truncate">{track.genre}</span>
+              <p className="text-xs sm:text-sm font-bold truncate text-slate-200">{track.title}</p>
             </button>
           ))}
         </div>
 
         {/* Active Player Card */}
-        <div className="bg-slate-950/80 rounded-2xl p-5 border border-slate-800 flex flex-col gap-4">
+        <div className="bg-slate-950/90 rounded-2xl p-4 sm:p-5 border border-slate-800 flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               <button
                 onClick={handleTogglePlay}
-                aria-label={isPlaying ? "Pause" : "Play"}
-                className="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:scale-105 active:scale-95 transition flex items-center justify-center text-white shadow-xl shadow-orange-500/30"
+                aria-label={isPlaying ? "Pause" : "Abspielen"}
+                className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:scale-105 active:scale-95 transition flex items-center justify-center text-slate-950 shadow-xl shadow-amber-500/30"
               >
-                {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 translate-x-0.5" />}
+                {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 translate-x-0.5" />}
               </button>
-              <div>
-                <h4 className="text-lg font-bold text-white">{currentTrack.title}</h4>
-                <p className="text-sm text-slate-400 flex items-center gap-2">
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-bold text-white truncate">{currentTrack.title}</h4>
+                <p className="text-xs text-slate-400 flex items-center gap-1.5 truncate">
                   <span>{currentTrack.genre}</span>
-                  <span>•</span>
+                  <span>\u2022</span>
                   <span>Stimme: {currentTrack.vocal}</span>
                 </p>
               </div>
@@ -226,17 +221,17 @@ export default function AudioPlayer() {
 
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="text-slate-400 hover:text-white p-2 rounded-lg transition"
+              className="text-slate-400 hover:text-white p-2 rounded-lg transition shrink-0"
               aria-label={isMuted ? "Ton an" : "Stummschalten"}
             >
               {isMuted ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5" />}
             </button>
           </div>
 
-          {/* Waveform / Progress Bar */}
-          <div className="space-y-2">
+          {/* Progress Bar (Touch-friendly height) */}
+          <div className="space-y-1.5">
             <div
-              className="relative w-full h-3 bg-slate-800 rounded-full overflow-hidden cursor-pointer"
+              className="relative w-full h-3 sm:h-3.5 bg-slate-800 rounded-full overflow-hidden cursor-pointer"
               onClick={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const pos = (e.clientX - rect.left) / rect.width;
@@ -244,11 +239,11 @@ export default function AudioPlayer() {
               }}
             >
               <div
-                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-orange-500 to-amber-400 rounded-full transition-all duration-200"
+                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-200"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <div className="flex justify-between text-xs font-mono text-slate-400">
+            <div className="flex justify-between text-[11px] font-mono text-slate-400">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(currentTrack.duration)}</span>
             </div>

@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import { 
-  Heart, Gift, Sparkles, Music2, Mic, Clock, ArrowRight, ArrowLeft, 
-  CheckCircle2, Flame, HelpCircle 
+  Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame 
 } from "lucide-react";
 import { trackConfiguratorStep } from "../lib/gtmPreview";
 
 const OCCASIONS = [
-  { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack f?r Trauung & Er?ffnungstanz" },
-  { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, ber?hrend oder mitrei?end mit allen Meilensteinen" },
-  { id: "liebe", label: "Liebeserkl?rung & Jahrestag", icon: Sparkles, desc: "Sag 'Ich liebe dich' mit einer unvergesslichen Ballade" },
+  { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack f\u00fcr Trauung & Er\u00f6ffnungstanz" },
+  { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, ber\u00fchrend oder mitrei\u00dfend mit allen Meilensteinen" },
+  { id: "liebe", label: "Liebeserkl\u00e4rung & Jahrestag", icon: Sparkles, desc: "Sag \u201aIch liebe dich\u2018 mit einer unvergesslichen Ballade" },
   { id: "party", label: "Party, Verein & Abschied", icon: Flame, desc: "Uptempo-Hymne mit Ohrwurm-Refrain zum Mitsingen" },
 ];
 
 const GENRES = [
-  { id: "pop-ballade", label: "Pop-Ballade", desc: "Gef?hlvolles Klavier, Streicher & mitrei?ender Refrain" },
+  { id: "pop-ballade", label: "Pop-Ballade", desc: "Gef\u00fchlvolles Klavier, Streicher & mitrei\u00dfender Refrain" },
   { id: "akustik", label: "Akustik / Singer-Songwriter", desc: "Warme Akustikgitarre, intim & authentisch" },
-  { id: "schlager", label: "Moderner Schlager / Pop", desc: "Tanzbar, schwungvoll & sofort im Kopf" },
-  { id: "rnb", label: "R&B / Soul", desc: "Groovige Beats, gef?hlvoller Gesang & G?nsehaut-Vibes" },
+  { id: "schlager", label: "Moderner Schlager / Pop", desc: "Tanzbar, schwungvoll & sofort im Ohr" },
+  { id: "rnb", label: "R&B / Soul", desc: "Groovige Beats, gef\u00fchlvoller Gesang & G\u00e4nsehaut-Vibes" },
   { id: "rock", label: "Rock / Power-Ballade", desc: "E-Gitarren, Energie & emotionale Dynamik" },
 ];
 
 const VOICES = [
   { id: "weiblich", label: "Weibliche Stimme", desc: "Sanft, klar und voller Emotion" },
-  { id: "maennlich", label: "M?nnliche Stimme", desc: "Warm, markant und ausdrucksstark" },
+  { id: "maennlich", label: "M\u00e4nnliche Stimme", desc: "Warm, markant und ausdrucksstark" },
   { id: "duett", label: "Emotionales Duett", desc: "Harmonischer Dialog aus zwei Stimmen" },
 ];
 
@@ -35,7 +34,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     language: "Deutsch",
     names: "",
     story: "",
-    mood: "Romantisch & Tr?nenreich",
+    mood: "Romantisch & Emotionen",
     express: false,
     pdfLyrics: false,
   });
@@ -65,17 +64,15 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
   };
 
   return (
-    <section id="konfigurator" className="w-full max-w-4xl mx-auto my-16 px-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-        {/* Glow background accent */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-        {/* Progress header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+    <section id="konfigurator" className="w-full max-w-4xl mx-auto my-12 sm:my-20 px-4">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-2xl relative overflow-hidden">
+        
+        {/* Progress Header */}
+        <div className="mb-6 sm:mb-8">
+          <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
             <span>Schritt {step} von 5</span>
-            <span className="text-amber-400 font-bold">
-              {step === 1 && "Anlass w?hlen"}
+            <span className="text-amber-400 font-bold truncate ml-2">
+              {step === 1 && "Anlass w\u00e4hlen"}
               {step === 2 && "Musikstil & Genre"}
               {step === 3 && "Gesang & Stimme"}
               {step === 4 && "Eure Geschichte"}
@@ -92,9 +89,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
         {/* Step 1: Occasion */}
         {step === 1 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">F?r welchen Anlass ist dein Song?</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-5 sm:space-y-6">
+            <h3 className="text-xl sm:text-3xl font-bold text-white">F\u00fcr welchen Anlass ist dein Song?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {OCCASIONS.map((occ) => {
                 const Icon = occ.icon;
                 const isSelected = config.occasion === occ.id;
@@ -102,29 +99,30 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                   <div
                     key={occ.id}
                     onClick={() => setConfig({ ...config, occasion: occ.id })}
-                    className={`cursor-pointer p-5 rounded-2xl border transition-all flex items-start gap-4 ${
+                    className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all flex items-start gap-3.5 ${
                       isSelected
                         ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
                         : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
                     }`}
                   >
-                    <div className={`p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-700 text-slate-400"}`}>
-                      <Icon className="w-6 h-6" />
+                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-700 text-slate-400"}`}>
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-base mb-1">{occ.label}</h4>
+                      <h4 className="font-bold text-sm sm:text-base mb-1">{occ.label}</h4>
                       <p className="text-xs text-slate-400 leading-relaxed">{occ.desc}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div className="pt-4 flex justify-end">
+            <div className="pt-3 sm:pt-4 flex justify-end">
               <button
                 onClick={() => goToStep(2)}
-                className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                Weiter zu Musikstil <ArrowRight className="w-5 h-5" />
+                <span>Weiter zu Musikstil</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -132,23 +130,23 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
         {/* Step 2: Genre */}
         {step === 2 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Welcher Musikstil passt am besten?</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-5 sm:space-y-6">
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Welcher Musikstil passt am besten?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {GENRES.map((g) => {
                 const isSelected = config.genre === g.id;
                 return (
                   <div
                     key={g.id}
                     onClick={() => setConfig({ ...config, genre: g.id })}
-                    className={`cursor-pointer p-5 rounded-2xl border transition-all ${
+                    className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all ${
                       isSelected
                         ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
                         : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-base">{g.label}</h4>
+                      <h4 className="font-bold text-sm sm:text-base">{g.label}</h4>
                       {isSelected && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
                     </div>
                     <p className="text-xs text-slate-400">{g.desc}</p>
@@ -156,18 +154,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 );
               })}
             </div>
-            <div className="pt-4 flex justify-between">
+            <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(1)}
-                className="px-5 py-2.5 text-slate-400 hover:text-white flex items-center gap-2"
+                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur?ck
+                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
               </button>
               <button
                 onClick={() => goToStep(3)}
-                className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                Weiter zu Gesang <ArrowRight className="w-5 h-5" />
+                <span>Weiter zu Gesang</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -175,9 +174,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
         {/* Step 3: Voice & Language */}
         {step === 3 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Gesangsstimme & Sprache festlegen</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="space-y-5 sm:space-y-6">
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Gesangsstimme & Sprache festlegen</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {VOICES.map((v) => {
                 const isSelected = config.voice === v.id;
                 return (
@@ -190,7 +189,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                         : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
                     }`}
                   >
-                    <Mic className={`w-8 h-8 mx-auto mb-2 ${isSelected ? "text-amber-400" : "text-slate-500"}`} />
+                    <Mic className={`w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 ${isSelected ? "text-amber-400" : "text-slate-500"}`} />
                     <h4 className="font-bold text-sm mb-1">{v.label}</h4>
                     <p className="text-xs text-slate-400">{v.desc}</p>
                   </div>
@@ -198,15 +197,15 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               })}
             </div>
 
-            <div className="pt-4 border-t border-slate-800">
-              <label className="block text-sm font-semibold text-white mb-2">Sprache des Songs:</label>
-              <div className="flex gap-3">
+            <div className="pt-3 border-t border-slate-800">
+              <label className="block text-xs sm:text-sm font-semibold text-white mb-2">Sprache des Songs:</label>
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {["Deutsch", "Englisch", "Zweisprachig (DE/EN)"].map((lang) => (
                   <button
                     key={lang}
                     type="button"
                     onClick={() => setConfig({ ...config, language: lang })}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium border transition ${
+                    className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border transition ${
                       config.language === lang
                         ? "bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-md"
                         : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
@@ -218,18 +217,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               </div>
             </div>
 
-            <div className="pt-4 flex justify-between">
+            <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(2)}
-                className="px-5 py-2.5 text-slate-400 hover:text-white flex items-center gap-2"
+                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur?ck
+                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
               </button>
               <button
                 onClick={() => goToStep(4)}
-                className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                Weiter zu Details <ArrowRight className="w-5 h-5" />
+                <span>Weiter zu Details</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -237,63 +237,64 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
         {/* Step 4: Story & Names */}
         {step === 4 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Eure pers?nliche Geschichte</h3>
-            <p className="text-sm text-slate-400">
-              Je mehr pers?nliche Details du nennst, desto einzigartiger wird der Text.
+          <div className="space-y-5 sm:space-y-6">
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Eure pers\u00f6nliche Geschichte</h3>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Je mehr pers\u00f6nliche Details du nennst, desto einzigartiger wird der Text.
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-white mb-1">
+                <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
                   Namen der besungenen Personen / Kosenamen:
                 </label>
                 <input
                   type="text"
-                  placeholder="z.B. Sarah & Florian, oder Opa Hans"
+                  placeholder="z.B. Sarah & Florian, oder Oma Brigitte"
                   value={config.names}
                   onChange={(e) => setConfig({ ...config, names: e.target.value })}
-                  className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-white mb-1">
-                  Wichtige Anekdoten, Daten, Meilensteine & Kernbotschaft:
+                <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
+                  Wichtige Anekdoten, Meilensteine & Kernbotschaft:
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="z.B. Kennengelernt im Sommerurlaub 2018 in Italien, Liebe zu Spazierg?ngen am Meer, Heiratsantrag in Paris, 'Danke, dass du immer mein Anker bist'..."
+                  placeholder="z.B. Kennengelernt 2019 in Italien, gemeinsame Reise ans Meer, 'Danke, dass du immer mein Fels in der Brandung bist'..."
                   value={config.story}
                   onChange={(e) => setConfig({ ...config, story: e.target.value })}
-                  className="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
                 />
               </div>
             </div>
 
-            <div className="pt-4 flex justify-between">
+            <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(3)}
-                className="px-5 py-2.5 text-slate-400 hover:text-white flex items-center gap-2"
+                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur?ck
+                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
               </button>
               <button
                 onClick={() => goToStep(5)}
-                className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                Weiter zur ?bersicht <ArrowRight className="w-5 h-5" />
+                <span>Zur \u00dcbersicht</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
         )}
 
-        {/* Step 5: Summary & Packages */}
+        {/* Step 5: Summary */}
         {step === 5 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Konfiguration pr?fen & Extras w?hlen</h3>
+          <div className="space-y-5 sm:space-y-6">
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Konfiguration pr\u00fcfen & Extras w\u00e4hlen</h3>
 
-            <div className="bg-slate-950/70 p-5 rounded-2xl border border-slate-800 space-y-3 text-sm">
+            <div className="bg-slate-950/80 p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 text-xs sm:text-sm">
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
                 <span className="text-slate-400">Anlass:</span>
                 <span className="font-semibold text-white capitalize">{config.occasion}</span>
@@ -303,72 +304,73 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 <span className="font-semibold text-white capitalize">{config.genre}</span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">Gesang & Sprache:</span>
+                <span className="text-slate-400">Gesang:</span>
                 <span className="font-semibold text-white capitalize">{config.voice} ({config.language})</span>
               </div>
               {config.names && (
                 <div className="flex justify-between border-b border-slate-800/80 pb-2">
                   <span className="text-slate-400">Namen:</span>
-                  <span className="font-semibold text-white">{config.names}</span>
+                  <span className="font-semibold text-white truncate max-w-[200px]">{config.names}</span>
                 </div>
               )}
             </div>
 
             {/* Extras toggles */}
-            <div className="space-y-3">
-              <label className="flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
+            <div className="space-y-2.5">
+              <label className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
                 <div className="flex items-center gap-3">
                   <input
                     type="checkbox"
                     checked={config.express}
                     onChange={(e) => setConfig({ ...config, express: e.target.checked })}
-                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5"
+                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
                   />
                   <div>
-                    <span className="font-bold text-white block">Express-Lieferung (12 Stunden)</span>
-                    <span className="text-xs text-slate-400">Garantierte Lieferung innerhalb 12h statt 24-48h</span>
+                    <span className="font-bold text-white text-xs sm:text-sm block">Express-Lieferung (unter 12 Stunden)</span>
+                    <span className="text-[11px] sm:text-xs text-slate-400">Garantierte Fertigstellung innerhalb 12h statt 24h</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-400">+9,99 ?</span>
+                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 \u20ac</span>
               </label>
 
-              <label className="flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
+              <label className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
                 <div className="flex items-center gap-3">
                   <input
                     type="checkbox"
                     checked={config.pdfLyrics}
                     onChange={(e) => setConfig({ ...config, pdfLyrics: e.target.checked })}
-                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5"
+                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
                   />
                   <div>
-                    <span className="font-bold text-white block">Songtext als Urkunde / PDF</span>
-                    <span className="text-xs text-slate-400">Hochaufl?sendes PDF zum Ausdrucken und Einrahmen</span>
+                    <span className="font-bold text-white text-xs sm:text-sm block">Songtext-Urkunde als PDF</span>
+                    <span className="text-[11px] sm:text-xs text-slate-400">Druckreifes PDF zum Einrahmen und Verschenken</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-400">+4,99 ?</span>
+                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+4,99 \u20ac</span>
               </label>
             </div>
 
-            {/* Total price */}
-            <div className="p-5 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 rounded-2xl flex items-center justify-between">
+            {/* Total price & Checkout Button */}
+            <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-sm text-slate-300 block">Gesamtpreis (inkl. MwSt.)</span>
-                <span className="text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} ?</span>
+                <span className="text-xs sm:text-sm text-slate-300 block">Gesamtpreis (inkl. MwSt.)</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} \u20ac</span>
               </div>
               <button
                 onClick={handleFinish}
-                className="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-lg rounded-xl flex items-center gap-2 transition shadow-xl shadow-amber-500/30"
+                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-xl flex items-center justify-center gap-2 transition shadow-xl shadow-amber-500/30"
               >
-                Jetzt bestellen <ArrowRight className="w-5 h-5" />
+                <span>Jetzt bestellen</span>
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
 
             <div className="pt-2 flex justify-start">
               <button
                 onClick={() => goToStep(4)}
-                className="px-5 py-2.5 text-slate-400 hover:text-white flex items-center gap-2"
+                className="px-4 py-2 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur?ck zum Bearbeiten
+                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck zum Bearbeiten
               </button>
             </div>
           </div>
