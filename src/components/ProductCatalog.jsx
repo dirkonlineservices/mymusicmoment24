@@ -19,9 +19,9 @@ export default function ProductCatalog({ onSelectProduct }) {
     : PRODUCTS.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="shop" className="max-w-7xl mx-auto my-12 sm:my-20 px-4">
+    <section id="shop" className="max-w-7xl mx-auto mt-2 sm:mt-6 mb-12 sm:mb-20 px-4">
       {/* Section Header */}
-      <div className="text-center mb-8 sm:mb-12">
+      <div className="text-center mb-6 sm:mb-10">
         <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
           <Sparkles className="w-3.5 h-3.5" /> Echte Studioqualität • Nur 19,99 € je Lied
         </div>

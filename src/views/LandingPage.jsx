@@ -192,7 +192,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-10 pb-14 sm:pt-20 sm:pb-24 overflow-hidden">
+      <section className="relative pt-8 pb-6 sm:pt-16 sm:pb-8 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-gradient-to-tr from-amber-500/15 via-orange-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-5 sm:space-y-6">
@@ -315,7 +315,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </div>
 
           {/* Trust Badges */}
-          <div className="pt-6 sm:pt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400 border-t border-slate-900 max-w-xl mx-auto">
+          <div className="pt-4 sm:pt-5 flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs text-slate-400 border-t border-slate-900 max-w-xl mx-auto">
             <div className="flex items-center gap-1 text-amber-400 font-bold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
