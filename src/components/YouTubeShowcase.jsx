@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Youtube, Play, ExternalLink, X, Sparkles, Music } from "lucide-react";
+import { Youtube, Play, ExternalLink, X, Music } from "lucide-react";
 
 const YOUTUBE_TRACKS = [
   {
@@ -124,9 +124,9 @@ export default function YouTubeShowcase() {
                 </div>
 
                 {/* Badges on Thumbnail */}
-                <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded-md text-[10px] font-semibold text-amber-300 border border-amber-500/20">
-                  <Sparkles className="w-3 h-3 text-amber-400" />
-                  <span>✨ KI-Creative</span>
+                <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-black/75 backdrop-blur-sm px-2 py-0.5 rounded-md text-[10px] font-medium text-slate-200 border border-white/10">
+                  <Youtube className="w-3.5 h-3.5 text-red-500" />
+                  <span>YouTube</span>
                 </div>
 
                 <div className="absolute bottom-2.5 right-2.5 bg-black/85 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-mono text-slate-200 border border-white/10">
