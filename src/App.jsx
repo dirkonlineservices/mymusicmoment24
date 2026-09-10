@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LandingPage from "./views/LandingPage";
 import BlogPost from "./views/BlogPost";
+import AuthorPage from "./views/AuthorPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 
@@ -13,13 +14,15 @@ export default function App() {
   const [checkoutOrder, setCheckoutOrder] = useState(null);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  // Sync with browser URL
+  // Sync with browser URL & routing
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
       if (path.startsWith("/blog/")) {
         const slug = path.replace("/blog/", "").replace(/\/$/, "");
         setCurrentRoute({ view: "blog", slug });
+      } else if (path === "/autor-dirk-schmetzer" || path === "/ueber-uns-musikservice") {
+        setCurrentRoute({ view: "author", slug: null });
       } else {
         setCurrentRoute({ view: "home", slug: null });
       }
@@ -36,10 +39,25 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const navigateToHome = () => {
-    window.history.pushState({}, "", "/");
-    setCurrentRoute({ view: "home", slug: null });
+  const navigateToAuthor = () => {
+    window.history.pushState({}, "", "/autor-dirk-schmetzer");
+    setCurrentRoute({ view: "author", slug: null });
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const navigateToHome = (hash = "") => {
+    window.history.pushState({}, "", hash ? `/${hash}` : "/");
+    setCurrentRoute({ view: "home", slug: null });
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 50);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handleOpenCheckout = (order) => {
@@ -57,13 +75,22 @@ export default function App() {
         <LandingPage
           onOpenCheckout={handleOpenCheckout}
           onNavigateBlog={navigateToBlog}
+          onNavigateAuthor={navigateToAuthor}
         />
       )}
 
       {currentRoute.view === "blog" && (
         <BlogPost
           slug={currentRoute.slug || "individueller-hochzeitssong"}
-          onBackToHome={navigateToHome}
+          onBackToHome={() => navigateToHome()}
+          onGoToConfigurator={() => navigateToHome("#konfigurator")}
+        />
+      )}
+
+      {currentRoute.view === "author" && (
+        <AuthorPage
+          onBackToHome={() => navigateToHome()}
+          onGoToConfigurator={() => navigateToHome("#konfigurator")}
         />
       )}
 

@@ -10,7 +10,7 @@ import YouTubeShowcase from "../components/YouTubeShowcase";
 import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 
-export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
+export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor }) {
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -88,6 +88,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             >
               Ratgeber
             </button>
+            <button
+              onClick={onNavigateAuthor}
+              className="hover:text-amber-400 transition font-medium"
+            >
+              Über uns
+            </button>
           </nav>
 
           {/* Desktop Action Button & Mobile Hamburger Toggle */}
@@ -140,6 +146,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                 className="text-left px-3 py-2 rounded-lg text-amber-400 hover:bg-slate-800 transition"
               >
                 Ratgeber & Blog
+              </button>
+              <button
+                onClick={() => {
+                  closeMobileMenu();
+                  onNavigateAuthor();
+                }}
+                className="text-left px-3 py-2 rounded-lg hover:bg-slate-800 transition"
+              >
+                Über Dirk Schmetzer
               </button>
             </nav>
 
@@ -455,7 +470,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             >
               Blog & Ratgeber
             </button>
+            <button
+              onClick={onNavigateAuthor}
+              className="hover:text-white transition"
+            >
+              Über Dirk Schmetzer
+            </button>
             <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
+            <a href="/llms.txt" className="hover:text-white transition">llms.txt</a>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))}
               className="hover:text-amber-400 transition underline decoration-dotted"

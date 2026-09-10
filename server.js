@@ -11,25 +11,59 @@ const PORT = process.env.PORT || 8080;
 
 // 301 Permanent Redirect Map (SEO Preservation from Sitemap / Legacy URLs)
 const REDIRECT_MAP = {
+  // Direct technical redirects
   "/sitemapxml": "/sitemap.xml",
   "/llmstxt": "/llms.txt",
+
+  // Core Trust & Author routes
+  "/kontakt-fur-personalisierte-songs": "/#kontakt",
+  "/partner-fuer-songprojekt": "/#kontakt",
+  "/b2b-dienstleistungen": "/#kontakt",
+  "/faq-seite": "/#faq",
+  "/ueber-uns-musikservice": "/autor-dirk-schmetzer",
+
+  // Informational Blog Articles
+  "/ki-musik-studien-trends-und-was-sie-fur-mymusicmoment24-bedeuten": "/blog/ki-musik-studien-trends",
+  "/echt-oder-ki-die-revolution-der-personalisierten-musik-or-mymusicmoment24de": "/blog/ki-musik-revolution",
+  "/10-tipps-fur-personalisierte-geschenkideen": "/blog/10-tipps-fuer-personalisierte-geschenke",
+  "/was-ist-ki-musik-chancen-und-risiken-fur-content-creator": "/blog/was-ist-ki-musik",
   "/individuelle-hochzeitssongs-mit-ki-so-entsteht-euer-einzigartiger-liebessong": "/blog/individueller-hochzeitssong",
-  "/echt-oder-ki-die-revolution-der-personalisierten-musik-or-mymusicmoment24de": "/blog/individueller-hochzeitssong",
   "/blog-post": "/blog/individueller-hochzeitssong",
   "/ki-musik-blog": "/blog/individueller-hochzeitssong",
-  "/faq-seite": "/#faq",
-  "/beispiele-fuer-ki-musik": "/#hoerproben",
+  "/blog-geburtstagsgeschenke": "/blog/10-tipps-fuer-personalisierte-geschenke",
+
+  // Showcase & Audio Examples
   "/beispiele-ki-musikvideos": "/#hoerproben",
+  "/beispiele-fuer-ki-musik": "/#hoerproben",
+  "/ki-musikstile": "/#hoerproben",
+  "/musikvergleich-der-jahrzehnte": "/#hoerproben",
+
+  // Transactional & Configurator
   "/generator": "/#konfigurator",
   "/ki-musik-bestellen": "/#konfigurator",
-  "/individuelle-hochzeitssongs": "/#konfigurator",
-  "/individuelles-hochzeitslied": "/#konfigurator",
-  "/personalisierte-lieder": "/#konfigurator",
-  "/personalisierte-geburtstagslieder": "/#konfigurator",
   "/eigene-lieder-erstellen": "/#konfigurator",
   "/musik-selber-erstellen": "/#konfigurator",
-  "/individuelle-hochzeitsgeschenke": "/#konfigurator",
+  "/musik-ki": "/#konfigurator",
   "/express-zuschlag-lieferung-innerhalb-von-12-std-an-werktagen": "/#konfigurator",
+
+  // Shop & Occasion Landing Pages
+  "/geschenk-gutschein": "/#shop",
+  "/individueller-song-kaufen": "/#shop",
+  "/musik-services": "/#shop",
+  "/personalisiertes-geschenk": "/#shop",
+  "/personalisierte-lieder": "/#shop",
+  "/personalisierte-geburtstagslieder": "/#shop",
+  "/individuelle-hochzeitsgeschenke": "/#shop",
+  "/individuelle-hochzeitssongs": "/#shop",
+  "/individuelles-hochzeitslied": "/#shop",
+  "/liebeslied-im-duett-2-sprachig-oder-2-stimmen": "/#shop",
+  "/dein-partytrack-musikalische-uberraschung": "/#shop",
+  "/jubilaum-song": "/#shop",
+  "/individuelle-musik-zum-valentinstag-on-demand-kompositionen": "/#shop",
+  "/emotionen-verschenken": "/#warum",
+  "/kraft-der-musik": "/#warum",
+  "/in-gedenken-an-sinnlose-opfer": "/#shop",
+  "/niemals-knast-lieder": "/#shop"
 };
 
 // Middleware: 301 Redirect Handler
