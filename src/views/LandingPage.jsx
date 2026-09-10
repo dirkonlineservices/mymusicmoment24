@@ -227,7 +227,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>KI-Bild</span>
+                  <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
@@ -253,7 +253,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>KI-Bild</span>
+                  <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
@@ -279,7 +279,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>KI-Bild</span>
+                  <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
@@ -547,12 +547,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               </ul>
             </div>
 
-            {/* Col 4: Rechtliches & SEO/KI-Transparenz */}
+            {/* Col 4: Rechtliches & Datenschutz */}
             <div className="space-y-3">
               <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
-                Rechtliches &amp; Index
+                Rechtliches &amp; Datenschutz
               </h3>
-              <ul className="space-y-2 text-xs">
+              <ul className="space-y-2.5 text-xs">
                 <li>
                   <button onClick={() => onNavigateLegal("impressum")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
                     <span>⚖️</span>
@@ -570,18 +570,6 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                     <span>🍪</span>
                     <span>Cookie-Einstellungen</span>
                   </button>
-                </li>
-                <li className="pt-2 border-t border-slate-900">
-                  <a href="/sitemap.xml" target="_blank" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition">
-                    <span className="text-amber-400 font-mono text-[11px] font-bold">[XML]</span>
-                    <span>Sitemap (Index aller 44 Seiten)</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/llms.txt" target="_blank" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition">
-                    <span className="text-cyan-400 font-mono text-[11px] font-bold">[TXT]</span>
-                    <span>KI-Transparenz (llms.txt)</span>
-                  </a>
                 </li>
               </ul>
             </div>

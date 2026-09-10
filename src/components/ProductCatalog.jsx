@@ -77,7 +77,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                 {/* KI-Transparenz Label */}
                 <span className="absolute top-3 right-3 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>KI-Bild</span>
+                  <span>KI-Creative</span>
                 </span>
 
                 <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">

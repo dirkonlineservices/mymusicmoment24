@@ -138,6 +138,36 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
                 Die durch die Seitenbetreiber erstellten Inhalte, Kompositionen und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
               </p>
             </section>
+
+            {/* Technische Indizes & Transparenzangaben */}
+            <section className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 space-y-3 text-xs text-slate-400">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <FileText className="w-4 h-4 text-orange-400" /> Technische Indizes &amp; Transparenzangaben
+              </h3>
+              <p>
+                Zur Gewährleistung von Transparenz nach modernen Webstandards und zur Unterstützung automatisierter Indexierungen stellen wir folgende maschinenlesbare Index- und Kontextdaten bereit:
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <a
+                  href="/sitemap.xml"
+                  target="_blank"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 hover:text-white transition"
+                >
+                  <span className="font-mono text-amber-400 text-[11px] font-bold">[XML]</span>
+                  <span>Sitemap-Index (44 Seiten)</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+                <a
+                  href="/llms.txt"
+                  target="_blank"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 hover:text-white transition"
+                >
+                  <span className="font-mono text-cyan-400 text-[11px] font-bold">[TXT]</span>
+                  <span>KI-Kontextdokument (llms.txt)</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </div>
+            </section>
           </>
         ) : (
           <>
@@ -175,12 +205,28 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
             </section>
 
             <section className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
-              <h2 className="text-xl font-bold text-white">3. Zahlungsabwicklung über PayPal</h2>
+              <h2 className="text-xl font-bold text-white">3. Zahlungsdienstleister &amp; Zahlungsabwicklung</h2>
               <p>
-                Für die sichere Zahlungsabwicklung nutzen wir den Zahlungsdienstleister PayPal (PayPal (Europe) S.à r.l. et Cie, S.C.A., 22-24 Boulevard Royal, L-2449 Luxembourg).
+                Zur Abwicklung von Zahlungen setzen wir externe Zahlungsdienstleister ein, über deren Plattformen Sie Zahlungen vornehmen können:
               </p>
+              <div className="space-y-3 text-xs text-slate-300">
+                <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800">
+                  <p className="font-semibold text-white mb-1">PayPal</p>
+                  <p className="text-slate-400">
+                    PayPal (Europe) S.à r.l. et Cie, S.C.A., 22-24 Boulevard Royal, L-2449 Luxembourg.
+                    Datenschutzerklärung: <a href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full" target="_blank" rel="noopener noreferrer" className="text-emerald-400 underline">https://www.paypal.com/privacy</a>.
+                  </p>
+                </div>
+                <div className="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800">
+                  <p className="font-semibold text-white mb-1">Kreditkarten, Apple Pay &amp; Google Pay (z. B. Stripe / Checkout)</p>
+                  <p className="text-slate-400">
+                    Stripe Payments Europe, Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, D02 H210, Irland.
+                    Datenschutzerklärung: <a href="https://stripe.com/de/privacy" target="_blank" rel="noopener noreferrer" className="text-emerald-400 underline">https://stripe.com/privacy</a>.
+                  </p>
+                </div>
+              </div>
               <p className="text-xs text-slate-400">
-                Bei der Zahlung per PayPal werden Ihre Bestelldaten an PayPal übermittelt. Die Übermittlung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung). Nähere Informationen finden Sie in der Datenschutzerklärung von PayPal: <a href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full" target="_blank" rel="noopener noreferrer" className="text-emerald-400 underline">https://www.paypal.com/privacy</a>.
+                <strong>Rechtsgrundlage:</strong> Die Weitergabe Ihrer Zahlungsdaten an den jeweiligen Zahlungsanbieter erfolgt ausschließlich zur Vertragsabwicklung und Zahlungsdurchführung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.
               </p>
             </section>
 
