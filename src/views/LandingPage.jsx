@@ -10,7 +10,7 @@ import YouTubeShowcase from "../components/YouTubeShowcase";
 import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 
-export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor }) {
+export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal }) {
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -155,6 +155,24 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 className="text-left px-3 py-2 rounded-lg hover:bg-slate-800 transition"
               >
                 Über Dirk Schmetzer
+              </button>
+              <button
+                onClick={() => {
+                  closeMobileMenu();
+                  onNavigateLegal("impressum");
+                }}
+                className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              >
+                Impressum
+              </button>
+              <button
+                onClick={() => {
+                  closeMobileMenu();
+                  onNavigateLegal("datenschutz");
+                }}
+                className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              >
+                Datenschutz
               </button>
             </nav>
 
@@ -450,45 +468,125 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 py-10 sm:py-12 text-xs sm:text-sm text-slate-400 pb-24 sm:pb-12">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="flex items-center gap-2 font-bold text-white text-base">
-            <Music className="w-5 h-5 text-amber-500" />
-            <span>MyMusicMoment24</span>
+      {/* Comprehensive 4-Column Footer */}
+      <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-28 sm:pb-16 text-slate-400 text-xs sm:text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-900">
+            {/* Col 1: Brand & E-E-A-T */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 font-bold text-white text-lg">
+                <Music className="w-5 h-5 text-amber-500" />
+                <span>MyMusicMoment24</span>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und Studio-Mastering ab 19,99 €.
+              </p>
+              <div className="text-xs text-slate-500 space-y-1">
+                <p className="font-semibold text-slate-400">DS Online Services • Dirk Schmetzer</p>
+                <p>Neunkirchen, Saarland (Deutschland)</p>
+              </div>
+              <div className="pt-1">
+                <a
+                  href="https://www.youtube.com/@MyMusicMoment24"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-600/10 border border-red-500/20 text-red-400 text-xs font-semibold hover:bg-red-600/20 transition"
+                >
+                  <span>YouTube: @MyMusicMoment24</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2: Beliebte Anlässe */}
+            <div className="space-y-3">
+              <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
+                Beliebte Songs
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li><a href="#shop" className="hover:text-white transition">Hochzeitssong &amp; Traulied</a></li>
+                <li><a href="#shop" className="hover:text-white transition">Personalisierter Geburtstagssong</a></li>
+                <li><a href="#shop" className="hover:text-white transition">Liebeslied im Duett (2 Stimmen)</a></li>
+                <li><a href="#shop" className="hover:text-white transition">Jubiläum &amp; Ruhestand</a></li>
+                <li><a href="#shop" className="hover:text-white transition">Partytrack &amp; Stimmungsmusik</a></li>
+                <li><a href="#shop" className="hover:text-white transition">Geschenkgutschein (19,99 €)</a></li>
+              </ul>
+            </div>
+
+            {/* Col 3: Service & Navigation */}
+            <div className="space-y-3">
+              <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
+                Service &amp; Ratgeber
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li><a href="#prozess" className="hover:text-white transition">5-Schritte-Ablauf &amp; WhatsApp</a></li>
+                <li><a href="#hoerproben" className="hover:text-white transition">Hörproben im Audio-Player</a></li>
+                <li><a href="#konfigurator" className="hover:text-white transition">Song-Konfigurator starten</a></li>
+                <li><a href="#faq" className="hover:text-white transition">Häufige Fragen (FAQ)</a></li>
+                <li>
+                  <button onClick={() => onNavigateBlog("individueller-hochzeitssong")} className="hover:text-white transition text-left">
+                    Ratgeber &amp; KI-Musik Blog
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onNavigateAuthor} className="hover:text-white transition text-left">
+                    Über Gründer Dirk Schmetzer
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Col 4: Rechtliches & SEO/KI-Transparenz */}
+            <div className="space-y-3">
+              <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
+                Rechtliches &amp; Index
+              </h3>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button onClick={() => onNavigateLegal("impressum")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
+                    <span>⚖️</span>
+                    <span>Impressum (§ 5 DDG)</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigateLegal("datenschutz")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
+                    <span>🛡️</span>
+                    <span>Datenschutzerklärung (DSGVO)</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))} className="hover:text-amber-400 transition text-left underline decoration-dotted flex items-center gap-1.5">
+                    <span>🍪</span>
+                    <span>Cookie-Einstellungen</span>
+                  </button>
+                </li>
+                <li className="pt-2 border-t border-slate-900">
+                  <a href="/sitemap.xml" target="_blank" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition">
+                    <span className="text-amber-400 font-mono text-[11px] font-bold">[XML]</span>
+                    <span>Sitemap (Index aller 44 Seiten)</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/llms.txt" target="_blank" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition">
+                    <span className="text-cyan-400 font-mono text-[11px] font-bold">[TXT]</span>
+                    <span>KI-Transparenz (llms.txt)</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs">
-            <a href="#shop" className="hover:text-white transition">Shop (19,99 €)</a>
-            <a href="#hoerproben" className="hover:text-white transition">Hörproben</a>
-            <a href="https://www.youtube.com/@MyMusicMoment24" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition">
-              YouTube Kanal
-            </a>
-            <button
-              onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-              className="hover:text-white transition"
-            >
-              Blog & Ratgeber
-            </button>
-            <button
-              onClick={onNavigateAuthor}
-              className="hover:text-white transition"
-            >
-              Über Dirk Schmetzer
-            </button>
-            <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
-            <a href="/llms.txt" className="hover:text-white transition">llms.txt</a>
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))}
-              className="hover:text-amber-400 transition underline decoration-dotted"
-            >
-              Cookie-Einstellungen
-            </button>
+          {/* Bottom Bar: Copyright & Payment */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 text-center sm:text-left">
+            <p>
+              &copy; 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. Alle Rechte vorbehalten.
+            </p>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">PayPal</span>
+              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Kreditkarte</span>
+              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Apple Pay</span>
+              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Google Pay</span>
+            </div>
           </div>
-
-          <p className="text-[11px] text-slate-500">
-            © 2026 MyMusicMoment24 • Dirk Schmetzer Online Services
-          </p>
         </div>
       </footer>
 

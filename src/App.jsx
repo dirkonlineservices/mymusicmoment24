@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LandingPage from "./views/LandingPage";
 import BlogPost from "./views/BlogPost";
 import AuthorPage from "./views/AuthorPage";
+import LegalPage from "./views/LegalPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 
@@ -23,6 +24,10 @@ export default function App() {
         setCurrentRoute({ view: "blog", slug });
       } else if (path === "/autor-dirk-schmetzer" || path === "/ueber-uns-musikservice") {
         setCurrentRoute({ view: "author", slug: null });
+      } else if (path === "/impressum") {
+        setCurrentRoute({ view: "legal", slug: "impressum" });
+      } else if (path === "/datenschutz") {
+        setCurrentRoute({ view: "legal", slug: "datenschutz" });
       } else {
         setCurrentRoute({ view: "home", slug: null });
       }
@@ -42,6 +47,12 @@ export default function App() {
   const navigateToAuthor = () => {
     window.history.pushState({}, "", "/autor-dirk-schmetzer");
     setCurrentRoute({ view: "author", slug: null });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const navigateToLegal = (type = "impressum") => {
+    window.history.pushState({}, "", `/${type}`);
+    setCurrentRoute({ view: "legal", slug: type });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -76,6 +87,7 @@ export default function App() {
           onOpenCheckout={handleOpenCheckout}
           onNavigateBlog={navigateToBlog}
           onNavigateAuthor={navigateToAuthor}
+          onNavigateLegal={navigateToLegal}
         />
       )}
 
@@ -91,6 +103,14 @@ export default function App() {
         <AuthorPage
           onBackToHome={() => navigateToHome()}
           onGoToConfigurator={() => navigateToHome("#konfigurator")}
+        />
+      )}
+
+      {currentRoute.view === "legal" && (
+        <LegalPage
+          type={currentRoute.slug || "impressum"}
+          onBackToHome={() => navigateToHome()}
+          onSwitchTab={(type) => navigateToLegal(type)}
         />
       )}
 
