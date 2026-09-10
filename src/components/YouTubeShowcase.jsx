@@ -6,12 +6,12 @@ const YOUTUBE_TRACKS = [
     id: "island-sky",
     videoId: "5xZLQT0uXlY",
     title: "Island Sky",
-    badge: "House / Techno / Trance",
-    genreDetail: "Sommersong & Festival-Vibes",
+    badge: "EDM • Vocal House • Gospel Lead",
+    genreDetail: "EDM Style mit Gospel-Lead-Sängerin",
     youtubeUrl: "https://youtu.be/5xZLQT0uXlY?si=fJFBQFqhvvVHZwcD",
     thumbnail: "https://img.youtube.com/vi/5xZLQT0uXlY/hqdefault.jpg",
-    description: "Treibende elektronische Beats, pulsierende Synthesizer und pure Sommerhit-Energie – der Soundtrack für unbeschwerte Momente und Feierstimmung.",
-    durationBadge: "Sommerhit",
+    description: "Kraftvoller EDM-Sommertrack mit mitreißender Gospel-Lead-Sängerin, packenden Beats und purer Festival-Energie.",
+    durationBadge: "EDM Gospel",
   },
   {
     id: "schoen-dass-du-da-bist",
@@ -77,7 +77,7 @@ export default function YouTubeShowcase() {
               Höre Dir Beispiele unserer Songs an
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
-              Von mitreißendem House/Techno bis zu emotionalem Deutschrap und modernem Hip-Hop – jedes Lied ein individuelles Meisterwerk. Klicke auf ein Lied, um es direkt abzuspielen.
+              Von kraftvollem EDM mit mitreißender Gospel-Stimme bis zu emotionalem Deutschrap und modernem Hip-Hop – jedes Lied ein individuelles Meisterwerk. Klicke auf ein Lied, um es direkt anzuhören.
             </p>
           </div>
           <a
