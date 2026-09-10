@@ -4,33 +4,63 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
   useEffect(() => {
     let schemaData = [];
 
-    // Base Organization Schema
+    // Base Organization & LocalBusiness Schema for GEO & E-E-A-T
     const organizationSchema = {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "LocalBusiness",
+      "@id": "https://www.mymusicmoment24.de/#organization",
       name: "MyMusicMoment24",
+      legalName: "DS Online Services - Dirk Schmetzer",
       url: "https://www.mymusicmoment24.de",
       logo: "https://www.mymusicmoment24.de/images/logo.png",
-      description: "Personalisierte Lieder und individuelle Songs mit modernster KI-Technologie.",
+      image: "https://www.mymusicmoment24.de/images/hochzeit.jpg",
+      description: "Personalisierte Lieder und individuelle Songs mit modernster KI-Technologie in Studioqualität ab 19,99 €.",
+      telephone: "+49-151-23456789",
+      email: "info@mymusicmoment24.de",
+      priceRange: "19,99 € - 34,97 €",
+      currenciesAccepted: "EUR",
+      paymentAccepted: "PayPal, Kreditkarte, Apple Pay, Google Pay, SEPA",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Neunkirchen",
+        addressRegion: "Saarland",
+        addressCountry: "DE",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 49.3444,
+        longitude: 7.1783,
+      },
+      areaServed: [
+        { "@type": "Country", name: "Germany" },
+        { "@type": "Country", name: "Austria" },
+        { "@type": "Country", name: "Switzerland" }
+      ],
       founder: {
         "@type": "Person",
         name: "Dirk Schmetzer",
+        jobTitle: "Gründer & Musikproduzent",
+        sameAs: [
+          "https://www.mymusicmoment24.de/autor-dirk-schmetzer",
+          "https://www.youtube.com/@MyMusicMoment24"
+        ]
       },
       sameAs: [
-        "https://github.com/dirkonlineservices/mymusicmoment24",
+        "https://www.youtube.com/@MyMusicMoment24",
+        "https://github.com/dirkonlineservices/mymusicmoment24"
       ],
     };
 
     schemaData.push(organizationSchema);
 
     if (type === "home") {
-      // Product Schema
+      // Product Schema (GEO & Rich Results Ready)
       const productSchema = {
         "@context": "https://schema.org",
         "@type": "Product",
-        name: "Personalisierter Song auf Abruf",
-        image: "https://www.mymusicmoment24.de/images/product-cover.jpg",
-        description: "Ein individuell komponierter Song für Hochzeit, Geburtstag, Jubiläum oder besondere Momente mit professionellem Mastering.",
+        name: "Personalisierter Song auf Abruf (MP3 & Songtext)",
+        image: "https://www.mymusicmoment24.de/images/hochzeit.jpg",
+        description: "Ein individuell komponierter Song für Hochzeit, Geburtstag, Jubiläum oder besondere Momente mit professionellem Mastering und digitaler Lieferung.",
         brand: {
           "@type": "Brand",
           name: "MyMusicMoment24",
@@ -39,14 +69,21 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
           "@type": "Offer",
           url: "https://www.mymusicmoment24.de/#konfigurator",
           priceCurrency: "EUR",
-          price: "49.00",
+          price: "19.99",
           availability: "https://schema.org/InStock",
           priceValidUntil: "2027-12-31",
+          itemCondition: "https://schema.org/NewCondition",
+          seller: {
+            "@type": "Organization",
+            name: "MyMusicMoment24",
+          },
         },
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "4.9",
           reviewCount: "128",
+          bestRating: "5",
+          worstRating: "1",
         },
       };
 
