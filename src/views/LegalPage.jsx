@@ -75,7 +75,8 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
               <div className="text-slate-200">
                 <p className="font-semibold text-white">DS Online Services</p>
                 <p>Inhaber: Dirk Schmetzer</p>
-                <p>Neunkirchen, Deutschland</p>
+                <p>Riedgrasweg 30</p>
+                <p>70599 Stuttgart, Deutschland</p>
               </div>
 
               <div className="pt-2 border-t border-slate-800/80">
@@ -94,7 +95,7 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
 
               <div className="pt-2 border-t border-slate-800/80">
                 <h3 className="font-semibold text-white mb-1">Verantwortlich für redaktionelle Inhalte gemäß § 18 Abs. 2 MStV:</h3>
-                <p>Dirk Schmetzer, Neunkirchen</p>
+                <p>Dirk Schmetzer, Riedgrasweg 30, 70599 Stuttgart</p>
               </div>
             </section>
 
@@ -151,7 +152,8 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
               <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs">
                 <p className="font-semibold text-white mb-1">Verantwortliche Stelle:</p>
                 <p>DS Online Services – Dirk Schmetzer</p>
-                <p>Neunkirchen, Deutschland</p>
+                <p>Riedgrasweg 30</p>
+                <p>70599 Stuttgart, Deutschland</p>
                 <p className="mt-1">E-Mail: <a href="mailto:info@mymusicmoment24.de" className="text-emerald-400 underline">info@mymusicmoment24.de</a></p>
               </div>
             </section>

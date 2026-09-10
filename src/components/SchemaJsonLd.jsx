@@ -22,14 +22,16 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       paymentAccepted: "PayPal, Kreditkarte, Apple Pay, Google Pay, SEPA",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Neunkirchen",
-        addressRegion: "Saarland",
+        streetAddress: "Riedgrasweg 30",
+        postalCode: "70599",
+        addressLocality: "Stuttgart",
+        addressRegion: "Baden-Württemberg",
         addressCountry: "DE",
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 49.3444,
-        longitude: 7.1783,
+        latitude: 48.7185,
+        longitude: 9.2045,
       },
       areaServed: [
         { "@type": "Country", name: "Germany" },

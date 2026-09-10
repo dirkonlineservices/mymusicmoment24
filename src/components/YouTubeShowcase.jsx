@@ -5,11 +5,11 @@ const YOUTUBE_TRACKS = [
   {
     id: "island-sky",
     title: "Island Sky – MyMusicMoment24",
-    subtitle: "Atmosphärischer Soundtrack & Emotionen",
-    category: "Soundtrack / Pop",
+    subtitle: "Elektronischer Sommersong & Festival-Vibes",
+    category: "House / Techno / Trance",
     youtubeUrl: "https://www.youtube.com/@MyMusicMoment24",
-    thumbnailGradient: "from-amber-600 via-orange-700 to-slate-900",
-    description: "Sanfte Pianoklänge und epische Streicher, die direkt das Herz berühren.",
+    thumbnailGradient: "from-cyan-500 via-indigo-700 to-slate-950",
+    description: "Treibende elektronische Beats, pulsierende Synthesizer und pure Sommersonnen-Energie.",
   },
   {
     id: "schoen-dass-du-da-bist",

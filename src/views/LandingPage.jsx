@@ -225,6 +225,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   1. Inspiration suchen
                 </span>
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                  <span>KI-Bild</span>
+                </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
                 <h3 className="font-bold text-xs sm:text-sm text-white">Auf der Suche nach dem Einzigartigen</h3>
@@ -247,6 +251,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   2. Echte Begeisterung
                 </span>
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                  <span>KI-Bild</span>
+                </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
                 <h3 className="font-bold text-xs sm:text-sm text-white">Gänsehaut beim ersten Hören</h3>
@@ -268,6 +276,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   3. Freudentränen
+                </span>
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                  <span>KI-Bild</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
@@ -483,7 +495,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               </p>
               <div className="text-xs text-slate-500 space-y-1">
                 <p className="font-semibold text-slate-400">DS Online Services • Dirk Schmetzer</p>
-                <p>Neunkirchen, Saarland (Deutschland)</p>
+                <p>Riedgrasweg 30, 70599 Stuttgart (Deutschland)</p>
               </div>
               <div className="pt-1">
                 <a
