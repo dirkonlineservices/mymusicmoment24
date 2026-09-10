@@ -16,24 +16,24 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
 
   const FAQS = [
     {
-      q: "Wie viel kostet ein pers\u00f6nlicher Song?",
-      a: "Jedes personalisierte Musikst\u00fcck kostet bei uns nur 19,99 \u20ac Festpreis. Es gibt keine versteckten Kosten.",
+      q: "Wie viel kostet ein persönlicher Song?",
+      a: "Jedes personalisierte Musikstück kostet bei uns nur 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
     },
     {
       q: "Wie lange dauert es, bis mein Song fertig ist?",
-      a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. F\u00fcr ganz eilige Anl\u00e4sse bieten wir zus\u00e4tzlich einen 12-Stunden-Express-Service an.",
+      a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. Für ganz eilige Anlässe bieten wir zusätzlich einen 12-Stunden-Express-Service an.",
     },
     {
       q: "Wie erhalte ich meinen fertigen Song?",
       a: "Wir senden dir deinen fertig gemasterten Song als MP3- und WAV-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
     },
     {
-      q: "Klingt der Song nach k\u00fcnstlicher Computerstimme?",
-      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit professionellem Audio-Mastering und menschlichem Feinschliff. Die Stimmen klingen voll, lebendig, dynamisch und ber\u00fchrend. H\u00f6re dir gerne oben unsere echten H\u00f6rproben an!",
+      q: "Klingt der Song nach künstlicher Computerstimme?",
+      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit professionellem Audio-Mastering und menschlichem Feinschliff. Die Stimmen klingen voll, lebendig, dynamisch und berührend. Höre dir gerne oben unsere echten Hörproben an!",
     },
     {
-      q: "Welche Angaben von mir ben\u00f6tigt ihr f\u00fcr den Songtext?",
-      a: "Die Namen der Personen, den Anlass und ein paar pers\u00f6nliche Anekdoten, Insider oder Gef\u00fchle, die dir am Herzen liegen. Wir dichten daraus ber\u00fchrende, perfekt gereimte Strophen und einen einpr\u00e4gsamen Refrain.",
+      q: "Welche Angaben von mir benötigt ihr für den Songtext?",
+      a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
     },
   ];
 
@@ -77,7 +77,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
             <a href="#shop" className="hover:text-amber-400 transition">Shop & Produkte</a>
-            <a href="#hoerproben" className="hover:text-amber-400 transition">H\u00f6rproben</a>
+            <a href="#hoerproben" className="hover:text-amber-400 transition">Hörproben</a>
             <a href="#prozess" className="hover:text-amber-400 transition">Ablauf</a>
             <a href="#konfigurator" className="hover:text-amber-400 transition">Konfigurator</a>
             <a href="#kundenstimmen" className="hover:text-amber-400 transition">Erfahrungen</a>
@@ -96,13 +96,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               href="#shop"
               className="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
             >
-              Musik Bestellen (19,99 \u20ac)
+              Musik Bestellen (19,99 €)
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
-              aria-label="Men\u00fc \u00f6ffnen"
+              aria-label="Menü öffnen"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -115,10 +115,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
           <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-5 space-y-3 animate-in slide-in-from-top-3">
             <nav className="flex flex-col space-y-2.5 text-sm font-semibold text-slate-200">
               <a href="#shop" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Shop & Produkte (19,99 \u20ac)
+                Shop & Produkte (19,99 €)
               </a>
               <a href="#hoerproben" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                H\u00f6rproben
+                Hörproben
               </a>
               <a href="#prozess" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
                 Ablauf & WhatsApp
@@ -130,7 +130,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                 Kundenstimmen & Bewertungen
               </a>
               <a href="#faq" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                H\u00e4ufig gestellte Fragen (FAQ)
+                Häufig gestellte Fragen (FAQ)
               </a>
               <button
                 onClick={() => {
@@ -148,7 +148,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               onClick={closeMobileMenu}
               className="block text-center w-full py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black rounded-xl text-sm shadow-lg shadow-amber-500/20"
             >
-              Jetzt Musik Bestellen (19,99 \u20ac)
+              Jetzt Musik Bestellen (19,99 €)
             </a>
           </div>
         )}
@@ -163,17 +163,17 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
           {/* Subheader Slogan */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full">
             <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span>\u201eVon Herzen f\u00fcr die Ohren \u2013 MyMusicMoment\u201c</span>
+            <span>„Von Herzen für die Ohren – MyMusicMoment“</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
-            Ein pers\u00f6nlicher Song, der eure Geschichte erz\u00e4hlt \u2013 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">emotional, individuell & unvergesslich.</span>
+            Ein persönlicher Song, der eure Geschichte erzählt – <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">emotional, individuell & unvergesslich.</span>
           </h1>
 
           <p className="text-sm sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-            Perfekt f\u00fcr Hochzeit, Geburtstag oder jeden besonderen Moment. 
+            Perfekt für Hochzeit, Geburtstag oder jeden besonderen Moment. 
             Produktion von <span className="font-semibold text-white">Mensch & KI & Storytelling</span>. 
-            Lieferung meist in <span className="font-semibold text-amber-400">24 Stunden (werktags)</span> f\u00fcr nur <span className="font-black text-amber-400">19,99 \u20ac</span>.
+            Lieferung meist in <span className="font-semibold text-amber-400">24 Stunden (werktags)</span> für nur <span className="font-black text-amber-400">19,99 €</span>.
           </p>
 
           {/* 3 Emotional Story Cards */}
@@ -196,7 +196,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               <div className="p-3.5 sm:p-4 space-y-1">
                 <h3 className="font-bold text-xs sm:text-sm text-white">Auf der Suche nach dem Einzigartigen</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Du suchst nach einem Geschenk, das wirklich ber\u00fchrt und f\u00fcr immer im Herzen bleibt.
+                  Du suchst nach einem Geschenk, das wirklich berührt und für immer im Herzen bleibt.
                 </p>
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
                 <img
                   src="/images/hero-step-2.jpg"
-                  alt="Begeisterung beim ersten H\u00f6ren"
+                  alt="Begeisterung beim ersten Hören"
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
                 />
@@ -216,9 +216,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">G\u00e4nsehaut beim ersten H\u00f6ren</h3>
+                <h3 className="font-bold text-xs sm:text-sm text-white">Gänsehaut beim ersten Hören</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Du setzt die Kopfh\u00f6rer auf und h\u00f6rst eure ganz eigenen Geschichten und Meilensteine als fertigen Song.
+                  Du setzt die Kopfhörer auf und hörst eure ganz eigenen Geschichten und Meilensteine als fertigen Song.
                 </p>
               </div>
             </div>
@@ -228,19 +228,19 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
                 <img
                   src="/images/hero-step-3.jpg"
-                  alt="Freudentr\u00e4nen und G\u00e4nsehaut"
+                  alt="Freudentränen und Gänsehaut"
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  3. Freudentr\u00e4nen
+                  3. Freudentränen
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
                 <h3 className="font-bold text-xs sm:text-sm text-white">Ein unvergesslicher Moment</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Der gemeinsame Moment auf der Feier: Wenn die ersten Tr\u00e4nen der R\u00fchrung flie\u00dfen.
+                  Der gemeinsame Moment auf der Feier: Wenn die ersten Tränen der Rührung fließen.
                 </p>
               </div>
             </div>
@@ -253,7 +253,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               href="#shop"
               className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
             >
-              <span>Jetzt pers\u00f6nlichen Song bestellen (19,99 \u20ac)</span>
+              <span>Jetzt persönlichen Song bestellen (19,99 €)</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
@@ -261,7 +261,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               className="w-full sm:w-auto px-6 py-3.5 sm:py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs sm:text-base rounded-2xl border border-slate-800 flex items-center justify-center gap-2 transition"
             >
               <Headphones className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
-              <span>H\u00f6rproben anh\u00f6ren</span>
+              <span>Hörproben anhören</span>
             </a>
           </div>
 
@@ -279,7 +279,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             </div>
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>K\u00e4uferschutz & Studio-Mastering</span>
+              <span>Käuferschutz & Studio-Mastering</span>
             </div>
           </div>
 
@@ -313,7 +313,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             Was Kunden sagen
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
-            Echte R\u00fcckmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.
+            Echte Rückmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.
           </p>
         </div>
 
@@ -328,10 +328,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                 ))}
               </div>
               <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
-                \u201eAlso ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich f\u00fcr besondere Menschen ben\u00f6tige haben ihre Besonderheiten. 
-                Ich bin dem ganzen Team sehr dankbar! Da es eigentlich so eine Besonderheit in sich tr\u00e4gt wo jedesmal mit Hingabe gearbeitet wird ins Detail. 
-                W\u00fcnsche und auch \u00c4nderungen nehmt ihr mit Gelassenheit und Humor auf und gebt einem das Gef\u00fchl das es Ok ist! 
-                Ihr seit klasse, und jedesmal mehr als zufriedenstellend.\u201c
+                „Also ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich für besondere Menschen benötige haben ihre Besonderheiten. 
+                Ich bin dem ganzen Team sehr dankbar! Da es eigentlich so eine Besonderheit in sich trägt wo jedesmal mit Hingabe gearbeitet wird ins Detail. 
+                Wünsche und auch Änderungen nehmt ihr mit Gelassenheit und Humor auf und gebt einem das Gefühl das es Ok ist! 
+                Ihr seit klasse, und jedesmal mehr als zufriedenstellend.“
               </p>
             </div>
             <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
@@ -348,7 +348,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             </div>
           </div>
 
-          {/* Review J\u00f6rn */}
+          {/* Review Jörn */}
           <div className="bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
             <div>
               <div className="flex items-center gap-1 text-amber-400 mb-3.5">
@@ -357,8 +357,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                 ))}
               </div>
               <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
-                \u201eIch habe etwas Besonderes f\u00fcr einen ganz besonderen Menschen in meinem Leben gesucht \u2013 und hier das perfekte Geschenk gefunden. 
-                Wundersch\u00f6ne Arbeit, mit viel Liebe gemacht. Vielen Dank! \ud83d\ude0a\ud83d\udc4d\u201c
+                „Ich habe etwas Besonderes für einen ganz besonderen Menschen in meinem Leben gesucht – und hier das perfekte Geschenk gefunden. 
+                Wunderschöne Arbeit, mit viel Liebe gemacht. Vielen Dank! 😊👍“
               </p>
             </div>
             <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
@@ -367,7 +367,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                   JN
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xs sm:text-sm">J\u00f6rn aus Neunkirchen</h4>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">Jörn aus Neunkirchen</h4>
                   <p className="text-[11px] text-purple-400 font-medium">Hochzeitstag</p>
                 </div>
               </div>
@@ -389,7 +389,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
               Individueller Hochzeitssong mit KI: So entsteht euer Song
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-              Erfahre alles \u00fcber die Vorteile, den Entstehungsprozess und wie du die sch\u00f6nsten Anekdoten in den Text einflie\u00dfen l\u00e4sst.
+              Erfahre alles über die Vorteile, den Entstehungsprozess und wie du die schönsten Anekdoten in den Text einfließen lässt.
             </p>
           </div>
           <button
@@ -405,8 +405,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
       {/* 8. FAQ Section */}
       <section id="faq" className="max-w-3xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">H\u00e4ufig gestellte Fragen (FAQ)</h2>
-          <p className="text-slate-400 text-xs sm:text-sm">Alles, was du \u00fcber deinen pers\u00f6nlichen Song wissen musst</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">Häufig gestellte Fragen (FAQ)</h2>
+          <p className="text-slate-400 text-xs sm:text-sm">Alles, was du über deinen persönlichen Song wissen musst</p>
         </div>
 
         <div className="space-y-3">
@@ -444,8 +444,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs">
-            <a href="#shop" className="hover:text-white transition">Shop (19,99 \u20ac)</a>
-            <a href="#hoerproben" className="hover:text-white transition">H\u00f6rproben</a>
+            <a href="#shop" className="hover:text-white transition">Shop (19,99 €)</a>
+            <a href="#hoerproben" className="hover:text-white transition">Hörproben</a>
             <a href="https://www.youtube.com/@MyMusicMoment24" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition">
               YouTube Kanal
             </a>
@@ -465,7 +465,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
           </div>
 
           <p className="text-[11px] text-slate-500">
-            \u00a9 2026 MyMusicMoment24 \u2022 Dirk Schmetzer Online Services
+            © 2026 MyMusicMoment24 • Dirk Schmetzer Online Services
           </p>
         </div>
       </footer>
@@ -473,8 +473,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
         <div>
-          <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">Pers\u00f6nlicher Song</span>
-          <span className="text-lg font-black text-amber-400">19,99 \u20ac</span>
+          <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">Persönlicher Song</span>
+          <span className="text-lg font-black text-amber-400">19,99 €</span>
         </div>
         <a
           href="#shop"

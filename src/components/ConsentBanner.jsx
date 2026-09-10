@@ -66,10 +66,10 @@ export default function ConsentBanner() {
           <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-white mb-1">Privatsph\u00e4re & Datenschutz</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white mb-1">Privatsphäre & Datenschutz</h3>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3 sm:mb-4">
             Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, 
-            H\u00f6rproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten.
+            Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten.
           </p>
 
           {showSettings && (
@@ -77,7 +77,7 @@ export default function ConsentBanner() {
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-semibold text-white block">Technisch Notwendig</span>
-                  <span className="text-[11px] text-slate-400">Erforderlich f\u00fcr Warenkorb, Abspielger\u00e4t & Kasse.</span>
+                  <span className="text-[11px] text-slate-400">Erforderlich für Warenkorb, Abspielgerät & Kasse.</span>
                 </div>
                 <input
                   type="checkbox"
@@ -103,7 +103,7 @@ export default function ConsentBanner() {
               <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
                 <div>
                   <span className="font-semibold text-white block">Marketing & Personalisierung</span>
-                  <span className="text-[11px] text-slate-400">Erm\u00f6glicht zielgerichtete Empfehlungen auf Partnerplattformen.</span>
+                  <span className="text-[11px] text-slate-400">Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.</span>
                 </div>
                 <input
                   type="checkbox"
@@ -128,7 +128,7 @@ export default function ConsentBanner() {
                   onClick={() => setShowSettings(false)}
                   className="px-3 py-2 text-slate-400 hover:text-white text-xs sm:text-sm"
                 >
-                  Zur\u00fcck
+                  Zurück
                 </button>
               </>
             ) : (

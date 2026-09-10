@@ -12,14 +12,14 @@ const STEPS = [
   {
     num: "2",
     title: "Kreation & Produktion",
-    desc: "Wir erstellen dein pers\u00f6nliches Unikat mit Mensch, KI-Komposition & feinf\u00fchligem Storytelling.",
+    desc: "Wir erstellen dein persönliches Unikat mit Mensch, KI-Komposition & feinfühligem Storytelling.",
     icon: Cpu,
     color: "from-orange-500 to-amber-600",
   },
   {
     num: "3",
     title: "Review & Feedback",
-    desc: "H\u00f6r ganz entspannt in deinen Song rein und gib uns bei Bedarf dein Feedback.",
+    desc: "Hör ganz entspannt in deinen Song rein und gib uns bei Bedarf dein Feedback.",
     icon: Headphones,
     color: "from-purple-500 to-indigo-600",
   },
@@ -44,10 +44,10 @@ export default function StepProcess() {
     <section className="max-w-7xl mx-auto my-12 sm:my-20 px-4">
       <div className="text-center mb-8 sm:mb-12">
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-          Wie sehen die n\u00e4chsten Schritte aus?
+          Wie sehen die nächsten Schritte aus?
         </h2>
         <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
-          Vom ersten Gedanken bis zum fertigen G\u00e4nsehaut-Song auf deinem Smartphone.
+          Vom ersten Gedanken bis zum fertigen Gänsehaut-Song auf deinem Smartphone.
         </p>
       </div>
 

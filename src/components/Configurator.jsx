@@ -5,23 +5,23 @@ import {
 import { trackConfiguratorStep } from "../lib/gtmPreview";
 
 const OCCASIONS = [
-  { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack f\u00fcr Trauung & Er\u00f6ffnungstanz" },
-  { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, ber\u00fchrend oder mitrei\u00dfend mit allen Meilensteinen" },
-  { id: "liebe", label: "Liebeserkl\u00e4rung & Jahrestag", icon: Sparkles, desc: "Sag \u201aIch liebe dich\u2018 mit einer unvergesslichen Ballade" },
+  { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz" },
+  { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, berührend oder mitreißend mit allen Meilensteinen" },
+  { id: "liebe", label: "Liebeserklärung & Jahrestag", icon: Sparkles, desc: "Sag ‚Ich liebe dich‘ mit einer unvergesslichen Ballade" },
   { id: "party", label: "Party, Verein & Abschied", icon: Flame, desc: "Uptempo-Hymne mit Ohrwurm-Refrain zum Mitsingen" },
 ];
 
 const GENRES = [
-  { id: "pop-ballade", label: "Pop-Ballade", desc: "Gef\u00fchlvolles Klavier, Streicher & mitrei\u00dfender Refrain" },
+  { id: "pop-ballade", label: "Pop-Ballade", desc: "Gefühlvolles Klavier, Streicher & mitreißender Refrain" },
   { id: "akustik", label: "Akustik / Singer-Songwriter", desc: "Warme Akustikgitarre, intim & authentisch" },
   { id: "schlager", label: "Moderner Schlager / Pop", desc: "Tanzbar, schwungvoll & sofort im Ohr" },
-  { id: "rnb", label: "R&B / Soul", desc: "Groovige Beats, gef\u00fchlvoller Gesang & G\u00e4nsehaut-Vibes" },
+  { id: "rnb", label: "R&B / Soul", desc: "Groovige Beats, gefühlvoller Gesang & Gänsehaut-Vibes" },
   { id: "rock", label: "Rock / Power-Ballade", desc: "E-Gitarren, Energie & emotionale Dynamik" },
 ];
 
 const VOICES = [
   { id: "weiblich", label: "Weibliche Stimme", desc: "Sanft, klar und voller Emotion" },
-  { id: "maennlich", label: "M\u00e4nnliche Stimme", desc: "Warm, markant und ausdrucksstark" },
+  { id: "maennlich", label: "Männliche Stimme", desc: "Warm, markant und ausdrucksstark" },
   { id: "duett", label: "Emotionales Duett", desc: "Harmonischer Dialog aus zwei Stimmen" },
 ];
 
@@ -72,7 +72,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
           <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
             <span>Schritt {step} von 5</span>
             <span className="text-amber-400 font-bold truncate ml-2">
-              {step === 1 && "Anlass w\u00e4hlen"}
+              {step === 1 && "Anlass wählen"}
               {step === 2 && "Musikstil & Genre"}
               {step === 3 && "Gesang & Stimme"}
               {step === 4 && "Eure Geschichte"}
@@ -90,7 +90,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 1: Occasion */}
         {step === 1 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">F\u00fcr welchen Anlass ist dein Song?</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Für welchen Anlass ist dein Song?</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {OCCASIONS.map((occ) => {
                 const Icon = occ.icon;
@@ -159,7 +159,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(1)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
+                <ArrowLeft className="w-4 h-4" /> Zurück
               </button>
               <button
                 onClick={() => goToStep(3)}
@@ -222,7 +222,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(2)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
+                <ArrowLeft className="w-4 h-4" /> Zurück
               </button>
               <button
                 onClick={() => goToStep(4)}
@@ -238,9 +238,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 4: Story & Names */}
         {step === 4 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Eure pers\u00f6nliche Geschichte</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Eure persönliche Geschichte</h3>
             <p className="text-xs sm:text-sm text-slate-400">
-              Je mehr pers\u00f6nliche Details du nennst, desto einzigartiger wird der Text.
+              Je mehr persönliche Details du nennst, desto einzigartiger wird der Text.
             </p>
 
             <div className="space-y-4">
@@ -276,13 +276,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(3)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck
+                <ArrowLeft className="w-4 h-4" /> Zurück
               </button>
               <button
                 onClick={() => goToStep(5)}
                 className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                <span>Zur \u00dcbersicht</span>
+                <span>Zur Übersicht</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
@@ -292,7 +292,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 5: Summary */}
         {step === 5 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Konfiguration pr\u00fcfen & Extras w\u00e4hlen</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">Konfiguration prüfen & Extras wählen</h3>
 
             <div className="bg-slate-950/80 p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 text-xs sm:text-sm">
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
@@ -330,7 +330,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     <span className="text-[11px] sm:text-xs text-slate-400">Garantierte Fertigstellung innerhalb 12h statt 24h</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 \u20ac</span>
+                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
               </label>
 
               <label className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
@@ -346,7 +346,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     <span className="text-[11px] sm:text-xs text-slate-400">Druckreifes PDF zum Einrahmen und Verschenken</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+4,99 \u20ac</span>
+                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+4,99 €</span>
               </label>
             </div>
 
@@ -354,7 +354,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs sm:text-sm text-slate-300 block">Gesamtpreis (inkl. MwSt.)</span>
-                <span className="text-2xl sm:text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} \u20ac</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} €</span>
               </div>
               <button
                 onClick={handleFinish}
@@ -370,7 +370,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(4)}
                 className="px-4 py-2 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zur\u00fcck zum Bearbeiten
+                <ArrowLeft className="w-4 h-4" /> Zurück zum Bearbeiten
               </button>
             </div>
           </div>

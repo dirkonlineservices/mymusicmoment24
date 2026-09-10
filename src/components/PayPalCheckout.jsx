@@ -41,18 +41,18 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
       setDiscountApplied(true);
       alert("10% Rabattcode erfolgreich aktiviert!");
     } else if (discountCode.trim()) {
-      alert("Ung\u00fcltiger Rabattcode.");
+      alert("Ungültiger Rabattcode.");
     }
   };
 
   const handlePayment = (e) => {
     e.preventDefault();
     if (!customerEmail) {
-      alert("Bitte gib deine E-Mail-Adresse f\u00fcr die Zustellung des Songs an.");
+      alert("Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
       return;
     }
     if (!agreedTerms) {
-      alert("Bitte best\u00e4tige die Gesch\u00e4ftsbedingungen und den Beginn der sofortigen Produktion.");
+      alert("Bitte bestätige die Geschäftsbedingungen und den Beginn der sofortigen Produktion.");
       return;
     }
 
@@ -89,14 +89,14 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   <Music className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white">Bestellung abschlie\u00dfen</h3>
-                  <p className="text-[11px] text-slate-400">MyMusicMoment24 \u2022 Sofortige Produktion</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-white">Bestellung abschließen</h3>
+                  <p className="text-[11px] text-slate-400">MyMusicMoment24 • Sofortige Produktion</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
                 className="text-slate-400 hover:text-white p-2 rounded-lg transition"
-                aria-label="Schlie\u00dfen"
+                aria-label="Schließen"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -107,21 +107,21 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-8 h-8" />
                 </div>
-                <h4 className="text-xl sm:text-2xl font-bold text-white">Vielen Dank f\u00fcr deine Bestellung!</h4>
+                <h4 className="text-xl sm:text-2xl font-bold text-white">Vielen Dank für deine Bestellung!</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Deine Song-Bestellung ist erfolgreich eingegangen. Wir beginnen sofort mit der Erstellung deines pers\u00f6nlichen Unikats!
+                  Deine Song-Bestellung ist erfolgreich eingegangen. Wir beginnen sofort mit der Erstellung deines persönlichen Unikats!
                 </p>
                 <div className="bg-slate-950 p-4 rounded-xl text-left text-xs font-mono text-slate-300 space-y-1.5 border border-slate-800">
                   <div>Bestell-Nr: <span className="text-amber-400 font-bold">{transactionId}</span></div>
-                  <div>Empf\u00e4nger: <span className="text-white">{customerEmail}</span></div>
+                  <div>Empfänger: <span className="text-white">{customerEmail}</span></div>
                   <div>Zustellung via: <span className="text-emerald-400 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
-                  <div>Gesamtbetrag: <span className="text-white font-bold">{currentPrice.toFixed(2).replace(".", ",")} \u20ac</span></div>
+                  <div>Gesamtbetrag: <span className="text-white font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
                 </div>
                 <button
                   onClick={onClose}
                   className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm"
                 >
-                  Zur\u00fcck zum Shop
+                  Zurück zum Shop
                 </button>
               </div>
             ) : (
@@ -133,25 +133,25 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     <div className="min-w-0">
                       <h4 className="font-bold text-white text-xs sm:text-sm truncate">{order.name}</h4>
                       <p className="text-[11px] text-slate-400 truncate">
-                        {order.details?.genre ? `${order.details.genre} \u2022 ${order.details.voice}` : "Pers\u00f6nlicher Song"}
+                        {order.details?.genre ? `${order.details.genre} • ${order.details.voice}` : "Persönlicher Song"}
                       </p>
                     </div>
                     <span className="text-sm font-black text-amber-400 shrink-0">
-                      19,99 \u20ac
+                      19,99 €
                     </span>
                   </div>
 
                   {order.details?.express && (
                     <div className="flex justify-between text-xs text-slate-300">
                       <span>Express-Produktion (unter 12h)</span>
-                      <span className="font-semibold text-amber-400">+9,99 \u20ac</span>
+                      <span className="font-semibold text-amber-400">+9,99 €</span>
                     </div>
                   )}
 
                   {order.details?.pdfLyrics && (
                     <div className="flex justify-between text-xs text-slate-300">
                       <span>Songtext-Urkunde (PDF)</span>
-                      <span className="font-semibold text-amber-400">+4,99 \u20ac</span>
+                      <span className="font-semibold text-amber-400">+4,99 €</span>
                     </div>
                   )}
 
@@ -183,7 +183,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   <div className="border-t border-slate-800 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-white">
                     <span>Gesamtsumme <span className="text-[10px] font-normal text-slate-400">(inkl. MwSt.)</span></span>
                     <span className="text-lg sm:text-xl font-black text-amber-400">
-                      {currentPrice.toFixed(2).replace(".", ",")} \u20ac
+                      {currentPrice.toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
                 </div>
@@ -234,11 +234,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      F\u00fcr wen ist der Song & besondere W\u00fcnsche:
+                      Für wen ist der Song & besondere Wünsche:
                     </label>
                     <textarea
                       rows={2}
-                      placeholder="Namen, Anlass, Stimmung oder Anekdoten f\u00fcr den Songtext..."
+                      placeholder="Namen, Anlass, Stimmung oder Anekdoten für den Songtext..."
                       value={songDetailsText}
                       onChange={(e) => setSongDetailsText(e.target.value)}
                       className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white text-base focus:outline-none focus:border-amber-500"
@@ -248,7 +248,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* Payment Method Selector */}
                   <div className="space-y-2 pt-1">
                     <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                      Zahlungsart w\u00e4hlen
+                      Zahlungsart wählen
                     </label>
 
                     <label className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300"}`}>
@@ -292,7 +292,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       />
                       <span>
                         Mit dem Kauf stimme ich zu, dass die Produktion meines personalisierten Songs sofort beginnt. 
-                        Ich best\u00e4tige, dass das gesetzliche Widerrufsrecht f\u00fcr digitale Inhalte nach Beginn der Ausf\u00fchrung erlischt (\u00a7 356 Abs. 5 BGB).
+                        Ich bestätige, dass das gesetzliche Widerrufsrecht für digitale Inhalte nach Beginn der Ausführung erlischt (§ 356 Abs. 5 BGB).
                       </span>
                     </label>
                   </div>
@@ -304,9 +304,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.99] text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 transition flex items-center justify-center gap-2"
                   >
                     {isProcessing ? (
-                      <span>Zahlung wird verarbeitet... \u23f3</span>
+                      <span>Zahlung wird verarbeitet... ⏳</span>
                     ) : (
-                      <span>Jetzt zahlungspflichtig bestellen ({currentPrice.toFixed(2).replace(".", ",")} \u20ac)</span>
+                      <span>Jetzt zahlungspflichtig bestellen ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
                     )}
                   </button>
                 </form>
@@ -315,7 +315,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="pt-3 border-t border-slate-800 space-y-1 text-[11px] text-slate-400">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>256-Bit SSL-Verschl\u00fcsselung & K\u00e4uferschutz</span>
+                    <span>256-Bit SSL-Verschlüsselung & Käuferschutz</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -328,7 +328,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           </div>
 
           <div className="pt-4 text-center text-[11px] text-slate-500">
-            MyMusicMoment24 \u2022 Von Herzen f\u00fcr die Ohren
+            MyMusicMoment24 • Von Herzen für die Ohren
           </div>
 
         </div>

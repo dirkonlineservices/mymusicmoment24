@@ -1,7 +1,7 @@
 export const PRODUCTS = [
   {
     id: "gutschein",
-    title: "Gutschein f\u00fcr dein Wunschlied",
+    title: "Gutschein für dein Wunschlied",
     category: "merchandise",
     categoryLabel: "Gutschein",
     price: 19.99,
@@ -9,7 +9,7 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 12,
     image: "/images/gutschein.jpg",
-    description: "Der perfekte Gutschein f\u00fcr ein personalisiertes Wunschlied. Flexibel einl\u00f6sbar f\u00fcr jeden beliebigen Anlass.",
+    description: "Der perfekte Gutschein für ein personalisiertes Wunschlied. Flexibel einlösbar für jeden beliebigen Anlass.",
   },
   {
     id: "hochzeit",
@@ -21,7 +21,7 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 48,
     image: "/images/hochzeit.jpg",
-    description: "Individuelle personalisierte Lieder f\u00fcr Hochzeiten & Hochzeitstage. Das emotionale Herzst\u00fcck f\u00fcr Trauung und Er\u00f6ffnungstanz.",
+    description: "Individuelle personalisierte Lieder für Hochzeiten & Hochzeitstage. Das emotionale Herzstück für Trauung und Eröffnungstanz.",
   },
   {
     id: "duett",
@@ -33,7 +33,7 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 29,
     image: "/images/duett.jpg",
-    description: "Harmonischer Dialog aus zwei Stimmen oder zweisprachig (z.B. Deutsch & Englisch). Perfekt f\u00fcr binationale Paare.",
+    description: "Harmonischer Dialog aus zwei Stimmen oder zweisprachig (z.B. Deutsch & Englisch). Perfekt für binationale Paare.",
   },
   {
     id: "geburtstag",
@@ -49,19 +49,19 @@ export const PRODUCTS = [
   },
   {
     id: "jubilaeum",
-    title: "Jubil\u00e4um Song",
+    title: "Jubiläum Song",
     category: "jubilaeum",
-    categoryLabel: "Jubil\u00e4umsfeier KI",
+    categoryLabel: "Jubiläumsfeier KI",
     price: 19.99,
     badge: "Emotional",
     rating: 5.0,
     reviewsCount: 16,
     image: "/images/jubilaeum.jpg",
-    description: "F\u00fcr Firmenjubil\u00e4en, goldene oder silberne Hochzeiten und besondere Vereins-Meilensteine mit bleibendem Wert.",
+    description: "Für Firmenjubiläen, goldene oder silberne Hochzeiten und besondere Vereins-Meilensteine mit bleibendem Wert.",
   },
   {
     id: "party",
-    title: "Dein Partytrack \u2013 Die ultimative musikalische \u00dcberraschung! \ud83c\udf89\ud83c\udfb6",
+    title: "Dein Partytrack – Die ultimative musikalische Überraschung! 🎉🎶",
     category: "party",
     categoryLabel: "Personalisierte KI Partytracks",
     price: 19.99,
@@ -69,6 +69,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 22,
     image: "/images/party.jpg",
-    description: "Uptempo-Feiertrack mit mitrei\u00dfendem Beat und Mitsing-Refrain f\u00fcr Feiern, Junggesellenabschiede und Vereinsfeste.",
+    description: "Uptempo-Feiertrack mit mitreißendem Beat und Mitsing-Refrain für Feiern, Junggesellenabschiede und Vereinsfeste.",
   },
 ];

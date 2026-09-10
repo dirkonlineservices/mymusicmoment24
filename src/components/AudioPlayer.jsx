@@ -16,14 +16,14 @@ const PLAYLIST = [
     id: "geburtstag",
     title: "Das Beste Alter (Geburtstagstrack)",
     genre: "Akustik-Pop / Feelgood",
-    vocal: "M\u00e4nnlich",
+    vocal: "Männlich",
     duration: 34,
     file: "/audio/geburtstag-probe.mp3",
     noteFreqs: [293.66, 369.99, 440.0, 587.33, 493.88],
   },
   {
     id: "liebeslied",
-    title: "F\u00fcr Immer Du (Jubil\u00e4um & Liebe)",
+    title: "Für Immer Du (Jubiläum & Liebe)",
     genre: "R&B / Slow Jam",
     vocal: "Weiblich",
     duration: 42,
@@ -34,7 +34,7 @@ const PLAYLIST = [
     id: "party",
     title: "Feierabend Helden (Partytrack)",
     genre: "Dance / Pop Uptempo",
-    vocal: "M\u00e4nnlich / Duo",
+    vocal: "Männlich / Duo",
     duration: 30,
     file: "/audio/party-probe.mp3",
     noteFreqs: [329.63, 392.0, 493.88, 587.33],
@@ -168,10 +168,10 @@ export default function AudioPlayer() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 sm:pb-6 border-b border-slate-800">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Echte KI-H\u00f6rproben
+              <Sparkles className="w-3.5 h-3.5" /> Echte KI-Hörproben
             </div>
             <h2 className="text-xl sm:text-3xl font-bold text-white">
-              H\u00f6re den Unterschied: Dein Song mit G\u00e4nsehaut-Faktor
+              Höre den Unterschied: Dein Song mit Gänsehaut-Faktor
             </h2>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -213,7 +213,7 @@ export default function AudioPlayer() {
                 <h4 className="text-sm sm:text-base font-bold text-white truncate">{currentTrack.title}</h4>
                 <p className="text-xs text-slate-400 flex items-center gap-1.5 truncate">
                   <span>{currentTrack.genre}</span>
-                  <span>\u2022</span>
+                  <span>•</span>
                   <span>Stimme: {currentTrack.vocal}</span>
                 </p>
               </div>

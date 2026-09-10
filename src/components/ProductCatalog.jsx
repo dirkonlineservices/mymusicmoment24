@@ -7,7 +7,7 @@ const CATEGORIES = [
   { id: "geburtstag", label: "Geburtstagsmusik KI" },
   { id: "hochzeit", label: "Hochzeitsmusik KI" },
   { id: "liebe", label: "Liebeslieder KI" },
-  { id: "jubilaeum", label: "Jubil\u00e4umsfeier KI" },
+  { id: "jubilaeum", label: "Jubiläumsfeier KI" },
   { id: "party", label: "Personalisierte KI Partytracks" },
 ];
 
@@ -23,13 +23,13 @@ export default function ProductCatalog({ onSelectProduct }) {
       {/* Section Header */}
       <div className="text-center mb-8 sm:mb-12">
         <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
-          <Sparkles className="w-3.5 h-3.5" /> Echte Studioqualit\u00e4t \u2022 Nur 19,99 \u20ac je Lied
+          <Sparkles className="w-3.5 h-3.5" /> Echte Studioqualität • Nur 19,99 € je Lied
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-          Alle Musikst\u00fccke & Geschenke
+          Alle Musikstücke & Geschenke
         </h2>
         <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
-          W\u00e4hle deinen Wunsch-Song \u2013 professionell komponiert, individuell getextet und in 24 Stunden geliefert.
+          Wähle deinen Wunsch-Song – professionell komponiert, individuell getextet und in 24 Stunden geliefert.
         </p>
       </div>
 
@@ -79,7 +79,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     {prod.categoryLabel}
                   </span>
                   <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow">
-                    19,99 \u20ac
+                    19,99 €
                   </span>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function ProductCatalog({ onSelectProduct }) {
             <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-3">
               <div>
                 <span className="text-[11px] text-slate-400 block">Festpreis</span>
-                <span className="text-xl sm:text-2xl font-black text-white">19,99 \u20ac</span>
+                <span className="text-xl sm:text-2xl font-black text-white">19,99 €</span>
               </div>
               <button
                 onClick={() => onSelectProduct(prod)}

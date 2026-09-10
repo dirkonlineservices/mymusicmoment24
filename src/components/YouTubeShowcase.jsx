@@ -4,21 +4,21 @@ import { Youtube, Play, ExternalLink, ArrowRight } from "lucide-react";
 const YOUTUBE_TRACKS = [
   {
     id: "island-sky",
-    title: "Island Sky \u2013 MyMusicMoment24",
-    subtitle: "Atmosph\u00e4rischer Soundtrack & Emotionen",
+    title: "Island Sky – MyMusicMoment24",
+    subtitle: "Atmosphärischer Soundtrack & Emotionen",
     category: "Soundtrack / Pop",
     youtubeUrl: "https://www.youtube.com/@MyMusicMoment24",
     thumbnailGradient: "from-amber-600 via-orange-700 to-slate-900",
-    description: "Sanfte Pianokl\u00e4nge und epische Streicher, die direkt das Herz ber\u00fchren.",
+    description: "Sanfte Pianoklänge und epische Streicher, die direkt das Herz berühren.",
   },
   {
     id: "schoen-dass-du-da-bist",
-    title: "Sch\u00f6n dass du da bist! #deutsch",
+    title: "Schön dass du da bist! #deutsch",
     subtitle: "Geburtstags- & Freundschaftssong",
     category: "Deutschpop / Acoustic",
     youtubeUrl: "https://www.youtube.com/@MyMusicMoment24",
     thumbnailGradient: "from-rose-600 via-pink-800 to-slate-900",
-    description: "Ein pers\u00f6nlicher Dankesch\u00f6n-Song voller Herzensw\u00e4rme und Lebensfreude.",
+    description: "Ein persönlicher Dankeschön-Song voller Herzenswärme und Lebensfreude.",
   },
   {
     id: "von-der-schule-ins-leben",
@@ -27,7 +27,7 @@ const YOUTUBE_TRACKS = [
     category: "Hip-Hop / Feiertrack",
     youtubeUrl: "https://www.youtube.com/@MyMusicMoment24",
     thumbnailGradient: "from-cyan-600 via-blue-800 to-slate-900",
-    description: "Mit Mut und Zusammenhalt ins neue Lebenskapitel \u2013 modern, frisch & motivierend.",
+    description: "Mit Mut und Zusammenhalt ins neue Lebenskapitel – modern, frisch & motivierend.",
   },
 ];
 
@@ -43,7 +43,7 @@ export default function YouTubeShowcase() {
               <Youtube className="w-3.5 h-3.5 text-red-500" /> Offizieller YouTube-Kanal
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
-              H\u00f6re Dir ein paar Beispiele von uns an
+              Höre Dir ein paar Beispiele von uns an
             </h2>
           </div>
           <a
