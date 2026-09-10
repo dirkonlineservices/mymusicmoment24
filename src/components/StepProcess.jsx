@@ -19,14 +19,14 @@ const STEPS = [
   {
     num: "3",
     title: "Review & Feedback",
-    desc: "Hör ganz entspannt in deinen Song rein und gib uns bei Bedarf dein Feedback.",
+    desc: "Hör ganz entspannt in deinen Song rein. 1 kostenfreie Verbesserungsschleife ist bei jeder Bestellung inklusive!",
     icon: Headphones,
     color: "from-purple-500 to-indigo-600",
   },
   {
     num: "4",
     title: "Delivery & Final",
-    desc: "Erhalt deines gemasterten Tracks unkompliziert per Download-Link & direkt via WhatsApp.",
+    desc: "Erhalt deines persönlich geprüften Tracks unkompliziert per Download-Link & direkt via WhatsApp.",
     icon: Smartphone,
     color: "from-emerald-500 to-green-600",
   },

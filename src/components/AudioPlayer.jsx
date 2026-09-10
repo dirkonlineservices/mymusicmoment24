@@ -176,7 +176,7 @@ export default function AudioPlayer() {
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <Disc className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
-            <span>Studio-Mastering 48kHz / 24-Bit</span>
+            <span>Persönlich geprüft • Gratis-Korrekturschleife</span>
           </div>
         </div>
 

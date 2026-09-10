@@ -18,7 +18,7 @@ tags:
 
 Der Einzug in die Kirche, der erste Tanz als Ehepaar oder die musikalische Überraschung der Trauzeugen: Kaum ein Moment auf einer Hochzeit ist so emotionsgeladen wie der, in dem die Musik einsetzt. Doch statt auf austauschbare Radio-Hits zu setzen, entscheiden sich immer mehr Paare für einen **individuellen Hochzeitssong**, der ihre ganz eigene Liebesgeschichte erzählt.
 
-Dank innovativer KI-Technologie in Kombination mit feinsinnigem Audio-Mastering ist ein maßgeschneiderter Song heute erschwinglich und innerhalb kürzester Zeit realisierbar.
+Dank innovativer KI-Technologie in Kombination mit persönlicher Qualitätsprüfung und kostenloser Korrekturschleife ist ein maßgeschneiderter Song heute erschwinglich und innerhalb kürzester Zeit realisierbar.
 
 ---
 
@@ -39,7 +39,7 @@ Mit unserem Song-Konfigurator ist der Weg zum fertigen Track ganz einfach:
 * **Schritt 1: Stil & Stimmung wählen** – Von romantisch-akustisch bis modernem Radio-Pop.
 * **Schritt 2: Gesangsstimme bestimmen** – Weibliche Stimme, warmer Bariton oder gefühlvolles Duett.
 * **Schritt 3: Eure Geschichte teilen** – Namen, Kosenamen, Insider-Witze und die Kernbotschaft eingeben.
-* **Schritt 4: Produktion & Mastering** – Innerhalb von 24 Stunden (oder per Express in 12 Stunden) erhaltet ihr den fertigen Song in Studioqualität als MP3 und WAV.
+* **Schritt 4: Produktion & Qualitätsprüfung** – Wir hören uns euren Song persönlich an und stellen sicher, dass alles passt. Innerhalb von 24 Stunden (oder per Express in 12 Stunden) erhaltet ihr den fertigen Song als MP3 – inklusive 1 kostenfreien Verbesserungsschleife für etwaige Änderungswünsche.
 
 ---
 

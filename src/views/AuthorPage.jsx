@@ -107,7 +107,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Qualitätskontrolle &amp; Mastering:</strong> Jeder Track wird vor der Auslieferung angehört, ausgesteuert und erst dann per MP3 an Euch versendet.</span>
+                  <span><strong>Persönliche Qualitätskontrolle:</strong> Wir hören uns jeden Song vor der Übergabe an, um zu prüfen, ob alles harmonisch passt – inklusive 1 kostenfreien Verbesserungsschleife für Eure Änderungswünsche.</span>
                 </li>
               </ul>
             </div>

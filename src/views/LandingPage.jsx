@@ -25,11 +25,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     },
     {
       q: "Wie erhalte ich meinen fertigen Song?",
-      a: "Wir senden dir deinen fertig gemasterten Song als MP3- und WAV-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
+      a: "Wir senden dir deinen fertig erstellten und persönlich geprüften Song als hochwertige MP3-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
     },
     {
       q: "Klingt der Song nach künstlicher Computerstimme?",
-      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit professionellem Audio-Mastering und menschlichem Feinschliff. Die Stimmen klingen voll, lebendig, dynamisch und berührend. Höre dir gerne oben unsere echten Hörproben an!",
+      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit menschlichem Feinschliff und persönlicher Qualitätskontrolle. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
+    },
+    {
+      q: "Was passiert, wenn ich nach Erhalt noch einen Änderungswunsch habe?",
+      a: "Kein Problem! Wir hören uns jeden Song vorab sorgfältig an. Solltest du dennoch eine Text- oder Detailanpassung wünschen, ist 1 kostenfreie Verbesserungsschleife bei jeder Bestellung garantiert inklusive.",
     },
     {
       q: "Welche Angaben von mir benötigt ihr für den Songtext?",
@@ -324,7 +328,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </div>
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Käuferschutz & Studio-Mastering</span>
+              <span>Käuferschutz & Gratis-Verbesserungsschleife</span>
             </div>
           </div>
 
@@ -491,7 +495,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <span>MyMusicMoment24</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und Studio-Mastering ab 19,99 €.
+                Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und persönliche Qualitätsprüfung ab 19,99 €.
               </p>
               <div className="text-xs text-slate-500 space-y-1">
                 <p className="font-semibold text-slate-400">DS Online Services • Dirk Schmetzer</p>
