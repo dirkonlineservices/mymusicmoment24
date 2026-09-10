@@ -36,7 +36,6 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
     },
   ];
 
-  // Callback when a product card in the catalog is clicked
   const handleSelectProduct = (product) => {
     const orderData = {
       id: `prod-${product.id}-${Date.now()}`,
@@ -116,20 +115,72 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             Lieferung meist in <span className="font-semibold text-amber-400">24 Stunden (werktags)</span> f?r nur <span className="font-black text-amber-400">19,99 ?</span>.
           </p>
 
-          {/* 3 Story Cards Preview */}
-          <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
-            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <span className="text-xs font-bold text-amber-400 block mb-1">1. Inspiration suchen</span>
-              <p className="text-xs text-slate-300">Du suchst nach einem Geschenk, das wirklich ber?hrt und im Ged?chtnis bleibt.</p>
+          {/* 3 Emotional Story Cards with Real Photos */}
+          <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+            
+            {/* Story Card 1 */}
+            <div className="group bg-slate-900/90 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/40 transition duration-300">
+              <div className="h-52 overflow-hidden relative bg-slate-950">
+                <img
+                  src="/images/hero-step-1.jpg"
+                  alt="Suche nach dem perfekten Geschenk"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <span className="absolute top-3 left-3 bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-lg shadow-md">
+                  1. Inspiration suchen
+                </span>
+              </div>
+              <div className="p-4 space-y-1">
+                <h3 className="font-bold text-sm text-white">Auf der Suche nach dem Einzigartigen</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Du suchst nach einem Geschenk, das wirklich ber?hrt und f?r immer im Herzen bleibt.
+                </p>
+              </div>
             </div>
-            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <span className="text-xs font-bold text-amber-400 block mb-1">2. Echte Begeisterung</span>
-              <p className="text-xs text-slate-300">Du h?rst das erste Mal in den fertigen Song rein ? mit euren Meilensteinen im Text.</p>
+
+            {/* Story Card 2 */}
+            <div className="group bg-slate-900/90 border border-amber-500/40 rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/80 transition duration-300 ring-2 ring-amber-500/20">
+              <div className="h-52 overflow-hidden relative bg-slate-950">
+                <img
+                  src="/images/hero-step-2.jpg"
+                  alt="Begeisterung beim ersten H?ren"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <span className="absolute top-3 left-3 bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-lg shadow-md">
+                  2. Echte Begeisterung
+                </span>
+              </div>
+              <div className="p-4 space-y-1">
+                <h3 className="font-bold text-sm text-white">G?nsehaut beim ersten H?ren</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Du setzt die Kopfh?rer auf und h?rst eure ganz eigenen Geschichten und Meilensteine als fertigen Song.
+                </p>
+              </div>
             </div>
-            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <span className="text-xs font-bold text-amber-400 block mb-1">3. Freudentr?nen</span>
-              <p className="text-xs text-slate-300">Das gemeinsame Anh?ren auf der Feier: G?nsehaut und unvergessliche Emotionen.</p>
+
+            {/* Story Card 3 */}
+            <div className="group bg-slate-900/90 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/40 transition duration-300">
+              <div className="h-52 overflow-hidden relative bg-slate-950">
+                <img
+                  src="/images/hero-step-3.jpg"
+                  alt="Freudentr?nen und G?nsehaut"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <span className="absolute top-3 left-3 bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-lg shadow-md">
+                  3. Freudentr?nen
+                </span>
+              </div>
+              <div className="p-4 space-y-1">
+                <h3 className="font-bold text-sm text-white">Ein unvergesslicher Moment</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Der gemeinsame Moment auf der Feier: Wenn die ersten Tr?nen der R?hrung flie?en.
+                </p>
+              </div>
             </div>
+
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
@@ -170,7 +221,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
         </div>
       </section>
 
-      {/* 1. Product Catalog (19,99 ? Products) */}
+      {/* 1. Product Catalog (19,99 ? Products with Photos) */}
       <ProductCatalog onSelectProduct={handleSelectProduct} />
 
       {/* 2. YouTube Showcase (@MyMusicMoment24) */}
@@ -187,7 +238,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
       {/* 5. Custom Song Configurator */}
       <Configurator onOpenCheckout={onOpenCheckout} />
 
-      {/* 6. Real Customer Testimonials (Original Zitate von Tanja und J?rn) */}
+      {/* 6. Real Customer Testimonials */}
       <section id="kundenstimmen" className="max-w-6xl mx-auto my-20 px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">

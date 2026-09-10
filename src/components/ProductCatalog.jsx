@@ -12,7 +12,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 12,
     image: "/images/gutschein.jpg",
-    gradient: "from-amber-600/40 via-orange-900/30 to-slate-900",
     description: "Der perfekte Gutschein f?r ein personalisiertes Wunschlied. Flexibel einl?sbar f?r jeden beliebigen Anlass.",
   },
   {
@@ -25,7 +24,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 48,
     image: "/images/hochzeit.jpg",
-    gradient: "from-pink-900/40 via-purple-900/30 to-slate-900",
     description: "Individuelle personalisierte Lieder f?r Hochzeiten & Hochzeitstage. Das emotionale Herzst?ck f?r Trauung und Er?ffnungstanz.",
   },
   {
@@ -38,7 +36,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 29,
     image: "/images/duett.jpg",
-    gradient: "from-rose-900/40 via-orange-950/30 to-slate-900",
     description: "Harmonischer Dialog aus zwei Stimmen oder zweisprachig (z.B. Deutsch & Englisch). Perfekt f?r interkulturelle Paare.",
   },
   {
@@ -51,7 +48,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 3,
     image: "/images/geburtstag.jpg",
-    gradient: "from-amber-700/40 via-yellow-950/30 to-slate-900",
     description: "Das unvergessliche Geburtstagsgeschenk: Alle Meilensteine, Insider und lustigen Anekdoten in einem packenden Song.",
   },
   {
@@ -64,7 +60,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 16,
     image: "/images/jubilaeum.jpg",
-    gradient: "from-emerald-900/40 via-slate-900 to-slate-900",
     description: "F?r Firmenjubil?en, goldene oder silberne Hochzeiten und besondere Vereins-Meilensteine mit bleibendem Wert.",
   },
   {
@@ -77,7 +72,6 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 22,
     image: "/images/party.jpg",
-    gradient: "from-purple-900/40 via-indigo-950/30 to-slate-900",
     description: "Uptempo-Feiertrack mit mitrei?endem Beat und Mitsing-Refrain f?r Feiern, Junggesellenabschiede und Vereinsfeste.",
   },
 ];
@@ -135,39 +129,49 @@ export default function ProductCatalog({ onSelectProduct }) {
         {filteredProducts.map((prod) => (
           <div
             key={prod.id}
-            className="group bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 rounded-3xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-2xl hover:shadow-amber-500/10"
+            className="group bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 rounded-3xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-2xl hover:shadow-amber-500/10"
           >
             <div>
-              {/* Product Visual Banner */}
-              <div className={`w-full h-48 rounded-2xl bg-gradient-to-br ${prod.gradient} border border-slate-700/50 relative overflow-hidden flex items-center justify-center p-6 text-center`}>
+              {/* Emotional Product Photography */}
+              <div className="w-full h-56 rounded-2xl relative overflow-hidden bg-slate-950 border border-slate-800/80 mb-4">
+                <img
+                  src={prod.image}
+                  alt={prod.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80" />
+                
                 {prod.badge && (
                   <span className="absolute top-3 left-3 px-3 py-1 bg-amber-500 text-slate-950 text-xs font-black uppercase rounded-lg shadow-md">
                     {prod.badge}
                   </span>
                 )}
-                <div className="space-y-2">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto border border-amber-500/30">
-                    <Disc className="w-6 h-6 animate-pulse" />
-                  </div>
-                  <span className="text-xs font-medium text-amber-300 block">{prod.categoryLabel}</span>
-                  <div className="text-2xl font-black text-white">19,99 ?</div>
+
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                  <span className="text-xs font-bold text-amber-300 bg-slate-950/80 px-2.5 py-1 rounded-md backdrop-blur-sm border border-slate-800">
+                    {prod.categoryLabel}
+                  </span>
+                  <span className="text-lg font-black text-white bg-amber-500/90 text-slate-950 px-2.5 py-0.5 rounded-md">
+                    19,99 ?
+                  </span>
                 </div>
               </div>
 
               {/* Title & Reviews */}
-              <div className="mt-4">
+              <div>
                 <div className="flex items-center gap-1.5 text-xs text-amber-400 font-bold mb-1.5">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="text-slate-400">({prod.reviewsCount})</span>
+                  <span className="text-slate-400">({prod.reviewsCount} Bewertungen)</span>
                 </div>
-                <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition mb-2">
+                <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition mb-2 line-clamp-1">
                   {prod.title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
+                <p className="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
                   {prod.description}
                 </p>
               </div>
