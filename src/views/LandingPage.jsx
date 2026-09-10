@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { 
   Music, Sparkles, Heart, Star, ShieldCheck, Clock, Headphones, 
-  ArrowRight, CheckCircle2, ChevronRight, Award, MessageCircle, FileText 
+  ArrowRight, CheckCircle2, ChevronRight, Award, MessageCircle, FileText, Gift 
 } from "lucide-react";
 import AudioPlayer from "../components/AudioPlayer";
 import Configurator from "../components/Configurator";
+import ProductCatalog from "../components/ProductCatalog";
+import YouTubeShowcase from "../components/YouTubeShowcase";
+import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 
 export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
@@ -12,251 +15,281 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
 
   const FAQS = [
     {
+      q: "Wie viel kostet ein pers?nlicher Song?",
+      a: "Jedes personalisierte Musikst?ck kostet bei uns nur 19,99 ? Festpreis. Es gibt keine versteckten Kosten.",
+    },
+    {
       q: "Wie lange dauert es, bis mein Song fertig ist?",
-      a: "In der Standard-Produktion ist dein Song in der Regel innerhalb von 24 bis 48 Stunden fertig gemastert. Wenn es besonders eilig ist, kannst du im Konfigurator unseren 12-Stunden-Express-Service buchen.",
+      a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. F?r ganz eilige Anl?sse bieten wir zus?tzlich einen 12-Stunden-Express-Service an.",
     },
     {
-      q: "Klingt der Song nach künstlicher Computerstimme?",
-      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit professionellem Audio-Mastering. Die Stimmen klingen voll, menschlich, dynamisch und berührend. Höre dir gerne oben unsere echten Hörproben an!",
+      q: "Wie erhalte ich meinen fertigen Song?",
+      a: "Wir senden dir deinen fertig gemasterten Song als MP3- und WAV-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
     },
     {
-      q: "Welche Angaben von mir benötigt ihr für den Songtext?",
-      a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Unser System dichtet daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
+      q: "Klingt der Song nach k?nstlicher Computerstimme?",
+      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit professionellem Audio-Mastering und menschlichem Feinschliff. Die Stimmen klingen voll, lebendig, dynamisch und ber?hrend. H?re dir gerne oben unsere echten H?rproben an!",
     },
     {
-      q: "Welche Rechte habe ich an dem fertigen Song?",
-      a: "Du erhältst die vollen privaten Nutzungsrechte. Du kannst den Song beliebig oft abspielen, auf deiner Hochzeit oder Geburtstagsfeier vorführen, auf USB-Sticks verschenken oder in deinen privaten Videoclips hinterlegen.",
+      q: "Welche Angaben von mir ben?tigt ihr f?r den Songtext?",
+      a: "Die Namen der Personen, den Anlass und ein paar pers?nliche Anekdoten, Insider oder Gef?hle, die dir am Herzen liegen. Wir dichten daraus ber?hrende, perfekt gereimte Strophen und einen einpr?gsamen Refrain.",
     },
   ];
 
+  // Callback when a product card in the catalog is clicked
+  const handleSelectProduct = (product) => {
+    const orderData = {
+      id: `prod-${product.id}-${Date.now()}`,
+      name: product.title,
+      price: product.price,
+      details: {
+        occasion: product.category || "individuell",
+        genre: "Wahl nach Wunsch",
+        voice: "Passend zum Song",
+        language: "Deutsch",
+        express: false,
+        pdfLyrics: false,
+      },
+    };
+    onOpenCheckout(orderData);
+  };
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <SchemaJsonLd type="home" />
 
-      {/* Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+      {/* Top Bar / Header */}
+      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5 font-black text-xl text-white">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/20">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center text-slate-950 shadow-md shadow-amber-500/20 font-black">
               <Music className="w-5 h-5" />
             </div>
             <span className="tracking-tight">
-              MyMusicMoment<span className="text-orange-400">24</span>
+              MyMusicMoment<span className="text-amber-400">24</span>
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <a href="#hoerproben" className="hover:text-orange-400 transition">Hörproben</a>
-            <a href="#vorteile" className="hover:text-orange-400 transition">So funktioniert's</a>
-            <a href="#konfigurator" className="hover:text-orange-400 transition">Song konfigurieren</a>
-            <a href="#faq" className="hover:text-orange-400 transition">FAQ</a>
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+            <a href="#shop" className="hover:text-amber-400 transition">Shop & Produkte</a>
+            <a href="#hoerproben" className="hover:text-amber-400 transition">H?rproben</a>
+            <a href="#prozess" className="hover:text-amber-400 transition">Ablauf</a>
+            <a href="#konfigurator" className="hover:text-amber-400 transition">Song-Konfigurator</a>
+            <a href="#kundenstimmen" className="hover:text-amber-400 transition">Erfahrungen</a>
+            <a href="#faq" className="hover:text-amber-400 transition">FAQ</a>
             <button
               onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-              className="text-orange-400 hover:text-orange-300 transition font-semibold"
+              className="text-amber-400 hover:text-amber-300 transition font-semibold"
             >
               Ratgeber
             </button>
           </nav>
 
           <a
-            href="#konfigurator"
-            className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-sm font-bold rounded-xl shadow-md shadow-orange-500/20 transition"
+            href="#shop"
+            className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
           >
-            Song erstellen
+            Musik Bestellen (19,99 ?)
           </a>
         </div>
       </header>
 
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
-        {/* Background ambient lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-orange-500/15 via-purple-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+        {/* Glowing Background Ambiance */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-amber-500/15 via-orange-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3.5 py-1.5 rounded-full">
-            <Sparkles className="w-3.5 h-3.5" /> Personalisierte KI-Musik auf Abruf
+          
+          {/* Subheader / Slogan */}
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full">
+            <Sparkles className="w-3.5 h-3.5" /> "Von Herzen f?r die Ohren ? MyMusicMoment"
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15]">
-            Verwandle eure Geschichte in einen <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500">einzigartigen Song</span>
+            Ein pers?nlicher Song, der eure Geschichte erz?hlt ? <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">emotional, individuell & unvergesslich.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
-            Ob für Hochzeit, runden Geburtstag oder als Liebeserklärung: Ein persönlich komponierter Song berührt zu Tränen und bleibt ein Leben lang in Erinnerung.
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+            Perfekt f?r Hochzeit, Geburtstag oder jeden besonderen Moment. 
+            Produktion von <span className="font-semibold text-white">Mensch & KI & Storytelling</span>. 
+            Lieferung meist in <span className="font-semibold text-amber-400">24 Stunden (werktags)</span> f?r nur <span className="font-black text-amber-400">19,99 ?</span>.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          {/* 3 Story Cards Preview */}
+          <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
+            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
+              <span className="text-xs font-bold text-amber-400 block mb-1">1. Inspiration suchen</span>
+              <p className="text-xs text-slate-300">Du suchst nach einem Geschenk, das wirklich ber?hrt und im Ged?chtnis bleibt.</p>
+            </div>
+            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
+              <span className="text-xs font-bold text-amber-400 block mb-1">2. Echte Begeisterung</span>
+              <p className="text-xs text-slate-300">Du h?rst das erste Mal in den fertigen Song rein ? mit euren Meilensteinen im Text.</p>
+            </div>
+            <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
+              <span className="text-xs font-bold text-amber-400 block mb-1">3. Freudentr?nen</span>
+              <p className="text-xs text-slate-300">Das gemeinsame Anh?ren auf der Feier: G?nsehaut und unvergessliche Emotionen.</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
             <a
-              href="#konfigurator"
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-base rounded-2xl shadow-xl shadow-orange-500/25 flex items-center justify-center gap-2.5 transition transform hover:-translate-y-0.5"
+              href="#shop"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2.5 transition transform hover:-translate-y-0.5"
             >
-              <span>Jetzt eigenen Song konfigurieren</span>
+              <span>Jetzt pers?nlichen Song bestellen (19,99 ?)</span>
               <ArrowRight className="w-5 h-5" />
             </a>
             <a
               href="#hoerproben"
-              className="w-full sm:w-auto px-7 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-semibold text-base rounded-2xl border border-slate-800 flex items-center justify-center gap-2 transition"
+              className="w-full sm:w-auto px-7 py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-base rounded-2xl border border-slate-800 flex items-center justify-center gap-2 transition"
             >
-              <Headphones className="w-5 h-5 text-orange-400" />
-              <span>Hörproben abspielen</span>
+              <Headphones className="w-5 h-5 text-amber-400" />
+              <span>H?rproben anh?ren</span>
             </a>
           </div>
 
-          {/* Social Proof Badges */}
+          {/* Trust Badges */}
           <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 border-t border-slate-900 max-w-xl mx-auto">
-            <div className="flex items-center gap-1.5 text-amber-400 font-bold">
+            <div className="flex items-center gap-1 text-amber-400 font-bold">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400" />
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
-              <span className="text-slate-200 ml-1">4.9 / 5.0</span>
+              <span className="text-slate-200 ml-1.5 font-bold">Kunden lieben unsere Musik!</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-orange-400" />
-              <span>Fertig in 24h</span>
+              <Clock className="w-4 h-4 text-amber-400" />
+              <span>Lieferung in 24h</span>
             </div>
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Käuferschutz & Mastering</span>
+              <span>K?uferschutz & Mastering</span>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Audio Player Section */}
+      {/* 1. Product Catalog (19,99 ? Products) */}
+      <ProductCatalog onSelectProduct={handleSelectProduct} />
+
+      {/* 2. YouTube Showcase (@MyMusicMoment24) */}
+      <YouTubeShowcase />
+
+      {/* 3. Interactive Audio Player */}
       <AudioPlayer />
 
-      {/* How it Works / Steps */}
-      <section id="vorteile" className="max-w-6xl mx-auto my-20 px-4">
+      {/* 4. 5-Step Process */}
+      <div id="prozess">
+        <StepProcess />
+      </div>
+
+      {/* 5. Custom Song Configurator */}
+      <Configurator onOpenCheckout={onOpenCheckout} />
+
+      {/* 6. Real Customer Testimonials (Original Zitate von Tanja und J?rn) */}
+      <section id="kundenstimmen" className="max-w-6xl mx-auto my-20 px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
-            In 3 einfachen Schritten zum Gänsehaut-Moment
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
+            <Heart className="w-3.5 h-3.5" /> 100% Echte Bewertungen
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+            Was Kunden sagen
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto text-sm">
-            Keine musikalischen Vorkenntnisse erforderlich – wir machen aus deinen Notizen einen professionellen Song.
+            Echte R?ckmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl relative">
-            <div className="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center font-bold text-lg mb-6 border border-orange-500/20">
-              1
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Review Tanja aus Stuttgart */}
+          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between shadow-xl relative">
+            <div>
+              <div className="flex items-center gap-1 text-amber-400 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-sm md:text-base text-slate-200 leading-relaxed italic mb-6">
+                ?Also ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich f?r besondere Menschen ben?tige haben ihre Besonderheiten. 
+                Ich bin dem ganzen Team sehr dankbar! Da es eigentlich so eine Besonderheit in sich tr?gt wo jedesmal mit Hingabe gearbeitet wird ins Detail. 
+                W?nsche und auch ?nderungen nehmt ihr mit Gelassenheit und Humor auf und gebt einem das Gef?hl das es Ok ist! 
+                Ihr seit klasse, und jedesmal mehr als zufriedenstellend.?
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Deine Geschichte teilen</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Wähle den Anlass (z.B. Hochzeit oder Geburtstag) und gib Namen, Kosenamen und persönliche Meilensteine in unseren Konfigurator ein.
-            </p>
+            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 text-slate-950 font-black flex items-center justify-center">
+                  TS
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">Tanja aus Stuttgart</h4>
+                  <p className="text-xs text-amber-400 font-medium">individuelle Geburtstagslieder</p>
+                </div>
+              </div>
+              <span className="text-xs text-slate-500">Verifizierter Kauf</span>
+            </div>
           </div>
 
-          <div className="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl relative">
-            <div className="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center font-bold text-lg mb-6 border border-orange-500/20">
-              2
+          {/* Review J?rn aus Neunkirchen */}
+          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between shadow-xl relative">
+            <div>
+              <div className="flex items-center gap-1 text-amber-400 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-sm md:text-base text-slate-200 leading-relaxed italic mb-6">
+                ?Ich habe etwas Besonderes f?r einen ganz besonderen Menschen in meinem Leben gesucht ? und hier das perfekte Geschenk gefunden. 
+                Wundersch?ne Arbeit, mit viel Liebe gemacht. Vielen Dank! ?????
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">KI-Komposition & Gesang</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Modernste Algorithmen komponieren deine Melodie mit Wunschstimme und Text. Unser Audio-Mastering sorgt für perfekten Studiosound.
-            </p>
+            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-white font-black flex items-center justify-center">
+                  JN
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-sm">J?rn aus Neunkirchen</h4>
+                  <p className="text-xs text-purple-400 font-medium">Hochzeitstag</p>
+                </div>
+              </div>
+              <span className="text-xs text-slate-500">Verifizierter Kauf</span>
+            </div>
           </div>
 
-          <div className="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl relative">
-            <div className="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center font-bold text-lg mb-6 border border-orange-500/20">
-              3
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">Lieferung in 24 Stunden</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Du erhältst deinen Song als MP3 und unkomprimierte WAV per Download-Link – bereit für den großen emotionalen Auftritt!
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* Song Configurator Section */}
-      <Configurator onOpenCheckout={onOpenCheckout} />
-
-      {/* Testimonials */}
-      <section className="max-w-6xl mx-auto my-20 px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
-            Das sagen Menschen, die ihren Song verschenkt haben
-          </h2>
-          <p className="text-slate-400 text-sm">Echte Momente voller Freudentränen und Gänsehaut</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-            <p className="text-sm text-slate-300 italic mb-4">
-              „Beim Eröffnungstanz auf unserer Hochzeit lief unser eigener Song. Es gab niemanden im Saal, der keine Tränen in den Augen hatte. Unbezahlbar!“
-            </p>
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-800">
-              <div className="w-10 h-10 rounded-full bg-orange-500/20 text-orange-400 font-bold flex items-center justify-center text-sm">
-                LF
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Laura & Fabian</h4>
-                <p className="text-xs text-slate-400">Hochzeitssong (Pop-Ballade)</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-            <p className="text-sm text-slate-300 italic mb-4">
-              „Habe den Song für den 60. Geburtstag meines Vaters erstellen lassen mit all seinen alten Geschichten. Er war sprachlos vor Rührung.“
-            </p>
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-800">
-              <div className="w-10 h-10 rounded-full bg-orange-500/20 text-orange-400 font-bold flex items-center justify-center text-sm">
-                MK
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Michael K.</h4>
-                <p className="text-xs text-slate-400">Geburtstagslied (Akustik Pop)</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-            <p className="text-sm text-slate-300 italic mb-4">
-              „Express-Bestellung hat in unter 10 Stunden geklappt! Die Qualität des Gesangs und der Text haben meine Erwartungen bei Weitem übertroffen.“
-            </p>
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-800">
-              <div className="w-10 h-10 rounded-full bg-orange-500/20 text-orange-400 font-bold flex items-center justify-center text-sm">
-                JS
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Julia S.</h4>
-                <p className="text-xs text-slate-400">Jahrestag-Song (R&B)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Highlight Card */}
-      <section className="max-w-4xl mx-auto my-16 px-4">
-        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-orange-950/40 border border-orange-500/20 rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      {/* 7. Blog Highlight */}
+      <section className="max-w-5xl mx-auto my-16 px-4">
+        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/20 rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-orange-400 uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 uppercase tracking-wider">
               <FileText className="w-3.5 h-3.5" /> Aus unserem Ratgeber
             </div>
             <h3 className="text-2xl font-bold text-white">
               Individueller Hochzeitssong mit KI: So entsteht euer Song
             </h3>
             <p className="text-sm text-slate-300 max-w-xl leading-relaxed">
-              Erfahre alles über die Vorteile, den Entstehungsprozess und wie du die schönsten Anekdoten in den Text einfließen lässt.
+              Erfahre alles ?ber die Vorteile, den Entstehungsprozess und wie du die sch?nsten Anekdoten in den Text einflie?en l?sst.
             </p>
           </div>
           <button
             onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-            className="shrink-0 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition flex items-center gap-2"
+            className="shrink-0 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-xl transition flex items-center gap-2"
           >
             Artikel lesen <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* 8. FAQ Section */}
       <section id="faq" className="max-w-3xl mx-auto my-20 px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-white mb-2">Häufig gestellte Fragen (FAQ)</h2>
-          <p className="text-slate-400 text-sm">Alles, was du über deinen persönlichen Song wissen musst</p>
+          <h2 className="text-3xl font-extrabold text-white mb-2">H?ufig gestellte Fragen (FAQ)</h2>
+          <p className="text-slate-400 text-sm">Alles, was du ?ber deinen pers?nlichen Song wissen musst</p>
         </div>
 
         <div className="space-y-3">
@@ -272,7 +305,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
                   className="w-full text-left px-6 py-4 flex items-center justify-between font-bold text-slate-200 hover:text-white"
                 >
                   <span>{faq.q}</span>
-                  <ChevronRight className={`w-5 h-5 text-orange-400 transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                  <ChevronRight className={`w-5 h-5 text-amber-400 transition-transform ${isOpen ? "rotate-90" : ""}`} />
                 </button>
                 {isOpen && (
                   <div className="px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
@@ -289,13 +322,16 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
       <footer className="bg-slate-950 border-t border-slate-900 py-12 text-sm text-slate-400">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2 font-bold text-white text-base">
-            <Music className="w-5 h-5 text-orange-500" />
+            <Music className="w-5 h-5 text-amber-500" />
             <span>MyMusicMoment24</span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs">
-            <a href="#konfigurator" className="hover:text-white transition">Konfigurator</a>
-            <a href="#hoerproben" className="hover:text-white transition">Hörproben</a>
+            <a href="#shop" className="hover:text-white transition">Shop (19,99 ?)</a>
+            <a href="#hoerproben" className="hover:text-white transition">H?rproben</a>
+            <a href="https://www.youtube.com/@MyMusicMoment24" target="_blank" rel="noopener noreferrer" className="hover:text-red-400 transition">
+              YouTube Kanal
+            </a>
             <button
               onClick={() => onNavigateBlog("individueller-hochzeitssong")}
               className="hover:text-white transition"
@@ -305,14 +341,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog }) {
             <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))}
-              className="hover:text-orange-400 transition underline decoration-dotted"
+              className="hover:text-amber-400 transition underline decoration-dotted"
             >
               Cookie-Einstellungen
             </button>
           </div>
 
           <p className="text-xs text-slate-500">
-            © 2026 MyMusicMoment24 • Dirk Schmetzer Online Services
+            ? 2026 MyMusicMoment24 ? Dirk Schmetzer Online Services
           </p>
         </div>
       </footer>
