@@ -582,6 +582,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </p>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">PayPal</span>
+              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold text-[#807AFF]">Stripe</span>
               <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Kreditkarte</span>
               <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Apple Pay</span>
               <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Google Pay</span>

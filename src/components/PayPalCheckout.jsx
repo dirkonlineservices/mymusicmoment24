@@ -251,7 +251,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       Zahlungsart wählen
                     </label>
 
-                    <label className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300"}`}>
+                    <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
                       <div className="flex items-center gap-2.5">
                         <input
                           type="radio"
@@ -260,23 +260,31 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           onChange={() => setPaymentMethod("paypal")}
                           className="text-amber-500"
                         />
-                        <span className="font-bold text-xs sm:text-sm">PayPal</span>
+                        <div>
+                          <span className="font-bold text-xs sm:text-sm block">PayPal Express</span>
+                          <span className="text-[10px] text-slate-400">Schnell &amp; mit Käuferschutz</span>
+                        </div>
                       </div>
                       <span className="font-black italic text-sm sm:text-base text-[#003087]">Pay<span className="text-[#0079C1]">Pal</span></span>
                     </label>
 
-                    <label className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${paymentMethod === "card" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300"}`}>
+                    <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "stripe" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
                       <div className="flex items-center gap-2.5">
                         <input
                           type="radio"
                           name="payment"
-                          checked={paymentMethod === "card"}
-                          onChange={() => setPaymentMethod("card")}
+                          checked={paymentMethod === "stripe"}
+                          onChange={() => setPaymentMethod("stripe")}
                           className="text-amber-500"
                         />
-                        <span className="font-bold text-xs sm:text-sm">Kreditkarte & SEPA</span>
+                        <div>
+                          <span className="font-bold text-xs sm:text-sm block">Stripe Checkout</span>
+                          <span className="text-[10px] text-slate-400">Kreditkarte, Apple Pay, Google Pay, SEPA</span>
+                        </div>
                       </div>
-                      <span className="text-[10px] sm:text-xs text-slate-400">Visa, Mastercard, Amex</span>
+                      <div className="flex items-center gap-1.5 bg-[#635BFF]/20 px-2 py-0.5 rounded border border-[#635BFF]/30">
+                        <span className="font-bold text-[11px] text-[#807AFF]">stripe</span>
+                      </div>
                     </label>
                   </div>
 

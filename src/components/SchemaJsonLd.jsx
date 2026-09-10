@@ -56,13 +56,19 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
     schemaData.push(organizationSchema);
 
     if (type === "home") {
-      // Product Schema (GEO & Rich Results Ready)
+      // Product Schema (Merchant Listings & Rezensions-Snippets Ready)
       const productSchema = {
         "@context": "https://schema.org",
         "@type": "Product",
-        name: "Personalisierter Song auf Abruf (MP3 & Songtext)",
-        image: "https://www.mymusicmoment24.de/images/hochzeit.jpg",
-        description: "Ein individuell komponierter Song für Hochzeit, Geburtstag, Jubiläum oder besondere Momente mit professionellem Mastering und digitaler Lieferung.",
+        name: "Personalisierter Song mit Namen & Geschichte (MP3 & Text)",
+        image: [
+          "https://www.mymusicmoment24.de/images/hochzeit.jpg",
+          "https://www.mymusicmoment24.de/images/geburtstag.jpg",
+          "https://www.mymusicmoment24.de/images/duett.jpg"
+        ],
+        description: "Dein individuelles Lied mit eigenem Namen und persönlicher Geschichte für Geburtstag, Hochzeit, Hochzeitstag oder Jubiläum. Professionelle KI-Komposition in Studioqualität in 24h fertig.",
+        sku: "MMM24-SONG-01",
+        mpn: "MMM24-CUSTOM-AUDIO",
         brand: {
           "@type": "Brand",
           name: "MyMusicMoment24",
@@ -79,6 +85,40 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
             "@type": "Organization",
             name: "MyMusicMoment24",
           },
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "DE",
+            returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+            merchantReturnDays: 0,
+            returnFees: "https://schema.org/ReturnFeesCustomerResponsibility",
+          },
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0.00",
+              currency: "EUR",
+            },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "DE",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 1,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 1,
+                unitCode: "DAY",
+              },
+            },
+          },
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -87,6 +127,36 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
           bestRating: "5",
           worstRating: "1",
         },
+        review: [
+          {
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: "Tanja S.",
+            },
+            datePublished: "2026-02-14",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            reviewBody: "Ich habe meinem Mann zu unserer Silberhochzeit ein individuelles Hochzeitslied schenken wollen. Als der Song lief, haben alle geweint – vor Freude und Rührung! Absolute Empfehlung.",
+          },
+          {
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: "Jörn M.",
+            },
+            datePublished: "2026-01-20",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            reviewBody: "Für den 50. Geburtstag meines besten Kumpels ein Geburtstagslied mit Namen und allen alten Insider-Geschichten erstellen lassen. Der absolute Abräumer auf der Party!",
+          },
+        ],
       };
 
       // FAQ Schema
