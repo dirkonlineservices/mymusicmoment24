@@ -340,6 +340,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* PayPal Smart Buttons or Standard Submit Button */}
                   {paypalClientId && paymentMethod === "paypal" ? (
                     <div className="pt-2">
+                      {(!customerEmail || !agreedTerms) && (
+                        <p className="text-[11px] text-amber-400/90 text-center mb-2 font-medium bg-amber-500/10 py-1.5 px-3 rounded-lg border border-amber-500/20">
+                          💡 Bitte gib deine E-Mail-Adresse ein und hake das Kästchen an, um PayPal zu aktivieren.
+                        </p>
+                      )}
                       <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
                         <PayPalButtons
                           style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
