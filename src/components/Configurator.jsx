@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame 
 } from "lucide-react";
-import { trackConfiguratorStep } from "../lib/gtmPreview";
+import { trackConfiguratorStep, trackViewItem } from "../lib/gtmPreview";
 
 const OCCASIONS = [
   { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz" },
@@ -43,6 +43,10 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
   const expressPrice = config.express ? 9.99 : 0;
   const pdfPrice = config.pdfLyrics ? 4.99 : 0;
   const totalPrice = Number((basePrice + expressPrice + pdfPrice).toFixed(2));
+
+  useEffect(() => {
+    trackViewItem({ price: basePrice, name: `Personalisierter Song (${config.occasion})` });
+  }, []);
 
   const goToStep = (nextStep) => {
     setStep(nextStep);

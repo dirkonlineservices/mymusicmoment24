@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock } from "lucide-react";
-import { trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
+import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
@@ -19,6 +19,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
   useEffect(() => {
     if (isOpen && order) {
+      trackAddToCart(order);
       trackBeginCheckout(order);
       setIsCompleted(false);
     }

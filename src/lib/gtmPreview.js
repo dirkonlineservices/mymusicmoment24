@@ -32,19 +32,20 @@ export function updateConsent({ analytics = false, marketing = false }) {
     });
   }
 
-  pushEvent("consent_update", {
-    consent_settings: {
-      analytics_storage: analytics ? "granted" : "denied",
-      ad_storage: marketing ? "granted" : "denied",
-      ad_user_data: marketing ? "granted" : "denied",
-      ad_personalization: marketing ? "granted" : "denied",
-    },
-  });
+  const consentPayload = {
+    analytics_storage: analytics ? "granted" : "denied",
+    ad_storage: marketing ? "granted" : "denied",
+    ad_user_data: marketing ? "granted" : "denied",
+    ad_personalization: marketing ? "granted" : "denied",
+  };
+
+  pushEvent("consent_update", { consent_settings: consentPayload });
+  pushEvent("Consent Updated", { consent_settings: consentPayload });
 }
 
 export function trackAudioEvent(action, songTitle, details = {}) {
   pushEvent("audio_interaction", {
-    audio_action: action, // 'play', 'pause', 'progress_25', 'progress_50', 'progress_75', 'complete'
+    audio_action: action,
     song_title: songTitle,
     ...details,
   });
@@ -58,17 +59,56 @@ export function trackConfiguratorStep(stepNumber, stepName, selections = {}) {
   });
 }
 
+export function trackViewItem(item = {}) {
+  const numericPrice = Number(item.price) || 19.99;
+  pushEvent("view_item", {
+    ecommerce: {
+      currency: "EUR",
+      value: numericPrice,
+      items: [
+        {
+          item_id: item.id || "song-package",
+          item_name: item.name || "Personalisierter Song",
+          item_category: "Personalized Music",
+          price: numericPrice,
+          quantity: 1,
+        },
+      ],
+    },
+  });
+}
+
+export function trackAddToCart(item = {}) {
+  const numericPrice = Number(item.price) || 19.99;
+  pushEvent("add_to_cart", {
+    ecommerce: {
+      currency: "EUR",
+      value: numericPrice,
+      items: [
+        {
+          item_id: item.id || "song-package",
+          item_name: item.name || "Personalisierter Song",
+          item_category: "Personalized Music",
+          price: numericPrice,
+          quantity: 1,
+        },
+      ],
+    },
+  });
+}
+
 export function trackBeginCheckout(item) {
+  const numericPrice = Number(item.price) || 19.99;
   pushEvent("begin_checkout", {
     ecommerce: {
       currency: "EUR",
-      value: item.price,
+      value: numericPrice,
       items: [
         {
           item_id: item.id || "song-package",
           item_name: item.name,
           item_category: "Personalized Music",
-          price: item.price,
+          price: numericPrice,
           quantity: 1,
         },
       ],
