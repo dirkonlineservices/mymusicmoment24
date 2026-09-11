@@ -9,6 +9,7 @@ import ProductCatalog from "../components/ProductCatalog";
 import YouTubeShowcase from "../components/YouTubeShowcase";
 import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
+import PaymentBadges from "../components/PaymentBadges";
 
 export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal }) {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -598,16 +599,20 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </div>
 
           {/* Bottom Bar: Copyright & Payment */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 text-center sm:text-left">
-            <p>
-              &copy; 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. Alle Rechte vorbehalten.
-            </p>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">PayPal</span>
-              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold text-[#807AFF]">Stripe</span>
-              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Kreditkarte</span>
-              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Apple Pay</span>
-              <span className="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-[10px] font-semibold">Google Pay</span>
+          <div className="pt-8 border-t border-slate-900/80 flex flex-col lg:flex-row items-center justify-between gap-5 text-[11px] text-slate-500 text-center lg:text-left">
+            <div className="space-y-1">
+              <p>
+                &copy; 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. Alle Rechte vorbehalten.
+              </p>
+              <p className="text-[10px] text-slate-600">
+                Sichere 256-Bit SSL-Verschlüsselung &amp; zertifizierte Zahlungsabwicklung.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-2">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 hidden sm:inline mr-1">
+                Zahlungsarten:
+              </span>
+              <PaymentBadges />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { X, CheckCircle, ShieldCheck, Music, Sparkles } from "lucide-react";
+import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock } from "lucide-react";
 import { trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
+import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
 
 export default function PayPalCheckout({ isOpen, onClose, order }) {
   const [customerEmail, setCustomerEmail] = useState("");
@@ -264,10 +265,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         />
                         <div>
                           <span className="font-bold text-xs sm:text-sm block">PayPal Express</span>
-                          <span className="text-[10px] text-slate-400">Schnell &amp; mit Käuferschutz</span>
+                          <span className="text-[10px] text-slate-400">Schnell, einfach &amp; mit Käuferschutz</span>
                         </div>
                       </div>
-                      <span className="font-black italic text-sm sm:text-base text-[#003087]">Pay<span className="text-[#0079C1]">Pal</span></span>
+                      <div className="shrink-0">
+                        <PayPalBadge className="h-3.5" />
+                      </div>
                     </label>
 
                     <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "stripe" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
@@ -280,12 +283,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           className="text-amber-500"
                         />
                         <div>
-                          <span className="font-bold text-xs sm:text-sm block">Stripe Checkout</span>
-                          <span className="text-[10px] text-slate-400">Kreditkarte, Apple Pay, Google Pay, SEPA</span>
+                          <span className="font-bold text-xs sm:text-sm block">Kreditkarte &amp; Online-Zahlung</span>
+                          <span className="text-[10px] text-slate-400">Visa, Mastercard, Apple Pay, Google Pay, SEPA, Klarna</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 bg-[#635BFF]/20 px-2 py-0.5 rounded border border-[#635BFF]/30">
-                        <span className="font-bold text-[11px] text-[#807AFF]">stripe</span>
+                      <div className="shrink-0">
+                        <StripeBadge className="h-3.5" />
                       </div>
                     </label>
                   </div>
@@ -322,14 +325,24 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </form>
 
                 {/* Trust Badges */}
-                <div className="pt-3 border-t border-slate-800 space-y-1 text-[11px] text-slate-400">
+                <div className="pt-3 border-t border-slate-800 space-y-2 text-[11px] text-slate-400">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>256-Bit SSL-Verschlüsselung & Käuferschutz</span>
+                    <span>256-Bit SSL-Verschlüsselung &amp; Käuferschutz</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     <span>Lieferung meist in 24 Stunden an Werktagen</span>
+                  </div>
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-1.5 opacity-90">
+                    <PayPalBadge className="h-3" />
+                    <StripeBadge className="h-3" />
+                    <VisaBadge className="h-2.5" />
+                    <MastercardBadge className="h-3" />
+                    <ApplePayBadge className="h-3" />
+                    <GooglePayBadge className="h-3" />
+                    <SepaBadge className="h-3" />
+                    <KlarnaBadge className="h-3" />
                   </div>
                 </div>
 
