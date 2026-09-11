@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { 
-  Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame 
+  Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame, Music 
 } from "lucide-react";
 import { trackConfiguratorStep, trackViewItem } from "../lib/gtmPreview";
+
+const STEPS = [
+  { num: 1, title: "Anlass", icon: Heart },
+  { num: 2, title: "Musikstil", icon: Music },
+  { num: 3, title: "Gesang", icon: Mic },
+  { num: 4, title: "Geschichte", icon: Sparkles },
+  { num: 5, title: "Paket", icon: Gift },
+];
 
 const OCCASIONS = [
   { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz" },
@@ -68,24 +76,61 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
   };
 
   return (
-    <section id="konfigurator" className="w-full max-w-4xl mx-auto my-12 sm:my-20 px-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-2xl relative overflow-hidden">
-        
-        {/* Progress Header */}
-        <div className="mb-6 sm:mb-8">
-          <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-            <span>Schritt {step} von 5</span>
-            <span className="text-amber-400 font-bold truncate ml-2">
-              {step === 1 && "Anlass wählen"}
-              {step === 2 && "Musikstil & Genre"}
-              {step === 3 && "Gesang & Stimme"}
-              {step === 4 && "Eure Geschichte"}
-              {step === 5 && "Paket & Zusammenfassung"}
-            </span>
+    <section id="konfigurator" className="w-full max-w-5xl mx-auto my-12 sm:my-20 px-4 scroll-mt-20">
+      {/* Outer Section Header */}
+      <div className="text-center mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full mb-3 shadow-lg shadow-amber-500/10">
+          <Sparkles className="w-4 h-4 text-amber-400" />
+          <span>Interaktiver Song-Generator • In 2 Minuten fertig</span>
+        </div>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+          Konfiguriere deinen persönlichen Song
+        </h2>
+        <p className="text-slate-400 max-w-2xl mx-auto text-xs sm:text-base leading-relaxed">
+          Wähle Anlass, Musikstil & deine persönliche Geschichte – wir komponieren daraus dein Unikat in Studioqualität für nur <span className="font-bold text-amber-400">19,99 €</span>.
+        </p>
+      </div>
+
+      <div className="bg-gradient-to-b from-slate-900 via-slate-900/98 to-slate-950 border-2 border-amber-500/35 hover:border-amber-500/60 rounded-3xl p-5 sm:p-10 shadow-2xl shadow-amber-500/10 relative overflow-hidden ring-1 ring-amber-500/20 transition-all duration-300">
+        {/* Glow Ambient Accents */}
+        <div className="absolute -top-32 -right-32 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Interactive Step Navigator */}
+        <div className="mb-8 relative z-10">
+          <div className="grid grid-cols-5 gap-1.5 sm:gap-3 mb-3.5">
+            {STEPS.map((s) => {
+              const isActive = step === s.num;
+              const isPast = step > s.num;
+              return (
+                <button
+                  key={s.num}
+                  type="button"
+                  onClick={() => goToStep(s.num)}
+                  className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 p-2 sm:py-3 sm:px-4 rounded-xl border transition-all ${
+                    isActive
+                      ? "bg-amber-500 text-slate-950 border-amber-400 font-bold shadow-lg shadow-amber-500/20 scale-[1.02]"
+                      : isPast
+                      ? "bg-slate-800/80 border-slate-700 text-amber-400 hover:bg-slate-800"
+                      : "bg-slate-900/60 border-slate-800/80 text-slate-500 hover:text-slate-400"
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black shrink-0 ${
+                    isActive ? "bg-slate-950 text-amber-400" : isPast ? "bg-amber-400/20 text-amber-400" : "bg-slate-800 text-slate-500"
+                  }`}>
+                    {isPast ? "✓" : s.num}
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold truncate hidden sm:inline">
+                    {s.title}
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+
+          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-amber-500 to-yellow-500 transition-all duration-300"
+              className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 transition-all duration-300"
               style={{ width: `${(step / 5) * 100}%` }}
             />
           </div>
@@ -379,6 +424,26 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             </div>
           </div>
         )}
+
+        {/* Trust & Benefits Footer */}
+        <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] sm:text-xs text-slate-400 text-center relative z-10">
+          <div className="flex items-center justify-center gap-1.5 font-medium">
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span>Nur 19,99 € Festpreis</span>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 font-medium">
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span>Lieferung in unter 24h</span>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 font-medium">
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span>1 Gratis-Korrekturschleife</span>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 font-medium">
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span>100% Private Nutzungsrechte</span>
+          </div>
+        </div>
       </div>
     </section>
   );

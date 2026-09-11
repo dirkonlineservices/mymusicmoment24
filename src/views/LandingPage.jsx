@@ -111,10 +111,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           {/* Desktop Action Button & Mobile Hamburger Toggle */}
           <div className="flex items-center gap-2.5">
             <a
-              href="#shop"
+              href="#konfigurator"
               className="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
             >
-              Musik Bestellen (19,99 €)
+              Song konfigurieren (19,99 €)
             </a>
 
             <button
@@ -189,11 +189,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </nav>
 
             <a
-              href="#shop"
+              href="#konfigurator"
               onClick={closeMobileMenu}
               className="block text-center w-full py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black rounded-xl text-sm shadow-lg shadow-amber-500/20"
             >
-              Jetzt Musik Bestellen (19,99 €)
+              Jetzt Song Konfigurieren (19,99 €)
             </a>
           </div>
         )}
@@ -307,10 +307,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           {/* Hero CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
             <a
-              href="#shop"
+              href="#konfigurator"
               className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
             >
-              <span>Jetzt persönlichen Song bestellen (19,99 €)</span>
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
+              <span>Jetzt persönlichen Song konfigurieren (19,99 €)</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
@@ -343,8 +344,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         </div>
       </section>
 
-      {/* 1. Product Catalog */}
-      <ProductCatalog onSelectProduct={handleSelectProduct} />
+      {/* 1. Interactive Configurator in the Spotlight */}
+      <Configurator onOpenCheckout={onOpenCheckout} />
 
       {/* 2. YouTube Showcase */}
       <YouTubeShowcase />
@@ -352,13 +353,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* 3. Audio Player */}
       <AudioPlayer />
 
-      {/* 4. Step Process */}
+      {/* 4. Product Catalog */}
+      <ProductCatalog onSelectProduct={handleSelectProduct} />
+
+      {/* 5. Step Process */}
       <div id="prozess">
         <StepProcess />
       </div>
-
-      {/* 5. Configurator */}
-      <Configurator onOpenCheckout={onOpenCheckout} />
 
       {/* 6. Testimonials */}
       <section id="kundenstimmen" className="max-w-6xl mx-auto my-12 sm:my-20 px-4">
