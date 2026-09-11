@@ -69,13 +69,20 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="/" className="flex items-center gap-2.5 font-black text-lg sm:text-xl text-white">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center text-slate-950 shadow-md shadow-amber-500/20 font-black">
-              <Music className="w-4 h-4 sm:w-5 sm:h-5" />
+          <a href="/" className="flex items-center gap-2.5 sm:gap-3 group" aria-label="MyMusicMoment24 Startseite">
+            <img
+              src="/images/logo-icon.png"
+              alt="MyMusicMoment24 Logo"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform"
+            />
+            <div className="flex flex-col">
+              <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-tight">
+                MyMusicMoment<span className="text-amber-400">24</span>
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-none tracking-normal">
+                Dein Persönlicher Song
+              </span>
             </div>
-            <span className="tracking-tight">
-              MyMusicMoment<span className="text-amber-400">24</span>
-            </span>
           </a>
 
           {/* Desktop Navigation Links */}
@@ -490,9 +497,20 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-900">
             {/* Col 1: Brand & E-E-A-T */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 font-bold text-white text-lg">
-                <Music className="w-5 h-5 text-amber-500" />
-                <span>MyMusicMoment24</span>
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logo-icon.png"
+                  alt="MyMusicMoment24 Logo"
+                  className="w-8 h-8 object-contain"
+                />
+                <div>
+                  <span className="font-bold text-white text-lg leading-tight block">
+                    MyMusicMoment<span className="text-amber-400">24</span>
+                  </span>
+                  <span className="text-[11px] text-slate-400 font-normal leading-none block mt-0.5">
+                    Dein Persönlicher Song
+                  </span>
+                </div>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und persönliche Qualitätsprüfung ab 19,99 €.

@@ -85,9 +85,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-800">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold">
-                  <Music className="w-4 h-4" />
-                </div>
+                <img
+                  src="/images/logo-icon.png"
+                  alt="MyMusicMoment24 Logo"
+                  className="w-9 h-9 object-contain"
+                />
                 <div>
                   <h3 className="text-base sm:text-lg font-extrabold text-white">Bestellung abschließen</h3>
                   <p className="text-[11px] text-slate-400">MyMusicMoment24 • Sofortige Produktion</p>

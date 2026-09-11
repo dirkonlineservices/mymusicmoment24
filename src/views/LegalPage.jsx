@@ -14,10 +14,17 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
             <ArrowLeft className="w-4 h-4 text-orange-400" />
             <span>Zurück zur Startseite</span>
           </button>
-          <div className="flex items-center gap-2 text-sm font-bold text-white">
-            <Music className="w-4 h-4 text-orange-500" />
-            <span>MyMusicMoment24</span>
-          </div>
+          <button
+            onClick={onBackToHome}
+            className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+          >
+            <img
+              src="/images/logo-icon.png"
+              alt="MyMusicMoment24 Logo"
+              className="w-7 h-7 object-contain"
+            />
+            <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+          </button>
         </div>
       </header>
 
