@@ -43,6 +43,22 @@ Mit unserem Song-Konfigurator ist der Weg zum fertigen Track ganz einfach:
 
 ---
 
+## Hörprobe: „Für immer Heut!“ – Ein personalisiertes Hochzeitslied in Aktion
+
+Hört euch hier ein echtes Beispiel für einen emotionalen Hochzeitssong an:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 1rem; margin: 1.5rem 0; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);">
+  <iframe 
+    src="https://www.youtube-nocookie.com/embed/MCL9AYpNQa0" 
+    title="Für immer Heut! - Hochzeitslied" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+---
+
 ## Fazit: Musik, die für immer verbindet
 
 Ein personalisierter Hochzeitssong ist mehr als nur Melodie und Text: Er ist ein akustisches Denkmal eurer Liebe. Hört euch in unseren Hörproben um oder startet jetzt direkt im Konfigurator!

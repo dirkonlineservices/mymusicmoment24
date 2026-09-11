@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Sparkles, ArrowRight } from "lucide-react";
+import { Star, Sparkles, ArrowRight, Play, X, Youtube } from "lucide-react";
 import { PRODUCTS } from "../data/products";
 
 const CATEGORIES = [
@@ -13,6 +13,7 @@ const CATEGORIES = [
 
 export default function ProductCatalog({ onSelectProduct }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [videoModal, setVideoModal] = useState(null);
 
   const filteredProducts = selectedCategory === "all"
     ? PRODUCTS
@@ -118,9 +119,26 @@ export default function ProductCatalog({ onSelectProduct }) {
                 <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition mb-1.5 line-clamp-1">
                   {prod.title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
+                <p className="text-xs text-slate-400 leading-relaxed mb-3 line-clamp-2">
                   {prod.description}
                 </p>
+
+                {prod.youtubeVideoId && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setVideoModal({
+                        videoId: prod.youtubeVideoId,
+                        title: prod.youtubeTitle || prod.title,
+                      });
+                    }}
+                    className="mb-2 w-full py-2 px-3 rounded-xl bg-red-600/15 hover:bg-red-600/25 border border-red-500/30 text-red-400 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-red-500 text-red-500" />
+                    <span>Hörprobe: „{prod.youtubeTitle || 'Video ansehen'}“</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -141,6 +159,46 @@ export default function ProductCatalog({ onSelectProduct }) {
           </div>
         ))}
       </div>
+
+      {/* Video Modal */}
+      {videoModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setVideoModal(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-slate-900/90">
+              <div className="flex items-center gap-2.5">
+                <Youtube className="w-5 h-5 text-red-500" />
+                <h3 className="font-bold text-white text-sm sm:text-base">
+                  {videoModal.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setVideoModal(null)}
+                className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition"
+                aria-label="Schließen"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="aspect-video w-full bg-black">
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube-nocookie.com/embed/${videoModal.videoId}?autoplay=1&rel=0`}
+                title={videoModal.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

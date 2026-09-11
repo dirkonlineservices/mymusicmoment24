@@ -9,6 +9,9 @@ export const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 56,
     image: "/images/hochzeitslied-banner.webp",
+    youtubeVideoId: "MCL9AYpNQa0",
+    youtubeTitle: "Für immer Heut!",
+    youtubeUrl: "https://www.youtube.com/watch?v=MCL9AYpNQa0&list=OLAK5uy_myIzhhIJiSFaj7HQEY-sU4ZZie58BL4xo",
     description: "Individuelle personalisierte Lieder für Hochzeiten & Hochzeitstage. Das emotionale Herzstück für Trauung, Eröffnungstanz und besondere Jubiläen.",
   },
   {

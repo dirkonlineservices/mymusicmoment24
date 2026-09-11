@@ -3,6 +3,17 @@ import { Youtube, Play, ExternalLink, X, Music } from "lucide-react";
 
 const YOUTUBE_TRACKS = [
   {
+    id: "fuer-immer-heut",
+    videoId: "MCL9AYpNQa0",
+    title: "Für immer Heut!",
+    badge: "Hochzeitslied • Trauung & Eröffnungstanz",
+    genreDetail: "Emotionales Hochzeitslied & Liebeserklärung",
+    youtubeUrl: "https://www.youtube.com/watch?v=MCL9AYpNQa0&list=OLAK5uy_myIzhhIJiSFaj7HQEY-sU4ZZie58BL4xo",
+    thumbnail: "https://img.youtube.com/vi/MCL9AYpNQa0/hqdefault.jpg",
+    description: "Der emotionale Hochzeitssong für Trauung, Eröffnungstanz und den schönsten Tag im Leben – Gänsehaut und Freudentränen garantiert.",
+    durationBadge: "Hochzeit",
+  },
+  {
     id: "island-sky",
     videoId: "5xZLQT0uXlY",
     title: "Island Sky",
@@ -93,7 +104,7 @@ export default function YouTubeShowcase() {
         </div>
 
         {/* Video Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10">
           {YOUTUBE_TRACKS.map((video) => (
             <div
               key={video.id}
