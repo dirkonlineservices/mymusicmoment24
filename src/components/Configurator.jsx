@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { 
-  Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame, Music 
+  Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame, Music,
+  Radio, Guitar, PartyPopper, Music2, Disc, Zap 
 } from "lucide-react";
 import { trackConfiguratorStep, trackViewItem } from "../lib/gtmPreview";
 
@@ -20,11 +21,54 @@ const OCCASIONS = [
 ];
 
 const GENRES = [
-  { id: "pop-ballade", label: "Pop-Ballade", desc: "Gefühlvolles Klavier, Streicher & mitreißender Refrain" },
-  { id: "akustik", label: "Akustik / Singer-Songwriter", desc: "Warme Akustikgitarre, intim & authentisch" },
-  { id: "schlager", label: "Moderner Schlager / Pop", desc: "Tanzbar, schwungvoll & sofort im Ohr" },
-  { id: "rnb", label: "R&B / Soul", desc: "Groovige Beats, gefühlvoller Gesang & Gänsehaut-Vibes" },
-  { id: "rock", label: "Rock / Power-Ballade", desc: "E-Gitarren, Energie & emotionale Dynamik" },
+  { 
+    id: "pop-radio", 
+    label: "Modern Pop / Radio-Hit", 
+    icon: Radio,
+    desc: "Eingängige Melodien, moderner Beat & mitreißender Refrain für jeden Tag" 
+  },
+  { 
+    id: "pop-ballade", 
+    label: "Gefühlvolle Pop-Ballade", 
+    icon: Heart,
+    desc: "Emotionales Klavier, Streicher & berührender Gänsehaut-Moment" 
+  },
+  { 
+    id: "akustik", 
+    label: "Akustik / Singer-Songwriter", 
+    icon: Guitar,
+    desc: "Warme Akustikgitarre, intim, handgemacht & 100% authentisch" 
+  },
+  { 
+    id: "schlager", 
+    label: "Moderner Schlager / Party-Pop", 
+    icon: PartyPopper,
+    desc: "Tanzbar, schwungvoll, beste Feierlaune & garantiert sofort im Ohr" 
+  },
+  { 
+    id: "rock", 
+    label: "Rock / Deutschrock & Power-Ballade", 
+    icon: Flame,
+    desc: "E-Gitarren, mitreißende Drums, Energie & emotionale Dynamik" 
+  },
+  { 
+    id: "rnb", 
+    label: "R&B / Soul / Urban", 
+    icon: Music2,
+    desc: "Groovige Beats, samtiger Gesang & tiefgehende Wohlfühl-Vibes" 
+  },
+  { 
+    id: "edm-dance", 
+    label: "EDM / Dance & Club-Groove", 
+    icon: Disc,
+    desc: "Treibende elektronische Beats, Festival-Stimmung & pure Tanzenergie" 
+  },
+  { 
+    id: "country-folk", 
+    label: "Country / Folk & Storytelling", 
+    icon: Zap,
+    desc: "Leichtfüßige Klänge, lebensfroh & perfekt für persönliche Geschichten" 
+  },
 ];
 
 const VOICES = [
@@ -183,22 +227,28 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <h3 className="text-xl sm:text-3xl font-bold text-white">Welcher Musikstil passt am besten?</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {GENRES.map((g) => {
+                const Icon = g.icon;
                 const isSelected = config.genre === g.id;
                 return (
                   <div
                     key={g.id}
                     onClick={() => setConfig({ ...config, genre: g.id })}
-                    className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all ${
+                    className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all flex items-start gap-3.5 ${
                       isSelected
                         ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
-                        : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
+                        : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:border-slate-600"
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-sm sm:text-base">{g.label}</h4>
-                      {isSelected && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
+                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-700 text-slate-400"}`}>
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <p className="text-xs text-slate-400">{g.desc}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1 gap-2">
+                        <h4 className="font-bold text-sm sm:text-base truncate">{g.label}</h4>
+                        {isSelected && <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />}
+                      </div>
+                      <p className="text-xs text-slate-400 leading-relaxed">{g.desc}</p>
+                    </div>
                   </div>
                 );
               })}
