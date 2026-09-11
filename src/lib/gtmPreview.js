@@ -77,20 +77,41 @@ export function trackBeginCheckout(item) {
 }
 
 export function trackPurchase(transactionId, item) {
+  const numericPrice = Number(item.price) || 19.99;
+
+  // 1. GA4 / GTM E-Commerce Purchase Event
   pushEvent("purchase", {
     ecommerce: {
       transaction_id: transactionId,
       currency: "EUR",
-      value: item.price,
+      value: numericPrice,
       items: [
         {
           item_id: item.id || "song-package",
-          item_name: item.name,
+          item_name: item.name || "Personalisierter Song",
           item_category: "Personalized Music",
-          price: item.price,
+          price: numericPrice,
           quantity: 1,
         },
       ],
     },
   });
+
+  // 2. Google Ads Conversion Event (AW-17340697742)
+  pushEvent("conversion", {
+    send_to: "AW-17340697742",
+    value: numericPrice,
+    currency: "EUR",
+    transaction_id: transactionId,
+  });
+
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "conversion", {
+      send_to: "AW-17340697742",
+      value: numericPrice,
+      currency: "EUR",
+      transaction_id: transactionId,
+    });
+  }
 }
+

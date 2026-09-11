@@ -5,6 +5,7 @@ import AuthorPage from "./views/AuthorPage";
 import LegalPage from "./views/LegalPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
+import { trackPurchase } from "./lib/gtmPreview";
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState({
@@ -48,7 +49,13 @@ export default function App() {
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
-            alert(`🎉 Vielen Dank! Deine Zahlung via Stripe war erfolgreich (Bestell-Nr: ${data.order?.transactionId}). Wir haben deinen Auftrag erhalten und eine Bestätigung an deine E-Mail gesendet!`);
+            const txId = data.order?.transactionId || sessionId;
+            trackPurchase(txId, {
+              price: Number(data.order?.amount) || 19.99,
+              name: data.order?.orderName || "Personalisierter Song",
+              id: "personalized-song",
+            });
+            alert(`🎉 Vielen Dank! Deine Zahlung via Stripe war erfolgreich (Bestell-Nr: ${txId}). Wir haben deinen Auftrag erhalten und eine Bestätigung an deine E-Mail gesendet!`);
           }
         })
         .catch(console.error)
