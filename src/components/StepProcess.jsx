@@ -69,12 +69,12 @@ export default function StepProcess() {
             >
               <div>
                 {/* 3D Illustration Container */}
-                <div className="h-28 sm:h-32 mb-4 rounded-xl bg-slate-950/60 border border-slate-800/60 flex items-center justify-center relative p-3 overflow-hidden group-hover:border-amber-500/30 transition-colors">
+                <div className="h-32 sm:h-36 mb-4 rounded-2xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-center relative p-3.5 group-hover:border-amber-500/40 transition-colors overflow-hidden">
                   {/* Subtle warm glow behind icon */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Step Number Badge */}
-                  <span className="absolute top-2 left-2 w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shadow-md">
+                  <span className="absolute top-2.5 left-2.5 w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shadow-md z-10">
                     {step.num}
                   </span>
 
@@ -82,7 +82,7 @@ export default function StepProcess() {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="h-full w-auto max-w-[85%] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)] group-hover:scale-110 transition-transform duration-500"
+                    className="max-h-[82%] max-w-[88%] w-auto h-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
