@@ -4,11 +4,11 @@ import { PRODUCTS } from "../data/products";
 
 const CATEGORIES = [
   { id: "all", label: "Alle Produkte" },
-  { id: "geburtstag", label: "Geburtstagsmusik KI" },
   { id: "hochzeit", label: "Hochzeitsmusik KI" },
+  { id: "geburtstag", label: "Geburtstagsmusik KI" },
+  { id: "jubilaeum", label: "Jubiläum & Hochzeitstag" },
   { id: "liebe", label: "Liebeslieder KI" },
-  { id: "jubilaeum", label: "Jubiläumsfeier KI" },
-  { id: "party", label: "Personalisierte KI Partytracks" },
+  { id: "party", label: "Partytracks KI" },
 ];
 
 export default function ProductCatalog({ onSelectProduct }) {
@@ -95,10 +95,25 @@ export default function ProductCatalog({ onSelectProduct }) {
                 <div className="flex items-center gap-1.5 text-xs text-amber-400 font-bold mb-1.5">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <Star
+                        key={i}
+                        className={`w-3.5 h-3.5 ${
+                          prod.reviewsCount > 0
+                            ? "fill-amber-400 text-amber-400"
+                            : "fill-amber-400/40 text-amber-400/40"
+                        }`}
+                      />
                     ))}
                   </div>
-                  <span className="text-slate-400 text-xs">({prod.reviewsCount} Bewertungen)</span>
+                  {prod.reviewsCount === 0 ? (
+                    <span className="text-amber-400 text-[11px] font-semibold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                      Neu im Sortiment
+                    </span>
+                  ) : (
+                    <span className="text-slate-400 text-xs">
+                      ({prod.reviewsCount} {prod.reviewsCount === 1 ? "Bewertung" : "Bewertungen"})
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition mb-1.5 line-clamp-1">
                   {prod.title}

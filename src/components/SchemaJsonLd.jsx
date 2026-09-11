@@ -123,7 +123,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "4.9",
-          reviewCount: "128",
+          reviewCount: "135",
           bestRating: "5",
           worstRating: "1",
         },
