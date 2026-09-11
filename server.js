@@ -9,6 +9,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(express.json());
+
 // 301 Permanent Redirect Map (SEO Preservation from Sitemap / Legacy URLs)
 const REDIRECT_MAP = {
   // Direct technical redirects
@@ -84,6 +86,44 @@ app.use((req, res, next) => {
   }
 
   next();
+});
+
+// Order Storage & Notification Endpoint
+app.post("/api/orders", (req, res) => {
+  try {
+    const orderData = req.body;
+    console.log(`\n🎉 [NEUE BESTELLUNG EINGEGANGEN]`);
+    console.log(`Transaktion: ${orderData.transactionId || 'Unbekannt'} | Betrag: ${orderData.amount} €`);
+    console.log(`Kunde: ${orderData.customerName} (${orderData.customerEmail}, Tel: ${orderData.customerPhone || 'Keine'})`);
+    console.log(`Song-Details:`, orderData.orderDetails);
+    console.log(`Wunschtext: ${orderData.songDetailsText}`);
+
+    // Persist order in data/orders.json
+    const dataDir = path.join(__dirname, "data");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    const ordersFile = path.join(dataDir, "orders.json");
+    let orders = [];
+    if (fs.existsSync(ordersFile)) {
+      try {
+        orders = JSON.parse(fs.readFileSync(ordersFile, "utf8"));
+      } catch (err) {
+        orders = [];
+      }
+    }
+    orders.unshift({
+      ...orderData,
+      receivedAt: new Date().toISOString(),
+      status: "paid",
+    });
+    fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2), "utf8");
+
+    res.json({ success: true, message: "Order recorded successfully", transactionId: orderData.transactionId });
+  } catch (error) {
+    console.error("Fehler beim Speichern der Bestellung:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 // Serve public directory (sitemap.xml, robots.txt, audio files)

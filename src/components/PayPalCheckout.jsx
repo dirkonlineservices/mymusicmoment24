@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock } from "lucide-react";
 import { trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function PayPalCheckout({ isOpen, onClose, order }) {
   const [customerEmail, setCustomerEmail] = useState("");
@@ -46,7 +47,32 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     }
   };
 
-  const handlePayment = (e) => {
+  const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID || "";
+
+  const recordOrder = async (txId, payerDetails = null) => {
+    try {
+      await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          transactionId: txId,
+          paymentProvider: paymentMethod,
+          amount: currentPrice,
+          customerEmail,
+          customerName,
+          customerPhone,
+          songDetailsText,
+          orderDetails: order.details,
+          orderName: order.name,
+          payer: payerDetails,
+        }),
+      });
+    } catch (err) {
+      console.error("Fehler beim Senden an /api/orders:", err);
+    }
+  };
+
+  const handlePayment = async (e) => {
     e.preventDefault();
     if (!customerEmail) {
       alert("Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
@@ -58,13 +84,14 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     }
 
     setIsProcessing(true);
+    const generatedTxId = `MMM-${Date.now().toString(36).toUpperCase()}`;
+    await recordOrder(generatedTxId);
     setTimeout(() => {
-      const generatedTxId = `MMM-${Date.now().toString(36).toUpperCase()}`;
       setTransactionId(generatedTxId);
       setIsProcessing(false);
       setIsCompleted(true);
       trackPurchase(generatedTxId, { ...order, price: currentPrice });
-    }, 1200);
+    }, 1000);
   };
 
   return (
@@ -310,18 +337,61 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </label>
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isProcessing}
-                    className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.99] text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 transition flex items-center justify-center gap-2"
-                  >
-                    {isProcessing ? (
-                      <span>Zahlung wird verarbeitet... ⏳</span>
-                    ) : (
-                      <span>Jetzt zahlungspflichtig bestellen ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
-                    )}
-                  </button>
+                  {/* PayPal Smart Buttons or Standard Submit Button */}
+                  {paypalClientId && paymentMethod === "paypal" ? (
+                    <div className="pt-2">
+                      <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
+                        <PayPalButtons
+                          style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
+                          disabled={!customerEmail || !agreedTerms || isProcessing}
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              purchase_units: [
+                                {
+                                  description: order.name || "Personalisierter Song",
+                                  amount: {
+                                    currency_code: "EUR",
+                                    value: currentPrice.toFixed(2),
+                                  },
+                                },
+                              ],
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            setIsProcessing(true);
+                            try {
+                              const details = await actions.order.capture();
+                              const txId = details.id || `PAYPAL-${Date.now()}`;
+                              setTransactionId(txId);
+                              await recordOrder(txId, details.payer);
+                              setIsProcessing(false);
+                              setIsCompleted(true);
+                              trackPurchase(txId, { ...order, price: currentPrice });
+                            } catch (err) {
+                              console.error("PayPal Capture Error:", err);
+                              alert("Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
+                              setIsProcessing(false);
+                            }
+                          }}
+                          onError={(err) => {
+                            console.error("PayPal Error:", err);
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    </div>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={isProcessing}
+                      className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.99] text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 transition flex items-center justify-center gap-2"
+                    >
+                      {isProcessing ? (
+                        <span>Zahlung wird verarbeitet... ⏳</span>
+                      ) : (
+                        <span>Jetzt zahlungspflichtig bestellen ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
+                      )}
+                    </button>
+                  )}
                 </form>
 
                 {/* Trust Badges */}
