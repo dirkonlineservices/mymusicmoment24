@@ -35,6 +35,31 @@ export default function App() {
 
     handlePopState();
     window.addEventListener("popstate", handlePopState);
+
+    // Check for Stripe Checkout return
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("stripe_success") === "true" && urlParams.get("session_id")) {
+      const sessionId = urlParams.get("session_id");
+      fetch("/api/verify-stripe-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert(`🎉 Vielen Dank! Deine Zahlung via Stripe war erfolgreich (Bestell-Nr: ${data.order?.transactionId}). Wir haben deinen Auftrag erhalten und eine Bestätigung an deine E-Mail gesendet!`);
+          }
+        })
+        .catch(console.error)
+        .finally(() => {
+          window.history.replaceState({}, "", "/");
+        });
+    } else if (urlParams.get("stripe_cancel") === "true") {
+      alert("Die Zahlung via Stripe wurde abgebrochen. Du kannst es jederzeit erneut versuchen.");
+      window.history.replaceState({}, "", "/");
+    }
+
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 

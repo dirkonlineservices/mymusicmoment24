@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
+import Stripe from "stripe";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -122,30 +123,31 @@ function getMailTransporter() {
   return null;
 }
 
-// Order Storage & Notification Endpoint
-app.post("/api/orders", async (req, res) => {
-  try {
-    const orderData = req.body;
-    console.log(`\n🎉 [NEUE BESTELLUNG EINGEGANGEN]`);
-    console.log(`Transaktion: ${orderData.transactionId || 'Unbekannt'} | Betrag: ${orderData.amount} €`);
-    console.log(`Kunde: ${orderData.customerName} (${orderData.customerEmail}, Tel: ${orderData.customerPhone || 'Keine'})`);
-    console.log(`Song-Details:`, orderData.orderDetails);
-    console.log(`Wunschtext: ${orderData.songDetailsText}`);
+// Shared Order Processor & Mail Dispatcher
+async function processOrderAndSendEmails(orderData) {
+  console.log(`\n🎉 [NEUE BESTELLUNG EINGEGANGEN]`);
+  console.log(`Transaktion: ${orderData.transactionId || 'Unbekannt'} | Betrag: ${orderData.amount} € via ${orderData.paymentProvider}`);
+  console.log(`Kunde: ${orderData.customerName} (${orderData.customerEmail}, Tel: ${orderData.customerPhone || 'Keine'})`);
+  console.log(`Song-Details:`, orderData.orderDetails);
+  console.log(`Wunschtext: ${orderData.songDetailsText}`);
 
-    // Persist order in data/orders.json
-    const dataDir = path.join(__dirname, "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
+  // Persist order in data/orders.json
+  const dataDir = path.join(__dirname, "data");
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  const ordersFile = path.join(dataDir, "orders.json");
+  let orders = [];
+  if (fs.existsSync(ordersFile)) {
+    try {
+      orders = JSON.parse(fs.readFileSync(ordersFile, "utf8"));
+    } catch (err) {
+      orders = [];
     }
-    const ordersFile = path.join(dataDir, "orders.json");
-    let orders = [];
-    if (fs.existsSync(ordersFile)) {
-      try {
-        orders = JSON.parse(fs.readFileSync(ordersFile, "utf8"));
-      } catch (err) {
-        orders = [];
-      }
-    }
+  }
+
+  // Prevent duplicate storage
+  if (!orders.some(o => o.transactionId === orderData.transactionId)) {
     const newOrder = {
       ...orderData,
       receivedAt: new Date().toISOString(),
@@ -153,91 +155,192 @@ app.post("/api/orders", async (req, res) => {
     };
     orders.unshift(newOrder);
     fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2), "utf8");
+  }
 
-    // Attempt E-Mail Dispatch if SMTP is configured
-    const transporter = getMailTransporter();
-    if (transporter) {
-      const smtpUser = process.env.SMTP_USER || "info@mymusicmoment24.de";
-      const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || smtpUser;
-      
-      // 1. Email to Dirk / Admin
-      const adminHtml = `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
-          <h2 style="color: #d97706; border-bottom: 2px solid #f59e0b; padding-bottom: 8px;">🎉 Neuer bezahlter Song-Auftrag!</h2>
-          <p><strong>Bestellnummer:</strong> ${orderData.transactionId}</p>
-          <p><strong>Betrag bezahlt:</strong> ${orderData.amount} € via ${orderData.paymentProvider}</p>
-          
-          <h3 style="color: #0f172a; margin-top: 20px;">👤 Kundendaten:</h3>
-          <ul style="line-height: 1.6;">
-            <li><strong>Name:</strong> ${orderData.customerName || 'Nicht angegeben'}</li>
-            <li><strong>E-Mail:</strong> <a href="mailto:${orderData.customerEmail}">${orderData.customerEmail}</a></li>
-            <li><strong>WhatsApp / Tel:</strong> ${orderData.customerPhone || 'Nicht angegeben'}</li>
-          </ul>
+  // Attempt E-Mail Dispatch if SMTP is configured
+  const transporter = getMailTransporter();
+  if (transporter) {
+    const smtpUser = process.env.SMTP_USER || "info@mymusicmoment24.de";
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || smtpUser;
+    
+    // 1. Email to Dirk / Admin
+    const adminHtml = `
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+        <h2 style="color: #d97706; border-bottom: 2px solid #f59e0b; padding-bottom: 8px;">🎉 Neuer bezahlter Song-Auftrag!</h2>
+        <p><strong>Bestellnummer:</strong> ${orderData.transactionId}</p>
+        <p><strong>Betrag bezahlt:</strong> ${orderData.amount} € via ${orderData.paymentProvider === 'paypal' ? 'PayPal' : orderData.paymentProvider === 'stripe' ? 'Kreditkarte / Online-Zahlung' : (orderData.paymentProvider || 'Online-Zahlung')}</p>
+        
+        <h3 style="color: #0f172a; margin-top: 20px;">👤 Kundendaten:</h3>
+        <ul style="line-height: 1.6;">
+          <li><strong>Name:</strong> ${orderData.customerName || 'Nicht angegeben'}</li>
+          <li><strong>E-Mail:</strong> <a href="mailto:${orderData.customerEmail}">${orderData.customerEmail}</a></li>
+          <li><strong>WhatsApp / Tel:</strong> ${orderData.customerPhone || 'Nicht angegeben'}</li>
+        </ul>
 
-          <h3 style="color: #0f172a; margin-top: 20px;">🎵 Song-Konfiguration:</h3>
-          <ul style="line-height: 1.6;">
-            <li><strong>Anlass:</strong> ${orderData.orderDetails?.occasion || 'Personalisierter Song'}</li>
-            <li><strong>Genre:</strong> ${orderData.orderDetails?.genre || 'Standard'}</li>
-            <li><strong>Stimme:</strong> ${orderData.orderDetails?.voice || 'Duett'}</li>
-            <li><strong>Sprache:</strong> ${orderData.orderDetails?.language || 'Deutsch'}</li>
-            <li><strong>Express-Lieferung (<12h):</strong> ${orderData.orderDetails?.express ? '✅ JA (Express)' : '❌ Nein (Standard)'}</li>
-            <li><strong>PDF Songtext-Urkunde:</strong> ${orderData.orderDetails?.pdfLyrics ? '✅ JA' : '❌ Nein'}</li>
-          </ul>
+        <h3 style="color: #0f172a; margin-top: 20px;">🎵 Song-Konfiguration:</h3>
+        <ul style="line-height: 1.6;">
+          <li><strong>Anlass:</strong> ${orderData.orderDetails?.occasion || 'Personalisierter Song'}</li>
+          <li><strong>Genre:</strong> ${orderData.orderDetails?.genre || 'Standard'}</li>
+          <li><strong>Stimme:</strong> ${orderData.orderDetails?.voice || 'Duett'}</li>
+          <li><strong>Sprache:</strong> ${orderData.orderDetails?.language || 'Deutsch'}</li>
+          <li><strong>Express-Lieferung (<12h):</strong> ${orderData.orderDetails?.express ? '✅ JA (Express)' : '❌ Nein (Standard)'}</li>
+          <li><strong>PDF Songtext-Urkunde:</strong> ${orderData.orderDetails?.pdfLyrics ? '✅ JA' : '❌ Nein'}</li>
+        </ul>
 
-          <h3 style="color: #0f172a; margin-top: 20px;">📝 Wunschtext & Details des Kunden:</h3>
-          <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid #d97706; white-space: pre-wrap;">
+        <h3 style="color: #0f172a; margin-top: 20px;">📝 Wunschtext & Details des Kunden:</h3>
+        <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid #d97706; white-space: pre-wrap;">
 ${orderData.songDetailsText || 'Keine zusätzlichen Anmerkungen.'}
-          </div>
         </div>
-      `;
+      </div>
+    `;
 
-      // 2. Email to Customer
-      const customerHtml = `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
-          <h2 style="color: #d97706;">Vielen Dank für deine Bestellung bei MyMusicMoment24! 🎵</h2>
-          <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
-          <p>deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich eingegangen. Wir legen sofort mit der Produktion deines persönlichen Songs los!</p>
-          
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <p style="margin: 0 0 8px;"><strong>Bestell-Nr:</strong> ${orderData.transactionId}</p>
-            <p style="margin: 0 0 8px;"><strong>Song:</strong> ${orderData.orderName || 'Persönlicher Song'}</p>
-            <p style="margin: 0;"><strong>Zustellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
-          </div>
-
-          <p>Sobald dein Song fertiggestellt und menschlich klanggeprüft ist, senden wir dir deine fertige MP3-Datei zu.</p>
-          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+    // 2. Email to Customer
+    const customerHtml = `
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+        <h2 style="color: #d97706;">Vielen Dank für deine Bestellung bei MyMusicMoment24! 🎵</h2>
+        <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
+        <p>deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich eingegangen. Wir legen sofort mit der Produktion deines persönlichen Songs los!</p>
+        
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+          <p style="margin: 0 0 8px;"><strong>Bestell-Nr:</strong> ${orderData.transactionId}</p>
+          <p style="margin: 0 0 8px;"><strong>Song:</strong> ${orderData.orderName || 'Persönlicher Song'}</p>
+          <p style="margin: 0;"><strong>Zustellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
         </div>
-      `;
 
-      try {
+        <p>Sobald dein Song fertiggestellt und menschlich klanggeprüft ist, senden wir dir deine fertige MP3-Datei zu.</p>
+        <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+      </div>
+    `;
+
+    try {
+      await transporter.sendMail({
+        from: `"MyMusicMoment24" <${smtpUser}>`,
+        to: adminEmail,
+        subject: `🎉 Neuer Song-Auftrag: ${orderData.transactionId} (${orderData.amount} €)`,
+        html: adminHtml,
+      });
+      console.log(`✉️ Benachrichtigung an Admin gesendet (${adminEmail})`);
+
+      if (orderData.customerEmail) {
         await transporter.sendMail({
           from: `"MyMusicMoment24" <${smtpUser}>`,
-          to: adminEmail,
-          subject: `🎉 Neuer Song-Auftrag: ${orderData.transactionId} (${orderData.amount} €)`,
-          html: adminHtml,
+          to: orderData.customerEmail,
+          subject: `Deine Song-Bestellung bei MyMusicMoment24 (#${orderData.transactionId})`,
+          html: customerHtml,
         });
-        console.log(`✉️ Benachrichtigung an Admin gesendet (${adminEmail})`);
-
-        if (orderData.customerEmail) {
-          await transporter.sendMail({
-            from: `"MyMusicMoment24" <${smtpUser}>`,
-            to: orderData.customerEmail,
-            subject: `Deine Song-Bestellung bei MyMusicMoment24 (#${orderData.transactionId})`,
-            html: customerHtml,
-          });
-          console.log(`✉️ Bestellbestätigung an Kunde gesendet (${orderData.customerEmail})`);
-        }
-      } catch (mailErr) {
-        console.error("⚠️ Fehler beim E-Mail-Versand:", mailErr.message);
+        console.log(`✉️ Bestellbestätigung an Kunde gesendet (${orderData.customerEmail})`);
       }
-    } else {
-      console.log("ℹ️ Hinweis: SMTP noch nicht konfiguriert (Auftrag sicher in data/orders.json gespeichert).");
+    } catch (mailErr) {
+      console.error("⚠️ Fehler beim E-Mail-Versand:", mailErr.message);
     }
+  } else {
+    console.log("ℹ️ Hinweis: SMTP noch nicht konfiguriert (Auftrag sicher in data/orders.json gespeichert).");
+  }
+}
 
+// 1. Standard / PayPal Order Endpoint
+app.post("/api/orders", async (req, res) => {
+  try {
+    const orderData = req.body;
+    await processOrderAndSendEmails(orderData);
     res.json({ success: true, message: "Order recorded successfully", transactionId: orderData.transactionId });
   } catch (error) {
     console.error("Fehler beim Speichern der Bestellung:", error);
     res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// 2. Stripe: Create Checkout Session Endpoint
+app.post("/api/create-stripe-checkout", async (req, res) => {
+  try {
+    const { amount, customerEmail, customerName, customerPhone, songDetailsText, orderDetails, orderName } = req.body;
+    const stripeKey = process.env.STRIPE_SECRET_KEY;
+
+    if (!stripeKey) {
+      return res.status(400).json({ error: "Stripe Secret Key ist noch nicht in .env hinterlegt." });
+    }
+
+    const stripe = new Stripe(stripeKey);
+    const origin = req.headers.origin || "http://localhost:3000";
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card", "sepa_debit", "klarna"],
+      line_items: [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: orderName || "Personalisierter Song",
+              description: orderDetails?.genre ? `${orderDetails.genre} • ${orderDetails.voice || 'Gesang'}` : "Dein individueller Song",
+            },
+            unit_amount: Math.round(Number(amount) * 100),
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      customer_email: customerEmail,
+      metadata: {
+        customerName: customerName || "",
+        customerPhone: customerPhone || "",
+        songDetailsText: (songDetailsText || "").substring(0, 450),
+        occasion: orderDetails?.occasion || "",
+        genre: orderDetails?.genre || "",
+        voice: orderDetails?.voice || "",
+        express: orderDetails?.express ? "true" : "false",
+        pdfLyrics: orderDetails?.pdfLyrics ? "true" : "false",
+      },
+      success_url: `${origin}/?session_id={CHECKOUT_SESSION_ID}&stripe_success=true`,
+      cancel_url: `${origin}/?stripe_cancel=true`,
+    });
+
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error("Fehler bei Stripe Checkout Session:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 3. Stripe: Verify Completed Session on Return
+app.post("/api/verify-stripe-session", async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+    const stripeKey = process.env.STRIPE_SECRET_KEY;
+    if (!stripeKey || !sessionId) {
+      return res.status(400).json({ error: "Fehlende Session-ID oder Stripe Key." });
+    }
+
+    const stripe = new Stripe(stripeKey);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status === "paid") {
+      const metadata = session.metadata || {};
+      const orderData = {
+        transactionId: session.id,
+        paymentProvider: "stripe",
+        amount: (session.amount_total / 100).toFixed(2),
+        customerName: metadata.customerName || session.customer_details?.name || "",
+        customerEmail: session.customer_details?.email || session.customer_email || "",
+        customerPhone: metadata.customerPhone || "",
+        songDetailsText: metadata.songDetailsText || "",
+        orderDetails: {
+          occasion: metadata.occasion,
+          genre: metadata.genre,
+          voice: metadata.voice,
+          express: metadata.express === "true",
+          pdfLyrics: metadata.pdfLyrics === "true",
+        },
+        orderName: "Personalisierter Song",
+      };
+
+      await processOrderAndSendEmails(orderData);
+      return res.json({ success: true, order: orderData });
+    } else {
+      return res.json({ success: false, status: session.payment_status });
+    }
+  } catch (error) {
+    console.error("Fehler beim Verifizieren der Stripe-Session:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 

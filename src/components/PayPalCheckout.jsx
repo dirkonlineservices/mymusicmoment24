@@ -84,6 +84,39 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     }
 
     setIsProcessing(true);
+
+    if (paymentMethod === "stripe") {
+      try {
+        const response = await fetch("/api/create-stripe-checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: currentPrice,
+            customerEmail,
+            customerName,
+            customerPhone,
+            songDetailsText,
+            orderDetails: order.details,
+            orderName: order.name,
+          }),
+        });
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+          return;
+        } else {
+          alert(data.error || "Fehler beim Starten von Stripe Checkout. Bitte prüfe die Konfiguration.");
+          setIsProcessing(false);
+          return;
+        }
+      } catch (err) {
+        console.error("Stripe Checkout Error:", err);
+        alert("Verbindungsfehler zu Stripe. Bitte versuche es erneut.");
+        setIsProcessing(false);
+        return;
+      }
+    }
+
     const generatedTxId = `MMM-${Date.now().toString(36).toUpperCase()}`;
     await recordOrder(generatedTxId);
     setTimeout(() => {
