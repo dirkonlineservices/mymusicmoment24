@@ -20,7 +20,7 @@ export const PRODUCTS = [
     badge: "Bestseller",
     rating: 5.0,
     reviewsCount: 48,
-    image: "/images/hochzeit.jpg",
+    image: "/images/hochzeitslied-banner.webp",
     description: "Individuelle personalisierte Lieder für Hochzeiten & Hochzeitstage. Das emotionale Herzstück für Trauung und Eröffnungstanz.",
   },
   {

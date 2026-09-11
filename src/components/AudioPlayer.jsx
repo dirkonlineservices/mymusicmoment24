@@ -1,43 +1,52 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Sparkles, Disc } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Sparkles, Disc, Music } from "lucide-react";
 import { trackAudioEvent } from "../lib/gtmPreview";
 
 const PLAYLIST = [
   {
-    id: "hochzeit",
-    title: "Unser Versprechen (Hochzeitssong)",
-    genre: "Pop-Ballade & Piano",
-    vocal: "Duett (M/W)",
-    duration: 38,
-    file: "/audio/hochzeit-probe.mp3",
-    noteFreqs: [261.63, 329.63, 392.0, 523.25, 440.0, 349.23, 392.0],
+    id: "snoopy-groove",
+    title: "Snoopy's Groove",
+    genre: "House / Electronic Dance",
+    categoryLabel: "House",
+    vocal: "Club & Party-Beat",
+    file: "/audio/snoopy-s-groove.mp3",
+    description: "Treibender House-Track mit pulsierendem Groove und Club-Vibes.",
   },
   {
-    id: "geburtstag",
-    title: "Das Beste Alter (Geburtstagstrack)",
-    genre: "Akustik-Pop / Feelgood",
-    vocal: "Männlich",
-    duration: 34,
-    file: "/audio/geburtstag-probe.mp3",
-    noteFreqs: [293.66, 369.99, 440.0, 587.33, 493.88],
+    id: "squad-warzone",
+    title: "Squad in der Zone (Warzone)",
+    genre: "Gamer & Gaming-Song",
+    categoryLabel: "Gaming",
+    vocal: "Deutschrap & Action",
+    file: "/audio/squad-in-der-zone-warzone.mp3",
+    description: "Speziell für Gamer: Packender Beat über Warzone-Battles, Squads und Siege.",
   },
   {
-    id: "liebeslied",
-    title: "Für Immer Du (Jubiläum & Liebe)",
-    genre: "R&B / Slow Jam",
-    vocal: "Weiblich",
-    duration: 42,
-    file: "/audio/ballade-probe.mp3",
-    noteFreqs: [220.0, 261.63, 329.63, 392.0, 440.0],
+    id: "game-over",
+    title: "Game Over (Gorillaz Mode)",
+    genre: "Gaming / Hip-Hop & Style",
+    categoryLabel: "Gamer Part 4",
+    vocal: "Gorillaz-Vibes",
+    file: "/audio/game-over-gorillaz-mode.mp3",
+    description: "Einzigartiger Gaming-Sound im unverwechselbaren Gorillaz-Style.",
   },
   {
-    id: "party",
-    title: "Feierabend Helden (Partytrack)",
-    genre: "Dance / Pop Uptempo",
-    vocal: "Männlich / Duo",
-    duration: 30,
-    file: "/audio/party-probe.mp3",
-    noteFreqs: [329.63, 392.0, 493.88, 587.33],
+    id: "brustring-herza",
+    title: "Brustring und Herza",
+    genre: "Vereinssong & Fan-Hymne",
+    categoryLabel: "Vereine",
+    vocal: "Stadion & Leidenschaft",
+    file: "/audio/brustring-und-herza.mp3",
+    description: "Für Vereine, Teams und Fans: Ein Song voller Herzblut, Zusammenhalt und Stolz.",
+  },
+  {
+    id: "tanzt-der-floh",
+    title: "Auf der Wiese tanzt der Floh",
+    genre: "Kinderlied & Familie",
+    categoryLabel: "Kinder",
+    vocal: "Fröhlich & Spielerisch",
+    file: "/audio/auf-der-wiese-tanzt-der-floh.mp3",
+    description: "Liebevolles, fröhliches Kinderlied zum Mitsingen und Tanzen für die Kleinen.",
   },
 ];
 
@@ -45,120 +54,107 @@ export default function AudioPlayer() {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [milestonesFired, setMilestonesFired] = useState({ 25: false, 50: false, 75: false, 100: false });
 
   const currentTrack = PLAYLIST[currentTrackIndex];
-  const audioContextRef = useRef(null);
-  const oscillatorRef = useRef(null);
-  const timerRef = useRef(null);
+  const audioRef = useRef(null);
 
-  const startSynth = () => {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!audioContextRef.current) {
-        audioContextRef.current = new AudioCtx();
+  // Sync track change
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = currentTrack.file;
+      audioRef.current.load();
+      setCurrentTime(0);
+      setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
+      if (isPlaying) {
+        audioRef.current.play().catch(() => setIsPlaying(false));
       }
-      if (audioContextRef.current.state === "suspended") {
-        audioContextRef.current.resume();
-      }
-
-      const ctx = audioContextRef.current;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = "triangle";
-      const freqs = currentTrack.noteFreqs;
-      osc.frequency.setValueAtTime(freqs[0], ctx.currentTime);
-
-      freqs.forEach((freq, idx) => {
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.4);
-      });
-
-      gain.gain.setValueAtTime(isMuted ? 0 : 0.08, ctx.currentTime);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      oscillatorRef.current = { osc, gain };
-    } catch (e) {}
-  };
-
-  const stopSynth = () => {
-    if (oscillatorRef.current) {
-      try {
-        oscillatorRef.current.osc.stop();
-        oscillatorRef.current.osc.disconnect();
-      } catch (e) {}
-      oscillatorRef.current = null;
     }
-  };
+  }, [currentTrackIndex]);
+
+  // Sync mute state
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   const handleTogglePlay = () => {
+    if (!audioRef.current) return;
+
     if (isPlaying) {
-      stopSynth();
-      clearInterval(timerRef.current);
+      audioRef.current.pause();
       setIsPlaying(false);
       trackAudioEvent("pause", currentTrack.title, { current_time: currentTime });
     } else {
-      setIsPlaying(true);
-      startSynth();
-      trackAudioEvent("play", currentTrack.title, { genre: currentTrack.genre });
-
-      timerRef.current = setInterval(() => {
-        setCurrentTime((prev) => {
-          const next = prev + 0.5;
-          const pct = Math.floor((next / currentTrack.duration) * 100);
-
-          if (pct >= 25 && !milestonesFired[25]) {
-            trackAudioEvent("progress_25", currentTrack.title, { percentage: 25 });
-            setMilestonesFired((m) => ({ ...m, 25: true }));
-          }
-          if (pct >= 50 && !milestonesFired[50]) {
-            trackAudioEvent("progress_50", currentTrack.title, { percentage: 50 });
-            setMilestonesFired((m) => ({ ...m, 50: true }));
-          }
-          if (pct >= 75 && !milestonesFired[75]) {
-            trackAudioEvent("progress_75", currentTrack.title, { percentage: 75 });
-            setMilestonesFired((m) => ({ ...m, 75: true }));
-          }
-
-          if (next >= currentTrack.duration) {
-            clearInterval(timerRef.current);
-            stopSynth();
-            setIsPlaying(false);
-            trackAudioEvent("complete", currentTrack.title, { duration: currentTrack.duration });
-            setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
-            return 0;
-          }
-          return next;
-        });
-      }, 500);
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+        trackAudioEvent("play", currentTrack.title, { genre: currentTrack.genre });
+      }).catch((err) => {
+        console.warn("Audio playback error:", err);
+      });
     }
   };
 
-  const selectTrack = (index) => {
-    stopSynth();
-    clearInterval(timerRef.current);
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return;
+    const curr = audioRef.current.currentTime;
+    const dur = audioRef.current.duration || duration || 1;
+    setCurrentTime(curr);
+
+    const pct = Math.floor((curr / dur) * 100);
+    if (pct >= 25 && !milestonesFired[25]) {
+      trackAudioEvent("progress_25", currentTrack.title, { percentage: 25 });
+      setMilestonesFired((m) => ({ ...m, 25: true }));
+    }
+    if (pct >= 50 && !milestonesFired[50]) {
+      trackAudioEvent("progress_50", currentTrack.title, { percentage: 50 });
+      setMilestonesFired((m) => ({ ...m, 50: true }));
+    }
+    if (pct >= 75 && !milestonesFired[75]) {
+      trackAudioEvent("progress_75", currentTrack.title, { percentage: 75 });
+      setMilestonesFired((m) => ({ ...m, 75: true }));
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current && audioRef.current.duration) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+
+  const handleEnded = () => {
     setIsPlaying(false);
     setCurrentTime(0);
     setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
+    trackAudioEvent("complete", currentTrack.title, { duration });
+  };
+
+  const selectTrack = (index) => {
     setCurrentTrackIndex(index);
+    setCurrentTime(0);
+    setIsPlaying(true);
+  };
+
+  const handleSeek = (e) => {
+    if (!audioRef.current || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const newTime = pos * duration;
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
   };
 
   const formatTime = (secs) => {
+    if (!secs || isNaN(secs)) return "0:00";
     const m = Math.floor(secs / 60);
     const s = Math.floor(secs % 60);
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
-  useEffect(() => {
-    return () => {
-      stopSynth();
-      clearInterval(timerRef.current);
-    };
-  }, []);
-
-  const progressPercent = Math.min((currentTime / currentTrack.duration) * 100, 100);
+  const progressPercent = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
 
   return (
     <section id="hoerproben" className="w-full max-w-4xl mx-auto my-12 sm:my-20 px-4">
@@ -180,8 +176,18 @@ export default function AudioPlayer() {
           </div>
         </div>
 
-        {/* Playlist Selector Buttons (Responsive Grid) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 mb-6 sm:mb-8">
+        {/* Hidden HTML5 Audio Element */}
+        <audio
+          ref={audioRef}
+          src={currentTrack.file}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={handleEnded}
+          preload="metadata"
+        />
+
+        {/* Playlist Selector Buttons (Responsive 5-track Grid) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5 mb-6 sm:mb-8">
           {PLAYLIST.map((track, idx) => (
             <button
               key={track.id}
@@ -192,8 +198,14 @@ export default function AudioPlayer() {
                   : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-800"
               }`}
             >
-              <span className="text-[11px] font-semibold block text-amber-400 mb-0.5 truncate">{track.genre}</span>
+              <div className="flex items-center justify-between gap-1 mb-0.5">
+                <span className="text-[11px] font-semibold text-amber-400 truncate">{track.categoryLabel}</span>
+                {idx === currentTrackIndex && isPlaying && (
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0" />
+                )}
+              </div>
               <p className="text-xs sm:text-sm font-bold truncate text-slate-200">{track.title}</p>
+              <p className="text-[10px] text-slate-400 truncate mt-0.5">{track.genre}</p>
             </button>
           ))}
         </div>
@@ -205,7 +217,7 @@ export default function AudioPlayer() {
               <button
                 onClick={handleTogglePlay}
                 aria-label={isPlaying ? "Pause" : "Abspielen"}
-                className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:scale-105 active:scale-95 transition flex items-center justify-center text-slate-950 shadow-xl shadow-amber-500/30"
+                className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:scale-105 active:scale-95 transition flex items-center justify-center text-slate-950 shadow-xl shadow-amber-500/30 cursor-pointer"
               >
                 {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 translate-x-0.5" />}
               </button>
@@ -216,12 +228,13 @@ export default function AudioPlayer() {
                   <span>•</span>
                   <span>Stimme: {currentTrack.vocal}</span>
                 </p>
+                <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{currentTrack.description}</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="text-slate-400 hover:text-white p-2 rounded-lg transition shrink-0"
+              className="text-slate-400 hover:text-white p-2 rounded-lg transition shrink-0 cursor-pointer"
               aria-label={isMuted ? "Ton an" : "Stummschalten"}
             >
               {isMuted ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5" />}
@@ -232,11 +245,11 @@ export default function AudioPlayer() {
           <div className="space-y-1.5">
             <div
               className="relative w-full h-3 sm:h-3.5 bg-slate-800 rounded-full overflow-hidden cursor-pointer"
-              onClick={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const pos = (e.clientX - rect.left) / rect.width;
-                setCurrentTime(pos * currentTrack.duration);
-              }}
+              onClick={handleSeek}
+              role="slider"
+              aria-valuemin={0}
+              aria-valuemax={duration || 100}
+              aria-valuenow={currentTime}
             >
               <div
                 className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-200"
@@ -245,7 +258,7 @@ export default function AudioPlayer() {
             </div>
             <div className="flex justify-between text-[11px] font-mono text-slate-400">
               <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(currentTrack.duration)}</span>
+              <span>{formatTime(duration)}</span>
             </div>
           </div>
         </div>
