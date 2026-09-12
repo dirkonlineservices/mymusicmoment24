@@ -27,13 +27,21 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
     );
   }
 
-  const ctaTitle = post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
-    ? "Möchtest du euren eigenen Hochzeitssong hören?"
-    : post.category === "Geburtstag"
-    ? "Möchtest du ein persönliches Geburtstagslied erstellen?"
-    : post.category === "Jubiläum"
-    ? "Möchtest du einen persönlichen Jubiläumssong verschenken?"
-    : "Möchtest du deinen eigenen persönlichen Song hören?";
+  const ctaTitle = language === "en"
+    ? (post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
+        ? "Would you like to hear your custom wedding song?"
+        : post.category === "Geburtstag"
+        ? "Would you like to create a personalized birthday song?"
+        : post.category === "Jubiläum"
+        ? "Would you like to gift a custom anniversary song?"
+        : "Would you like to hear your custom personalized song?")
+    : (post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
+        ? "Möchtest du euren eigenen Hochzeitssong hören?"
+        : post.category === "Geburtstag"
+        ? "Möchtest du ein persönliches Geburtstagslied erstellen?"
+        : post.category === "Jubiläum"
+        ? "Möchtest du einen persönlichen Jubiläumssong verschenken?"
+        : "Möchtest du deinen eigenen persönlichen Song hören?");
 
   return (
     <article className="min-h-screen bg-slate-950 text-slate-100 pb-20">
@@ -49,17 +57,20 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
             <ArrowLeft className="w-4 h-4 text-orange-400" />
             <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
           </button>
-          <button
-            onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
-          >
-            <img
-              src="/images/logo-icon.png"
-              alt="MyMusicMoment24 Logo"
-              className="w-7 h-7 object-contain"
-            />
-            <span>MyMusicMoment<span className="text-amber-400">24</span></span>
-          </button>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <button
+              onClick={onBackToHome}
+              className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+            >
+              <img
+                src="/images/logo-icon.png"
+                alt="MyMusicMoment24 Logo"
+                className="w-7 h-7 object-contain"
+              />
+              <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -67,7 +78,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
       <div className="max-w-3xl mx-auto px-4 pt-12 pb-8">
         <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
           <span className="text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
-            {post.category || "Ratgeber"}
+            {post.category || (language === "en" ? "Guide" : "Ratgeber")}
           </span>
           <span className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
@@ -113,7 +124,9 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
           </div>
           <h3 className="text-2xl font-bold text-white">{ctaTitle}</h3>
           <p className="text-slate-300 text-sm max-w-lg mx-auto leading-relaxed">
-            Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten ab 19,99 €. Meist innerhalb von 24 Stunden fertig – inklusive 1 kostenloser Verbesserungsschleife.
+            {language === "en"
+              ? "Configure your custom song in 5 simple steps from €19.99. Usually ready within 24 hours – includes 1 free revision loop."
+              : "Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten ab 19,99 €. Meist innerhalb von 24 Stunden fertig – inklusive 1 kostenloser Verbesserungsschleife."}
           </p>
           <button
             onClick={() => {
@@ -125,7 +138,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
             }}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition shadow-xl shadow-amber-500/20 active:scale-95"
           >
-            <span>Jetzt Song konfigurieren</span>
+            <span>{language === "en" ? "Configure Song Now" : "Jetzt Song konfigurieren"}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
@@ -135,7 +148,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
           <div className="mt-16 pt-12 border-t border-slate-800/80">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-6">
               <BookOpen className="w-4 h-4" />
-              <span>Weitere Ratgeber & Song-Themen</span>
+              <span>{language === "en" ? "Related Guides & Song Topics" : "Weitere Ratgeber & Song-Themen"}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {otherPosts.map((op) => (
