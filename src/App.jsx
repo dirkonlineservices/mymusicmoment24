@@ -10,6 +10,7 @@ import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
 import { LanguageProvider } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import { getBlogPostBySlug } from "./lib/blog";
 
 function AppMain() {
   const [currentRoute, setCurrentRoute] = useState({
@@ -45,7 +46,14 @@ function AppMain() {
       } else if (path === "/datenschutz") {
         setCurrentRoute({ view: "legal", slug: "datenschutz" });
       } else {
-        setCurrentRoute({ view: "home", slug: null });
+        // Check if path matches a blog post slug directly (e.g. /personalisierte-geburtstagslieder)
+        const cleanPath = path.replace(/^\//, "").replace(/\/$/, "");
+        const matchedPost = cleanPath ? getBlogPostBySlug(cleanPath) : null;
+        if (matchedPost) {
+          setCurrentRoute({ view: "blog", slug: matchedPost.slug });
+        } else {
+          setCurrentRoute({ view: "home", slug: null });
+        }
       }
     };
 
@@ -170,6 +178,7 @@ function AppMain() {
           slug={currentRoute.slug || "individueller-hochzeitssong"}
           onBackToHome={() => navigateToHome()}
           onGoToConfigurator={() => navigateToHome("#konfigurator")}
+          onNavigateBlog={navigateToBlog}
         />
       )}
 

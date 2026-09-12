@@ -1,13 +1,15 @@
 import React from "react";
-import { ArrowLeft, Calendar, User, Clock, Music, ArrowRight, Share2 } from "lucide-react";
-import { getBlogPostBySlug } from "../lib/blog";
+import { ArrowLeft, Calendar, User, Clock, Music, ArrowRight, BookOpen, Sparkles } from "lucide-react";
+import { getBlogPostBySlug, getAllBlogPosts } from "../lib/blog";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
-export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
+export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNavigateBlog }) {
   const { language } = useLanguage();
   const post = getBlogPostBySlug(slug);
+  const allPosts = getAllBlogPosts();
+  const otherPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   if (!post) {
     return (
@@ -25,6 +27,14 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
     );
   }
 
+  const ctaTitle = post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
+    ? "Möchtest du euren eigenen Hochzeitssong hören?"
+    : post.category === "Geburtstag"
+    ? "Möchtest du ein persönliches Geburtstagslied erstellen?"
+    : post.category === "Jubiläum"
+    ? "Möchtest du einen persönlichen Jubiläumssong verschenken?"
+    : "Möchtest du deinen eigenen persönlichen Song hören?";
+
   return (
     <article className="min-h-screen bg-slate-950 text-slate-100 pb-20">
       <SchemaJsonLd type="blog" blogPost={post} />
@@ -37,7 +47,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
             className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition font-medium"
           >
             <ArrowLeft className="w-4 h-4 text-orange-400" />
-            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Übersicht"}</span>
+            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
           </button>
           <button
             onClick={onBackToHome}
@@ -91,18 +101,19 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
             prose-headings:text-white prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
             prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-5
             prose-strong:text-white prose-strong:font-bold
-            prose-ul:text-slate-300 prose-ul:my-4 prose-li:my-1"
+            prose-ul:text-slate-300 prose-ul:my-4 prose-li:my-1
+            prose-a:text-amber-400 hover:prose-a:text-amber-300"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
 
         {/* CTA Box at bottom */}
-        <div className="mt-16 bg-gradient-to-br from-orange-500/20 via-slate-900 to-slate-900 border border-orange-500/30 rounded-3xl p-8 text-center space-y-4">
-          <div className="w-12 h-12 rounded-2xl bg-orange-500 text-white flex items-center justify-center mx-auto shadow-lg shadow-orange-500/30">
+        <div className="mt-16 bg-gradient-to-br from-amber-500/15 via-slate-900 to-slate-900 border border-amber-500/30 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center mx-auto shadow-lg shadow-amber-500/30">
             <Music className="w-6 h-6" />
           </div>
-          <h3 className="text-2xl font-bold text-white">Möchtest du euren eigenen Hochzeitssong hören?</h3>
-          <p className="text-slate-300 text-sm max-w-lg mx-auto">
-            Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten. Innerhalb von 24 Stunden ist dein persönliches Lied fertig.
+          <h3 className="text-2xl font-bold text-white">{ctaTitle}</h3>
+          <p className="text-slate-300 text-sm max-w-lg mx-auto leading-relaxed">
+            Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten ab 19,99 €. Meist innerhalb von 24 Stunden fertig – inklusive 1 kostenloser Verbesserungsschleife.
           </p>
           <button
             onClick={() => {
@@ -112,13 +123,56 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }, 100);
             }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold rounded-xl transition shadow-xl shadow-orange-500/20"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition shadow-xl shadow-amber-500/20 active:scale-95"
           >
             <span>Jetzt Song konfigurieren</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Weitere Ratgeber & Blog-Artikel */}
+        {otherPosts.length > 0 && (
+          <div className="mt-16 pt-12 border-t border-slate-800/80">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-6">
+              <BookOpen className="w-4 h-4" />
+              <span>Weitere Ratgeber & Song-Themen</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {otherPosts.map((op) => (
+                <button
+                  key={op.slug}
+                  onClick={() => {
+                    if (onNavigateBlog) {
+                      onNavigateBlog(op.slug);
+                    } else {
+                      window.history.pushState({}, "", `/blog/${op.slug}`);
+                      window.location.reload();
+                    }
+                  }}
+                  className="text-left bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 p-4 rounded-2xl transition group flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[10px] text-amber-400 font-semibold uppercase tracking-wider block mb-1.5">
+                      {op.category || "Ratgeber"}
+                    </span>
+                    <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition line-clamp-2 mb-2">
+                      {op.title}
+                    </h4>
+                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                      {op.excerpt}
+                    </p>
+                  </div>
+                  <div className="pt-3 mt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500">
+                    <span>{op.readTime || "5 Min."}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
 }
+
