@@ -4,11 +4,11 @@ import { useLanguage } from "../context/LanguageContext";
 
 const STEP_ICONS = [Mail, Cpu, Headphones, Smartphone, Star];
 const STEP_IMAGES = [
-  "/images/step-1-tablet.png",
-  "/images/step-2-kreation.png",
-  "/images/step-3-review.png",
-  "/images/step-4-delivery.png",
-  "/images/step-5-bewertung.png",
+  "/images/step-1-input.jpg",
+  "/images/step-2-kreation.jpg",
+  "/images/step-3-review.jpg",
+  "/images/step-4-delivery.jpg",
+  "/images/step-5-bewertung.jpg",
 ];
 
 export default function StepProcess() {
@@ -41,22 +41,21 @@ export default function StepProcess() {
             >
               <div>
                 {/* 3D Illustration Container */}
-                <div className="h-32 sm:h-36 mb-4 rounded-2xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-center relative p-3.5 group-hover:border-amber-500/40 transition-colors overflow-hidden">
-                  {/* Subtle warm glow behind icon */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent pointer-events-none" />
-                  
+                <div className="h-36 sm:h-40 mb-4 rounded-2xl bg-slate-950 border border-slate-800/80 relative overflow-hidden group-hover:border-amber-500/50 transition-all duration-300 shadow-lg">
                   {/* Step Number Badge */}
-                  <span className="absolute top-2.5 left-2.5 w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shadow-md z-10">
+                  <span className="absolute top-2.5 left-2.5 w-6 h-6 rounded-md bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shadow-lg shadow-black/80 z-10">
                     {stepNum}
                   </span>
 
-                  {/* 3D Illustration Image */}
+                  {/* 3D Sharp Luxury Image */}
                   <img
                     src={image}
                     alt={step.title}
-                    className="max-h-[82%] max-w-[88%] w-auto h-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
+                  {/* Subtle vignette blend */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 pointer-events-none" />
                 </div>
 
                 <h3 className="font-bold text-sm sm:text-base text-white mb-1.5 leading-snug group-hover:text-amber-300 transition-colors">
