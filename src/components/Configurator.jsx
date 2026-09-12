@@ -115,7 +115,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
   const basePrice = 19.99;
   const expressPrice = config.express ? 9.99 : 0;
-  const pdfPrice = config.pdfLyrics ? 4.99 : 0;
+  const pdfPrice = config.pdfLyrics ? 9.99 : 0;
   const totalPrice = Number((basePrice + expressPrice + pdfPrice).toFixed(2));
 
   useEffect(() => {
@@ -489,7 +489,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     <Eye className="w-3.5 h-3.5" />
                     <span>{t("configurator.summary.previewBtn", "Vorschau")}</span>
                   </button>
-                  <span className="font-bold text-amber-400 text-sm sm:text-base">+4,99 €</span>
+                  <span className="font-bold text-amber-400 text-sm sm:text-base">+9,99 €</span>
                 </div>
               </div>
             </div>
@@ -625,7 +625,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                   className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-1.5"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>{t("configurator.summary.certificateModal.addBtn", "Jetzt für 4,99 € hinzufügen")}</span>
+                  <span>{t("configurator.summary.certificateModal.addBtn", "Jetzt für 9,99 € hinzufügen")}</span>
                 </button>
                 <button
                   type="button"

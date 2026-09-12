@@ -217,7 +217,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {order.details?.pdfLyrics && (
                     <div className="flex justify-between text-xs text-slate-300">
                       <span>{t("configurator.summary.pdfTitle")}</span>
-                      <span className="font-semibold text-amber-400">+4,99 €</span>
+                      <span className="font-semibold text-amber-400">+9,99 €</span>
                     </div>
                   )}
 
