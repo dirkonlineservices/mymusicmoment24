@@ -128,8 +128,8 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "135",
+          ratingValue: "5.0",
+          reviewCount: "2",
           bestRating: "5",
           worstRating: "1",
         },
