@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { 
   Heart, Gift, Sparkles, Mic, ArrowRight, ArrowLeft, CheckCircle2, Flame, Music,
-  Radio, Guitar, PartyPopper, Music2, Disc, Zap 
+  Radio, Guitar, PartyPopper, Music2, Disc, Zap, Eye, X 
 } from "lucide-react";
 import { trackConfiguratorStep, trackViewItem } from "../lib/gtmPreview";
 import { useLanguage } from "../context/LanguageContext";
@@ -84,6 +84,8 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     express: false,
     pdfLyrics: false,
   });
+
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
 
   const stepsList = [
     { num: 1, title: t("configurator.steps.1", "Anlass"), icon: Heart },
@@ -460,21 +462,36 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
               </label>
 
-              <label className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 transition">
+                <label className="flex items-center gap-3 cursor-pointer flex-1 min-w-0 mr-2">
                   <input
                     type="checkbox"
                     checked={config.pdfLyrics}
                     onChange={(e) => setConfig({ ...config, pdfLyrics: e.target.checked })}
                     className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
                   />
-                  <div>
+                  <div className="min-w-0">
                     <span className="font-bold text-white text-xs sm:text-sm block">{t("configurator.summary.pdfTitle")}</span>
-                    <span className="text-[11px] sm:text-xs text-slate-400">{t("configurator.summary.pdfDesc")}</span>
+                    <span className="text-[11px] sm:text-xs text-slate-400 block">{t("configurator.summary.pdfDesc")}</span>
                   </div>
+                </label>
+
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowCertificateModal(true);
+                    }}
+                    className="text-[11px] sm:text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2.5 py-1.5 rounded-lg transition"
+                    title={t("configurator.summary.previewBtn", "Vorschau ansehen")}
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>{t("configurator.summary.previewBtn", "Vorschau")}</span>
+                  </button>
+                  <span className="font-bold text-amber-400 text-sm sm:text-base">+4,99 €</span>
                 </div>
-                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+4,99 €</span>
-              </label>
+              </div>
             </div>
 
             {/* Total price & Checkout Button */}
@@ -523,6 +540,105 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
           </div>
         </div>
       </div>
+
+      {/* Certificate Preview Modal */}
+      {showCertificateModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("configurator.summary.certificateModal.title", "Offizielle Song-Urkunde")}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setShowCertificateModal(false)}
+        >
+          <div
+            className="relative w-full max-w-2xl bg-slate-900 border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/10 flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-950/90">
+              <div className="flex items-center gap-2.5">
+                <span className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <Sparkles className="w-4 h-4" />
+                </span>
+                <div>
+                  <h3 className="font-bold text-white text-sm sm:text-base">
+                    {t("configurator.summary.certificateModal.title", "Offizielle Song-Urkunde zum Einrahmen")}
+                  </h3>
+                  <span className="text-[11px] text-amber-400/90 font-medium">
+                    {t("configurator.summary.certificateModal.badge", "Druckreifes Premium-PDF (DIN A4)")}
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowCertificateModal(false)}
+                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                aria-label={t("configurator.summary.certificateModal.closeBtn", "Schließen")}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body with Image and Highlights */}
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
+              {/* Certificate Image Frame */}
+              <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group">
+                <img
+                  src="/images/urkunde-beispiel.jpg"
+                  alt="Beispiel: Offizielle Song-Urkunde im edlen Rahmen"
+                  className="w-full h-auto max-h-[420px] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </div>
+
+              {/* Feature Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs text-slate-300">
+                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>{t("configurator.summary.certificateModal.feature1")}</span>
+                </div>
+                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>{t("configurator.summary.certificateModal.feature2")}</span>
+                </div>
+                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>{t("configurator.summary.certificateModal.feature3")}</span>
+                </div>
+                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>{t("configurator.summary.certificateModal.feature4")}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer CTA */}
+            <div className="px-5 py-4 border-t border-slate-800 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span className="text-xs text-slate-400">
+                {t("configurator.summary.certificateModal.desc")}
+              </span>
+              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConfig({ ...config, pdfLyrics: true });
+                    setShowCertificateModal(false);
+                  }}
+                  className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-1.5"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>{t("configurator.summary.certificateModal.addBtn", "Jetzt für 4,99 € hinzufügen")}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowCertificateModal(false)}
+                  className="px-4 py-2.5 text-xs text-slate-400 hover:text-white transition"
+                >
+                  {t("configurator.summary.certificateModal.closeBtn", "Schließen")}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
