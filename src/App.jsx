@@ -50,9 +50,11 @@ function AppMain() {
     window.addEventListener("popstate", handlePopState);
     window.addEventListener("hashchange", handlePopState);
 
-    // Check for Stripe Checkout return
+    // Check for Stripe Checkout return (only for standard home page orders)
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("stripe_success") === "true" && urlParams.get("session_id")) {
+    const isStreamingRoute = window.location.pathname.startsWith("/streaming") || window.location.hash.includes("streaming");
+    
+    if (!isStreamingRoute && urlParams.get("stripe_success") === "true" && urlParams.get("session_id")) {
       const sessionId = urlParams.get("session_id");
       fetch("/api/verify-stripe-session", {
         method: "POST",
@@ -75,7 +77,7 @@ function AppMain() {
         .finally(() => {
           window.history.replaceState({}, "", "/");
         });
-    } else if (urlParams.get("stripe_cancel") === "true") {
+    } else if (!isStreamingRoute && urlParams.get("stripe_cancel") === "true") {
       alert("Die Zahlung via Stripe wurde abgebrochen. Du kannst es jederzeit erneut versuchen.");
       window.history.replaceState({}, "", "/");
     }
