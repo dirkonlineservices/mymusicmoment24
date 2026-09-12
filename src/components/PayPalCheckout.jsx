@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2, HelpCircle, MessageCircle, Landmark, CreditCard, ChevronRight, ExternalLink } from "lucide-react";
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
-import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
+import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge, DebitCardBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -510,8 +510,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     {/* PayPal Radio Card: High visual prominence & hover effect */}
                     <label className={`relative block p-3.5 sm:p-4 rounded-2xl border-2 cursor-pointer transition-all duration-200 group ${
                       paymentMethod === "paypal"
-                        ? "bg-gradient-to-br from-amber-500/15 via-yellow-500/10 to-slate-900 border-amber-400 shadow-lg shadow-amber-500/15 ring-2 ring-amber-400/30 text-white"
-                        : "bg-slate-800/80 border-slate-700 hover:border-amber-400/80 hover:bg-slate-800 hover:shadow-md hover:shadow-amber-500/10 text-slate-300"
+                        ? "bg-gradient-to-r from-amber-500/30 via-yellow-500/20 to-amber-500/30 border-amber-400 shadow-xl shadow-amber-500/25 ring-2 ring-amber-400/60 text-white"
+                        : "bg-slate-800/90 border-slate-600 hover:bg-gradient-to-r hover:from-amber-500/25 hover:via-yellow-400/20 hover:to-amber-500/20 hover:border-amber-300 hover:shadow-xl hover:shadow-amber-500/25 text-white"
                     }`}>
                       <div className="flex items-start justify-between gap-2.5">
                         <div className="flex items-start gap-3">
@@ -520,25 +520,28 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             name="payment"
                             checked={paymentMethod === "paypal"}
                             onChange={() => setPaymentMethod("paypal")}
-                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500"
+                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
                           />
                           <div>
                             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                               <span className="font-extrabold text-white text-xs sm:text-sm">
                                 {t("checkout.paypalTitle", "PayPal Express & SEPA-Lastschrift")}
                               </span>
-                              <span className="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold rounded">
+                              <span className="px-2 py-0.5 bg-emerald-400 text-slate-950 text-[10px] font-black rounded-md shadow-sm">
                                 {t("checkout.paypalBadge", "Ohne PayPal-Konto möglich")}
                               </span>
                             </div>
-                            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                            <p className="text-[11px] text-amber-100 font-medium mt-1 leading-relaxed">
                               {t("checkout.paypalDesc", "Mit PayPal-Konto oder ganz ohne Konto per SEPA-Lastschrift (Bankeinzug) / Debitkarte zahlen.")}
                             </p>
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-1 shrink-0">
-                          <PayPalBadge className="h-4" />
-                          <SepaBadge className="h-3.5" />
+                          <div className="flex items-center gap-1">
+                            <PayPalBadge className="h-4" />
+                            <SepaBadge className="h-4" />
+                          </div>
+                          <DebitCardBadge className="h-3.5" />
                         </div>
                       </div>
                     </label>
@@ -635,51 +638,81 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* PayPal Smart Buttons or Standard Submit Button */}
                   {paypalClientId && paymentMethod === "paypal" ? (
                     <div className="pt-2">
-                      {(!customerEmail || !agreedTerms) && (
-                        <div className="text-[11px] text-amber-300 text-center mb-2 font-medium bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 py-2 px-3 rounded-xl border border-amber-500/40 shadow-sm animate-pulse">
-                          {language === "en"
-                            ? "🔒 Please enter your email address and check the box above to activate PayPal."
-                            : "🔒 Bitte E-Mail eingeben und Häkchen oben setzen, um PayPal zu aktivieren."}
+                      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-slate-800 via-slate-800/90 to-slate-900 border-2 border-amber-400 shadow-xl shadow-amber-500/20 space-y-3.5">
+                        
+                        {/* Bright highlighted bar for PayPal, SEPA & Debitkarte */}
+                        <div className="bg-slate-900/95 border border-amber-400/50 rounded-xl p-3.5 space-y-2.5 shadow-md">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className="text-xs font-black text-white flex items-center gap-1.5">
+                              <span className="text-amber-400 text-sm">✓</span>
+                              <span>{language === "en" ? "Payment Methods Included:" : "Enthaltene Zahlungsarten:"}</span>
+                            </span>
+                            <span className="text-[10px] font-black text-slate-950 bg-emerald-400 px-2 py-0.5 rounded shadow-sm">
+                              {language === "en" ? "No account needed" : "Kein PayPal-Konto nötig"}
+                            </span>
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                            <PayPalBadge />
+                            <SepaBadge />
+                            <DebitCardBadge />
+                          </div>
+
+                          <p className="text-[11px] text-amber-100/90 font-medium leading-relaxed">
+                            {language === "en"
+                              ? "With PayPal account OR choose 'Pay with Debit or Credit Card / As Guest' below for direct SEPA bank debit."
+                              : "Mit deinem PayPal-Konto ODER wähle unten einfach „Mit Debit- oder Kreditkarte zahlen“ / „Als Gast“, um bequem per Bankeinzug (SEPA) zu bezahlen."}
+                          </p>
                         </div>
-                      )}
-                      <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
-                        <PayPalButtons
-                          style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
-                          disabled={!customerEmail || !agreedTerms || isProcessing}
-                          createOrder={(data, actions) => {
-                            return actions.order.create({
-                              purchase_units: [
-                                {
-                                  description: order.name || "Personalisierter Song",
-                                  amount: {
-                                    currency_code: "EUR",
-                                    value: currentPrice.toFixed(2),
+
+                        {/* Inactive notice if not checked */}
+                        {(!customerEmail || !agreedTerms) && (
+                          <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 border-2 border-amber-300 shadow-lg shadow-amber-500/25 animate-pulse">
+                            {language === "en"
+                              ? "👉 Please enter your email above & check the consent box to activate PayPal & SEPA!"
+                              : "👉 Bitte oben E-Mail eintragen & Häkchen setzen, um PayPal, SEPA & Debitkarte freizuschalten!"}
+                          </div>
+                        )}
+
+                        <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
+                          <PayPalButtons
+                            style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
+                            disabled={!customerEmail || !agreedTerms || isProcessing}
+                            createOrder={(data, actions) => {
+                              return actions.order.create({
+                                purchase_units: [
+                                  {
+                                    description: order.name || "Personalisierter Song",
+                                    amount: {
+                                      currency_code: "EUR",
+                                      value: currentPrice.toFixed(2),
+                                    },
                                   },
-                                },
-                              ],
-                            });
-                          }}
-                          onApprove={async (data, actions) => {
-                            setIsProcessing(true);
-                            try {
-                              const details = await actions.order.capture();
-                              const txId = details.id || `PAYPAL-${Date.now()}`;
-                              setTransactionId(txId);
-                              await recordOrder(txId, details.payer);
-                              setIsProcessing(false);
-                              setIsCompleted(true);
-                              trackPurchase(txId, { ...order, price: currentPrice });
-                            } catch (err) {
-                              console.error("PayPal Capture Error:", err);
-                              alert(language === "en" ? "Error during payment capture. Please try again." : "Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
-                              setIsProcessing(false);
-                            }
-                          }}
-                          onError={(err) => {
-                            console.error("PayPal Error:", err);
-                          }}
-                        />
-                      </PayPalScriptProvider>
+                                ],
+                              });
+                            }}
+                            onApprove={async (data, actions) => {
+                              setIsProcessing(true);
+                              try {
+                                const details = await actions.order.capture();
+                                const txId = details.id || `PAYPAL-${Date.now()}`;
+                                setTransactionId(txId);
+                                await recordOrder(txId, details.payer);
+                                setIsProcessing(false);
+                                setIsCompleted(true);
+                                trackPurchase(txId, { ...order, price: currentPrice });
+                              } catch (err) {
+                                console.error("PayPal Capture Error:", err);
+                                alert(language === "en" ? "Error during payment capture. Please try again." : "Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
+                                setIsProcessing(false);
+                              }
+                            }}
+                            onError={(err) => {
+                              console.error("PayPal Error:", err);
+                            }}
+                          />
+                        </PayPalScriptProvider>
+                      </div>
                     </div>
                   ) : (
                     <button
@@ -697,24 +730,25 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </form>
 
                 {/* Trust Badges */}
-                <div className="pt-3 border-t border-slate-800 space-y-2 text-[11px] text-slate-400">
+                <div className="pt-3.5 border-t border-slate-800 space-y-2.5 text-xs text-slate-300">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{t("checkout.secureSsl")}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
                     <span>{t("hero.trustDelivery")}</span>
                   </div>
-                  <div className="pt-2 flex flex-wrap items-center justify-center gap-1.5 opacity-90">
-                    <PayPalBadge className="h-3" />
-                    <StripeBadge className="h-3" />
-                    <VisaBadge className="h-2.5" />
-                    <MastercardBadge className="h-3" />
-                    <ApplePayBadge className="h-3" />
-                    <GooglePayBadge className="h-3" />
-                    <SepaBadge className="h-3" />
-                    <KlarnaBadge className="h-3" />
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-2">
+                    <PayPalBadge />
+                    <SepaBadge />
+                    <DebitCardBadge />
+                    <StripeBadge />
+                    <VisaBadge />
+                    <MastercardBadge />
+                    <ApplePayBadge />
+                    <GooglePayBadge />
+                    <KlarnaBadge />
                   </div>
                 </div>
 

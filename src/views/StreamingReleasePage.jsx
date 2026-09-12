@@ -7,7 +7,7 @@ import {
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { PayPalBadge, StripeBadge, ApplePayBadge } from "../components/PaymentBadges";
+import { PayPalBadge, StripeBadge, ApplePayBadge, SepaBadge, DebitCardBadge } from "../components/PaymentBadges";
 import { trackPurchase } from "../lib/gtmPreview";
 
 export default function StreamingReleasePage({ onBackToHome }) {
@@ -703,22 +703,29 @@ Amount Paid: 4,99 €
                 </div>
 
                 {/* PayPal Express Option */}
-                <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-emerald-500/10 border-emerald-500 text-white shadow-lg shadow-emerald-500/10" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
-                  <div className="flex items-center gap-3">
+                <label className={`flex items-start justify-between p-3.5 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 group ${paymentMethod === "paypal" ? "bg-gradient-to-r from-amber-500/25 via-yellow-500/20 to-amber-500/25 border-amber-400 text-white shadow-xl shadow-amber-500/20 ring-2 ring-amber-400/50" : "bg-slate-800/90 border-slate-600 text-white hover:bg-gradient-to-r hover:from-amber-500/20 hover:via-yellow-400/15 hover:to-amber-500/20 hover:border-amber-300 hover:shadow-lg"}`}>
+                  <div className="flex items-start gap-3">
                     <input
                       type="radio"
                       name="payment_choice"
                       checked={paymentMethod === "paypal"}
                       onChange={() => setPaymentMethod("paypal")}
-                      className="text-emerald-500 w-4 h-4"
+                      className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
                     />
                     <div>
-                      <span className="font-bold text-xs sm:text-sm block">PayPal Express</span>
-                      <span className="text-[11px] text-slate-400">Schnell & sicher mit PayPal-Käuferschutz</span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-extrabold text-white text-xs sm:text-sm">PayPal Express & SEPA</span>
+                        <span className="px-1.5 py-0.5 bg-emerald-400 text-slate-950 text-[9px] font-black rounded">Ohne Konto möglich</span>
+                      </div>
+                      <span className="text-[11px] text-amber-100/90 block mt-0.5 font-medium">Mit PayPal-Konto oder ganz ohne Konto per SEPA-Bankeinzug / Debitkarte</span>
                     </div>
                   </div>
-                  <div className="shrink-0">
-                    <PayPalBadge className="h-4" />
+                  <div className="flex flex-col items-end gap-1 shrink-0">
+                    <div className="flex items-center gap-1">
+                      <PayPalBadge className="h-4" />
+                      <SepaBadge className="h-4" />
+                    </div>
+                    <DebitCardBadge className="h-3.5" />
                   </div>
                 </label>
 
