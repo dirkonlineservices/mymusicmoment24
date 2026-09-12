@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Sparkles, ArrowRight, Play, X, Youtube, Gift, CheckCircle2 } from "lucide-react";
+import { Star, Sparkles, ArrowRight, Play, X, Youtube, Gift, CheckCircle2, Eye } from "lucide-react";
 import { PRODUCTS } from "../data/products";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -17,6 +17,7 @@ export default function ProductCatalog({ onSelectProduct }) {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [videoModal, setVideoModal] = useState(null);
+  const [certificateModalOpen, setCertificateModalOpen] = useState(false);
 
   const categoryLabels = {
     all: t("catalog.allCategories", "Alle Produkte"),
@@ -112,7 +113,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     {prod.categoryLabel}
                   </span>
                   <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow">
-                    {prod.price.toFixed(2).replace(".", ",")} €
+                    {prod.id === "urkunde" ? t("catalog.urkundeTag", "+ 9,99 € Add-on") : `${prod.price.toFixed(2).replace(".", ",")} €`}
                   </span>
                 </div>
               </div>
@@ -149,6 +150,20 @@ export default function ProductCatalog({ onSelectProduct }) {
                   {prod.description}
                 </p>
 
+                {prod.id === "urkunde" && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCertificateModalOpen(true);
+                    }}
+                    className="mb-2 w-full py-2 px-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-400 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>{t("catalog.urkundePreviewBtn", "Urkunden-Beispiel ansehen")}</span>
+                  </button>
+                )}
+
                 {prod.youtubeVideoId && (
                   <button
                     type="button"
@@ -171,16 +186,37 @@ export default function ProductCatalog({ onSelectProduct }) {
             {/* Price & CTA Button */}
             <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-3">
               <div>
-                <span className="text-[11px] text-slate-400 block">{t("catalog.fixedPrice")}</span>
-                <span className="text-xl sm:text-2xl font-black text-white">{prod.price.toFixed(2).replace(".", ",")} €</span>
+                <span className="text-[11px] text-slate-400 block">
+                  {prod.id === "urkunde" ? t("catalog.urkundeOnlyWithSong", "Nur mit Song bestellbar") : t("catalog.fixedPrice")}
+                </span>
+                <span className="text-xl sm:text-2xl font-black text-white">
+                  {prod.id === "urkunde" ? "+ 9,99 €" : `${prod.price.toFixed(2).replace(".", ",")} €`}
+                </span>
               </div>
-              <button
-                onClick={() => onSelectProduct(prod)}
-                className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
-              >
-                <span>{t("catalog.orderBtn")}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {prod.id === "urkunde" ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("konfigurator");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                    window.dispatchEvent(new CustomEvent("preselect-urkunde"));
+                  }}
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
+                >
+                  <span>{t("catalog.urkundeActionBtn", "Song konfigurieren & Urkunde dazu")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => onSelectProduct(prod)}
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
+                >
+                  <span>{t("catalog.orderBtn")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>
           );
@@ -294,6 +330,87 @@ export default function ProductCatalog({ onSelectProduct }) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Certificate Preview Modal */}
+      {certificateModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setCertificateModalOpen(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-7 max-h-[90vh] overflow-y-auto"
+          >
+            <button
+              onClick={() => setCertificateModalOpen(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full bg-slate-800/80 hover:bg-slate-700 transition"
+              aria-label="Schließen"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="text-center mb-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                {language === "en" ? "Official Keepsake Add-on" : "Offizielles Song-Zusatzprodukt"}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-white">
+                {language === "en" ? "Official Song Certificate with QR Code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-lg mx-auto">
+                {language === "en"
+                  ? "The tangible gift to frame: High-resolution DIN A4 document with golden seal and scannable audio QR code to play the song anytime on your smartphone."
+                  : "Das greifbare Geschenk zum Einrahmen: Hochauflösendes DIN A4 Dokument mit goldenem Siegel und scannbarem QR-Code zum direkten Abspielen auf dem Smartphone."}
+              </p>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl mb-5 bg-slate-950">
+              <img
+                src="/images/urkunde-beispiel.jpg"
+                alt="Offizielle Song-Urkunde mit QR-Code"
+                className="w-full h-auto object-contain max-h-[48vh] mx-auto"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-300 mb-6 bg-slate-950/70 p-3.5 rounded-xl border border-slate-800">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Print-ready DIN A4 PDF" : "Druckfertiges DIN A4 PDF"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Scannable Audio QR Code" : "Scannbarer Audio-QR-Code"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Custom Lyrics & Seal" : "Songtext & goldenes Siegel"}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-slate-800">
+              <div>
+                <span className="text-[11px] text-amber-400 font-semibold block">{language === "en" ? "Only available with a custom song" : "Nur in Kombination mit Song bestellbar"}</span>
+                <span className="text-lg font-black text-white">+ 9,99 € Aufpreis</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setCertificateModalOpen(false);
+                  const el = document.getElementById("konfigurator");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                  window.dispatchEvent(new CustomEvent("preselect-urkunde"));
+                }}
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition"
+              >
+                <span>{language === "en" ? "Configure Song & Add Certificate" : "Song konfigurieren & Urkunde wählen"}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>

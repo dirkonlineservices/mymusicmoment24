@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock } from "lucide-react";
+import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2 } from "lucide-react";
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -18,12 +18,15 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+  const [includeCertificate, setIncludeCertificate] = useState(false);
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
 
   useEffect(() => {
     if (isOpen && order) {
       trackAddToCart(order);
       trackBeginCheckout(order);
       setIsCompleted(false);
+      setIncludeCertificate(Boolean(order?.details?.pdfLyrics));
     }
   }, [isOpen, order]);
 
@@ -39,7 +42,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
   if (!isOpen || !order) return null;
 
-  const currentPrice = discountApplied ? Number((order.price * 0.9).toFixed(2)) : order.price;
+  const isVoucher = order?.category === "gutschein" || order?.id?.includes("gutschein");
+  const basePrice = isVoucher ? order.price : 19.99;
+  const expressExtra = order.details?.express ? 9.99 : 0;
+  const certificateExtra = (!isVoucher && includeCertificate) ? 9.99 : 0;
+  const rawSubtotal = Number((basePrice + expressExtra + certificateExtra).toFixed(2));
+  const currentPrice = discountApplied ? Number((rawSubtotal * 0.9).toFixed(2)) : rawSubtotal;
 
   const handleApplyDiscount = () => {
     if (discountCode.trim().toLowerCase() === "gutschein" || discountCode.trim().toLowerCase() === "music10") {
@@ -65,7 +73,10 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           customerName,
           customerPhone,
           songDetailsText,
-          orderDetails: order.details,
+          orderDetails: {
+            ...order.details,
+            pdfLyrics: includeCertificate,
+          },
           orderName: order.name,
           payer: payerDetails,
         }),
@@ -99,7 +110,10 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             customerName,
             customerPhone,
             songDetailsText,
-            orderDetails: order.details,
+            orderDetails: {
+              ...order.details,
+              pdfLyrics: includeCertificate,
+            },
             orderName: order.name,
           }),
         });
@@ -203,7 +217,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       </p>
                     </div>
                     <span className="text-sm font-black text-amber-400 shrink-0">
-                      19,99 €
+                      {basePrice.toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
 
@@ -214,9 +228,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </div>
                   )}
 
-                  {order.details?.pdfLyrics && (
+                  {includeCertificate && !isVoucher && (
                     <div className="flex justify-between text-xs text-slate-300">
-                      <span>{t("configurator.summary.pdfTitle")}</span>
+                      <span className="flex items-center gap-1.5">
+                        <span>📜</span>
+                        <span>{t("checkout.certificateLineItem", "Offizielle Song-Urkunde mit QR-Code")}</span>
+                      </span>
                       <span className="font-semibold text-amber-400">+9,99 €</span>
                     </div>
                   )}
@@ -245,6 +262,51 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       {t("checkout.discountApplyBtn")}
                     </button>
                   </div>
+
+                  {/* Urkunde Add-on Checkbox (directly under discount code) */}
+                  {!isVoucher && (
+                    <div className="pt-2">
+                      <div
+                        className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
+                          includeCertificate
+                            ? "bg-amber-500/15 border-amber-500 shadow-md shadow-amber-500/10"
+                            : "bg-slate-900 border-slate-700 hover:border-slate-600"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2.5">
+                          <label className="flex items-start gap-2.5 sm:gap-3 cursor-pointer select-none flex-1 min-w-0">
+                            <input
+                              type="checkbox"
+                              checked={includeCertificate}
+                              onChange={(e) => setIncludeCertificate(e.target.checked)}
+                              className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer"
+                            />
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="font-bold text-white text-xs sm:text-sm">
+                                  {t("checkout.certificateAddonTitle", "Offizielle Song-Urkunde (+9,99 €)")}
+                                </span>
+                                <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold rounded">
+                                  {t("checkout.certificateAddonBadge", "Top-Geschenk")}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
+                                {t("checkout.certificateAddonDesc", "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen.")}
+                              </p>
+                            </div>
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setShowCertificateModal(true)}
+                            className="shrink-0 text-[11px] font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 sm:px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>{t("checkout.certificatePreviewBtn", "Vorschau")}</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="border-t border-slate-800 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-white">
                     <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-slate-400">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>
@@ -466,6 +528,88 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
         </div>
       </div>
+
+      {/* Certificate Preview Modal */}
+      {showCertificateModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setShowCertificateModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-6 max-h-[90vh] overflow-y-auto"
+          >
+            <button
+              onClick={() => setShowCertificateModal(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full bg-slate-800/80 hover:bg-slate-700 transition"
+              aria-label="Schließen"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="text-center mb-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                {language === "en" ? "Official Keepsake Add-on" : "Offizielles Song-Zusatzprodukt"}
+              </span>
+              <h3 className="text-lg sm:text-xl font-black text-white">
+                {language === "en" ? "Official Song Certificate with QR Code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
+              </h3>
+              <p className="text-xs text-slate-400 mt-1 max-w-md mx-auto">
+                {language === "en"
+                  ? "Print-ready DIN A4 PDF with your personal lyrics, golden seal and scannable QR code to play the song anytime."
+                  : "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen."}
+              </p>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl mb-4 bg-slate-950">
+              <img
+                src="/images/urkunde-beispiel.jpg"
+                alt="Song-Urkunde Muster"
+                className="w-full h-auto object-contain max-h-[44vh] mx-auto"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300 mb-5 bg-slate-950/70 p-3 rounded-xl border border-slate-800">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Print-ready DIN A4 PDF" : "Druckfertig DIN A4"}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Scannable Audio QR Code" : "Audio-QR-Code"}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>{language === "en" ? "Golden Seal" : "Goldenes Siegel"}</span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={() => setShowCertificateModal(false)}
+                className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition"
+              >
+                {language === "en" ? "Close" : "Schließen"}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setIncludeCertificate(true);
+                  setShowCertificateModal(false);
+                }}
+                className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5 transition"
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                <span>{language === "en" ? "Add to Order (+€9.99)" : "Urkunde hinzufügen (+9,99 €)"}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

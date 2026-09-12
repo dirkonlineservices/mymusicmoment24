@@ -122,6 +122,14 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     trackViewItem({ price: basePrice, name: `Personalisierter Song (${config.occasion})` });
   }, []);
 
+  useEffect(() => {
+    const handlePreselect = () => {
+      setConfig((prev) => ({ ...prev, pdfLyrics: true }));
+    };
+    window.addEventListener("preselect-urkunde", handlePreselect);
+    return () => window.removeEventListener("preselect-urkunde", handlePreselect);
+  }, []);
+
   const goToStep = (nextStep) => {
     setStep(nextStep);
     trackConfiguratorStep(nextStep, `Step_${nextStep}`, config);

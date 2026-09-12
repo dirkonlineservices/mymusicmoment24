@@ -46,10 +46,20 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   ]);
 
   const handleSelectProduct = (product) => {
+    if (product.id === "urkunde") {
+      const el = document.getElementById("konfigurator");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+      window.dispatchEvent(new CustomEvent("preselect-urkunde"));
+      return;
+    }
+
     const orderData = {
       id: `prod-${product.id}-${Date.now()}`,
       name: product.title,
       price: product.price,
+      category: product.category,
       details: {
         occasion: product.category || "individuell",
         genre: "Wahl nach Wunsch",
