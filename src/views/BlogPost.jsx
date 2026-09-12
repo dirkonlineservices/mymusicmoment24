@@ -39,20 +39,17 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
             <ArrowLeft className="w-4 h-4 text-orange-400" />
             <span>{language === "en" ? "Back to Homepage" : "Zurück zur Übersicht"}</span>
           </button>
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-            <button
-              onClick={onBackToHome}
-              className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
-            >
-              <img
-                src="/images/logo-icon.png"
-                alt="MyMusicMoment24 Logo"
-                className="w-7 h-7 object-contain"
-              />
-              <span>MyMusicMoment<span className="text-amber-400">24</span></span>
-            </button>
-          </div>
+          <button
+            onClick={onBackToHome}
+            className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+          >
+            <img
+              src="/images/logo-icon.png"
+              alt="MyMusicMoment24 Logo"
+              className="w-7 h-7 object-contain"
+            />
+            <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+          </button>
         </div>
       </header>
 

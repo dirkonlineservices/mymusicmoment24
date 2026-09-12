@@ -111,10 +111,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </button>
           </nav>
 
-          {/* Desktop Action Button & Language Switcher */}
+          {/* Desktop Action Button & Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-
             <a
               href="#konfigurator"
               className="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"

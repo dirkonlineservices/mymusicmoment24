@@ -7,6 +7,7 @@ import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
 import { LanguageProvider } from "./context/LanguageContext";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 function AppMain() {
   const [currentRoute, setCurrentRoute] = useState({
@@ -153,6 +154,14 @@ function AppMain() {
         onClose={handleCloseCheckout}
         order={checkoutOrder}
       />
+
+      {/* Floating Language Switcher on the Top Right */}
+      <aside
+        aria-label="Sprachauswahl / Language Selection"
+        className="fixed top-20 right-3 sm:top-20 sm:right-6 z-40 transition-all duration-300"
+      >
+        <LanguageSwitcher />
+      </aside>
 
       {/* GDPR Consent Banner with Google Consent Mode v2 */}
       <ConsentBanner />
