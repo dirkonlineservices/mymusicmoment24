@@ -52,12 +52,17 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
       <main className="max-w-4xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Profile Card */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center h-fit">
-            <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-4xl font-black text-slate-950 shadow-xl shadow-orange-500/20 mb-4">
-              DS
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center h-fit shadow-2xl">
+            <div className="relative w-32 h-32 mx-auto mb-4 group">
+              <div className="absolute -inset-1 bg-gradient-to-tr from-orange-500 via-amber-400 to-yellow-500 rounded-full blur-sm opacity-60 group-hover:opacity-100 transition duration-300"></div>
+              <img
+                src="/images/dirk-schmetzer.png"
+                alt="Dirk Schmetzer – Gründer & Musikproduzent bei MyMusicMoment24"
+                className="relative w-32 h-32 rounded-full object-cover border-2 border-amber-400 shadow-xl shadow-orange-500/20"
+              />
             </div>
             <h2 className="text-xl font-bold text-white">Dirk Schmetzer</h2>
-            <p className="text-sm text-orange-400 font-medium mb-4">Gründer &amp; Prompt-Engineer</p>
+            <p className="text-sm text-amber-400 font-medium mb-4">Gründer &amp; Prompt-Engineer</p>
             
             <div className="flex flex-col gap-2.5 text-left text-xs text-slate-300 border-t border-slate-800 pt-4">
               <div className="flex items-center gap-2">

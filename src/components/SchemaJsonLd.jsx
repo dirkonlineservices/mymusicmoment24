@@ -42,6 +42,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         "@type": "Person",
         name: "Dirk Schmetzer",
         jobTitle: "Gründer & Musikproduzent",
+        image: "https://www.mymusicmoment24.de/images/dirk-schmetzer.png",
         sameAs: [
           "https://www.mymusicmoment24.de/autor-dirk-schmetzer",
           "https://www.youtube.com/@MyMusicMoment24"
