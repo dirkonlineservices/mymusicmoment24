@@ -5,6 +5,7 @@ import AuthorPage from "./views/AuthorPage";
 import LegalPage from "./views/LegalPage";
 import StreamingReleasePage from "./views/StreamingReleasePage";
 import SupportPage from "./views/SupportPage";
+import B2BPage from "./views/B2BPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
@@ -36,6 +37,14 @@ function AppMain() {
         setCurrentRoute({ view: "streaming", slug: null });
       } else if (path === "/support" || path === "/kontakt" || hash === "#/support") {
         setCurrentRoute({ view: "support", slug: null });
+      } else if (
+        path === "/b2b" || 
+        path === "/kooperation" || 
+        path === "/b2b-dienstleistungen" || 
+        path === "/agenturen" || 
+        hash === "#/b2b"
+      ) {
+        setCurrentRoute({ view: "b2b", slug: null });
       } else if (path.startsWith("/blog/")) {
         const slug = path.replace("/blog/", "").replace(/\/$/, "");
         setCurrentRoute({ view: "blog", slug });
@@ -117,6 +126,12 @@ function AppMain() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const navigateToB2B = () => {
+    window.history.pushState({}, "", "/b2b");
+    setCurrentRoute({ view: "b2b", slug: null });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const navigateToLegal = (type = "impressum") => {
     window.history.pushState({}, "", `/${type}`);
     setCurrentRoute({ view: "legal", slug: type });
@@ -156,11 +171,19 @@ function AppMain() {
           onNavigateAuthor={navigateToAuthor}
           onNavigateLegal={navigateToLegal}
           onNavigateSupport={navigateToSupport}
+          onNavigateB2B={navigateToB2B}
         />
       )}
 
       {currentRoute.view === "support" && (
         <SupportPage
+          onBackToHome={() => navigateToHome()}
+          onGoToConfigurator={() => navigateToHome("#konfigurator")}
+        />
+      )}
+
+      {currentRoute.view === "b2b" && (
+        <B2BPage
           onBackToHome={() => navigateToHome()}
           onGoToConfigurator={() => navigateToHome("#konfigurator")}
         />

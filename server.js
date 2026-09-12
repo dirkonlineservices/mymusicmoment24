@@ -455,6 +455,135 @@ Notes: ${notes}</pre>
   }
 }
 
+// 0. B2B & Cooperation Inquiry Endpoint
+app.post("/api/b2b-inquiry", async (req, res) => {
+  try {
+    const { contactName, companyName, email, phone, inquiryType, message } = req.body;
+
+    if (!contactName || !companyName || !email || !message) {
+      return res.status(400).json({ success: false, error: "Pflichtfelder fehlen (Name, Firma, E-Mail, Nachricht)." });
+    }
+
+    const inquiryData = {
+      id: `b2b-${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      contactName,
+      companyName,
+      email,
+      phone: phone || "Keine Angabe",
+      inquiryType: inquiryType || "B2B Kooperation",
+      message,
+    };
+
+    console.log(`\n💼 [NEUE B2B-KOOPERATIONSANFRAGE EINGEGANGEN]`);
+    console.log(`Firma: ${companyName} | Ansprechpartner: ${contactName} | Typ: ${inquiryType}`);
+    console.log(`Kontakt: ${email}, Tel: ${phone || 'Keine'}`);
+
+    // Persist in data/b2b_inquiries.json
+    const dataDir = path.join(__dirname, "data");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    const inquiriesFile = path.join(dataDir, "b2b_inquiries.json");
+    let inquiries = [];
+    if (fs.existsSync(inquiriesFile)) {
+      try {
+        inquiries = JSON.parse(fs.readFileSync(inquiriesFile, "utf8"));
+      } catch (err) {
+        inquiries = [];
+      }
+    }
+    inquiries.push(inquiryData);
+    fs.writeFileSync(inquiriesFile, JSON.stringify(inquiries, null, 2), "utf8");
+
+    // Email dispatch
+    const transporter = getMailTransporter();
+    if (transporter) {
+      const smtpUser = process.env.SMTP_USER || "info@mymusicmoment24.de";
+      const adminRecipients = ["info@mymusicmoment24.de", "dirk.online.services@gmail.com"];
+
+      const adminHtml = `
+        <div style="font-family: sans-serif; max-width: 650px; margin: 0 auto; color: #1e293b;">
+          <div style="background: #1e1b4b; padding: 20px; border-radius: 10px; color: #fff; margin-bottom: 20px;">
+            <h2 style="margin: 0; color: #f59e0b;">💼 Neue B2B-Kooperationsanfrage eingegangen!</h2>
+            <p style="margin: 5px 0 0; font-size: 14px; color: #cbd5e1;">MyMusicMoment24 • DS Online Services</p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 12px; color: #334155; font-size: 16px;">Kontaktdaten:</h3>
+            <p style="margin: 0 0 6px;"><strong>Ansprechpartner:</strong> ${contactName}</p>
+            <p style="margin: 0 0 6px;"><strong>Unternehmen / Agentur:</strong> <span style="color: #4f46e5; font-weight: bold;">${companyName}</span></p>
+            <p style="margin: 0 0 6px;"><strong>E-Mail:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p style="margin: 0;"><strong>Telefon / WhatsApp:</strong> ${phone || "Nicht angegeben"}</p>
+          </div>
+
+          <div style="background: #fefce8; border: 1px solid #fef08a; padding: 18px; border-radius: 8px; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 10px; color: #854d0e; font-size: 15px;">Gewünschte Kooperationsart:</h3>
+            <p style="margin: 0; font-size: 15px; font-weight: bold; color: #a16207;">${inquiryType}</p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="margin: 0 0 10px; color: #334155; font-size: 15px;">Projektbeschreibung & Nachricht:</h3>
+            <div style="white-space: pre-wrap; font-size: 14px; line-height: 1.6; color: #1e293b;">${message}</div>
+          </div>
+
+          <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; pt: 15px;">
+            Eingegangen am ${new Date().toLocaleString("de-DE")} • Referenz: ${inquiryData.id}
+          </div>
+        </div>
+      `;
+
+      const customerHtml = `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+          <h2 style="color: #f59e0b;">Vielen Dank für Ihre Kooperationsanfrage! 🎵</h2>
+          <p>Hallo ${contactName},</p>
+          <p>wir haben Ihre Anfrage für <strong>${companyName}</strong> bezüglich <em>„${inquiryType}“</em> erfolgreich erhalten.</p>
+          <p>Dirk Schmetzer wird Ihre Projektdetails persönlich prüfen und sich innerhalb von <strong>24 Stunden</strong> mit einem passenden Vorschlag bei Ihnen melden.</p>
+          
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 13px;">
+            <p style="margin: 0 0 6px;"><strong>Ihre Anfrage-Referenz:</strong> ${inquiryData.id}</p>
+            <p style="margin: 0 0 6px;"><strong>Kooperationsbereich:</strong> ${inquiryType}</p>
+            <p style="margin: 0;"><strong>Direktkontakt bei dringenden Fragen:</strong> WhatsApp 01590 6122744 oder <a href="mailto:info@mymusicmoment24.de">info@mymusicmoment24.de</a></p>
+          </div>
+
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">
+            Herzliche Grüße,<br>
+            <strong>Dirk Schmetzer</strong><br>
+            MyMusicMoment24 • DS Online Services (SichtbarmitKI.agency)<br>
+            Stuttgart, Deutschland
+          </p>
+        </div>
+      `;
+
+      try {
+        await transporter.sendMail({
+          from: `"MyMusicMoment24 B2B" <${smtpUser}>`,
+          to: adminRecipients,
+          subject: `💼 Neue B2B-Kooperationsanfrage: ${companyName} (${contactName})`,
+          html: adminHtml,
+        });
+        console.log(`✉️ B2B-Admin-Benachrichtigung gesendet (${adminRecipients.join(", ")})`);
+
+        await transporter.sendMail({
+          from: `"Dirk Schmetzer | MyMusicMoment24" <${smtpUser}>`,
+          to: email,
+          bcc: "dirk.online.services@gmail.com",
+          subject: `Ihre Kooperationsanfrage bei MyMusicMoment24 (${companyName})`,
+          html: customerHtml,
+        });
+        console.log(`✉️ B2B-Bestätigung an Interessent gesendet (${email})`);
+      } catch (mailErr) {
+        console.error("⚠️ Fehler beim B2B-Mailversand:", mailErr.message);
+      }
+    }
+
+    res.json({ success: true, message: "Kooperationsanfrage erfolgreich übermittelt." });
+  } catch (error) {
+    console.error("Fehler bei B2B-Anfrage:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // 1. Standard / PayPal Order Endpoint
 app.post("/api/orders", async (req, res) => {
   try {

@@ -13,7 +13,7 @@ import PaymentBadges from "../components/PaymentBadges";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport }) {
+export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport, onNavigateB2B }) {
   const { t } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -196,6 +196,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 className="text-left px-3 py-2 rounded-lg hover:bg-slate-800 transition"
               >
                 {t("footer.aboutLink")}
+              </button>
+              <button
+                onClick={() => {
+                  closeMobileMenu();
+                  onNavigateB2B();
+                }}
+                className="text-left px-3 py-2 rounded-lg text-amber-400/90 hover:bg-slate-800 transition font-semibold"
+              >
+                💼 Für Agenturen &amp; B2B
               </button>
               <button
                 onClick={() => {
@@ -594,6 +603,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                     {t("footer.aboutLink")}
                   </button>
                 </li>
+                <li>
+                  <button onClick={onNavigateB2B} className="hover:text-amber-400 transition text-left flex items-center gap-1.5 font-medium text-amber-400/90">
+                    <span>💼</span>
+                    <span>{t("footer.b2bLink", "Für Agenturen & B2B")}</span>
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -625,6 +640,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   <button onClick={onNavigateSupport} className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs">
                     <span>💬</span>
                     <span>{t("footer.supportLink", "WhatsApp-Support & Hilfe")}</span>
+                  </button>
+                </li>
+                <li className="pt-1">
+                  <button onClick={onNavigateB2B} className="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs">
+                    <span>🤝</span>
+                    <span>{t("footer.b2bButton", "B2B & Kooperationsanfrage")}</span>
                   </button>
                 </li>
               </ul>
