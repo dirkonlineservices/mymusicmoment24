@@ -7,10 +7,10 @@ import { useLanguage } from "../context/LanguageContext";
 
 // Bank transfer configuration (Vorkasse)
 export const BANK_DETAILS = {
-  holder: "Dirk Schmetzer • DS Online Services",
-  bank: "Volksbank",
-  iban: import.meta.env.VITE_BANK_IBAN || "DE... (Wird nachfolgend angegeben)",
-  bic: "GENODE...",
+  holder: "Dirk Schmetzer",
+  bank: "ING DiBa",
+  iban: import.meta.env.VITE_BANK_IBAN || "DE92 5001 0517 5431 9731 25",
+  bic: "INGDDEFFXXX",
 };
 
 export default function PayPalCheckout({ isOpen, onClose, order }) {

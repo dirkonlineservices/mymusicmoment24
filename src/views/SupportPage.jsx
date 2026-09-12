@@ -213,25 +213,46 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3">
                   {language === "en"
-                    ? "If your payment method fails or you prefer a traditional wire transfer: Contact us briefly via WhatsApp or email. We will send you our German IBAN details. Important note: For bank transfers, production begins immediately once the payment is credited to our bank account (usually 1 business day)."
-                    : "Falls Online-Zahlungen bei Dir nicht klappen oder Du eine traditionelle Banküberweisung bevorzugst: Schreib uns kurz per WhatsApp oder E-Mail. Wir senden Dir unsere offizielle deutsche IBAN zu. Wichtiger Hinweis: Bei manueller Banküberweisung beginnt die Produktion Deines Songs sofort nach dem tatsächlichen Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
+                    ? "You can choose 'Bank Transfer' directly in our checkout to immediately receive your Order ID and our bank details. Important: Production begins immediately once the payment is credited to our bank account (usually 1 business day)."
+                    : "Du kannst die Banküberweisung direkt in unserem Song-Checkout auswählen und erhältst sofort deine persönliche Bestellnummer als Verwendungszweck. Wichtiger Hinweis: Bei manueller Banküberweisung beginnt die Produktion Deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
                 </p>
+                <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5 mb-3 font-mono">
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 font-sans gap-0.5">
+                    <span className="text-slate-400">Kontoinhaber:</span>
+                    <span className="font-bold text-white">Dirk Schmetzer</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 font-sans gap-0.5">
+                    <span className="text-slate-400">Bank:</span>
+                    <span className="font-bold text-white">ING DiBa</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 font-sans gap-0.5">
+                    <span className="text-slate-400">IBAN:</span>
+                    <span className="font-bold text-amber-400 font-mono tracking-wider">DE92 5001 0517 5431 9731 25</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 font-sans gap-0.5">
+                    <span className="text-slate-400">BIC:</span>
+                    <span className="font-bold text-slate-300 font-mono">INGDDEFFXXX</span>
+                  </div>
+                  <div className="text-[11px] text-amber-300 font-sans pt-1 border-t border-slate-800">
+                    💡 <strong>Wichtig:</strong> Bitte als Verwendungszweck immer Deine persönliche <strong>Bestellnummer (z.B. MMM-XXXXXX)</strong> aus dem Checkout angeben!
+                  </div>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20m%C3%B6chte%20gerne%20per%20Bank%C3%BCberweisung%20zahlen"
+                    href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zur%20Bank%C3%BCberweisung"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs transition"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Überweisungsdaten per WhatsApp anfragen</span>
+                    <span>Frage per WhatsApp stellen</span>
                   </a>
                   <a
                     href="mailto:info@mymusicmoment24.de?subject=Anfrage%20Bank%C3%BCberweisung"
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs transition border border-slate-700"
                   >
                     <Mail className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Per E-Mail anfragen</span>
+                    <span>Per E-Mail kontaktieren</span>
                   </a>
                 </div>
               </div>
