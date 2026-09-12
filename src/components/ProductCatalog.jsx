@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Sparkles, ArrowRight, Play, X, Youtube } from "lucide-react";
+import { Star, Sparkles, ArrowRight, Play, X, Youtube, Gift, CheckCircle2 } from "lucide-react";
 import { PRODUCTS } from "../data/products";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -10,6 +10,7 @@ const CATEGORIES = [
   { id: "jubilaeum", label: "Jubiläum & Hochzeitstag" },
   { id: "liebe", label: "Liebeslieder KI" },
   { id: "party", label: "Partytracks KI" },
+  { id: "urkunde", label: "Song-Urkunde" },
 ];
 
 export default function ProductCatalog({ onSelectProduct }) {
@@ -24,6 +25,7 @@ export default function ProductCatalog({ onSelectProduct }) {
     jubilaeum: language === "en" ? "Anniversary & Milestone" : "Jubiläum & Hochzeitstag",
     liebe: language === "en" ? "Love Songs AI" : "Liebeslieder KI",
     party: language === "en" ? "Party Tracks AI" : "Partytracks KI",
+    urkunde: language === "en" ? "Keepsake Certificate" : "Song-Urkunde",
   };
 
   const getLocalizedProduct = (prod) => {
@@ -110,7 +112,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     {prod.categoryLabel}
                   </span>
                   <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow">
-                    19,99 €
+                    {prod.price.toFixed(2).replace(".", ",")} €
                   </span>
                 </div>
               </div>
@@ -170,7 +172,7 @@ export default function ProductCatalog({ onSelectProduct }) {
             <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-3">
               <div>
                 <span className="text-[11px] text-slate-400 block">{t("catalog.fixedPrice")}</span>
-                <span className="text-xl sm:text-2xl font-black text-white">19,99 €</span>
+                <span className="text-xl sm:text-2xl font-black text-white">{prod.price.toFixed(2).replace(".", ",")} €</span>
               </div>
               <button
                 onClick={() => onSelectProduct(prod)}
@@ -183,6 +185,78 @@ export default function ProductCatalog({ onSelectProduct }) {
           </div>
           );
         })}
+      </div>
+
+      {/* Geschenkgutschein Feature Banner */}
+      <div className="mt-12 sm:mt-16 bg-gradient-to-br from-slate-900 via-slate-900/95 to-slate-950 border border-amber-500/30 hover:border-amber-500/50 rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden transition-all">
+        {/* Glow background accent */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex-1 min-w-0 z-10">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full mb-3">
+            <Gift className="w-3.5 h-3.5" />
+            <span>{t("catalog.voucherBanner.badge", "Das flexible Geschenk")}</span>
+          </div>
+
+          <h3 className="text-xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
+            {t("catalog.voucherBanner.title", "Überlasse dem Beschenkten die Wahl: Der Geschenkgutschein")}
+          </h3>
+
+          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 max-w-2xl">
+            {t("catalog.voucherBanner.desc", "Du möchtest einen Song verschenken, bist dir bei Musikstil oder Anekdoten aber noch unsicher? Mit unserem Gutschein verschenkst du pure Vorfreude und die volle kreative Freiheit.")}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 text-xs text-slate-300">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>{t("catalog.voucherBanner.feature1", "Flexibel einlösbar für jeden Anlass & jedes Genre")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>{t("catalog.voucherBanner.feature2", "Sofort druckfertig per E-Mail für eilige Geschenke")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>{t("catalog.voucherBanner.feature3", "Inklusive 1 Gratis-Korrekturschleife & privater Nutzungsrechte")}</span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={() =>
+                onSelectProduct({
+                  id: "gutschein",
+                  title: language === "en" ? "Gift Voucher for a Custom Song" : "Geschenkgutschein für ein Wunschlied",
+                  price: 19.99,
+                  category: "gutschein",
+                })
+              }
+              className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-2 transition active:scale-95"
+            >
+              <Gift className="w-4 h-4" />
+              <span>{t("catalog.voucherBanner.btn", "Gutschein verschenken (19,99 €)")}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <span className="text-xs text-slate-400 font-medium">
+              {language === "en" ? "Fixed price €19.99 • Instant PDF by Email" : "19,99 € Festpreis • Sofort per E-Mail"}
+            </span>
+          </div>
+        </div>
+
+        {/* Voucher Photo Mockup */}
+        <div className="w-full lg:w-80 shrink-0 z-10">
+          <div className="relative rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl shadow-black/80 group">
+            <img
+              src="/images/gutschein.jpg"
+              alt="Geschenkgutschein MyMusicMoment24"
+              className="w-full h-56 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+            <span className="absolute bottom-3 left-3 right-3 text-center text-xs font-bold text-amber-300 bg-slate-950/80 backdrop-blur-md py-1 px-3 rounded-lg border border-slate-800">
+              {language === "en" ? "Gift Voucher (€19.99)" : "Geschenkgutschein (19,99 €)"}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Video Modal */}

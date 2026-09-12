@@ -258,12 +258,21 @@ export const translations = {
           categoryLabel: "Personalisierte KI Partytracks",
           desc: "Uptempo-Feiertrack mit mitreißendem Beat und Mitsing-Refrain für Feiern, Junggesellenabschiede und Vereinsfeste.",
         },
-        gutschein: {
-          badge: "Jetzt Verschenken",
-          title: "Gutschein für dein Wunschlied",
-          categoryLabel: "Gutschein",
-          desc: "Der flexible Geschenkgutschein für ein personalisiertes Wunschlied. Flexibel einlösbar für jeden beliebigen Anlass.",
+        urkunde: {
+          badge: "Top-Geschenk",
+          title: "Offizielle Song-Urkunde mit Liedtext & QR-Code",
+          categoryLabel: "Druckfertige Song-Urkunde",
+          desc: "Das perfekte greifbare Geschenk zum Einrahmen: Hochauflösendes DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & scannbarem QR-Code zum direkten Abspielen auf dem Smartphone.",
         },
+      },
+      voucherBanner: {
+        badge: "Das flexible Geschenk",
+        title: "Überlasse dem Beschenkten die Wahl: Der Geschenkgutschein",
+        desc: "Du möchtest einen Song verschenken, bist dir bei Musikstil oder Anekdoten aber noch unsicher? Mit unserem Gutschein verschenkst du pure Vorfreude und die volle kreative Freiheit.",
+        feature1: "Flexibel einlösbar für jeden Anlass & jedes Genre",
+        feature2: "Sofort druckfertig per E-Mail für eilige Geschenke",
+        feature3: "Inklusive 1 Gratis-Korrekturschleife & privater Nutzungsrechte",
+        btn: "Gutschein verschenken (19,99 €)",
       },
     },
 
@@ -691,12 +700,21 @@ export const translations = {
           categoryLabel: "Personalized AI Party Tracks",
           desc: "High-energy celebration anthem with an infectious beat and sing-along chorus for parties, bachelor parties, and celebrations.",
         },
-        gutschein: {
-          badge: "Gift Now",
-          title: "Gift Voucher for a Custom Song",
-          categoryLabel: "Gift Voucher",
-          desc: "The flexible gift voucher for a personalized custom song. Easily redeemable for any occasion.",
+        urkunde: {
+          badge: "Top Gift",
+          title: "Official Song Keepsake Certificate with Lyrics & QR Code",
+          categoryLabel: "Print-Ready Keepsake Certificate",
+          desc: "The perfect tangible gift for framing: High-resolution DIN A4 PDF with custom lyrics, golden seal & scannable audio QR code to play the song instantly on any smartphone.",
         },
+      },
+      voucherBanner: {
+        badge: "The Flexible Gift",
+        title: "Let the Recipient Choose: The Gift Voucher",
+        desc: "Want to gift a custom song but unsure about the music genre or exact stories? With our gift voucher, you give complete creative freedom and joyful anticipation.",
+        feature1: "Redeemable for any occasion, style & personal story",
+        feature2: "Print-ready instant delivery via email for urgent gifts",
+        feature3: "Includes 1 free revision loop & full private rights",
+        btn: "Order Gift Voucher (€19.99)",
       },
     },
 
