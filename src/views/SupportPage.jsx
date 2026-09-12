@@ -90,7 +90,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
 
             <div>
               <a
-                href="https://wa.me/491708285513?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zu%20MyMusicMoment24"
+                href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zu%20MyMusicMoment24"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 active:scale-95"
@@ -218,7 +218,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/4915123456789?text=Hallo%20Dirk,%20ich%20m%C3%B6chte%20gerne%20per%20Bank%C3%BCberweisung%20zahlen"
+                    href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20m%C3%B6chte%20gerne%20per%20Bank%C3%BCberweisung%20zahlen"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs transition"

@@ -158,7 +158,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
               <Mail className="w-4 h-4 text-orange-400" /> info@mymusicmoment24.de
             </a>
             <a
-              href="https://wa.me/4915123456789"
+              href="https://wa.me/4915906122744"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/30 text-emerald-300 text-sm font-medium transition"
