@@ -188,8 +188,18 @@ async function processOrderAndSendEmails(orderData) {
   const transporter = getMailTransporter();
   if (transporter) {
     const smtpUser = process.env.SMTP_USER || "info@mymusicmoment24.de";
-    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || smtpUser;
     
+    // Recipients for order notifications: both domain email and direct gmail
+    const adminRecipients = ["info@mymusicmoment24.de", "dirk.online.services@gmail.com"];
+    if (process.env.ADMIN_NOTIFICATION_EMAIL) {
+      const customAdmins = process.env.ADMIN_NOTIFICATION_EMAIL.split(",").map(e => e.trim()).filter(Boolean);
+      customAdmins.forEach(email => {
+        if (!adminRecipients.includes(email)) adminRecipients.push(email);
+      });
+    }
+    
+    const isBankTransfer = orderData.paymentProvider === "bank_transfer";
+
     // 1. Email to Dirk / Admin
     let adminHtml = "";
     let adminSubject = "";
@@ -264,6 +274,44 @@ Notes: ${notes}</pre>
           <p style="color: #64748b; font-size: 13px;">Dieser Auftrag wurde über die Streaming-Sonderseite gebucht und bezahlt.</p>
         </div>
       `;
+    } else if (isBankTransfer) {
+      adminSubject = `🏦 Neue Überweisungs-Bestellung (Vorkasse): ${orderData.transactionId} (${orderData.amount} €) - ${orderData.customerName || 'Kunde'}`;
+      adminHtml = `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+          <h2 style="color: #059669; border-bottom: 2px solid #10b981; padding-bottom: 8px;">🏦 Neue Bestellung per Banküberweisung (Vorkasse)!</h2>
+          
+          <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 14px; border-radius: 8px; margin: 15px 0; color: #92400e;">
+            <strong>⏳ STATUS: WARTEN AUF GELDEINGANG</strong><br>
+            Der Kunde hat per Überweisung bestellt. Die Song-Produktion beginnt erst nach Zahlungseingang auf dem ING DiBa Konto!
+          </div>
+
+          <p><strong>Bestellnummer / Verwendungszweck:</strong> <code style="background: #f1f5f9; padding: 3px 8px; border-radius: 4px; font-size: 15px; font-weight: bold;">${orderData.transactionId}</code></p>
+          <p><strong>Zu überweisender Betrag:</strong> <span style="font-size: 16px; font-weight: bold; color: #059669;">${orderData.amount} €</span></p>
+          <p><strong>Bank:</strong> ING DiBa • IBAN: DE92 5001 0517 5431 9731 25</p>
+          
+          <h3 style="color: #0f172a; margin-top: 20px;">👤 Kundendaten:</h3>
+          <ul style="line-height: 1.6;">
+            <li><strong>Name:</strong> ${orderData.customerName || 'Nicht angegeben'}</li>
+            <li><strong>E-Mail:</strong> <a href="mailto:${orderData.customerEmail}">${orderData.customerEmail}</a></li>
+            <li><strong>WhatsApp / Tel:</strong> ${orderData.customerPhone || 'Nicht angegeben'}</li>
+          </ul>
+
+          <h3 style="color: #0f172a; margin-top: 20px;">🎵 Song-Konfiguration:</h3>
+          <ul style="line-height: 1.6;">
+            <li><strong>Anlass:</strong> ${orderData.orderDetails?.occasion || 'Personalisierter Song'}</li>
+            <li><strong>Genre:</strong> ${orderData.orderDetails?.genre || 'Standard'}</li>
+            <li><strong>Stimme:</strong> ${orderData.orderDetails?.voice || 'Duett'}</li>
+            <li><strong>Sprache:</strong> ${orderData.orderDetails?.language || 'Deutsch'}</li>
+            <li><strong>Express-Lieferung (<12h):</strong> ${orderData.orderDetails?.express ? '✅ JA (Express)' : '❌ Nein (Standard)'}</li>
+            <li><strong>PDF Songtext-Urkunde:</strong> ${orderData.orderDetails?.pdfLyrics ? '✅ JA' : '❌ Nein'}</li>
+          </ul>
+
+          <h3 style="color: #0f172a; margin-top: 20px;">📝 Wunschtext & Details des Kunden:</h3>
+          <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid #059669; white-space: pre-wrap;">
+  ${orderData.songDetailsText || 'Keine zusätzlichen Anmerkungen.'}
+          </div>
+        </div>
+      `;
     } else {
       adminSubject = `🎉 Neuer Song-Auftrag: ${orderData.transactionId} (${orderData.amount} €)`;
       adminHtml = `
@@ -327,6 +375,39 @@ Notes: ${notes}</pre>
           <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
         </div>
       `;
+    } else if (isBankTransfer) {
+      customerSubject = `Deine Song-Bestellung (#${orderData.transactionId}) – Überweisungsdaten (Vorkasse)`;
+      customerHtml = `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+          <h2 style="color: #059669;">Vielen Dank für deine Song-Bestellung! 🎵</h2>
+          <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
+          <p>wir haben deine Bestellung dankend erhalten. Bitte überweise den Betrag von <strong>${orderData.amount} €</strong> per Banküberweisung an folgende Bankverbindung:</p>
+          
+          <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 18px; border-radius: 10px; margin: 20px 0;">
+            <p style="margin: 0 0 10px; font-weight: bold; color: #065f46; font-size: 15px;">🏦 Bankverbindung für deine Überweisung:</p>
+            <p style="margin: 0 0 6px;"><strong>Verwendungszweck (WICHTIG):</strong> <code style="background: #fff; padding: 3px 8px; border-radius: 4px; font-size: 14px; font-weight: bold; color: #047857;">${orderData.transactionId}</code></p>
+            <p style="margin: 0 0 6px;"><strong>Zu überweisender Betrag:</strong> <span style="font-size: 15px; font-weight: bold; color: #059669;">${orderData.amount} €</span></p>
+            <p style="margin: 0 0 6px;"><strong>Empfänger:</strong> Dirk Schmetzer</p>
+            <p style="margin: 0 0 6px;"><strong>Bank:</strong> ING DiBa</p>
+            <p style="margin: 0 0 6px;"><strong>IBAN:</strong> <code style="background: #fff; padding: 3px 8px; border-radius: 4px; font-size: 14px; font-weight: bold;">DE92 5001 0517 5431 9731 25</code></p>
+            <p style="margin: 0;"><strong>BIC:</strong> INGDDEFFXXX</p>
+          </div>
+
+          <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 14px; border-radius: 8px; margin: 20px 0; font-size: 13px; color: #92400e;">
+            ⏳ <strong>Wichtiger Hinweis zum Produktionsstart:</strong><br>
+            Die Erstellung deines individuellen Songs beginnt unmittelbar nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0 0 8px;"><strong>Bestell-Nr:</strong> ${orderData.transactionId}</p>
+            <p style="margin: 0 0 8px;"><strong>Bestelltes Produkt:</strong> ${orderData.orderName || 'Persönlicher Song'}</p>
+            <p style="margin: 0;"><strong>Zustellung nach Fertigstellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
+          </div>
+
+          <p>Sobald deine Zahlung eingegangen ist, erhältst du eine kurze Bestätigung und wir legen mit der Komposition deines Wunschliedes los.</p>
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+        </div>
+      `;
     } else {
       customerSubject = `Deine Song-Bestellung bei MyMusicMoment24 (#${orderData.transactionId})`;
       customerHtml = `
@@ -350,20 +431,21 @@ Notes: ${notes}</pre>
     try {
       await transporter.sendMail({
         from: `"MyMusicMoment24" <${smtpUser}>`,
-        to: adminEmail,
+        to: adminRecipients,
         subject: adminSubject,
         html: adminHtml,
       });
-      console.log(`✉️ Benachrichtigung an Admin gesendet (${adminEmail})`);
+      console.log(`✉️ Benachrichtigung an Admin gesendet (${adminRecipients.join(", ")})`);
 
       if (orderData.customerEmail) {
         await transporter.sendMail({
           from: `"MyMusicMoment24" <${smtpUser}>`,
           to: orderData.customerEmail,
+          bcc: "dirk.online.services@gmail.com",
           subject: customerSubject,
           html: customerHtml,
         });
-        console.log(`✉️ Bestellbestätigung an Kunde gesendet (${orderData.customerEmail})`);
+        console.log(`✉️ Bestellbestätigung an Kunde gesendet (${orderData.customerEmail}, BCC: dirk.online.services@gmail.com)`);
       }
     } catch (mailErr) {
       console.error("⚠️ Fehler beim E-Mail-Versand:", mailErr.message);
