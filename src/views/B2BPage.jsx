@@ -129,7 +129,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> {t("b2b.tagLicense", "Kommerzielle Lizenz inklusive")}
             </span>
             <span className="px-3 py-1 rounded-lg bg-slate-800/70 border border-slate-700/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-400" /> {t("b2b.tagTurnaround", "Turnaround ab 24 Stunden")}
+              <Clock className="w-3.5 h-3.5 text-amber-400" /> {t("b2b.tagTurnaround", "Lieferzeit ab 24 Stunden")}
             </span>
             <span className="px-3 py-1 rounded-lg bg-slate-800/70 border border-slate-700/60 flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5 text-blue-400" /> {t("b2b.tagWhiteLabel", "White-Label & Agenturrabatte")}

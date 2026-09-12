@@ -487,7 +487,7 @@ export const translations = {
       title: "Singende Produktwerbung, Jingles & Audio-Content mit KI",
       subtitle: "Verwandle Produkte, Brand-Storys und Werbekampagnen in virale Ohrwürmer. Maßgeschneiderter Audio-Content für Agenturen, E-Commerce-Marken und Unternehmen – mit vollen kommerziellen Nutzungsrechten.",
       tagLicense: "Kommerzielle Lizenz inklusive",
-      tagTurnaround: "Turnaround ab 24 Stunden",
+      tagTurnaround: "Lieferzeit ab 24 Stunden",
       tagWhiteLabel: "White-Label & Agenturrabatte",
       useCasesTitle: "Wie Agenturen & Marken unsere Musik nutzen",
       useCasesSubtitle: "Hochwertiger KI-gestützter Audio-Content hebt Werbekampagnen von der Masse ab und bleibt im Kopf.",
