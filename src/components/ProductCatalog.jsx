@@ -102,18 +102,32 @@ export default function ProductCatalog({ onSelectProduct }) {
                   </span>
                 )}
 
-                {/* KI-Transparenz Label */}
-                <span className="absolute top-3 right-3 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>{t("catalog.aiCreativeBadge", "KI-Creative")}</span>
-                </span>
+                {/* KI-Transparenz Label or Preview Button */}
+                {prod.id === "urkunde" ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCertificateModalOpen(true);
+                    }}
+                    className="absolute top-3 right-3 px-2 py-0.5 bg-slate-950/80 hover:bg-amber-500 hover:text-slate-950 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[10px] font-bold rounded-md shadow-sm flex items-center gap-1 transition"
+                  >
+                    <Eye className="w-3 h-3" />
+                    <span>{t("catalog.urkundePreviewBtn", "Vorschau")}</span>
+                  </button>
+                ) : (
+                  <span className="absolute top-3 right-3 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
+                    <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                    <span>{t("catalog.aiCreativeBadge", "KI-Creative")}</span>
+                  </span>
+                )}
 
-                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
-                  <span className="text-[11px] sm:text-xs font-bold text-amber-300 bg-slate-950/90 px-2.5 py-1 rounded-md backdrop-blur-sm border border-slate-800">
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end gap-2">
+                  <span className="text-[11px] sm:text-xs font-bold text-amber-300 bg-slate-950/90 px-2.5 py-1 rounded-md backdrop-blur-sm border border-slate-800 truncate">
                     {prod.categoryLabel}
                   </span>
-                  <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow">
-                    {prod.id === "urkunde" ? t("catalog.urkundeTag", "+ 9,99 € Add-on") : `${prod.price.toFixed(2).replace(".", ",")} €`}
+                  <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow whitespace-nowrap shrink-0">
+                    {prod.id === "urkunde" ? t("catalog.urkundeTag", "+ 9,99 €") : `${prod.price.toFixed(2).replace(".", ",")} €`}
                   </span>
                 </div>
               </div>
@@ -150,20 +164,6 @@ export default function ProductCatalog({ onSelectProduct }) {
                   {prod.description}
                 </p>
 
-                {prod.id === "urkunde" && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCertificateModalOpen(true);
-                    }}
-                    className="mb-2 w-full py-2 px-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-400 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition"
-                  >
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>{t("catalog.urkundePreviewBtn", "Urkunden-Beispiel ansehen")}</span>
-                  </button>
-                )}
-
                 {prod.youtubeVideoId && (
                   <button
                     type="button"
@@ -184,12 +184,12 @@ export default function ProductCatalog({ onSelectProduct }) {
             </div>
 
             {/* Price & CTA Button */}
-            <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-3">
-              <div>
-                <span className="text-[11px] text-slate-400 block">
-                  {prod.id === "urkunde" ? t("catalog.urkundeOnlyWithSong", "Nur mit Song bestellbar") : t("catalog.fixedPrice")}
+            <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <span className="text-[11px] text-slate-400 block truncate">
+                  {prod.id === "urkunde" ? t("catalog.addonPriceLabel", "Song-Zusatz") : t("catalog.fixedPrice", "Festpreis")}
                 </span>
-                <span className="text-xl sm:text-2xl font-black text-white">
+                <span className="text-xl sm:text-2xl font-black text-white whitespace-nowrap block">
                   {prod.id === "urkunde" ? "+ 9,99 €" : `${prod.price.toFixed(2).replace(".", ",")} €`}
                 </span>
               </div>
@@ -203,15 +203,15 @@ export default function ProductCatalog({ onSelectProduct }) {
                     }
                     window.dispatchEvent(new CustomEvent("preselect-urkunde"));
                   }}
-                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95 whitespace-nowrap shrink-0"
                 >
-                  <span>{t("catalog.urkundeActionBtn", "Song konfigurieren & Urkunde dazu")}</span>
+                  <span>{t("catalog.urkundeActionBtn", "Mit Song wählen")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               ) : (
                 <button
                   onClick={() => onSelectProduct(prod)}
-                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95 whitespace-nowrap shrink-0"
                 >
                   <span>{t("catalog.orderBtn")}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -385,7 +385,7 @@ export default function ProductCatalog({ onSelectProduct }) {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>{language === "en" ? "Scannable Audio QR Code" : "Scannbarer Audio-QR-Code"}</span>
+                <span>{language === "en" ? "QR Code: Play & Download" : "Audio-QR-Code: Anhören & Download"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
