@@ -2,19 +2,24 @@ import React from "react";
 import { ArrowLeft, Calendar, User, Clock, Music, ArrowRight, Share2 } from "lucide-react";
 import { getBlogPostBySlug } from "../lib/blog";
 import SchemaJsonLd from "../components/SchemaJsonLd";
+import { useLanguage } from "../context/LanguageContext";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
+  const { language } = useLanguage();
   const post = getBlogPostBySlug(slug);
 
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-bold text-white mb-4">Artikel nicht gefunden</h1>
+        <h1 className="text-3xl font-bold text-white mb-4">
+          {language === "en" ? "Article not found" : "Artikel nicht gefunden"}
+        </h1>
         <button
           onClick={onBackToHome}
           className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex items-center gap-2"
         >
-          <ArrowLeft className="w-5 h-5" /> Zurück zur Startseite
+          <ArrowLeft className="w-5 h-5" /> {language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}
         </button>
       </div>
     );
@@ -32,19 +37,22 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator }) {
             className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition font-medium"
           >
             <ArrowLeft className="w-4 h-4 text-orange-400" />
-            <span>Zurück zur Übersicht</span>
+            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Übersicht"}</span>
           </button>
-          <button
-            onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
-          >
-            <img
-              src="/images/logo-icon.png"
-              alt="MyMusicMoment24 Logo"
-              className="w-7 h-7 object-contain"
-            />
-            <span>MyMusicMoment<span className="text-amber-400">24</span></span>
-          </button>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <button
+              onClick={onBackToHome}
+              className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+            >
+              <img
+                src="/images/logo-icon.png"
+                alt="MyMusicMoment24 Logo"
+                className="w-7 h-7 object-contain"
+              />
+              <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+            </button>
+          </div>
         </div>
       </header>
 

@@ -10,12 +10,15 @@ import YouTubeShowcase from "../components/YouTubeShowcase";
 import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 import PaymentBadges from "../components/PaymentBadges";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal }) {
+  const { t } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const FAQS = [
+  const faqs = t("faq.items", [
     {
       q: "Wie viel kostet ein persönlicher Song?",
       a: "Jedes personalisierte Musikstück kostet bei uns nur 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
@@ -40,7 +43,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       q: "Welche Angaben von mir benötigt ihr für den Songtext?",
       a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
     },
-  ];
+  ]);
 
   const handleSelectProduct = (product) => {
     const orderData = {
@@ -81,40 +84,42 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 MyMusicMoment<span className="text-amber-400">24</span>
               </span>
               <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-none tracking-normal">
-                Dein Persönlicher Song
+                {t("nav.tagline")}
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <a href="#shop" className="hover:text-amber-400 transition">Shop & Produkte</a>
-            <a href="#hoerproben" className="hover:text-amber-400 transition">Hörproben</a>
-            <a href="#prozess" className="hover:text-amber-400 transition">Ablauf</a>
-            <a href="#konfigurator" className="hover:text-amber-400 transition">Konfigurator</a>
-            <a href="#kundenstimmen" className="hover:text-amber-400 transition">Erfahrungen</a>
-            <a href="#faq" className="hover:text-amber-400 transition">FAQ</a>
+            <a href="#shop" className="hover:text-amber-400 transition">{t("nav.shop")}</a>
+            <a href="#hoerproben" className="hover:text-amber-400 transition">{t("nav.samples")}</a>
+            <a href="#prozess" className="hover:text-amber-400 transition">{t("nav.process")}</a>
+            <a href="#konfigurator" className="hover:text-amber-400 transition">{t("nav.configurator")}</a>
+            <a href="#kundenstimmen" className="hover:text-amber-400 transition">{t("nav.reviews")}</a>
+            <a href="#faq" className="hover:text-amber-400 transition">{t("nav.faq")}</a>
             <button
               onClick={() => onNavigateBlog("individueller-hochzeitssong")}
               className="text-amber-400 hover:text-amber-300 transition font-semibold"
             >
-              Ratgeber
+              {t("nav.guide")}
             </button>
             <button
               onClick={onNavigateAuthor}
               className="hover:text-amber-400 transition font-medium"
             >
-              Über uns
+              {t("nav.about")}
             </button>
           </nav>
 
-          {/* Desktop Action Button & Mobile Hamburger Toggle */}
-          <div className="flex items-center gap-2.5">
+          {/* Desktop Action Button & Language Switcher */}
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+
             <a
               href="#konfigurator"
               className="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
             >
-              Song konfigurieren (19,99 €)
+              {t("nav.orderCta")}
             </a>
 
             <button
@@ -131,24 +136,28 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-5 space-y-3 animate-in slide-in-from-top-3">
+            <div className="flex items-center justify-between px-3 pb-2 border-b border-slate-800">
+              <span className="text-xs text-slate-400 font-medium">Sprache / Language:</span>
+              <LanguageSwitcher />
+            </div>
             <nav className="flex flex-col space-y-2.5 text-sm font-semibold text-slate-200">
               <a href="#shop" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Shop & Produkte (19,99 €)
+                {t("nav.shop")} (19,99 €)
               </a>
               <a href="#hoerproben" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Hörproben
+                {t("nav.samples")}
               </a>
               <a href="#prozess" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Ablauf & WhatsApp
+                {t("nav.process")} &amp; WhatsApp
               </a>
               <a href="#konfigurator" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Song-Konfigurator
+                {t("nav.configurator")}
               </a>
               <a href="#kundenstimmen" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Kundenstimmen & Bewertungen
+                {t("nav.reviews")}
               </a>
               <a href="#faq" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
-                Häufig gestellte Fragen (FAQ)
+                {t("nav.faq")}
               </a>
               <button
                 onClick={() => {
@@ -157,7 +166,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 }}
                 className="text-left px-3 py-2 rounded-lg text-amber-400 hover:bg-slate-800 transition"
               >
-                Ratgeber & Blog
+                {t("nav.guide")} &amp; Blog
               </button>
               <button
                 onClick={() => {
@@ -166,7 +175,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 }}
                 className="text-left px-3 py-2 rounded-lg hover:bg-slate-800 transition"
               >
-                Über Dirk Schmetzer
+                {t("footer.aboutLink")}
               </button>
               <button
                 onClick={() => {
@@ -175,7 +184,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 }}
                 className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
               >
-                Impressum
+                {t("nav.impressum")}
               </button>
               <button
                 onClick={() => {
@@ -184,7 +193,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 }}
                 className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
               >
-                Datenschutz
+                {t("nav.privacy")}
               </button>
             </nav>
 
@@ -193,7 +202,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               onClick={closeMobileMenu}
               className="block text-center w-full py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black rounded-xl text-sm shadow-lg shadow-amber-500/20"
             >
-              Jetzt Song Konfigurieren (19,99 €)
+              {t("nav.mobileOrderCta")}
             </a>
           </div>
         )}
@@ -208,17 +217,18 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           {/* Subheader Slogan */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full">
             <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span>„Von Herzen für die Ohren – MyMusicMoment“</span>
+            <span>{t("hero.badge")}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
-            Ein persönlicher Song, der eure Geschichte erzählt – <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">emotional, individuell & unvergesslich.</span>
+            {t("hero.title")}{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">
+              {t("hero.titleHighlight")}
+            </span>
           </h1>
 
           <p className="text-sm sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-            Perfekt für Hochzeit, Geburtstag oder jeden besonderen Moment. 
-            Produktion von <span className="font-semibold text-white">Mensch & KI & Storytelling</span>. 
-            Lieferung meist in <span className="font-semibold text-amber-400">24 Stunden (werktags)</span> für nur <span className="font-black text-amber-400">19,99 €</span>.
+            {t("hero.description")}
           </p>
 
           {/* 3 Emotional Story Cards */}
@@ -229,13 +239,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
                 <img
                   src="/images/hero-step-1.jpg"
-                  alt="Suche nach dem perfekten Geschenk"
+                  alt={t("hero.storyCard1Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  1. Inspiration suchen
+                  {t("hero.storyCard1Badge")}
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
@@ -243,9 +253,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">Auf der Suche nach dem Einzigartigen</h3>
+                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard1Title")}</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Du suchst nach einem Geschenk, das wirklich berührt und für immer im Herzen bleibt.
+                  {t("hero.storyCard1Desc")}
                 </p>
               </div>
             </div>
@@ -255,13 +265,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
                 <img
                   src="/images/hero-step-2.jpg"
-                  alt="Begeisterung beim ersten Hören"
+                  alt={t("hero.storyCard2Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  2. Echte Begeisterung
+                  {t("hero.storyCard2Badge")}
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
@@ -269,9 +279,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">Gänsehaut beim ersten Hören</h3>
+                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard2Title")}</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Du setzt die Kopfhörer auf und hörst eure ganz eigenen Geschichten und Meilensteine als fertigen Song.
+                  {t("hero.storyCard2Desc")}
                 </p>
               </div>
             </div>
@@ -281,13 +291,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
                 <img
                   src="/images/hero-step-3.jpg"
-                  alt="Freudentränen und Gänsehaut"
+                  alt={t("hero.storyCard3Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  3. Freudentränen
+                  {t("hero.storyCard3Badge")}
                 </span>
                 <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
@@ -295,9 +305,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">Ein unvergesslicher Moment</h3>
+                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard3Title")}</h3>
                 <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
-                  Der gemeinsame Moment auf der Feier: Wenn die ersten Tränen der Rührung fließen.
+                  {t("hero.storyCard3Desc")}
                 </p>
               </div>
             </div>
@@ -311,7 +321,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
             >
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
-              <span>Jetzt persönlichen Song konfigurieren (19,99 €)</span>
+              <span>{t("hero.ctaPrimary")}</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
@@ -319,7 +329,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               className="w-full sm:w-auto px-6 py-3.5 sm:py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs sm:text-base rounded-2xl border border-slate-800 flex items-center justify-center gap-2 transition"
             >
               <Headphones className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
-              <span>Hörproben anhören</span>
+              <span>{t("hero.ctaSecondary")}</span>
             </a>
           </div>
 
@@ -329,15 +339,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
               ))}
-              <span className="text-slate-200 ml-1 font-bold">Kunden lieben unsere Musik!</span>
+              <span className="text-slate-200 ml-1 font-bold">{t("hero.trustReviews")}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-amber-400" />
-              <span>Lieferung in 24h</span>
+              <span>{t("hero.trustDelivery")}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Käuferschutz & Gratis-Verbesserungsschleife</span>
+              <span>{t("hero.trustGuarantee")}</span>
             </div>
           </div>
 
@@ -365,13 +375,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       <section id="kundenstimmen" className="max-w-6xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
-            <Heart className="w-3.5 h-3.5" /> 100% Echte Bewertungen
+            <Heart className="w-3.5 h-3.5" /> {t("testimonials.badge")}
           </div>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-            Was Kunden sagen
+            {t("testimonials.title")}
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
-            Echte Rückmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.
+            {t("testimonials.subtitle")}
           </p>
         </div>
 
@@ -386,10 +396,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 ))}
               </div>
               <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
-                „Also ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich für besondere Menschen benötige haben ihre Besonderheiten. 
-                Ich bin dem ganzen Team sehr dankbar! Da es eigentlich so eine Besonderheit in sich trägt wo jedesmal mit Hingabe gearbeitet wird ins Detail. 
-                Wünsche und auch Änderungen nehmt ihr mit Gelassenheit und Humor auf und gebt einem das Gefühl das es Ok ist! 
-                Ihr seit klasse, und jedesmal mehr als zufriedenstellend.“
+                {t("testimonials.tanjaText")}
               </p>
             </div>
             <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
@@ -398,11 +405,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   TS
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xs sm:text-sm">Tanja aus Stuttgart</h4>
-                  <p className="text-[11px] text-amber-400 font-medium">individuelle Geburtstagslieder</p>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">{t("testimonials.tanjaLocation")}</h4>
+                  <p className="text-[11px] text-amber-400 font-medium">{t("testimonials.tanjaTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-slate-500">Verifizierter Kauf</span>
+              <span className="text-[10px] sm:text-xs text-slate-500">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
@@ -415,8 +422,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 ))}
               </div>
               <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
-                „Ich habe etwas Besonderes für einen ganz besonderen Menschen in meinem Leben gesucht – und hier das perfekte Geschenk gefunden. 
-                Wunderschöne Arbeit, mit viel Liebe gemacht. Vielen Dank! 😊👍“
+                {t("testimonials.joernText")}
               </p>
             </div>
             <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
@@ -425,11 +431,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   JN
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xs sm:text-sm">Jörn aus Neunkirchen</h4>
-                  <p className="text-[11px] text-purple-400 font-medium">Hochzeitstag</p>
+                  <h4 className="font-bold text-white text-xs sm:text-sm">{t("testimonials.joernLocation")}</h4>
+                  <p className="text-[11px] text-purple-400 font-medium">{t("testimonials.joernTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-slate-500">Verifizierter Kauf</span>
+              <span className="text-[10px] sm:text-xs text-slate-500">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
@@ -441,20 +447,20 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="space-y-1.5 text-center sm:text-left">
             <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 uppercase tracking-wider">
-              <FileText className="w-3.5 h-3.5" /> Aus unserem Ratgeber
+              <FileText className="w-3.5 h-3.5" /> {t("blogFeature.badge")}
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Individueller Hochzeitssong mit KI: So entsteht euer Song
+              {t("blogFeature.title")}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-              Erfahre alles über die Vorteile, den Entstehungsprozess und wie du die schönsten Anekdoten in den Text einfließen lässt.
+              {t("blogFeature.subtitle")}
             </p>
           </div>
           <button
             onClick={() => onNavigateBlog("individueller-hochzeitssong")}
             className="w-full sm:w-auto shrink-0 px-5 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-sm"
           >
-            <span>Artikel lesen</span>
+            <span>{t("blogFeature.readArticle")}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -463,12 +469,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* 8. FAQ Section */}
       <section id="faq" className="max-w-3xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">Häufig gestellte Fragen (FAQ)</h2>
-          <p className="text-slate-400 text-xs sm:text-sm">Alles, was du über deinen persönlichen Song wissen musst</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{t("faq.title")}</h2>
+          <p className="text-slate-400 text-xs sm:text-sm">{t("faq.subtitle")}</p>
         </div>
 
         <div className="space-y-3">
-          {FAQS.map((faq, idx) => {
+          {faqs.map((faq, idx) => {
             const isOpen = activeFaq === idx;
             return (
               <div
@@ -510,12 +516,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                     MyMusicMoment<span className="text-amber-400">24</span>
                   </span>
                   <span className="text-[11px] text-slate-400 font-normal leading-none block mt-0.5">
-                    Dein Persönlicher Song
+                    {t("nav.tagline")}
                   </span>
                 </div>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und persönliche Qualitätsprüfung ab 19,99 €.
+                {t("footer.brandDesc")}
               </p>
               <div className="text-xs text-slate-500 space-y-1">
                 <p className="font-semibold text-slate-400">DS Online Services • Dirk Schmetzer</p>
@@ -536,36 +542,36 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             {/* Col 2: Beliebte Anlässe */}
             <div className="space-y-3">
               <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
-                Beliebte Songs
+                {t("footer.popularSongs")}
               </h3>
               <ul className="space-y-2 text-xs">
-                <li><a href="#shop" className="hover:text-white transition">Hochzeitssong &amp; Traulied</a></li>
-                <li><a href="#shop" className="hover:text-white transition">Personalisierter Geburtstagssong</a></li>
-                <li><a href="#shop" className="hover:text-white transition">Liebeslied im Duett (2 Stimmen)</a></li>
-                <li><a href="#shop" className="hover:text-white transition">Jubiläum &amp; Ruhestand</a></li>
-                <li><a href="#shop" className="hover:text-white transition">Partytrack &amp; Stimmungsmusik</a></li>
-                <li><a href="#shop" className="hover:text-white transition">Geschenkgutschein (19,99 €)</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.weddingSong")}</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.birthdaySong")}</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.duetSong")}</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.anniversarySong")}</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.partySong")}</a></li>
+                <li><a href="#shop" className="hover:text-white transition">{t("footer.giftVoucher")}</a></li>
               </ul>
             </div>
 
             {/* Col 3: Service & Navigation */}
             <div className="space-y-3">
               <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
-                Service &amp; Ratgeber
+                {t("footer.serviceGuide")}
               </h3>
               <ul className="space-y-2 text-xs">
-                <li><a href="#prozess" className="hover:text-white transition">5-Schritte-Ablauf &amp; WhatsApp</a></li>
-                <li><a href="#hoerproben" className="hover:text-white transition">Hörproben im Audio-Player</a></li>
-                <li><a href="#konfigurator" className="hover:text-white transition">Song-Konfigurator starten</a></li>
-                <li><a href="#faq" className="hover:text-white transition">Häufige Fragen (FAQ)</a></li>
+                <li><a href="#prozess" className="hover:text-white transition">{t("footer.processSteps")}</a></li>
+                <li><a href="#hoerproben" className="hover:text-white transition">{t("footer.audioSamples")}</a></li>
+                <li><a href="#konfigurator" className="hover:text-white transition">{t("footer.startConfigurator")}</a></li>
+                <li><a href="#faq" className="hover:text-white transition">{t("footer.faq")}</a></li>
                 <li>
                   <button onClick={() => onNavigateBlog("individueller-hochzeitssong")} className="hover:text-white transition text-left">
-                    Ratgeber &amp; KI-Musik Blog
+                    {t("footer.blogLink")}
                   </button>
                 </li>
                 <li>
                   <button onClick={onNavigateAuthor} className="hover:text-white transition text-left">
-                    Über Gründer Dirk Schmetzer
+                    {t("footer.aboutLink")}
                   </button>
                 </li>
               </ul>
@@ -574,25 +580,25 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             {/* Col 4: Rechtliches & Datenschutz */}
             <div className="space-y-3">
               <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
-                Rechtliches &amp; Datenschutz
+                {t("footer.legalHeader")}
               </h3>
               <ul className="space-y-2.5 text-xs">
                 <li>
                   <button onClick={() => onNavigateLegal("impressum")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
                     <span>⚖️</span>
-                    <span>Impressum (§ 5 DDG)</span>
+                    <span>{t("footer.impressum")}</span>
                   </button>
                 </li>
                 <li>
                   <button onClick={() => onNavigateLegal("datenschutz")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
                     <span>🛡️</span>
-                    <span>Datenschutzerklärung (DSGVO)</span>
+                    <span>{t("footer.privacy")}</span>
                   </button>
                 </li>
                 <li>
                   <button onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))} className="hover:text-amber-400 transition text-left underline decoration-dotted flex items-center gap-1.5">
                     <span>🍪</span>
-                    <span>Cookie-Einstellungen</span>
+                    <span>{t("footer.cookieSettings")}</span>
                   </button>
                 </li>
               </ul>
@@ -603,15 +609,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <div className="pt-8 border-t border-slate-900/80 flex flex-col lg:flex-row items-center justify-between gap-5 text-[11px] text-slate-500 text-center lg:text-left">
             <div className="space-y-1">
               <p>
-                &copy; 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. Alle Rechte vorbehalten.
+                {t("footer.allRights")}
               </p>
               <p className="text-[10px] text-slate-600">
-                Sichere 256-Bit SSL-Verschlüsselung &amp; zertifizierte Zahlungsabwicklung.
+                {t("footer.sslSecurity")}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2">
               <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 hidden sm:inline mr-1">
-                Zahlungsarten:
+                {t("footer.paymentMethods")}
               </span>
               <PaymentBadges />
             </div>
@@ -622,14 +628,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
         <div>
-          <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">Persönlicher Song</span>
+          <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">{t("footer.stickyTitle")}</span>
           <span className="text-lg font-black text-amber-400">19,99 €</span>
         </div>
         <a
           href="#shop"
           className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
         >
-          <span>Jetzt bestellen</span>
+          <span>{t("footer.stickyCta")}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </a>
       </div>

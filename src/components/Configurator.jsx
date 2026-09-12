@@ -4,23 +4,16 @@ import {
   Radio, Guitar, PartyPopper, Music2, Disc, Zap 
 } from "lucide-react";
 import { trackConfiguratorStep, trackViewItem } from "../lib/gtmPreview";
+import { useLanguage } from "../context/LanguageContext";
 
-const STEPS = [
-  { num: 1, title: "Anlass", icon: Heart },
-  { num: 2, title: "Musikstil", icon: Music },
-  { num: 3, title: "Gesang", icon: Mic },
-  { num: 4, title: "Geschichte", icon: Sparkles },
-  { num: 5, title: "Paket", icon: Gift },
-];
-
-const OCCASIONS = [
+const OCCASIONS_DATA = [
   { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz" },
   { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, berührend oder mitreißend mit allen Meilensteinen" },
   { id: "liebe", label: "Liebeserklärung & Jahrestag", icon: Sparkles, desc: "Sag ‚Ich liebe dich‘ mit einer unvergesslichen Ballade" },
   { id: "party", label: "Party, Verein & Abschied", icon: Flame, desc: "Uptempo-Hymne mit Ohrwurm-Refrain zum Mitsingen" },
 ];
 
-const GENRES = [
+const GENRES_DATA = [
   { 
     id: "pop-radio", 
     label: "Modern Pop / Radio-Hit", 
@@ -71,13 +64,14 @@ const GENRES = [
   },
 ];
 
-const VOICES = [
+const VOICES_DATA = [
   { id: "weiblich", label: "Weibliche Stimme", desc: "Sanft, klar und voller Emotion" },
   { id: "maennlich", label: "Männliche Stimme", desc: "Warm, markant und ausdrucksstark" },
   { id: "duett", label: "Emotionales Duett", desc: "Harmonischer Dialog aus zwei Stimmen" },
 ];
 
 export default function Configurator({ initialOccasion = "hochzeit", onOpenCheckout }) {
+  const { t, language } = useLanguage();
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState({
     occasion: initialOccasion,
@@ -90,6 +84,32 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     express: false,
     pdfLyrics: false,
   });
+
+  const stepsList = [
+    { num: 1, title: t("configurator.steps.1", "Anlass"), icon: Heart },
+    { num: 2, title: t("configurator.steps.2", "Musikstil"), icon: Music },
+    { num: 3, title: t("configurator.steps.3", "Gesang"), icon: Mic },
+    { num: 4, title: t("configurator.steps.4", "Geschichte"), icon: Sparkles },
+    { num: 5, title: t("configurator.steps.5", "Paket"), icon: Gift },
+  ];
+
+  const occasionsList = OCCASIONS_DATA.map((occ) => ({
+    ...occ,
+    label: t(`configurator.occasions.${occ.id}.label`, occ.label),
+    desc: t(`configurator.occasions.${occ.id}.desc`, occ.desc),
+  }));
+
+  const genresList = GENRES_DATA.map((g) => ({
+    ...g,
+    label: t(`configurator.genres.${g.id}.label`, g.label),
+    desc: t(`configurator.genres.${g.id}.desc`, g.desc),
+  }));
+
+  const voicesList = VOICES_DATA.map((v) => ({
+    ...v,
+    label: t(`configurator.voices.${v.id}.label`, v.label),
+    desc: t(`configurator.voices.${v.id}.desc`, v.desc),
+  }));
 
   const basePrice = 19.99;
   const expressPrice = config.express ? 9.99 : 0;
@@ -125,13 +145,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
       <div className="text-center mb-8 sm:mb-12">
         <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full mb-3 shadow-lg shadow-amber-500/10">
           <Sparkles className="w-4 h-4 text-amber-400" />
-          <span>Interaktiver Song-Generator • In 2 Minuten fertig</span>
+          <span>{t("configurator.badge")}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-          Konfiguriere deinen persönlichen Song
+          {t("configurator.title")}
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-xs sm:text-base leading-relaxed">
-          Wähle Anlass, Musikstil & deine persönliche Geschichte – wir komponieren daraus dein Unikat in Studioqualität für nur <span className="font-bold text-amber-400">19,99 €</span>.
+          {t("configurator.subtitle")}
         </p>
       </div>
 
@@ -143,7 +163,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Interactive Step Navigator */}
         <div className="mb-8 relative z-10">
           <div className="grid grid-cols-5 gap-1.5 sm:gap-3 mb-3.5">
-            {STEPS.map((s) => {
+            {stepsList.map((s) => {
               const isActive = step === s.num;
               const isPast = step > s.num;
               return (
@@ -183,9 +203,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 1: Occasion */}
         {step === 1 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Für welchen Anlass ist dein Song?</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.1")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {OCCASIONS.map((occ) => {
+              {occasionsList.map((occ) => {
                 const Icon = occ.icon;
                 const isSelected = config.occasion === occ.id;
                 return (
@@ -214,7 +234,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(2)}
                 className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                <span>Weiter zu Musikstil</span>
+                <span>{t("configurator.next")} ({t("configurator.steps.2")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
@@ -224,9 +244,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 2: Genre */}
         {step === 2 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Welcher Musikstil passt am besten?</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.2")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {GENRES.map((g) => {
+              {genresList.map((g) => {
                 const Icon = g.icon;
                 const isSelected = config.genre === g.id;
                 return (
@@ -258,13 +278,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(1)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zurück
+                <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(3)}
                 className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                <span>Weiter zu Gesang</span>
+                <span>{t("configurator.next")} ({t("configurator.steps.3")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
@@ -274,9 +294,9 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 3: Voice & Language */}
         {step === 3 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Gesangsstimme & Sprache festlegen</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.3")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-              {VOICES.map((v) => {
+              {voicesList.map((v) => {
                 const isSelected = config.voice === v.id;
                 return (
                   <div
@@ -297,20 +317,26 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             </div>
 
             <div className="pt-3 border-t border-slate-800">
-              <label className="block text-xs sm:text-sm font-semibold text-white mb-2">Sprache des Songs:</label>
+              <label className="block text-xs sm:text-sm font-semibold text-white mb-2">
+                {t("configurator.languageLabel")}
+              </label>
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                {["Deutsch", "Englisch", "Zweisprachig (DE/EN)"].map((lang) => (
+                {[
+                  { id: "Deutsch", label: language === "en" ? "German" : "Deutsch" },
+                  { id: "Englisch", label: language === "en" ? "English" : "Englisch" },
+                  { id: "Zweisprachig (DE/EN)", label: language === "en" ? "Bilingual (DE/EN)" : "Zweisprachig (DE/EN)" },
+                ].map((item) => (
                   <button
-                    key={lang}
+                    key={item.id}
                     type="button"
-                    onClick={() => setConfig({ ...config, language: lang })}
+                    onClick={() => setConfig({ ...config, language: item.id })}
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border transition ${
-                      config.language === lang
+                      config.language === item.id
                         ? "bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-md"
                         : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
                     }`}
                   >
-                    {lang}
+                    {item.label}
                   </button>
                 ))}
               </div>
@@ -321,13 +347,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(2)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zurück
+                <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(4)}
                 className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                <span>Weiter zu Details</span>
+                <span>{t("configurator.next")} ({t("configurator.steps.4")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
@@ -337,19 +363,21 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 4: Story & Names */}
         {step === 4 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Eure persönliche Geschichte</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.4")}</h3>
             <p className="text-xs sm:text-sm text-slate-400">
-              Je mehr persönliche Details du nennst, desto einzigartiger wird der Text.
+              {language === "en"
+                ? "The more personal details and anecdotes you share, the more emotional and unique the lyrics will be."
+                : "Je mehr persönliche Details du nennst, desto einzigartiger wird der Text."}
             </p>
 
             <div className="space-y-4">
               <div>
                 <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
-                  Namen der besungenen Personen / Kosenamen:
+                  {t("configurator.storyLabels.namesLabel")}:
                 </label>
                 <input
                   type="text"
-                  placeholder="z.B. Sarah & Florian, oder Oma Brigitte"
+                  placeholder={t("configurator.storyLabels.namesPlaceholder")}
                   value={config.names}
                   onChange={(e) => setConfig({ ...config, names: e.target.value })}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
@@ -358,11 +386,11 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
               <div>
                 <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
-                  Wichtige Anekdoten, Meilensteine & Kernbotschaft:
+                  {t("configurator.storyLabels.storyLabel")}:
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="z.B. Kennengelernt 2019 in Italien, gemeinsame Reise ans Meer, 'Danke, dass du immer mein Fels in der Brandung bist'..."
+                  placeholder={t("configurator.storyLabels.storyPlaceholder")}
                   value={config.story}
                   onChange={(e) => setConfig({ ...config, story: e.target.value })}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
@@ -375,13 +403,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(3)}
                 className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zurück
+                <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(5)}
                 className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
               >
-                <span>Zur Übersicht</span>
+                <span>{t("configurator.summary.cardTitle", "Zur Übersicht")}</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
@@ -391,24 +419,24 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 5: Summary */}
         {step === 5 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">Konfiguration prüfen & Extras wählen</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.5")}</h3>
 
             <div className="bg-slate-950/80 p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 text-xs sm:text-sm">
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">Anlass:</span>
+                <span className="text-slate-400">{t("configurator.summary.occasion")}:</span>
                 <span className="font-semibold text-white capitalize">{config.occasion}</span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">Musikstil:</span>
+                <span className="text-slate-400">{t("configurator.summary.genre")}:</span>
                 <span className="font-semibold text-white capitalize">{config.genre}</span>
               </div>
               <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">Gesang:</span>
+                <span className="text-slate-400">{t("configurator.summary.voice")}:</span>
                 <span className="font-semibold text-white capitalize">{config.voice} ({config.language})</span>
               </div>
               {config.names && (
                 <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                  <span className="text-slate-400">Namen:</span>
+                  <span className="text-slate-400">{t("configurator.summary.storyDetails")}:</span>
                   <span className="font-semibold text-white truncate max-w-[200px]">{config.names}</span>
                 </div>
               )}
@@ -425,8 +453,8 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
                   />
                   <div>
-                    <span className="font-bold text-white text-xs sm:text-sm block">Express-Lieferung (unter 12 Stunden)</span>
-                    <span className="text-[11px] sm:text-xs text-slate-400">Garantierte Fertigstellung innerhalb 12h statt 24h</span>
+                    <span className="font-bold text-white text-xs sm:text-sm block">{t("configurator.summary.expressTitle")}</span>
+                    <span className="text-[11px] sm:text-xs text-slate-400">{t("configurator.summary.expressDesc")}</span>
                   </div>
                 </div>
                 <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
@@ -441,8 +469,8 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
                   />
                   <div>
-                    <span className="font-bold text-white text-xs sm:text-sm block">Songtext-Urkunde als PDF</span>
-                    <span className="text-[11px] sm:text-xs text-slate-400">Druckreifes PDF zum Einrahmen und Verschenken</span>
+                    <span className="font-bold text-white text-xs sm:text-sm block">{t("configurator.summary.pdfTitle")}</span>
+                    <span className="text-[11px] sm:text-xs text-slate-400">{t("configurator.summary.pdfDesc")}</span>
                   </div>
                 </div>
                 <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+4,99 €</span>
@@ -452,14 +480,14 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             {/* Total price & Checkout Button */}
             <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-xs sm:text-sm text-slate-300 block">Gesamtpreis (inkl. MwSt.)</span>
+                <span className="text-xs sm:text-sm text-slate-300 block">{t("configurator.summary.totalPrice")}</span>
                 <span className="text-2xl sm:text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} €</span>
               </div>
               <button
                 onClick={handleFinish}
                 className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-xl flex items-center justify-center gap-2 transition shadow-xl shadow-amber-500/30"
               >
-                <span>Jetzt bestellen</span>
+                <span>{t("configurator.orderNow")}</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -469,7 +497,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 onClick={() => goToStep(4)}
                 className="px-4 py-2 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
               >
-                <ArrowLeft className="w-4 h-4" /> Zurück zum Bearbeiten
+                <ArrowLeft className="w-4 h-4" /> {t("configurator.editStep")}
               </button>
             </div>
           </div>
@@ -479,19 +507,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] sm:text-xs text-slate-400 text-center relative z-10">
           <div className="flex items-center justify-center gap-1.5 font-medium">
             <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>Nur 19,99 € Festpreis</span>
+            <span>{t("configurator.trustBar.fixedPrice")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
             <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>Lieferung in unter 24h</span>
+            <span>{t("configurator.trustBar.fastDelivery")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
             <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>1 Gratis-Korrekturschleife</span>
+            <span>{t("configurator.trustBar.freeRevision")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
             <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>100% Private Nutzungsrechte</span>
+            <span>{t("configurator.trustBar.privateRights")}</span>
           </div>
         </div>
       </div>

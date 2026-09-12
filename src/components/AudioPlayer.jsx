@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2, VolumeX, Sparkles, Disc, Music } from "lucide-react";
 import { trackAudioEvent } from "../lib/gtmPreview";
+import { useLanguage } from "../context/LanguageContext";
 
 const PLAYLIST = [
   {
@@ -51,6 +52,7 @@ const PLAYLIST = [
 ];
 
 export default function AudioPlayer() {
+  const { t } = useLanguage();
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -164,15 +166,15 @@ export default function AudioPlayer() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 sm:pb-6 border-b border-slate-800">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Echte KI-Hörproben
+              <Sparkles className="w-3.5 h-3.5" /> {t("audioPlayer.badge")}
             </div>
             <h2 className="text-xl sm:text-3xl font-bold text-white">
-              Höre den Unterschied: Dein Song mit Gänsehaut-Faktor
+              {t("audioPlayer.title")}
             </h2>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <Disc className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
-            <span>Persönlich geprüft • Gratis-Korrekturschleife</span>
+            <span>{t("audioPlayer.testedBadge")}</span>
           </div>
         </div>
 

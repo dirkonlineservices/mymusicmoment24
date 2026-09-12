@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ShieldCheck, Settings, X, Check } from "lucide-react";
 import { updateConsent } from "../lib/gtmPreview";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ConsentBanner() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -58,7 +60,7 @@ export default function ConsentBanner() {
 
   return (
     <aside
-      aria-label="Cookie- und Datenschutzeinstellungen"
+      aria-label={t("cookieBanner.title", "Cookie- und Datenschutzeinstellungen")}
       className="fixed bottom-3 left-3 right-3 md:left-auto md:right-6 md:max-w-xl z-50 bg-slate-900/95 border border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5"
     >
       <div className="flex items-start gap-3 sm:gap-4">
@@ -66,18 +68,26 @@ export default function ConsentBanner() {
           <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-white mb-1">Privatsphäre & Datenschutz</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white mb-1">
+            {t("cookieBanner.title", "Privatsphäre & Datenschutz")}
+          </h3>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3 sm:mb-4">
-            Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, 
-            Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten.
+            {t(
+              "cookieBanner.desc",
+              "Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten."
+            )}
           </p>
 
           {showSettings && (
             <div className="mb-3.5 space-y-2.5 bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50 text-xs sm:text-sm">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-semibold text-white block">Technisch Notwendig</span>
-                  <span className="text-[11px] text-slate-400">Erforderlich für Warenkorb, Abspielgerät & Kasse.</span>
+                  <span className="font-semibold text-white block">
+                    {t("cookieBanner.essential", "Technisch Notwendig")}
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    {t("cookieBanner.essentialDesc", "Erforderlich für Warenkorb, Abspielgerät & Kasse.")}
+                  </span>
                 </div>
                 <input
                   type="checkbox"
@@ -89,8 +99,12 @@ export default function ConsentBanner() {
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
                 <div>
-                  <span className="font-semibold text-white block">Statistiken & Analyse</span>
-                  <span className="text-[11px] text-slate-400">Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.</span>
+                  <span className="font-semibold text-white block">
+                    {t("cookieBanner.analytics", "Statistiken & Analyse")}
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    {t("cookieBanner.analyticsDesc", "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.")}
+                  </span>
                 </div>
                 <input
                   type="checkbox"
@@ -102,8 +116,12 @@ export default function ConsentBanner() {
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
                 <div>
-                  <span className="font-semibold text-white block">Marketing & Personalisierung</span>
-                  <span className="text-[11px] text-slate-400">Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.</span>
+                  <span className="font-semibold text-white block">
+                    {t("cookieBanner.marketing", "Marketing & Personalisierung")}
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    {t("cookieBanner.marketingDesc", "Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.")}
+                  </span>
                 </div>
                 <input
                   type="checkbox"
@@ -122,13 +140,13 @@ export default function ConsentBanner() {
                   onClick={handleSaveCustom}
                   className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-lg text-xs sm:text-sm font-bold transition"
                 >
-                  Auswahl speichern
+                  {t("cookieBanner.save", "Auswahl speichern")}
                 </button>
                 <button
                   onClick={() => setShowSettings(false)}
                   className="px-3 py-2 text-slate-400 hover:text-white text-xs sm:text-sm"
                 >
-                  Zurück
+                  {t("cookieBanner.back", "Zurück")}
                 </button>
               </>
             ) : (
@@ -137,20 +155,20 @@ export default function ConsentBanner() {
                   onClick={handleAcceptAll}
                   className="px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 rounded-lg text-xs sm:text-sm font-black transition shadow-md shadow-amber-500/20"
                 >
-                  Alle akzeptieren
+                  {t("cookieBanner.acceptAll", "Alle akzeptieren")}
                 </button>
                 <button
                   onClick={handleRejectAll}
                   className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs sm:text-sm font-semibold transition border border-slate-700"
                 >
-                  Nur notwendige
+                  {t("cookieBanner.rejectAll", "Nur notwendige")}
                 </button>
                 <button
                   onClick={() => setShowSettings(true)}
                   className="px-2.5 py-2 text-slate-400 hover:text-white text-xs flex items-center gap-1 transition ml-auto"
                 >
                   <Settings className="w-3.5 h-3.5" />
-                  <span>Anpassen</span>
+                  <span>{t("cookieBanner.settings", "Anpassen")}</span>
                 </button>
               </>
             )}

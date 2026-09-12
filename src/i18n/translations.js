@@ -1,0 +1,770 @@
+/**
+ * MyMusicMoment24 Translations Dictionary
+ * German (de) & English (en)
+ */
+
+export const translations = {
+  de: {
+    // Header & Navigation
+    nav: {
+      tagline: "Dein Persönlicher Song",
+      shop: "Shop & Produkte",
+      samples: "Hörproben",
+      process: "Ablauf",
+      configurator: "Konfigurator",
+      reviews: "Erfahrungen",
+      faq: "FAQ",
+      guide: "Ratgeber",
+      about: "Über uns",
+      orderCta: "Song konfigurieren (19,99 €)",
+      mobileOrderCta: "Jetzt Song Konfigurieren (19,99 €)",
+      impressum: "Impressum",
+      privacy: "Datenschutz",
+    },
+
+    // Hero Section
+    hero: {
+      badge: "„Von Herzen für die Ohren – MyMusicMoment“",
+      title: "Ein persönlicher Song, der eure Geschichte erzählt –",
+      titleHighlight: "emotional, individuell & unvergesslich.",
+      description: "Perfekt für Hochzeit, Geburtstag oder jeden besonderen Moment. Produktion von Mensch & KI & Storytelling. Lieferung meist in 24 Stunden (werktags) für nur 19,99 €.",
+      ctaPrimary: "Jetzt persönlichen Song konfigurieren (19,99 €)",
+      ctaSecondary: "Hörproben anhören",
+      storyCard1Badge: "1. Inspiration suchen",
+      storyCard1Title: "Auf der Suche nach dem Einzigartigen",
+      storyCard1Desc: "Du suchst nach einem Geschenk, das wirklich berührt und für immer im Herzen bleibt.",
+      storyCard2Badge: "2. Songprobe hören",
+      storyCard2Title: "Begeisterung beim ersten Hören",
+      storyCard2Desc: "Wenn die ersten Klänge ertönen und die eigene Geschichte zur packenden Melodie wird.",
+      storyCard3Badge: "3. Freudentränen",
+      storyCard3Title: "Ein unvergesslicher Moment",
+      storyCard3Desc: "Der gemeinsame Moment auf der Feier: Wenn die ersten Tränen der Rührung fließen.",
+      trustReviews: "Kunden lieben unsere Musik!",
+      trustDelivery: "Lieferung in 24h",
+      trustGuarantee: "Käuferschutz & Gratis-Verbesserungsschleife",
+    },
+
+    // Song Configurator
+    configurator: {
+      badge: "Interaktiver Song-Generator • In 2 Minuten fertig",
+      title: "Konfiguriere deinen persönlichen Song",
+      subtitle: "Wähle Anlass, Musikstil & deine persönliche Geschichte – wir komponieren daraus dein Unikat in Studioqualität für nur 19,99 €.",
+      stepLabel: "Schritt",
+      of: "von",
+      next: "Weiter",
+      back: "Zurück",
+      editStep: "Zurück zum Bearbeiten",
+      orderNow: "Jetzt bestellen",
+      steps: {
+        1: "Anlass wählen",
+        2: "Musikstil & Genre",
+        3: "Gesang & Stimme",
+        4: "Eure Geschichte",
+        5: "Paket & Zusammenfassung",
+      },
+      stepTitles: {
+        1: "Für welchen Anlass ist dein Song?",
+        2: "Welcher Musikstil passt am besten?",
+        3: "Welche Stimme soll deinen Song singen?",
+        4: "Erzähle uns eure persönliche Geschichte",
+        5: "Dein Song-Paket & Optionen",
+      },
+      occasions: {
+        hochzeit: {
+          label: "Hochzeit & Verlobung",
+          desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz",
+        },
+        geburtstag: {
+          label: "Runder Geburtstag",
+          desc: "Lustig, berührend oder mitreißend mit allen Meilensteinen",
+        },
+        liebe: {
+          label: "Liebeserklärung & Jahrestag",
+          desc: "Sag ‚Ich liebe dich‘ mit einer unvergesslichen Ballade",
+        },
+        party: {
+          label: "Party, Verein & Abschied",
+          desc: "Uptempo-Hymne mit Ohrwurm-Refrain zum Mitsingen",
+        },
+      },
+      genres: {
+        "pop-radio": {
+          label: "Modern Pop / Radio-Hit",
+          desc: "Eingängige Melodien, moderner Beat & mitreißender Refrain für jeden Tag",
+        },
+        "pop-ballade": {
+          label: "Gefühlvolle Pop-Ballade",
+          desc: "Emotionales Klavier, Streicher & berührender Gänsehaut-Moment",
+        },
+        akustik: {
+          label: "Akustik / Singer-Songwriter",
+          desc: "Warme Akustikgitarre, intim, handgemacht & 100% authentisch",
+        },
+        schlager: {
+          label: "Moderner Schlager / Party-Pop",
+          desc: "Tanzbar, schwungvoll, beste Feierlaune & garantiert sofort im Ohr",
+        },
+        rock: {
+          label: "Rock / Deutschrock & Power-Ballade",
+          desc: "E-Gitarren, mitreißende Drums, Energie & emotionale Dynamik",
+        },
+        rnb: {
+          label: "R&B / Soul / Urban",
+          desc: "Groovige Beats, samtiger Gesang & tiefgehende Wohlfühl-Vibes",
+        },
+        "edm-dance": {
+          label: "EDM / Dance & Club-Groove",
+          desc: "Treibende elektronische Beats, Festival-Stimmung & pure Tanzenergie",
+        },
+        "country-folk": {
+          label: "Country / Folk & Storytelling",
+          desc: "Leichtfüßige Klänge, lebensfroh & perfekt für persönliche Geschichten",
+        },
+      },
+      voices: {
+        weiblich: {
+          label: "Weibliche Stimme",
+          desc: "Sanft, klar und voller Emotion",
+        },
+        maennlich: {
+          label: "Männliche Stimme",
+          desc: "Warm, markant und ausdrucksstark",
+        },
+        duett: {
+          label: "Emotionales Duett",
+          desc: "Harmonischer Dialog aus zwei Stimmen",
+        },
+      },
+      languageLabel: "In welcher Sprache soll der Song gesungen werden?",
+      storyLabels: {
+        namesLabel: "Namen der besungenen Personen",
+        namesPlaceholder: "z.B. Sarah & Michael oder Papa Markus",
+        storyLabel: "Eure Meilensteine, Anekdoten oder besondere Momente",
+        storyPlaceholder: "Erzähle frei von der Leber weg: Wie habt ihr euch kennengelernt? Was verbindet euch? Gibt es Insider-Witze, Orte oder Urlaube, die unbedingt in den Text gehören?",
+        moodLabel: "Gewünschte Grundstimmung",
+        moodOptions: [
+          "Romantisch & voller Emotionen",
+          "Fröhlich, tanzbar & feierlich",
+          "Humorvoll & augenzwinkernd",
+          "Dankbar & berührend",
+        ],
+      },
+      summary: {
+        cardTitle: "Deine Auswahl auf einen Blick",
+        occasion: "Anlass",
+        genre: "Musikstil",
+        voice: "Gesangsstimme",
+        songLang: "Sprache",
+        storyDetails: "Details & Geschichte",
+        includedHeader: "Im Paket enthalten:",
+        includedItems: [
+          "Volle Studioqualität (MP3-Mastering)",
+          "Eigener, maßgeschneiderter Songtext",
+          "Lieferung in unter 24 Stunden (werktags)",
+          "1 kostenfreie Korrekturschleife bei Änderungswünschen",
+          "Volle private Nutzungsrechte für Feiern & Videos",
+        ],
+        expressTitle: "Express-Zuschlag (Lieferung in 12h)",
+        expressDesc: "Garantiert innerhalb von 12 Stunden an Werktagen bei Bestellung vor 18 Uhr",
+        pdfTitle: "Songtext-Urkunde als PDF",
+        pdfDesc: "Druckreifes PDF zum Einrahmen und Verschenken",
+        totalPrice: "Gesamtpreis (inkl. MwSt.)",
+      },
+      trustBar: {
+        fixedPrice: "Nur 19,99 € Festpreis",
+        fastDelivery: "Lieferung in unter 24h",
+        freeRevision: "1 Gratis-Korrekturschleife",
+        privateRights: "100% Private Nutzungsrechte",
+      },
+    },
+
+    // YouTube Showcase
+    showcase: {
+      badge: "Echte Songbeispiele auf YouTube",
+      title: "Höre Dir Beispiele unserer Songs an",
+      subtitle: "Vom emotionalen Hochzeitssong über kraftvollen EDM bis zu modernem Hip-Hop – jedes Lied ein individuelles Meisterwerk. Klicke auf ein Lied, um es direkt anzuhören.",
+      channelBtn: "Kanal @MyMusicMoment24",
+      playLabel: "abspielen",
+      hdAudio: "HD Audio",
+      watchVideo: "Video ansehen",
+      close: "Schließen",
+    },
+
+    // Audio Player
+    audioPlayer: {
+      badge: "Echte KI-Hörproben",
+      title: "Höre den Unterschied: Dein Song mit Gänsehaut-Faktor",
+      testedBadge: "Persönlich geprüft • Gratis-Korrekturschleife",
+      nowPlaying: "Aktueller Titel",
+      play: "Abspielen",
+      pause: "Pause",
+      mute: "Stummschalten",
+      unmute: "Ton an",
+    },
+
+    // Product Catalog
+    catalog: {
+      badge: "Echte Studioqualität • Nur 19,99 € je Lied",
+      title: "Alle Musikstücke & Geschenke",
+      subtitle: "Wähle deinen Wunsch-Song – professionell komponiert, individuell getextet und in 24 Stunden geliefert.",
+      allCategories: "Alle Produkte",
+      fixedPrice: "Festpreis",
+      orderBtn: "Jetzt bestellen!",
+      videoPreviewBtn: "Hörprobe:",
+      videoPreviewSuffix: "abspielen",
+      newBadge: "Neu im Sortiment",
+      reviewsSuffix: "Bewertungen",
+      reviewSuffix: "Bewertung",
+    },
+
+    // Step Process
+    process: {
+      badge: "In 5 einfachen Schritten zum Wunsch-Song",
+      title: "Wie sehen die nächsten Schritte aus?",
+      subtitle: "Vom ersten Gedanken bis zum fertigen Gänsehaut-Song auf deinem Smartphone.",
+      steps: [
+        {
+          num: "1",
+          title: "Bestellung & Input-Anfrage",
+          desc: "Bestellung eingegangen: E-Mail an Kunden mit gezielten Fragen zu Songtext, Anlass & Meilensteinen.",
+        },
+        {
+          num: "2",
+          title: "Kreation & Produktion",
+          desc: "Wir erstellen dein persönliches Unikat mit Mensch, KI-Komposition & feinfühligem Storytelling.",
+        },
+        {
+          num: "3",
+          title: "Review & Feedback",
+          desc: "Hör ganz entspannt in deinen Song rein. 1 kostenfreie Verbesserungsschleife ist bei jeder Bestellung inklusive!",
+        },
+        {
+          num: "4",
+          title: "Delivery & Final",
+          desc: "Erhalt deines persönlich geprüften Tracks unkompliziert per Download-Link & direkt via WhatsApp.",
+        },
+        {
+          num: "5",
+          title: "Bewertung abgeben",
+          desc: "Teile deine emotionale Erfahrung mit uns und hilf unserer Community zu wachsen.",
+        },
+      ],
+    },
+
+    // Testimonials
+    testimonials: {
+      badge: "100% Echte Bewertungen",
+      title: "Was Kunden sagen",
+      subtitle: "Echte Rückmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.",
+      verifiedBuyer: "Verifizierter Kauf",
+      tanjaTitle: "individuelle Geburtstagslieder",
+      tanjaLocation: "Tanja aus Stuttgart",
+      tanjaText: "„Also ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich für besondere Menschen benötige haben ihre Besonderheiten. Ich bin dem ganzen Team sehr dankbar! Da es eigentlich so eine Besonderheit in sich trägt wo jedesmal mit Hingabe gearbeitet wird ins Detail. Wünsche und auch Änderungen nehmt ihr mit Gelassenheit und Humor auf und gebt einem das Gefühl das es Ok ist! Ihr seit klasse, und jedesmal mehr als zufriedenstellend.“",
+      joernTitle: "Hochzeitstag",
+      joernLocation: "Jörn aus Neunkirchen",
+      joernText: "„Ich habe etwas Besonderes für einen ganz besonderen Menschen in meinem Leben gesucht – und hier das perfekte Geschenk gefunden. Wunderschöne Arbeit, mit viel Liebe gemacht. Vielen Dank! 😊👍“",
+    },
+
+    // Blog Feature
+    blogFeature: {
+      badge: "Aus unserem Ratgeber",
+      title: "Individueller Hochzeitssong mit KI: So entsteht euer Song",
+      subtitle: "Erfahre alles über die Vorteile, den Entstehungsprozess und wie du die schönsten Anekdoten in den Text einfließen lässt.",
+      readArticle: "Artikel lesen",
+    },
+
+    // FAQ
+    faq: {
+      title: "Häufig gestellte Fragen (FAQ)",
+      subtitle: "Alles, was du über deinen persönlichen Song wissen musst",
+      items: [
+        {
+          q: "Wie viel kostet ein persönlicher Song?",
+          a: "Jedes personalisierte Musikstück kostet bei uns nur 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
+        },
+        {
+          q: "Wie lange dauert es, bis mein Song fertig ist?",
+          a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. Für ganz eilige Anlässe bieten wir zusätzlich einen 12-Stunden-Express-Service an.",
+        },
+        {
+          q: "Wie erhalte ich meinen fertigen Song?",
+          a: "Wir senden dir deinen fertig erstellten und persönlich geprüften Song als hochwertige MP3-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
+        },
+        {
+          q: "Klingt der Song nach künstlicher Computerstimme?",
+          a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit menschlichem Feinschliff und persönlicher Qualitätskontrolle. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
+        },
+        {
+          q: "Was passiert, wenn ich nach Erhalt noch einen Änderungswunsch habe?",
+          a: "Kein Problem! Wir hören uns jeden Song vorab sorgfältig an. Solltest du dennoch eine Text- oder Detailanpassung wünschen, ist 1 kostenfreie Verbesserungsschleife bei jeder Bestellung garantiert inklusive.",
+        },
+        {
+          q: "Welche Angaben von mir benötigt ihr für den Songtext?",
+          a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
+        },
+      ],
+    },
+
+    // Checkout Drawer
+    checkout: {
+      title: "Kasse & Checkout",
+      step: "Bestellabschluss",
+      packageTitle: "Gewähltes Paket",
+      contactTitle: "Deine Kontaktdaten",
+      emailLabel: "E-Mail-Adresse für die Lieferung",
+      emailPlaceholder: "deine-email@beispiel.de",
+      nameLabel: "Dein vollständiger Name",
+      namePlaceholder: "Vor- und Nachname",
+      phoneLabel: "Telefon / WhatsApp (optional)",
+      phonePlaceholder: "Für schnellere Abstimmung",
+      detailsLabel: "Deine Song-Wünsche & Details",
+      detailsPlaceholder: "Namen, Anlass, besondere Erinnerungen oder Insider-Anekdoten...",
+      discountCodeLabel: "Gutscheincode eingeben",
+      discountApplyBtn: "Einlösen",
+      discountApplied: "10% Rabatt angewendet!",
+      discountInvalid: "Ungültiger Code",
+      paymentMethodTitle: "Zahlungsart wählen",
+      paypalDesc: "Schnell, einfach & sicher mit PayPal-Käuferschutz bezahlen.",
+      stripeDesc: "Zahle bequem mit Kreditkarte, Apple Pay, Google Pay, Klarna oder SEPA.",
+      termsText: "Ich stimme den Allgemeinen Geschäftsbedingungen (AGB) und der Datenschutzerklärung zu. Ich nehme zur Kenntnis, dass das Widerrufsrecht bei individueller Anfertigung erlischt.",
+      payWithStripe: "Mit Kreditkarte / Apple Pay zahlen",
+      payWithPayPal: "Mit PayPal bezahlen",
+      processing: "Zahlung wird verarbeitet...",
+      secureSsl: "Sichere 256-Bit SSL-Verschlüsselung • Käuferschutz garantiert",
+      successTitle: "Zahlung erfolgreich!",
+      successDesc: "Vielen Dank für dein Vertrauen. Wir haben deine Bestellung erhalten und beginnen mit der Produktion.",
+      orderNumber: "Bestellnummer",
+      confirmationSent: "Eine Bestätigung wurde an deine E-Mail gesendet.",
+      closeBtn: "Fenster schließen",
+    },
+
+    // Cookie Banner
+    cookieBanner: {
+      title: "Privatsphäre & Datenschutz",
+      desc: "Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten.",
+      acceptAll: "Alle akzeptieren",
+      rejectAll: "Nur notwendige",
+      settings: "Anpassen",
+      save: "Auswahl speichern",
+      back: "Zurück",
+      essential: "Technisch Notwendig",
+      essentialDesc: "Erforderlich für Warenkorb, Abspielgerät & Kasse.",
+      analytics: "Statistiken & Analyse",
+      analyticsDesc: "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.",
+      marketing: "Marketing & Personalisierung",
+      marketingDesc: "Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.",
+    },
+
+    // Footer
+    footer: {
+      brandDesc: "Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und persönliche Qualitätsprüfung ab 19,99 €.",
+      popularSongs: "Beliebte Songs",
+      weddingSong: "Hochzeitssong & Traulied",
+      birthdaySong: "Personalisierter Geburtstagssong",
+      duetSong: "Liebeslied im Duett (2 Stimmen)",
+      anniversarySong: "Jubiläum & Ruhestand",
+      partySong: "Partytrack & Stimmungsmusik",
+      giftVoucher: "Geschenkgutschein (19,99 €)",
+      serviceGuide: "Service & Ratgeber",
+      processSteps: "5-Schritte-Ablauf & WhatsApp",
+      audioSamples: "Hörproben im Audio-Player",
+      startConfigurator: "Song-Konfigurator starten",
+      faq: "Häufige Fragen (FAQ)",
+      blogLink: "Ratgeber & KI-Musik Blog",
+      aboutLink: "Über Gründer Dirk Schmetzer",
+      legalHeader: "Rechtliches & Datenschutz",
+      impressum: "Impressum (§ 5 DDG)",
+      privacy: "Datenschutzerklärung (DSGVO)",
+      cookieSettings: "Cookie-Einstellungen",
+      allRights: "© 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. Alle Rechte vorbehalten.",
+      sslSecurity: "Sichere 256-Bit SSL-Verschlüsselung & zertifizierte Zahlungsabwicklung.",
+      paymentMethods: "Zahlungsarten:",
+      stickyTitle: "Persönlicher Song",
+      stickyCta: "Jetzt bestellen",
+      verifiedBuyer: "Verifizierter Kauf",
+      madeIn: "Made with passion in Germany.",
+    },
+  },
+
+  en: {
+    // Header & Navigation
+    nav: {
+      tagline: "Your Personalized Song",
+      shop: "Shop & Products",
+      samples: "Audio Samples",
+      process: "How it works",
+      configurator: "Configurator",
+      reviews: "Reviews",
+      faq: "FAQ",
+      guide: "Guide",
+      about: "About Us",
+      orderCta: "Configure Song (€19.99)",
+      mobileOrderCta: "Configure Your Song Now (€19.99)",
+      impressum: "Legal Notice",
+      privacy: "Privacy Policy",
+    },
+
+    // Hero Section
+    hero: {
+      badge: "“From the Heart to the Ears – MyMusicMoment”",
+      title: "A personalized song that tells your unique story –",
+      titleHighlight: "emotional, bespoke & unforgettable.",
+      description: "Perfect for weddings, birthdays, anniversaries, or any cherished moment. Crafted by human artistry, AI composition & sensitive storytelling. Delivered in 24 hours for only €19.99.",
+      ctaPrimary: "Configure Your Personal Song Now (€19.99)",
+      ctaSecondary: "Listen to Samples",
+      storyCard1Badge: "1. Seek Inspiration",
+      storyCard1Title: "Searching for Something Truly Unique",
+      storyCard1Desc: "You are looking for a heartfelt gift that moves people to tears and remains cherished forever.",
+      storyCard2Badge: "2. Listen to Samples",
+      storyCard2Title: "Thrilled from the First Chord",
+      storyCard2Desc: "When the first notes play and your personal memories become an enchanting, catchy melody.",
+      storyCard3Badge: "3. Tears of Joy",
+      storyCard3Title: "An Unforgettable Milestone",
+      storyCard3Desc: "The shared moment at the celebration: when the first tears of joy and touching emotion flow.",
+      trustReviews: "Customers love our music!",
+      trustDelivery: "Delivery in 24h",
+      trustGuarantee: "Buyer Protection & Free Revision Included",
+    },
+
+    // Song Configurator
+    configurator: {
+      badge: "Interactive Song Generator • Ready in 2 minutes",
+      title: "Configure Your Personalized Song",
+      subtitle: "Choose your occasion, music style & personal memories – we compose your one-of-a-kind studio track for just €19.99.",
+      stepLabel: "Step",
+      of: "of",
+      next: "Next",
+      back: "Back",
+      editStep: "Back to Edit",
+      orderNow: "Order Now",
+      steps: {
+        1: "Choose Occasion",
+        2: "Music Style & Genre",
+        3: "Vocals & Singer",
+        4: "Your Story",
+        5: "Package & Summary",
+      },
+      stepTitles: {
+        1: "What occasion is your song for?",
+        2: "Which music genre fits best?",
+        3: "Which voice should sing your song?",
+        4: "Tell us your personal story & memories",
+        5: "Your Song Package & Options",
+      },
+      occasions: {
+        hochzeit: {
+          label: "Wedding & Engagement",
+          desc: "Your emotional soundtrack for the vows, aisle walk & first dance",
+        },
+        geburtstag: {
+          label: "Milestone Birthday",
+          desc: "Fun, touching or energetic celebrating all life achievements",
+        },
+        liebe: {
+          label: "Declaration of Love & Anniversary",
+          desc: "Say 'I love you' with a romantic, unforgettable custom ballad",
+        },
+        party: {
+          label: "Party, Sports Club & Farewell",
+          desc: "Uptempo party anthem with an irresistible sing-along chorus",
+        },
+      },
+      genres: {
+        "pop-radio": {
+          label: "Modern Pop / Radio Hit",
+          desc: "Catchy melodies, modern beat & captivating chorus for every day",
+        },
+        "pop-ballade": {
+          label: "Heartfelt Pop Ballad",
+          desc: "Emotional grand piano, strings & touching goosebump moments",
+        },
+        akustik: {
+          label: "Acoustic / Singer-Songwriter",
+          desc: "Warm acoustic guitar, intimate, organic & 100% authentic",
+        },
+        schlager: {
+          label: "Modern Schlager / Party Pop",
+          desc: "Danceable, upbeat, pure celebratory joy that stays in your head",
+        },
+        rock: {
+          label: "Rock & Power Ballad",
+          desc: "Electric guitars, powerful drums, raw energy & emotional dynamic",
+        },
+        rnb: {
+          label: "R&B / Soul / Urban",
+          desc: "Smooth grooves, soulful vocals & deep feel-good vibes",
+        },
+        "edm-dance": {
+          label: "EDM / Dance & Club Groove",
+          desc: "Driving electronic beats, summer festival atmosphere & dance energy",
+        },
+        "country-folk": {
+          label: "Country / Folk & Storytelling",
+          desc: "Lively acoustic sounds, cheerful & ideal for heartfelt storytelling",
+        },
+      },
+      voices: {
+        weiblich: {
+          label: "Female Voice",
+          desc: "Gentle, crystal clear and full of emotion",
+        },
+        maennlich: {
+          label: "Male Voice",
+          desc: "Warm, resonant and expressive baritone",
+        },
+        duett: {
+          label: "Emotional Duet",
+          desc: "Harmonious dialogue blending two distinct voices",
+        },
+      },
+      languageLabel: "In which language should the song be sung?",
+      storyLabels: {
+        namesLabel: "Names of the honored people",
+        namesPlaceholder: "e.g. Sarah & Michael or Dad Markus",
+        storyLabel: "Your milestones, anecdotes, memories or special moments",
+        storyPlaceholder: "Feel free to share: How did you meet? What connects you? Are there inside jokes, trips, or special sayings that belong in the lyrics?",
+        moodLabel: "Desired Musical Mood",
+        moodOptions: [
+          "Romantic & deeply emotional",
+          "Joyful, upbeat & celebratory",
+          "Humorous, playful & witty",
+          "Grateful & heartfelt",
+        ],
+      },
+      summary: {
+        cardTitle: "Your Configuration Summary",
+        occasion: "Occasion",
+        genre: "Music Style",
+        voice: "Vocals",
+        songLang: "Language",
+        storyDetails: "Details & Story",
+        includedHeader: "Package Includes:",
+        includedItems: [
+          "Full Studio Quality (MP3 Audio Mastering)",
+          "100% Custom Personalized Lyrics",
+          "Delivered in under 24 hours (business days)",
+          "1 Free Revision Round included for any tweaks",
+          "Full Private Usage Rights for celebrations & videos",
+        ],
+        expressTitle: "Express Upgrade (12h Delivery)",
+        expressDesc: "Guaranteed within 12 hours on business days when ordered before 6 PM",
+        pdfTitle: "Lyrics Keepsake Certificate (PDF)",
+        pdfDesc: "Print-ready high-res PDF certificate ideal for framing and gifting",
+        totalPrice: "Total Price (incl. taxes)",
+      },
+      trustBar: {
+        fixedPrice: "Only €19.99 Fixed Price",
+        fastDelivery: "Delivered in under 24h",
+        freeRevision: "1 Free Revision Round",
+        privateRights: "100% Private Rights Included",
+      },
+    },
+
+    // YouTube Showcase
+    showcase: {
+      badge: "Real Song Examples on YouTube",
+      title: "Listen to Examples of Our Songs",
+      subtitle: "From romantic wedding ballads to powerful EDM and modern hip-hop – each track is a custom masterpiece. Click on any song to play it immediately.",
+      channelBtn: "Channel @MyMusicMoment24",
+      playLabel: "play",
+      hdAudio: "HD Audio",
+      watchVideo: "Watch Video",
+      close: "Close",
+    },
+
+    // Audio Player
+    audioPlayer: {
+      badge: "Real AI Audio Demos",
+      title: "Hear the Difference: Your Song with Pure Goosebumps",
+      testedBadge: "Personally Reviewed • Free Revision Round",
+      nowPlaying: "Now Playing",
+      play: "Play",
+      pause: "Pause",
+      mute: "Mute",
+      unmute: "Unmute",
+    },
+
+    // Product Catalog
+    catalog: {
+      badge: "Studio Quality • Only €19.99 Per Song",
+      title: "All Songs & Music Gifts",
+      subtitle: "Choose your dream song – professionally composed, personalized lyrics and delivered in 24 hours.",
+      allCategories: "All Products",
+      fixedPrice: "Fixed Price",
+      orderBtn: "Order Now!",
+      videoPreviewBtn: "Preview Video:",
+      videoPreviewSuffix: "play",
+      newBadge: "Brand New",
+      reviewsSuffix: "Reviews",
+      reviewSuffix: "Review",
+    },
+
+    // Step Process
+    process: {
+      badge: "In 5 Simple Steps to Your Dream Song",
+      title: "How Does the Process Work?",
+      subtitle: "From your initial idea to the final goosebump track on your smartphone.",
+      steps: [
+        {
+          num: "1",
+          title: "Order & Input Questions",
+          desc: "Order received: Email sent to you with guided questions about your lyrics, occasion & milestones.",
+        },
+        {
+          num: "2",
+          title: "Creation & Production",
+          desc: "We craft your unique track combining human artistry, AI composition & sensitive storytelling.",
+        },
+        {
+          num: "3",
+          title: "Review & Feedback",
+          desc: "Listen comfortably to your song. 1 free revision loop is included with every order!",
+        },
+        {
+          num: "4",
+          title: "Delivery & Final Track",
+          desc: "Receive your personally checked MP3 track easily via download link and directly on WhatsApp.",
+        },
+        {
+          num: "5",
+          title: "Share Your Review",
+          desc: "Share your emotional experience with us and help our community grow.",
+        },
+      ],
+    },
+
+    // Testimonials
+    testimonials: {
+      badge: "100% Genuine Reviews",
+      title: "What Our Customers Say",
+      subtitle: "Authentic feedback from people who created unforgettable moments with our custom songs.",
+      verifiedBuyer: "Verified Purchase",
+      tanjaTitle: "Custom Birthday Songs",
+      tanjaLocation: "Tanja from Stuttgart",
+      tanjaText: "“I am thrilled every single time, because every song for special people has its own soul. I'm deeply grateful to the whole team! Each song carries so much dedication to detail. Any feedback or changes are handled with warmth and humor. You are truly fantastic!”",
+      joernTitle: "Wedding Anniversary",
+      joernLocation: "Jörn from Neunkirchen",
+      joernText: "“I was searching for something truly extraordinary for someone very special in my life – and found the perfect gift right here. Beautiful work, crafted with love. Thank you so much! 😊👍”",
+    },
+
+    // Blog Feature
+    blogFeature: {
+      badge: "From Our Guide",
+      title: "Personalized Wedding Song with AI: How Your Song Is Created",
+      subtitle: "Discover all the benefits, the creation process, and how to weave your fondest love anecdotes into the lyrics.",
+      readArticle: "Read Article",
+    },
+
+    // FAQ
+    faq: {
+      title: "Frequently Asked Questions (FAQ)",
+      subtitle: "Everything you need to know about your personalized song",
+      items: [
+        {
+          q: "How much does a personalized song cost?",
+          a: "Each personalized song costs just €19.99 fixed price. There are no hidden fees or subscriptions.",
+        },
+        {
+          q: "How long does it take for my song to be ready?",
+          a: "Delivery usually takes place within 24 hours on business days. For urgent occasions, we also offer a 12-hour express delivery service.",
+        },
+        {
+          q: "How do I receive my completed song?",
+          a: "We deliver your professionally mastered and personally reviewed song as a high-quality MP3 audio file via email and, upon request, conveniently straight to your smartphone via WhatsApp!",
+        },
+        {
+          q: "Does the song sound like an artificial robot voice?",
+          a: "Not at all! We utilize next-generation vocal AI models, combined with human acoustic finishing and meticulous quality assurance. We listen to every song before delivery to make sure melodies, vocals, and emotions harmonize.",
+        },
+        {
+          q: "What happens if I'd like an adjustment after receiving the song?",
+          a: "No problem! We carefully listen to every song beforehand. Should you still wish for a lyric or detail tweak, 1 free revision loop is guaranteed with every single order.",
+        },
+        {
+          q: "What details do you need from me for the lyrics?",
+          a: "The names of the people, the occasion, and a few personal anecdotes, inside memories, or emotions close to your heart. We turn them into touching, beautifully rhymed verses and a catchy chorus.",
+        },
+      ],
+    },
+
+    // Checkout Drawer
+    checkout: {
+      title: "Checkout & Payment",
+      step: "Order Completion",
+      packageTitle: "Selected Package",
+      contactTitle: "Your Contact Details",
+      emailLabel: "Email Address for Delivery",
+      emailPlaceholder: "your-email@example.com",
+      nameLabel: "Your Full Name",
+      namePlaceholder: "First and Last Name",
+      phoneLabel: "Phone / WhatsApp (optional)",
+      phonePlaceholder: "For faster coordination",
+      detailsLabel: "Your Song Wishes & Story Details",
+      detailsPlaceholder: "Names, occasion, cherished memories, or inside stories...",
+      discountCodeLabel: "Enter discount code",
+      discountApplyBtn: "Apply",
+      discountApplied: "10% Discount applied!",
+      discountInvalid: "Invalid code",
+      paymentMethodTitle: "Select Payment Method",
+      paypalDesc: "Fast, easy and secure with PayPal Buyer Protection.",
+      stripeDesc: "Pay conveniently via Credit Card, Apple Pay, Google Pay, Klarna, or SEPA.",
+      termsText: "I agree to the Terms and Conditions (T&C) and Privacy Policy. I acknowledge that the right of withdrawal expires upon custom creation.",
+      payWithStripe: "Pay with Card / Apple Pay",
+      payWithPayPal: "Pay with PayPal",
+      processing: "Processing payment...",
+      secureSsl: "Secure 256-Bit SSL Encryption • Buyer Protection Guaranteed",
+      successTitle: "Payment Successful!",
+      successDesc: "Thank you for your trust! We have received your order and are starting production immediately.",
+      orderNumber: "Order ID",
+      confirmationSent: "A confirmation has been sent to your email address.",
+      closeBtn: "Close Window",
+    },
+
+    // Cookie Banner
+    cookieBanner: {
+      title: "Privacy & Data Protection",
+      desc: "We use cookies and tracking technologies (Google Consent Mode v2 compliant) to optimize our website, provide audio samples, and offer you a premium experience.",
+      acceptAll: "Accept All",
+      rejectAll: "Essential Only",
+      settings: "Customize",
+      save: "Save Selection",
+      back: "Back",
+      essential: "Technically Necessary",
+      essentialDesc: "Required for cart, audio player & secure checkout.",
+      analytics: "Analytics & Statistics",
+      analyticsDesc: "Helps us understand which music genres are most popular.",
+      marketing: "Marketing & Personalization",
+      marketingDesc: "Enables targeted recommendations and conversion tracking.",
+    },
+
+    // Footer
+    footer: {
+      brandDesc: "Personalized songs and custom music pieces with guaranteed goosebumps. Bespoke lyrics, modern vocal AI synthesis, and personal quality control from €19.99.",
+      popularSongs: "Popular Songs",
+      weddingSong: "Wedding Song & Nuptial Vows",
+      birthdaySong: "Personalized Birthday Song",
+      duetSong: "Love Duet (2 Harmonizing Voices)",
+      anniversarySong: "Anniversary & Retirement",
+      partySong: "Party Track & Celebration Anthem",
+      giftVoucher: "Gift Voucher (€19.99)",
+      serviceGuide: "Service & Guide",
+      processSteps: "5-Step Process & WhatsApp",
+      audioSamples: "Audio Samples in Player",
+      startConfigurator: "Start Song Configurator",
+      faq: "Frequently Asked Questions (FAQ)",
+      blogLink: "Guide & AI Music Blog",
+      aboutLink: "About Founder Dirk Schmetzer",
+      legalHeader: "Legal & Data Protection",
+      impressum: "Legal Notice",
+      privacy: "Privacy Policy (GDPR)",
+      cookieSettings: "Cookie Preferences",
+      allRights: "© 2026 MyMusicMoment24 • Dirk Schmetzer Online Services. All rights reserved.",
+      sslSecurity: "Secure 256-Bit SSL Encryption & certified payment processing.",
+      paymentMethods: "Payment Methods:",
+      stickyTitle: "Personalized Song",
+      stickyCta: "Order Now",
+      verifiedBuyer: "Verified Purchase",
+      madeIn: "Made with passion in Germany.",
+    },
+  },
+};

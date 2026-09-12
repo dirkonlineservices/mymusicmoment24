@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Star, Sparkles, ArrowRight, Play, X, Youtube } from "lucide-react";
 import { PRODUCTS } from "../data/products";
+import { useLanguage } from "../context/LanguageContext";
 
 const CATEGORIES = [
   { id: "all", label: "Alle Produkte" },
@@ -12,8 +13,18 @@ const CATEGORIES = [
 ];
 
 export default function ProductCatalog({ onSelectProduct }) {
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [videoModal, setVideoModal] = useState(null);
+
+  const categoryLabels = {
+    all: t("catalog.allCategories", "Alle Produkte"),
+    hochzeit: language === "en" ? "Wedding Music AI" : "Hochzeitsmusik KI",
+    geburtstag: language === "en" ? "Birthday Music AI" : "Geburtstagsmusik KI",
+    jubilaeum: language === "en" ? "Anniversary & Milestone" : "Jubiläum & Hochzeitstag",
+    liebe: language === "en" ? "Love Songs AI" : "Liebeslieder KI",
+    party: language === "en" ? "Party Tracks AI" : "Partytracks KI",
+  };
 
   const filteredProducts = selectedCategory === "all"
     ? PRODUCTS
@@ -24,13 +35,13 @@ export default function ProductCatalog({ onSelectProduct }) {
       {/* Section Header */}
       <div className="text-center mb-6 sm:mb-10">
         <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
-          <Sparkles className="w-3.5 h-3.5" /> Echte Studioqualität • Nur 19,99 € je Lied
+          <Sparkles className="w-3.5 h-3.5" /> {t("catalog.badge")}
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-          Alle Musikstücke & Geschenke
+          {t("catalog.title")}
         </h2>
         <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
-          Wähle deinen Wunsch-Song – professionell komponiert, individuell getextet und in 24 Stunden geliefert.
+          {t("catalog.subtitle")}
         </p>
       </div>
 
@@ -46,7 +57,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                 : "bg-slate-900/90 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800"
             }`}
           >
-            {cat.label}
+            {categoryLabels[cat.id] || cat.label}
           </button>
         ))}
       </div>
@@ -108,11 +119,11 @@ export default function ProductCatalog({ onSelectProduct }) {
                   </div>
                   {prod.reviewsCount === 0 ? (
                     <span className="text-amber-400 text-[11px] font-semibold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                      Neu im Sortiment
+                      {t("catalog.newBadge")}
                     </span>
                   ) : (
                     <span className="text-slate-400 text-xs">
-                      ({prod.reviewsCount} {prod.reviewsCount === 1 ? "Bewertung" : "Bewertungen"})
+                      ({prod.reviewsCount} {prod.reviewsCount === 1 ? t("catalog.reviewSuffix", "Bewertung") : t("catalog.reviewsSuffix", "Bewertungen")})
                     </span>
                   )}
                 </div>
@@ -136,7 +147,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     className="mb-2 w-full py-2 px-3 rounded-xl bg-red-600/15 hover:bg-red-600/25 border border-red-500/30 text-red-400 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition"
                   >
                     <Play className="w-3.5 h-3.5 fill-red-500 text-red-500" />
-                    <span>Hörprobe: „{prod.youtubeTitle || 'Video ansehen'}“</span>
+                    <span>{t("catalog.videoPreviewBtn")} „{prod.youtubeTitle || t("showcase.watchVideo", "Video ansehen")}“</span>
                   </button>
                 )}
               </div>
@@ -145,14 +156,14 @@ export default function ProductCatalog({ onSelectProduct }) {
             {/* Price & CTA Button */}
             <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-3">
               <div>
-                <span className="text-[11px] text-slate-400 block">Festpreis</span>
+                <span className="text-[11px] text-slate-400 block">{t("catalog.fixedPrice")}</span>
                 <span className="text-xl sm:text-2xl font-black text-white">19,99 €</span>
               </div>
               <button
                 onClick={() => onSelectProduct(prod)}
                 className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 flex items-center gap-1.5 transition active:scale-95"
               >
-                <span>Jetzt bestellen!</span>
+                <span>{t("catalog.orderBtn")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Youtube, Play, ExternalLink, X, Music } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const YOUTUBE_TRACKS = [
   {
@@ -49,6 +50,7 @@ const YOUTUBE_TRACKS = [
 ];
 
 export default function YouTubeShowcase() {
+  const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState(null);
 
   // Close modal with Escape key
@@ -82,13 +84,13 @@ export default function YouTubeShowcase() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 relative z-10">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full mb-2">
-              <Youtube className="w-3.5 h-3.5 text-red-500" /> Echte Songbeispiele auf YouTube
+              <Youtube className="w-3.5 h-3.5 text-red-500" /> {t("showcase.badge")}
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
-              Höre Dir Beispiele unserer Songs an
+              {t("showcase.title")}
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
-              Von kraftvollem EDM mit mitreißender Gospel-Stimme bis zu emotionalem Deutschrap und modernem Hip-Hop – jedes Lied ein individuelles Meisterwerk. Klicke auf ein Lied, um es direkt anzuhören.
+              {t("showcase.subtitle")}
             </p>
           </div>
           <a
@@ -98,7 +100,7 @@ export default function YouTubeShowcase() {
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl transition shadow-lg shadow-red-600/20 w-full sm:w-auto shrink-0"
           >
             <Youtube className="w-4 h-4" />
-            <span>Kanal @MyMusicMoment24</span>
+            <span>{t("showcase.channelBtn")}</span>
             <ExternalLink className="w-3.5 h-3.5 opacity-80" />
           </a>
         </div>

@@ -6,8 +6,9 @@ import LegalPage from "./views/LegalPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
+import { LanguageProvider } from "./context/LanguageContext";
 
-export default function App() {
+function AppMain() {
   const [currentRoute, setCurrentRoute] = useState({
     view: "home",
     slug: null,
@@ -156,5 +157,13 @@ export default function App() {
       {/* GDPR Consent Banner with Google Consent Mode v2 */}
       <ConsentBanner />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppMain />
+    </LanguageProvider>
   );
 }

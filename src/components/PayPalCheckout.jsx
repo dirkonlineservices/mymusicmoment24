@@ -3,8 +3,10 @@ import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock } from "lucide-react
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function PayPalCheckout({ isOpen, onClose, order }) {
+  const { t, language } = useLanguage();
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
@@ -42,9 +44,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const handleApplyDiscount = () => {
     if (discountCode.trim().toLowerCase() === "gutschein" || discountCode.trim().toLowerCase() === "music10") {
       setDiscountApplied(true);
-      alert("10% Rabattcode erfolgreich aktiviert!");
+      alert(t("checkout.discountApplied", "10% Rabattcode erfolgreich aktiviert!"));
     } else if (discountCode.trim()) {
-      alert("Ungültiger Rabattcode.");
+      alert(t("checkout.discountInvalid", "Ungültiger Rabattcode."));
     }
   };
 
@@ -76,11 +78,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const handlePayment = async (e) => {
     e.preventDefault();
     if (!customerEmail) {
-      alert("Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
+      alert(language === "en" ? "Please enter your email address for song delivery." : "Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
       return;
     }
     if (!agreedTerms) {
-      alert("Bitte bestätige die Geschäftsbedingungen und den Beginn der sofortigen Produktion.");
+      alert(language === "en" ? "Please accept the terms and conditions and start of production." : "Bitte bestätige die Geschäftsbedingungen und den Beginn der sofortigen Produktion.");
       return;
     }
 
@@ -112,7 +114,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         }
       } catch (err) {
         console.error("Stripe Checkout Error:", err);
-        alert("Verbindungsfehler zu Stripe. Bitte versuche es erneut.");
+        alert(language === "en" ? "Connection error to Stripe. Please try again." : "Verbindungsfehler zu Stripe. Bitte versuche es erneut.");
         setIsProcessing(false);
         return;
       }
@@ -153,14 +155,14 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   className="w-9 h-9 object-contain"
                 />
                 <div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white">Bestellung abschließen</h3>
-                  <p className="text-[11px] text-slate-400">MyMusicMoment24 • Sofortige Produktion</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-white">{t("checkout.step")}</h3>
+                  <p className="text-[11px] text-slate-400">MyMusicMoment24 • {language === "en" ? "Immediate Production" : "Sofortige Produktion"}</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
                 className="text-slate-400 hover:text-white p-2 rounded-lg transition"
-                aria-label="Schließen"
+                aria-label={t("checkout.closeBtn")}
               >
                 <X className="w-5 h-5" />
               </button>
@@ -171,21 +173,21 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-8 h-8" />
                 </div>
-                <h4 className="text-xl sm:text-2xl font-bold text-white">Vielen Dank für deine Bestellung!</h4>
+                <h4 className="text-xl sm:text-2xl font-bold text-white">{t("checkout.successTitle")}</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Deine Song-Bestellung ist erfolgreich eingegangen. Wir beginnen sofort mit der Erstellung deines persönlichen Unikats!
+                  {t("checkout.successDesc")}
                 </p>
                 <div className="bg-slate-950 p-4 rounded-xl text-left text-xs font-mono text-slate-300 space-y-1.5 border border-slate-800">
-                  <div>Bestell-Nr: <span className="text-amber-400 font-bold">{transactionId}</span></div>
-                  <div>Empfänger: <span className="text-white">{customerEmail}</span></div>
-                  <div>Zustellung via: <span className="text-emerald-400 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
-                  <div>Gesamtbetrag: <span className="text-white font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
+                  <div>{t("checkout.orderNumber")}: <span className="text-amber-400 font-bold">{transactionId}</span></div>
+                  <div>{language === "en" ? "Recipient" : "Empfänger"}: <span className="text-white">{customerEmail}</span></div>
+                  <div>{language === "en" ? "Delivery via" : "Zustellung via"}: <span className="text-emerald-400 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
+                  <div>{language === "en" ? "Total Amount" : "Gesamtbetrag"}: <span className="text-white font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
                 </div>
                 <button
                   onClick={onClose}
                   className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm"
                 >
-                  Zurück zum Shop
+                  {language === "en" ? "Back to Shop" : "Zurück zum Shop"}
                 </button>
               </div>
             ) : (
@@ -197,7 +199,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     <div className="min-w-0">
                       <h4 className="font-bold text-white text-xs sm:text-sm truncate">{order.name}</h4>
                       <p className="text-[11px] text-slate-400 truncate">
-                        {order.details?.genre ? `${order.details.genre} • ${order.details.voice}` : "Persönlicher Song"}
+                        {order.details?.genre ? `${order.details.genre} • ${order.details.voice}` : t("footer.stickyTitle")}
                       </p>
                     </div>
                     <span className="text-sm font-black text-amber-400 shrink-0">
@@ -207,21 +209,21 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                   {order.details?.express && (
                     <div className="flex justify-between text-xs text-slate-300">
-                      <span>Express-Produktion (unter 12h)</span>
+                      <span>{t("configurator.summary.expressTitle")}</span>
                       <span className="font-semibold text-amber-400">+9,99 €</span>
                     </div>
                   )}
 
                   {order.details?.pdfLyrics && (
                     <div className="flex justify-between text-xs text-slate-300">
-                      <span>Songtext-Urkunde (PDF)</span>
+                      <span>{t("configurator.summary.pdfTitle")}</span>
                       <span className="font-semibold text-amber-400">+4,99 €</span>
                     </div>
                   )}
 
                   {discountApplied && (
                     <div className="flex justify-between text-xs text-emerald-400 font-semibold">
-                      <span>Gutschein / Rabatt (10%)</span>
+                      <span>{t("checkout.discountApplied")}</span>
                       <span>-10%</span>
                     </div>
                   )}
@@ -230,7 +232,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   <div className="pt-1.5 flex gap-2">
                     <input
                       type="text"
-                      placeholder="Rabattcode eingeben"
+                      placeholder={t("checkout.discountCodeLabel")}
                       value={discountCode}
                       onChange={(e) => setDiscountCode(e.target.value)}
                       className="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white uppercase focus:outline-none focus:border-amber-500"
@@ -240,12 +242,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       onClick={handleApplyDiscount}
                       className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl border border-slate-700 transition"
                     >
-                      Anwenden
+                      {t("checkout.discountApplyBtn")}
                     </button>
                   </div>
 
                   <div className="border-t border-slate-800 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-white">
-                    <span>Gesamtsumme <span className="text-[10px] font-normal text-slate-400">(inkl. MwSt.)</span></span>
+                    <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-slate-400">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>
                     <span className="text-lg sm:text-xl font-black text-amber-400">
                       {currentPrice.toFixed(2).replace(".", ",")} €
                     </span>
@@ -256,12 +258,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <form onSubmit={handlePayment} className="space-y-3.5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Deine E-Mail-Adresse:
+                      {t("checkout.emailLabel")}:
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="deine.email@beispiel.de"
+                      placeholder={t("checkout.emailPlaceholder")}
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
                       className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-base focus:outline-none focus:border-amber-500"
@@ -271,12 +273,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Voller Name:
+                        {t("checkout.nameLabel")}:
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Vor- und Nachname"
+                        placeholder={t("checkout.namePlaceholder")}
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
                         className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-base focus:outline-none focus:border-amber-500"
@@ -284,7 +286,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        WhatsApp-Nummer (optional):
+                        {t("checkout.phoneLabel")}:
                       </label>
                       <input
                         type="tel"
@@ -298,11 +300,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Für wen ist der Song & besondere Wünsche:
+                      {t("checkout.detailsLabel")}:
                     </label>
                     <textarea
                       rows={2}
-                      placeholder="Namen, Anlass, Stimmung oder Anekdoten für den Songtext..."
+                      placeholder={t("checkout.detailsPlaceholder")}
                       value={songDetailsText}
                       onChange={(e) => setSongDetailsText(e.target.value)}
                       className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white text-base focus:outline-none focus:border-amber-500"
@@ -312,7 +314,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* Payment Method Selector */}
                   <div className="space-y-2 pt-1">
                     <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                      Zahlungsart wählen
+                      {t("checkout.paymentMethodTitle")}
                     </label>
 
                     <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
@@ -326,7 +328,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         />
                         <div>
                           <span className="font-bold text-xs sm:text-sm block">PayPal Express</span>
-                          <span className="text-[10px] text-slate-400">Schnell, einfach &amp; mit Käuferschutz</span>
+                          <span className="text-[10px] text-slate-400">{t("checkout.paypalDesc")}</span>
                         </div>
                       </div>
                       <div className="shrink-0">
@@ -344,8 +346,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           className="text-amber-500"
                         />
                         <div>
-                          <span className="font-bold text-xs sm:text-sm block">Kreditkarte &amp; Online-Zahlung</span>
-                          <span className="text-[10px] text-slate-400">Visa, Mastercard, Apple Pay, Google Pay, SEPA, Klarna</span>
+                          <span className="font-bold text-xs sm:text-sm block">{language === "en" ? "Credit Card & Online Payment" : "Kreditkarte & Online-Zahlung"}</span>
+                          <span className="text-[10px] text-slate-400">{t("checkout.stripeDesc")}</span>
                         </div>
                       </div>
                       <div className="shrink-0">
@@ -365,8 +367,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         className="rounded bg-slate-700 border-slate-600 text-amber-500 mt-0.5 w-4 h-4 shrink-0"
                       />
                       <span>
-                        Mit dem Kauf stimme ich zu, dass die Produktion meines personalisierten Songs sofort beginnt. 
-                        Ich bestätige, dass das gesetzliche Widerrufsrecht für digitale Inhalte nach Beginn der Ausführung erlischt (§ 356 Abs. 5 BGB).
+                        {t("checkout.termsText")}
                       </span>
                     </label>
                   </div>
@@ -376,7 +377,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     <div className="pt-2">
                       {(!customerEmail || !agreedTerms) && (
                         <p className="text-[11px] text-amber-400/90 text-center mb-2 font-medium bg-amber-500/10 py-1.5 px-3 rounded-lg border border-amber-500/20">
-                          💡 Bitte gib deine E-Mail-Adresse ein und hake das Kästchen an, um PayPal zu aktivieren.
+                          {language === "en" ? "💡 Please enter your email address and accept terms to activate PayPal." : "💡 Bitte gib deine E-Mail-Adresse ein und hake das Kästchen an, um PayPal zu aktivieren."}
                         </p>
                       )}
                       <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
@@ -408,7 +409,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                               trackPurchase(txId, { ...order, price: currentPrice });
                             } catch (err) {
                               console.error("PayPal Capture Error:", err);
-                              alert("Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
+                              alert(language === "en" ? "Error during payment capture. Please try again." : "Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
                               setIsProcessing(false);
                             }
                           }}
@@ -425,9 +426,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 active:scale-[0.99] text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 transition flex items-center justify-center gap-2"
                     >
                       {isProcessing ? (
-                        <span>Zahlung wird verarbeitet... ⏳</span>
+                        <span>{t("checkout.processing")} ⏳</span>
                       ) : (
-                        <span>Jetzt zahlungspflichtig bestellen ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
+                        <span>{language === "en" ? "Order Now with Obligation to Pay" : "Jetzt zahlungspflichtig bestellen"} ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
                       )}
                     </button>
                   )}
@@ -437,11 +438,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="pt-3 border-t border-slate-800 space-y-2 text-[11px] text-slate-400">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>256-Bit SSL-Verschlüsselung &amp; Käuferschutz</span>
+                    <span>{t("checkout.secureSsl")}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span>Lieferung meist in 24 Stunden an Werktagen</span>
+                    <span>{t("hero.trustDelivery")}</span>
                   </div>
                   <div className="pt-2 flex flex-wrap items-center justify-center gap-1.5 opacity-90">
                     <PayPalBadge className="h-3" />
@@ -460,7 +461,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           </div>
 
           <div className="pt-4 text-center text-[11px] text-slate-500">
-            MyMusicMoment24 • Von Herzen für die Ohren
+            MyMusicMoment24 • {language === "en" ? "From the Heart to the Ears" : "Von Herzen für die Ohren"}
           </div>
 
         </div>
