@@ -367,6 +367,10 @@ export const translations = {
           q: "Welche Angaben von mir benötigt ihr für den Songtext?",
           a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
         },
+        {
+          q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
+          a: "Ja, absolut! Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
+        },
       ],
     },
 
@@ -422,7 +426,7 @@ export const translations = {
       analytics: "Statistiken & Analyse",
       analyticsDesc: "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.",
       marketing: "Marketing & Personalisierung",
-      marketingDesc: "Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.",
+      marketingDesc: "Ermöglicht personalisierte Empfehlungen und Conversion-Tracking.",
     },
 
     // Footer
@@ -819,6 +823,10 @@ export const translations = {
         {
           q: "What details do you need from me for the lyrics?",
           a: "The names of the people, the occasion, and a few personal anecdotes, inside memories, or emotions close to your heart. We turn them into touching, beautifully rhymed verses and a catchy chorus.",
+        },
+        {
+          q: "Can my song also be published on Spotify, Apple Music & YouTube Music?",
+          a: "Yes, absolutely! If you want your song to be streamed worldwide and shared in playlists, we are happy to handle music distribution (via DistroKid) for you. Your song will then be released under our official artist profile “MyMusicMoment24” on Spotify, Apple Music, YouTube Music, Amazon Music, and more. This service is a one-time fee of just €4.99 (permanently online, no subscription). You will receive the link directly in your completion email or can contact us anytime.",
         },
       ],
     },

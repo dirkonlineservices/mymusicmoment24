@@ -43,6 +43,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       q: "Welche Angaben von mir benötigt ihr für den Songtext?",
       a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
     },
+    {
+      q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
+      a: "Ja, absolut! Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
+    },
   ]);
 
   const handleSelectProduct = (product) => {

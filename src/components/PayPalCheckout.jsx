@@ -42,10 +42,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
   if (!isOpen || !order) return null;
 
+  const isStreaming = order?.category === "streaming" || order?.id?.includes("streaming");
   const isVoucher = order?.category === "gutschein" || order?.id?.includes("gutschein");
-  const basePrice = isVoucher ? order.price : 19.99;
+  const basePrice = (isStreaming || isVoucher) ? order.price : 19.99;
   const expressExtra = order.details?.express ? 9.99 : 0;
-  const certificateExtra = includeCertificate ? 9.99 : 0;
+  const certificateExtra = (!isStreaming && includeCertificate) ? 9.99 : 0;
   const rawSubtotal = Number((basePrice + expressExtra + certificateExtra).toFixed(2));
   const currentPrice = discountApplied ? Number((rawSubtotal * 0.9).toFixed(2)) : rawSubtotal;
 
@@ -263,48 +264,50 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </button>
                   </div>
 
-                  {/* Urkunde Add-on Checkbox (always under discount code) */}
-                  <div className="pt-2">
-                    <div
-                      className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
-                        includeCertificate
-                          ? "bg-amber-500/15 border-amber-500 shadow-md shadow-amber-500/10"
-                          : "bg-slate-900 border-slate-700 hover:border-slate-600"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-2.5">
-                        <label className="flex items-start gap-2.5 sm:gap-3 cursor-pointer select-none flex-1 min-w-0">
-                          <input
-                            type="checkbox"
-                            checked={includeCertificate}
-                            onChange={(e) => setIncludeCertificate(e.target.checked)}
-                            className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer"
-                          />
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="font-bold text-white text-xs sm:text-sm">
-                                {t("checkout.certificateAddonTitle", "Offizielle Song-Urkunde (+9,99 €)")}
-                              </span>
-                              <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold rounded">
-                                {t("checkout.certificateAddonBadge", "Top-Geschenk")}
-                              </span>
+                  {/* Urkunde Add-on Checkbox (for songs & vouchers) */}
+                  {!isStreaming && (
+                    <div className="pt-2">
+                      <div
+                        className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
+                          includeCertificate
+                            ? "bg-amber-500/15 border-amber-500 shadow-md shadow-amber-500/10"
+                            : "bg-slate-900 border-slate-700 hover:border-slate-600"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2.5">
+                          <label className="flex items-start gap-2.5 sm:gap-3 cursor-pointer select-none flex-1 min-w-0">
+                            <input
+                              type="checkbox"
+                              checked={includeCertificate}
+                              onChange={(e) => setIncludeCertificate(e.target.checked)}
+                              className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer"
+                            />
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="font-bold text-white text-xs sm:text-sm">
+                                  {t("checkout.certificateAddonTitle", "Offizielle Song-Urkunde (+9,99 €)")}
+                                </span>
+                                <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold rounded">
+                                  {t("checkout.certificateAddonBadge", "Top-Geschenk")}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
+                                {t("checkout.certificateAddonDesc", "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen.")}
+                              </p>
                             </div>
-                            <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
-                              {t("checkout.certificateAddonDesc", "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen.")}
-                            </p>
-                          </div>
-                        </label>
-                        <button
-                          type="button"
-                          onClick={() => setShowCertificateModal(true)}
-                          className="shrink-0 text-[11px] font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 sm:px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>{t("checkout.certificatePreviewBtn", "Vorschau")}</span>
-                        </button>
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setShowCertificateModal(true)}
+                            className="shrink-0 text-[11px] font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 sm:px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>{t("checkout.certificatePreviewBtn", "Vorschau")}</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="border-t border-slate-800 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-white">
                     <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-slate-400">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>

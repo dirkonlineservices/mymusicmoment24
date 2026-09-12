@@ -3,6 +3,7 @@ import LandingPage from "./views/LandingPage";
 import BlogPost from "./views/BlogPost";
 import AuthorPage from "./views/AuthorPage";
 import LegalPage from "./views/LegalPage";
+import StreamingReleasePage from "./views/StreamingReleasePage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
@@ -22,7 +23,16 @@ function AppMain() {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path.startsWith("/blog/")) {
+      const hash = window.location.hash;
+      if (
+        path === "/streaming" || 
+        path === "/spotify-release" || 
+        path === "/streaming-release" ||
+        hash === "#/streaming" ||
+        hash === "#/spotify-release"
+      ) {
+        setCurrentRoute({ view: "streaming", slug: null });
+      } else if (path.startsWith("/blog/")) {
         const slug = path.replace("/blog/", "").replace(/\/$/, "");
         setCurrentRoute({ view: "blog", slug });
       } else if (path === "/autor-dirk-schmetzer" || path === "/ueber-uns-musikservice") {
@@ -38,6 +48,7 @@ function AppMain() {
 
     handlePopState();
     window.addEventListener("popstate", handlePopState);
+    window.addEventListener("hashchange", handlePopState);
 
     // Check for Stripe Checkout return
     const urlParams = new URLSearchParams(window.location.search);
@@ -69,7 +80,10 @@ function AppMain() {
       window.history.replaceState({}, "", "/");
     }
 
-    return () => window.removeEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("hashchange", handlePopState);
+    };
   }, []);
 
   const navigateToBlog = (slug) => {
@@ -122,6 +136,13 @@ function AppMain() {
           onNavigateBlog={navigateToBlog}
           onNavigateAuthor={navigateToAuthor}
           onNavigateLegal={navigateToLegal}
+        />
+      )}
+
+      {currentRoute.view === "streaming" && (
+        <StreamingReleasePage
+          onBackToHome={() => navigateToHome()}
+          onOpenCheckout={handleOpenCheckout}
         />
       )}
 
