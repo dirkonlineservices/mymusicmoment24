@@ -4,6 +4,7 @@ import BlogPost from "./views/BlogPost";
 import AuthorPage from "./views/AuthorPage";
 import LegalPage from "./views/LegalPage";
 import StreamingReleasePage from "./views/StreamingReleasePage";
+import SupportPage from "./views/SupportPage";
 import PayPalCheckout from "./components/PayPalCheckout";
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
@@ -32,6 +33,8 @@ function AppMain() {
         hash === "#/spotify-release"
       ) {
         setCurrentRoute({ view: "streaming", slug: null });
+      } else if (path === "/support" || path === "/kontakt" || hash === "#/support") {
+        setCurrentRoute({ view: "support", slug: null });
       } else if (path.startsWith("/blog/")) {
         const slug = path.replace("/blog/", "").replace(/\/$/, "");
         setCurrentRoute({ view: "blog", slug });
@@ -100,6 +103,12 @@ function AppMain() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const navigateToSupport = () => {
+    window.history.pushState({}, "", "/support");
+    setCurrentRoute({ view: "support", slug: null });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const navigateToLegal = (type = "impressum") => {
     window.history.pushState({}, "", `/${type}`);
     setCurrentRoute({ view: "legal", slug: type });
@@ -138,6 +147,14 @@ function AppMain() {
           onNavigateBlog={navigateToBlog}
           onNavigateAuthor={navigateToAuthor}
           onNavigateLegal={navigateToLegal}
+          onNavigateSupport={navigateToSupport}
+        />
+      )}
+
+      {currentRoute.view === "support" && (
+        <SupportPage
+          onBackToHome={() => navigateToHome()}
+          onGoToConfigurator={() => navigateToHome("#konfigurator")}
         />
       )}
 

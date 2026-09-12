@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2 } from "lucide-react";
+import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2, HelpCircle, MessageCircle, Landmark, CreditCard, ChevronRight, ExternalLink } from "lucide-react";
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -20,6 +20,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const [transactionId, setTransactionId] = useState("");
   const [includeCertificate, setIncludeCertificate] = useState(false);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
+  const [showPaymentHelp, setShowPaymentHelp] = useState(false);
 
   useEffect(() => {
     if (isOpen && order) {
@@ -157,7 +158,123 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
       />
 
-      <div className="absolute inset-y-0 right-0 max-w-full flex">
+      <div className="absolute inset-y-0 right-0 max-w-full flex items-stretch">
+        {/* Bezahlhilfe Side Panel - DESKTOP: Appears to the LEFT of the main checkout form */}
+        {showPaymentHelp && (
+          <aside
+            aria-label="Bezahlhilfe & Anleitung"
+            className="hidden md:flex flex-col w-80 lg:w-96 bg-slate-950/98 backdrop-blur-md border-l border-r border-slate-800 shadow-2xl p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-300 z-10 justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-base">
+                    💡
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white">
+                      {language === "en" ? "Payment Guide & Help" : "Bezahlhilfe & Anleitung"}
+                    </h3>
+                    <p className="text-[10px] text-slate-400">
+                      {language === "en" ? "Step by step to your song" : "Schritt für Schritt zum Wunschsong"}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowPaymentHelp(false)}
+                  className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition"
+                  aria-label="Schließen"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="mt-4 space-y-3.5 text-xs">
+                {/* Schritt 1: E-Mail & Häkchen */}
+                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-amber-400 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-amber-500/20 flex items-center justify-center text-[11px]">1</span>
+                    <span>{language === "en" ? "Email & Consent Required" : "E-Mail & Häkchen setzen"}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-relaxed pl-7">
+                    {language === "en"
+                      ? "Enter your delivery email and check the consent box (waiver of statutory withdrawal for custom songs). The payment buttons will activate immediately!"
+                      : "Trage deine E-Mail für die Song-Lieferung ein und setze das Häkchen bei den AGB. Erst danach schalten sich die Bezahl-Buttons aktiv frei!"}
+                  </p>
+                </div>
+
+                {/* Schritt 2: PayPal ohne Konto / SEPA-Lastschrift */}
+                <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 space-y-1.5">
+                  <div className="flex items-center gap-2 text-amber-400 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-amber-500/30 flex items-center justify-center text-[11px]">2</span>
+                    <span>{language === "en" ? "PayPal or SEPA Direct Debit" : "PayPal oder Bankeinzug (SEPA)"}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-200 font-medium pl-7 leading-relaxed">
+                    {language === "en"
+                      ? "No PayPal account needed! You can easily pay as a guest via SEPA bank debit:"
+                      : "Du brauchst KEIN PayPal-Konto! Du kannst ganz einfach ohne Registrierung per Bankeinzug zahlen:"}
+                  </p>
+                  <ol className="text-[11px] text-slate-300 pl-7 space-y-1 list-decimal list-inside">
+                    <li>{language === "en" ? "Click the yellow PayPal button" : "Auf den gelben PayPal-Button klicken"}</li>
+                    <li>{language === "en" ? "Select 'Pay with Debit or Credit Card' / 'Pay as Guest'" : "Im PayPal-Fenster auf „Mit Debit- oder Kreditkarte zahlen“ bzw. „Als Gast zahlen“ klicken"}</li>
+                    <li>{language === "en" ? "Enter your IBAN for direct debit" : "Deine IBAN für Lastschrift oder Kartendaten eingeben"}</li>
+                    <li>{language === "en" ? "Confirm payment – finished!" : "Zahlung bestätigen – fertig!"}</li>
+                  </ol>
+                </div>
+
+                {/* Schritt 3: Stripe Kreditkarte / Apple Pay */}
+                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-white font-bold">
+                    <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[11px]">3</span>
+                    <span>{language === "en" ? "Credit Card, Apple Pay, Klarna" : "Kreditkarte, Apple Pay, Klarna"}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-relaxed pl-7">
+                    {language === "en"
+                      ? "Choose 'Credit Card & Online Payment' to check out via Stripe with Visa, Mastercard, Apple Pay, Google Pay or Klarna."
+                      : "Wähle 'Kreditkarte & Online-Zahlung', um direkt per Visa, Mastercard, Apple Pay, Google Pay oder Klarna zu bezahlen."}
+                  </p>
+                </div>
+
+                {/* Schritt 4: Banküberweisung (Vorkasse) */}
+                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-white font-bold">
+                    <Landmark className="w-4 h-4 text-emerald-400" />
+                    <span>{language === "en" ? "Bank Transfer (Advance Payment)" : "Klassische Banküberweisung"}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-relaxed pl-6">
+                    {language === "en"
+                      ? "Prefer direct bank transfer? Contact us for our IBAN. Important: Song production starts immediately upon payment receipt on our bank account (usually 1 business day)."
+                      : "Möchtest du per normaler Überweisung zahlen? Kontaktiere uns kurz für unsere IBAN. Wichtig: Die Produktion deines Liedes beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Support Callout */}
+            <div className="pt-4 border-t border-slate-800 mt-4 space-y-2">
+              <a
+                href="https://wa.me/491708285513?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>{language === "en" ? "WhatsApp Direct Support" : "WhatsApp Direkthilfe mit Dirk"}</span>
+              </a>
+              <div className="text-center">
+                <a
+                  href="/support"
+                  className="text-[11px] text-slate-400 hover:text-amber-400 underline transition inline-flex items-center gap-1"
+                >
+                  <span>{language === "en" ? "Open full Support & Help Page" : "Zur ausführlichen Support-Seite"}</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </aside>
+        )}
+
         <div className="w-screen max-w-lg bg-slate-900 border-l border-slate-800 shadow-2xl p-5 sm:p-8 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
           
           <div>
@@ -375,61 +492,141 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   </div>
 
                   {/* Payment Method Selector */}
-                  <div className="space-y-2 pt-1">
-                    <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                      {t("checkout.paymentMethodTitle")}
-                    </label>
+                  <div className="space-y-2.5 pt-1">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                        {t("checkout.paymentMethodTitle")}
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setShowPaymentHelp(!showPaymentHelp)}
+                        className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition shadow-sm"
+                      >
+                        <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                        <span>{showPaymentHelp ? (language === "en" ? "Hide Help" : "Hilfe schließen") : (language === "en" ? "💡 Payment Guide" : "💡 Bezahlhilfe & Anleitung")}</span>
+                      </button>
+                    </div>
 
-                    <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "paypal" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
-                      <div className="flex items-center gap-2.5">
-                        <input
-                          type="radio"
-                          name="payment"
-                          checked={paymentMethod === "paypal"}
-                          onChange={() => setPaymentMethod("paypal")}
-                          className="text-amber-500"
-                        />
-                        <div>
-                          <span className="font-bold text-xs sm:text-sm block">PayPal Express</span>
-                          <span className="text-[10px] text-slate-400">{t("checkout.paypalDesc")}</span>
+                    {/* PayPal Radio Card: High visual prominence & hover effect */}
+                    <label className={`relative block p-3.5 sm:p-4 rounded-2xl border-2 cursor-pointer transition-all duration-200 group ${
+                      paymentMethod === "paypal"
+                        ? "bg-gradient-to-br from-amber-500/15 via-yellow-500/10 to-slate-900 border-amber-400 shadow-lg shadow-amber-500/15 ring-2 ring-amber-400/30 text-white"
+                        : "bg-slate-800/80 border-slate-700 hover:border-amber-400/80 hover:bg-slate-800 hover:shadow-md hover:shadow-amber-500/10 text-slate-300"
+                    }`}>
+                      <div className="flex items-start justify-between gap-2.5">
+                        <div className="flex items-start gap-3">
+                          <input
+                            type="radio"
+                            name="payment"
+                            checked={paymentMethod === "paypal"}
+                            onChange={() => setPaymentMethod("paypal")}
+                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500"
+                          />
+                          <div>
+                            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                              <span className="font-extrabold text-white text-xs sm:text-sm">
+                                {t("checkout.paypalTitle", "PayPal Express & SEPA-Lastschrift")}
+                              </span>
+                              <span className="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold rounded">
+                                {t("checkout.paypalBadge", "Ohne PayPal-Konto möglich")}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                              {t("checkout.paypalDesc", "Mit PayPal-Konto oder ganz ohne Konto per SEPA-Lastschrift (Bankeinzug) / Debitkarte zahlen.")}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-1 shrink-0">
+                          <PayPalBadge className="h-4" />
+                          <SepaBadge className="h-3.5" />
                         </div>
                       </div>
-                      <div className="shrink-0">
-                        <PayPalBadge className="h-3.5" />
+                    </label>
+
+                    {/* Stripe Radio Card */}
+                    <label className={`relative block p-3.5 sm:p-4 rounded-2xl border-2 cursor-pointer transition-all duration-200 ${
+                      paymentMethod === "stripe"
+                        ? "bg-gradient-to-br from-amber-500/15 via-yellow-500/10 to-slate-900 border-amber-400 shadow-lg shadow-amber-500/15 ring-2 ring-amber-400/30 text-white"
+                        : "bg-slate-800/80 border-slate-700 hover:border-amber-400/80 hover:bg-slate-800 hover:shadow-md text-slate-300"
+                    }`}>
+                      <div className="flex items-start justify-between gap-2.5">
+                        <div className="flex items-start gap-3">
+                          <input
+                            type="radio"
+                            name="payment"
+                            checked={paymentMethod === "stripe"}
+                            onChange={() => setPaymentMethod("stripe")}
+                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500"
+                          />
+                          <div>
+                            <span className="font-extrabold text-white text-xs sm:text-sm block">
+                              {t("checkout.stripeTitle", "Kreditkarte & Online-Zahlung")}
+                            </span>
+                            <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
+                              {t("checkout.stripeDesc", "Zahle bequem mit Kreditkarte, Apple Pay, Google Pay, Klarna oder SEPA.")}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap items-center justify-end gap-1 shrink-0 max-w-[80px]">
+                          <StripeBadge className="h-3.5" />
+                        </div>
                       </div>
                     </label>
 
-                    <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition ${paymentMethod === "stripe" ? "bg-amber-500/10 border-amber-500 text-white" : "bg-slate-800/60 border-slate-700 text-slate-300 hover:border-slate-600"}`}>
-                      <div className="flex items-center gap-2.5">
-                        <input
-                          type="radio"
-                          name="payment"
-                          checked={paymentMethod === "stripe"}
-                          onChange={() => setPaymentMethod("stripe")}
-                          className="text-amber-500"
-                        />
-                        <div>
-                          <span className="font-bold text-xs sm:text-sm block">{language === "en" ? "Credit Card & Online Payment" : "Kreditkarte & Online-Zahlung"}</span>
-                          <span className="text-[10px] text-slate-400">{t("checkout.stripeDesc")}</span>
+                    {/* Mobile Bezahlhilfe Accordion (shown only on mobile < md when showPaymentHelp is open) */}
+                    {showPaymentHelp && (
+                      <div className="md:hidden mt-2 p-3.5 bg-slate-950 rounded-2xl border border-amber-500/40 shadow-xl space-y-3 text-xs">
+                        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                          <span className="font-bold text-white flex items-center gap-1.5">
+                            <span>💡</span>
+                            <span>{language === "en" ? "Payment Guide" : "Bezahlhilfe & Anleitung"}</span>
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setShowPaymentHelp(false)}
+                            className="text-slate-400 hover:text-white text-[11px]"
+                          >
+                            ✕
+                          </button>
                         </div>
+                        <div className="space-y-2 text-[11px] text-slate-300">
+                          <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                            <span className="font-bold text-amber-400">1. E-Mail & Häkchen: </span>
+                            <span>E-Mail eingeben & AGB abhaken – erst dann werden die Bezahl-Buttons aktiv!</span>
+                          </div>
+                          <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                            <span className="font-bold text-amber-400">2. PayPal ohne Konto (Bankeinzug): </span>
+                            <span>PayPal anklicken -&gt; „Als Gast zahlen“ oder „Mit Karte zahlen“ wählen -&gt; IBAN eingeben -&gt; Fertig!</span>
+                          </div>
+                          <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                            <span className="font-bold text-white">3. Überweisung (Vorkasse): </span>
+                            <span>Produktion startet sofort nach Zahlungseingang auf dem Bankkonto (ca. 1 Werktag).</span>
+                          </div>
+                        </div>
+                        <a
+                          href="https://wa.me/491708285513?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md transition"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp Direkthilfe mit Dirk</span>
+                        </a>
                       </div>
-                      <div className="shrink-0">
-                        <StripeBadge className="h-3.5" />
-                      </div>
-                    </label>
+                    )}
                   </div>
 
                   {/* Legal Checkbox */}
                   <div className="pt-1.5">
-                    <label className="flex items-start gap-2.5 cursor-pointer text-[11px] sm:text-xs text-slate-400">
+                    <label className="flex items-start gap-2.5 cursor-pointer text-[11px] sm:text-xs text-slate-300 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 transition">
                       <input
                         type="checkbox"
                         required
                         checked={agreedTerms}
                         onChange={(e) => setAgreedTerms(e.target.checked)}
-                        className="rounded bg-slate-700 border-slate-600 text-amber-500 mt-0.5 w-4 h-4 shrink-0"
+                        className="rounded bg-slate-800 border-slate-600 text-amber-500 mt-0.5 w-4 h-4 shrink-0 focus:ring-amber-500 cursor-pointer"
                       />
-                      <span>
+                      <span className="leading-snug">
                         {t("checkout.termsText")}
                       </span>
                     </label>
@@ -439,9 +636,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {paypalClientId && paymentMethod === "paypal" ? (
                     <div className="pt-2">
                       {(!customerEmail || !agreedTerms) && (
-                        <p className="text-[11px] text-amber-400/90 text-center mb-2 font-medium bg-amber-500/10 py-1.5 px-3 rounded-lg border border-amber-500/20">
-                          {language === "en" ? "💡 Please enter your email address and accept terms to activate PayPal." : "💡 Bitte gib deine E-Mail-Adresse ein und hake das Kästchen an, um PayPal zu aktivieren."}
-                        </p>
+                        <div className="text-[11px] text-amber-300 text-center mb-2 font-medium bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 py-2 px-3 rounded-xl border border-amber-500/40 shadow-sm animate-pulse">
+                          {language === "en"
+                            ? "🔒 Please enter your email address and check the box above to activate PayPal."
+                            : "🔒 Bitte E-Mail eingeben und Häkchen oben setzen, um PayPal zu aktivieren."}
+                        </div>
                       )}
                       <PayPalScriptProvider options={{ clientId: paypalClientId, currency: "EUR" }}>
                         <PayPalButtons

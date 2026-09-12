@@ -13,7 +13,7 @@ import PaymentBadges from "../components/PaymentBadges";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal }) {
+export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport }) {
   const { t } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,6 +46,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     {
       q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
       a: "Ja, absolut! Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
+    },
+    {
+      q: "Kann ich auch per Banküberweisung oder ohne PayPal-Konto zahlen?",
+      a: "Ja, selbstverständlich! Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen – kontaktiere uns dazu einfach kurz per WhatsApp oder E-Mail für unsere IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).",
+    },
+    {
+      q: "Warum ist der Bezahl-Button anfangs inaktiv / ausgegraut?",
+      a: "Aus rechtlichen Gründen (Verzicht auf das 14-tägige Widerrufsrecht bei individueller digitaler Maßanfertigung deines Liedes) wird der Bezahl-Button erst aktiv, sobald du deine E-Mail-Adresse für die Songzustellung eingegeben und das Zustimmungs-Kästchen für unsere AGB und den sofortigen Produktionsstart angehakt hast.",
     },
   ]);
 
@@ -611,6 +619,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   <button onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))} className="hover:text-amber-400 transition text-left underline decoration-dotted flex items-center gap-1.5">
                     <span>🍪</span>
                     <span>{t("footer.cookieSettings")}</span>
+                  </button>
+                </li>
+                <li className="pt-1.5">
+                  <button onClick={onNavigateSupport} className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs">
+                    <span>💬</span>
+                    <span>{t("footer.supportLink", "WhatsApp-Support & Hilfe")}</span>
                   </button>
                 </li>
               </ul>
