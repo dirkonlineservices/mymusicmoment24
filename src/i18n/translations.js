@@ -215,6 +215,45 @@ export const translations = {
       newBadge: "Neu im Sortiment",
       reviewsSuffix: "Bewertungen",
       reviewSuffix: "Bewertung",
+      aiCreativeBadge: "KI-Creative",
+      items: {
+        hochzeit: {
+          badge: "Bestseller",
+          title: "Individuelles Hochzeitslied als Geschenk",
+          categoryLabel: "Hochzeitsmusik KI",
+          desc: "Individuelle personalisierte Lieder für Hochzeiten & Hochzeitstage. Das emotionale Herzstück für Trauung, Eröffnungstanz und besondere Jubiläen.",
+        },
+        geburtstag: {
+          badge: "Bestseller",
+          title: "Personalisiertes Geburtstagslied",
+          categoryLabel: "Geburtstagsmusik KI",
+          desc: "Das unvergessliche Geburtstagsgeschenk: Alle Meilensteine, Insider und lustigen Anekdoten in einem packenden, persönlichen Song.",
+        },
+        jubilaeum: {
+          badge: "Sehr gefragt",
+          title: "Jubiläum & Hochzeitstag Song",
+          categoryLabel: "Jubiläumsfeier KI",
+          desc: "Für Hochzeitstage (Silberne & Goldene Hochzeit), Firmenjubiläen und besondere Meilensteine mit bleibendem Wert.",
+        },
+        duett: {
+          badge: "Romantisch",
+          title: "Liebeslied im Duett (2-sprachig oder 2 Stimmen)",
+          categoryLabel: "Liebeslieder KI",
+          desc: "Harmonischer Dialog aus zwei Stimmen oder zweisprachig (z.B. Deutsch & Englisch). Perfekt für Jahrestage und Liebeserklärungen.",
+        },
+        party: {
+          badge: "Brandneu",
+          title: "Dein Partytrack – Die ultimative musikalische Überraschung! 🎉🎶",
+          categoryLabel: "Personalisierte KI Partytracks",
+          desc: "Uptempo-Feiertrack mit mitreißendem Beat und Mitsing-Refrain für Feiern, Junggesellenabschiede und Vereinsfeste.",
+        },
+        gutschein: {
+          badge: "Jetzt Verschenken",
+          title: "Gutschein für dein Wunschlied",
+          categoryLabel: "Gutschein",
+          desc: "Der flexible Geschenkgutschein für ein personalisiertes Wunschlied. Flexibel einlösbar für jeden beliebigen Anlass.",
+        },
+      },
     },
 
     // Step Process
@@ -597,6 +636,45 @@ export const translations = {
       newBadge: "Brand New",
       reviewsSuffix: "Reviews",
       reviewSuffix: "Review",
+      aiCreativeBadge: "AI-Creative",
+      items: {
+        hochzeit: {
+          badge: "Bestseller",
+          title: "Custom Wedding Song as a Gift",
+          categoryLabel: "Wedding Music AI",
+          desc: "Bespoke personalized songs for weddings & wedding anniversaries. The emotional centerpiece for nuptials, first dance, and milestone celebrations.",
+        },
+        geburtstag: {
+          badge: "Bestseller",
+          title: "Personalized Birthday Song",
+          categoryLabel: "Birthday Music AI",
+          desc: "The unforgettable birthday gift: All milestones, inside jokes, and cherished memories crafted into a captivating, personal song.",
+        },
+        jubilaeum: {
+          badge: "Popular",
+          title: "Anniversary & Milestone Song",
+          categoryLabel: "Anniversary Celebration AI",
+          desc: "For wedding anniversaries (Silver & Golden weddings), company milestones, and special life events with lasting sentimental value.",
+        },
+        duett: {
+          badge: "Romantic",
+          title: "Love Duet (Bilingual or 2 Harmonizing Voices)",
+          categoryLabel: "Love Songs AI",
+          desc: "Harmonious dialogue between two voices or bilingual (e.g. German & English). Perfect for anniversaries and love declarations.",
+        },
+        party: {
+          badge: "Brand New",
+          title: "Your Party Track – The Ultimate Musical Surprise! 🎉🎶",
+          categoryLabel: "Personalized AI Party Tracks",
+          desc: "High-energy celebration anthem with an infectious beat and sing-along chorus for parties, bachelor parties, and celebrations.",
+        },
+        gutschein: {
+          badge: "Gift Now",
+          title: "Gift Voucher for a Custom Song",
+          categoryLabel: "Gift Voucher",
+          desc: "The flexible gift voucher for a personalized custom song. Easily redeemable for any occasion.",
+        },
+      },
     },
 
     // Step Process

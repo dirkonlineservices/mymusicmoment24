@@ -26,6 +26,17 @@ export default function ProductCatalog({ onSelectProduct }) {
     party: language === "en" ? "Party Tracks AI" : "Partytracks KI",
   };
 
+  const getLocalizedProduct = (prod) => {
+    const itemKey = `catalog.items.${prod.id}`;
+    return {
+      ...prod,
+      title: t(`${itemKey}.title`, prod.title),
+      badge: prod.badge ? t(`${itemKey}.badge`, prod.badge) : null,
+      categoryLabel: t(`${itemKey}.categoryLabel`, prod.categoryLabel),
+      description: t(`${itemKey}.desc`, prod.description),
+    };
+  };
+
   const filteredProducts = selectedCategory === "all"
     ? PRODUCTS
     : PRODUCTS.filter((p) => p.category === selectedCategory);
@@ -64,7 +75,9 @@ export default function ProductCatalog({ onSelectProduct }) {
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-        {filteredProducts.map((prod) => (
+        {filteredProducts.map((rawProd) => {
+          const prod = getLocalizedProduct(rawProd);
+          return (
           <div
             key={prod.id}
             className="group bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 rounded-3xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-2xl hover:shadow-amber-500/10"
@@ -89,7 +102,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                 {/* KI-Transparenz Label */}
                 <span className="absolute top-3 right-3 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
                   <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                  <span>KI-Creative</span>
+                  <span>{t("catalog.aiCreativeBadge", "KI-Creative")}</span>
                 </span>
 
                 <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
@@ -168,7 +181,8 @@ export default function ProductCatalog({ onSelectProduct }) {
               </button>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Video Modal */}
