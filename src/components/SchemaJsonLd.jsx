@@ -2,24 +2,28 @@ import React, { useEffect } from "react";
 
 export default function SchemaJsonLd({ type = "home", blogPost = null }) {
   useEffect(() => {
-    let schemaData = [];
+    let schemaItems = [];
 
     // Base Organization & LocalBusiness Schema for GEO & E-E-A-T
     const organizationSchema = {
-      "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "@id": "https://www.mymusicmoment24.de/#organization",
       name: "MyMusicMoment24",
       legalName: "DS Online Services - Dirk Schmetzer",
       url: "https://www.mymusicmoment24.de",
-      logo: "https://www.mymusicmoment24.de/images/logo.png",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.mymusicmoment24.de/images/logo.png",
+        width: 512,
+        height: 512,
+      },
       image: "https://www.mymusicmoment24.de/images/hochzeit.jpg",
       description: "Personalisierte Lieder und individuelle Songs mit modernster KI-Technologie in Studioqualität ab 19,99 €.",
-      telephone: "+49-151-23456789",
+      telephone: "+49-1590-6122744",
       email: "info@mymusicmoment24.de",
       priceRange: "19,99 € - 34,97 €",
       currenciesAccepted: "EUR",
-      paymentAccepted: "PayPal, Kreditkarte, Apple Pay, Google Pay, SEPA",
+      paymentAccepted: "PayPal, Kreditkarte, Apple Pay, Google Pay, SEPA-Lastschrift, Banküberweisung",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Riedgrasweg 30",
@@ -40,6 +44,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       ],
       founder: {
         "@type": "Person",
+        "@id": "https://www.mymusicmoment24.de/autor-dirk-schmetzer#person",
         name: "Dirk Schmetzer",
         jobTitle: "Gründer & Musikproduzent",
         image: "https://www.mymusicmoment24.de/images/dirk-schmetzer.png",
@@ -50,11 +55,11 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       },
       sameAs: [
         "https://www.youtube.com/@MyMusicMoment24",
-        "https://github.com/dirkonlineservices/mymusicmoment24"
+        "https://www.mymusicmoment24.de/autor-dirk-schmetzer"
       ],
     };
 
-    schemaData.push(organizationSchema);
+    schemaItems.push(organizationSchema);
 
     if (type === "home") {
       // Product Schema (Merchant Listings & Rezensions-Snippets Ready)
@@ -192,22 +197,30 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         ],
       };
 
-      schemaData.push(productSchema, faqSchema);
+      schemaItems.push(productSchema, faqSchema);
     } else if (type === "blog" && blogPost) {
-      // BlogPosting Schema
+      // BlogPosting Schema – with required dateModified & image for Rich Results
       const blogPostingSchema = {
-        "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: blogPost.title,
         description: blogPost.excerpt,
+        image: blogPost.image || "https://www.mymusicmoment24.de/images/hochzeit.jpg",
         author: {
           "@type": "Person",
+          "@id": "https://www.mymusicmoment24.de/autor-dirk-schmetzer#person",
           name: blogPost.author || "Dirk Schmetzer",
+          url: "https://www.mymusicmoment24.de/autor-dirk-schmetzer",
         },
         datePublished: blogPost.date,
+        dateModified: blogPost.dateModified || blogPost.date,
         publisher: {
           "@type": "Organization",
+          "@id": "https://www.mymusicmoment24.de/#organization",
           name: "MyMusicMoment24",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://www.mymusicmoment24.de/images/logo.png",
+          },
         },
         mainEntityOfPage: {
           "@type": "WebPage",
@@ -215,10 +228,10 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         },
       };
 
-      schemaData.push(blogPostingSchema);
+      schemaItems.push(blogPostingSchema);
     }
 
-    // Insert into DOM head
+    // Insert into DOM head as @graph (recommended by Google for multiple schemas)
     const scriptId = "mmm24-json-ld";
     let existingScript = document.getElementById(scriptId);
     if (!existingScript) {
@@ -227,7 +240,10 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       existingScript.type = "application/ld+json";
       document.head.appendChild(existingScript);
     }
-    existingScript.text = JSON.stringify(schemaData);
+    existingScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": schemaItems,
+    });
 
     return () => {
       const script = document.getElementById(scriptId);
