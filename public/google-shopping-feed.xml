@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>MyMusicMoment24 - Personalisierte Lieder &amp; Songs mit KI</title>
+    <link>https://www.mymusicmoment24.de</link>
+    <description>Individuell komponierte Songs mit persönlichen Geschichten und echten Namen. Das emotionalste Geschenk für Hochzeit, Geburtstag und Jubiläum.</description>
+
+    <!-- 1. Individuelles Hochzeitslied als Geschenk (ID 11012901054346367184) -->
+    <item>
+      <g:id>11012901054346367184</g:id>
+      <g:title>Individuelles Hochzeitslied als Geschenk</g:title>
+      <g:description>Persönliches Hochzeitslied mit euren Namen und Liebesgeschichte für Eröffnungstanz, Trauung &amp; Hochzeitstag. Professionelle Studioqualität in 24h fertig.</g:description>
+      <g:link>https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/hochzeit.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Hochzeitslied</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 2. Jubiläum Song (ID 17021377817010460214) -->
+    <item>
+      <g:id>17021377817010460214</g:id>
+      <g:title>Jubiläum &amp; Hochzeitstag Song</g:title>
+      <g:description>Persönlicher Jubiläumssong für Silberhochzeit, Goldene Hochzeit oder Firmenjubiläum. Die gemeinsame Lebensgeschichte in einem berührenden Lied.</g:description>
+      <g:link>https://www.mymusicmoment24.de/jubilaum-song</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/jubilaeum.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Jubiläumssong</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 3. Geburtstagssong bestellen (ID 2852c262-2f07-4337-9be3-91c660fbffa6) -->
+    <item>
+      <g:id>2852c262-2f07-4337-9be3-91c660fbffa6</g:id>
+      <g:title>Geburtstagssong bestellen – Personalisiertes Geburtstagslied</g:title>
+      <g:description>Einzigartiges Geburtstagslied mit Namen, Alter und Insider-Anekdoten. Die perfekte Überraschung für 18., 30., 50. oder 80. Geburtstag.</g:description>
+      <g:link>https://www.mymusicmoment24.de/personalisierte-geburtstagslieder</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/geburtstag.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Geburtstagslied</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 4. Personalisiertes Geburtstagslied (ID 8151693976843509937) -->
+    <item>
+      <g:id>8151693976843509937</g:id>
+      <g:title>Personalisiertes Geburtstagslied</g:title>
+      <g:description>Persönliches Geburtstagslied mit echten Geschichten und Meilensteinen für unvergessliche Gänsehaut-Momente auf der Feier.</g:description>
+      <g:link>https://www.mymusicmoment24.de/personalisierte-geburtstagslieder</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/geburtstag.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Geburtstagslied</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 5. Individuellen Song erstellen lassen Persönliches Lied ab 19,99€ (ID 8148031239740156884) -->
+    <item>
+      <g:id>8148031239740156884</g:id>
+      <g:title>Individuellen Song erstellen lassen Persönliches Lied ab 19,99€</g:title>
+      <g:description>Eigenes Lied mit Geschichte und Namen komponieren lassen. Für jeden Anlass: Hochzeit, Geburtstag, Liebeserklärung oder Dankeschön.</g:description>
+      <g:link>https://www.mymusicmoment24.de/personalisierte-lieder</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/hochzeit.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Eigenes Lied</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 6. Express Zuschlag (Lieferung innerhalb von 12 Std an Werktagen) (ID 9320234843625273769) -->
+    <item>
+      <g:id>9320234843625273769</g:id>
+      <g:title>Express Zuschlag (Lieferung innerhalb von 12 Std an Werktagen)</g:title>
+      <g:description>Schnellere Song-Produktion für Eilige: Garantierte Fertigstellung und Zustellung per E-Mail innerhalb von 12 Stunden an Werktagen bei Bestellung vor 18 Uhr.</g:description>
+      <g:link>https://www.mymusicmoment24.de/#konfigurator</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>9.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Zusatzoption &gt; Express-Lieferung</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitale Express-Zustellung</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 7. Offizielle Song-Urkunde mit Liedtext & QR-Code -->
+    <item>
+      <g:id>MMM24-URKUNDE-01</g:id>
+      <g:title>Offizielle Song-Urkunde mit Liedtext &amp; QR-Code</g:title>
+      <g:description>Druckfertiges Premium-PDF (DIN A4) mit persönlichem Liedtext, goldenem Siegel und scannbarem QR-Code zum direkten Abspielen des Songs.</g:description>
+      <g:link>https://www.mymusicmoment24.de/#shop</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/urkunde-beispiel.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>9.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Geschenkartikel &gt; Song-Urkunde</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Kostenloser PDF-Download</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 8. Liebeslied im Duett -->
+    <item>
+      <g:id>MMM24-DUETT-01</g:id>
+      <g:title>Liebeslied im Duett (2-sprachig oder 2 Stimmen)</g:title>
+      <g:description>Harmonischer Song mit zwei Stimmen oder zweisprachig (z.B. Deutsch &amp; Englisch) für Paare, Jahrestage und Liebeserklärungen.</g:description>
+      <g:link>https://www.mymusicmoment24.de/#shop</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/duett.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Duett</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 9. Partytrack -->
+    <item>
+      <g:id>MMM24-PARTY-01</g:id>
+      <g:title>Dein Partytrack – Die ultimative musikalische Überraschung</g:title>
+      <g:description>Mitreißender Feiertrack im Schlager- oder Dance-Stil mit Mitsing-Refrain und persönlichen Namen für jede Feier.</g:description>
+      <g:link>https://www.mymusicmoment24.de/#shop</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/party.jpg</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>19.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Personalisierte Lieder &gt; Partytrack</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digitaler Download per E-Mail</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+
+    <!-- 10. Spotify & Streaming-Release -->
+    <item>
+      <g:id>MMM24-STREAMING-01</g:id>
+      <g:title>Spotify &amp; Streaming-Release (Apple Music, YouTube Music)</g:title>
+      <g:description>Offizielle Veröffentlichung deines personalisierten Songs auf Spotify, Apple Music, YouTube Music &amp; Amazon Music unter MyMusicMoment24.</g:description>
+      <g:link>https://www.mymusicmoment24.de/streaming</g:link>
+      <g:image_link>https://www.mymusicmoment24.de/images/logo.png</g:image_link>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:price>4.99 EUR</g:price>
+      <g:brand>MyMusicMoment24</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Media &gt; Music</g:google_product_category>
+      <g:product_type>Musik &gt; Vertrieb &gt; Streaming-Release</g:product_type>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Weltweiter digitaler Release</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+    </item>
+  </channel>
+</rss>

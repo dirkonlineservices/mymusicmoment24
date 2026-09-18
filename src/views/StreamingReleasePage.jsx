@@ -9,6 +9,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { PayPalBadge, StripeBadge, ApplePayBadge, SepaBadge, DebitCardBadge } from "../components/PaymentBadges";
 import { trackPurchase } from "../lib/gtmPreview";
+import SchemaJsonLd from "../components/SchemaJsonLd";
 
 export default function StreamingReleasePage({ onBackToHome }) {
   const { language } = useLanguage();
@@ -197,6 +198,7 @@ Amount Paid: 4,99 €
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 selection:bg-amber-500 selection:text-slate-950">
+      <SchemaJsonLd type="streaming" />
       {/* Top Header */}
       <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
