@@ -723,22 +723,33 @@ app.post("/api/verify-stripe-session", async (req, res) => {
 // Serve public directory (sitemap.xml, robots.txt, audio files)
 app.use(express.static(path.join(__dirname, "public")));
 
+// Dynamic HTML renderer with accurate Canonical and OG:URL tags for Googlebot & SEO
+function serveHtmlWithCanonical(req, res, htmlPath) {
+  if (!fs.existsSync(htmlPath)) {
+    return res.status(404).send("Build or index.html not found. Please run 'npm run build' first.");
+  }
+  let html = fs.readFileSync(htmlPath, "utf8");
+  const cleanPath = req.path === "/" ? "/" : req.path.replace(/\/$/, "");
+  const canonicalUrl = `https://www.mymusicmoment24.de${cleanPath === "/" ? "/" : cleanPath}`;
+
+  // Replace default homepage canonical with the exact URL of the requested page
+  html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
+  html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+
+  res.send(html);
+}
+
 // Check if dist folder exists (production build)
 const distDir = path.join(__dirname, "dist");
 if (fs.existsSync(distDir)) {
-  app.use(express.static(distDir));
+  app.use(express.static(distDir, { index: false }));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(distDir, "index.html"));
+    serveHtmlWithCanonical(req, res, path.join(distDir, "index.html"));
   });
 } else {
   // In development / preview without dist build
   app.get("*", (req, res) => {
-    const indexPath = path.join(__dirname, "index.html");
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      res.status(404).send("Build or index.html not found. Please run 'npm run build' first.");
-    }
+    serveHtmlWithCanonical(req, res, path.join(__dirname, "index.html"));
   });
 }
 

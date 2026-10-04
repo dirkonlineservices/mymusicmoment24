@@ -64,6 +64,18 @@ function AppMain() {
           setCurrentRoute({ view: "home", slug: null });
         }
       }
+
+      // Sync document canonical link and og:url
+      try {
+        const clean = window.location.pathname === "/" ? "/" : window.location.pathname.replace(/\/$/, "");
+        const canonicalUrl = `https://www.mymusicmoment24.de${clean === "/" ? "/" : clean}`;
+        const canonicalEl = document.querySelector('link[rel="canonical"]');
+        if (canonicalEl) canonicalEl.setAttribute("href", canonicalUrl);
+        const ogUrlEl = document.querySelector('meta[property="og:url"]');
+        if (ogUrlEl) ogUrlEl.setAttribute("content", canonicalUrl);
+      } catch (e) {
+        // ignore in SSR / non-DOM environments
+      }
     };
 
     handlePopState();
