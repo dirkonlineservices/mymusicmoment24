@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { 
   ArrowLeft, Sparkles, Building2, Briefcase, Megaphone, Music, 
   CheckCircle2, Send, Clock, ShieldCheck, Mail, MessageSquare, 
-  ArrowRight, Users, Radio, Award
+  ArrowRight, Users, Radio, Award, ExternalLink
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -246,15 +246,26 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
               {t("b2b.agencyDesc", "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben Musikproduktion unterstützen wir Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.")}
             </p>
           </div>
-          <a
-            href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20B2B-Kooperation%20bei%20MyMusicMoment24."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-emerald-600/20"
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span>{t("b2b.whatsappBtn", "WhatsApp-Direktkontakt")}</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="https://www.sichtbarmitki.agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-blue-600/20"
+            >
+              <span>Zur Agentur: SichtbarMitKI</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20B2B-Kooperation%20bei%20MyMusicMoment24."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-emerald-600/20"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>{t("b2b.whatsappBtn", "WhatsApp-Direktkontakt")}</span>
+            </a>
+          </div>
         </div>
 
         {/* B2B Contact Form */}

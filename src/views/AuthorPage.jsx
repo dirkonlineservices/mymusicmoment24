@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ArrowLeft, CheckCircle2, Music, Sparkles, Youtube, Heart, Award, ShieldCheck, Mail, MessageSquare } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Music, Sparkles, Youtube, Heart, Award, ShieldCheck, Mail, MessageSquare, ExternalLink } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
@@ -68,7 +68,15 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
             <div className="flex flex-col gap-2.5 text-left text-xs text-slate-300 border-t border-slate-800 pt-4">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>DS Online Services (Stuttgart)</span>
+                <a
+                  href="https://www.sichtbarmitki.agency"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors"
+                >
+                  <span>DS Online Services • sichtbarmitKI.agency</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-400 shrink-0" />

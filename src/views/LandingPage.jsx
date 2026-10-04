@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { 
   Music, Sparkles, Heart, Star, ShieldCheck, Clock, Headphones, 
-  ArrowRight, CheckCircle2, ChevronRight, FileText, Menu, X 
+  ArrowRight, CheckCircle2, ChevronRight, FileText, Menu, X, ExternalLink 
 } from "lucide-react";
 import AudioPlayer from "../components/AudioPlayer";
 import Configurator from "../components/Configurator";
@@ -555,6 +555,17 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <div className="text-xs text-slate-500 space-y-1">
                 <p className="font-semibold text-slate-400">DS Online Services • Dirk Schmetzer</p>
                 <p>Riedgrasweg 30, 70599 Stuttgart (Deutschland)</p>
+                <p className="pt-1">
+                  <a
+                    href="https://www.sichtbarmitki.agency"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors"
+                  >
+                    <span>Digitalagentur: sichtbarmitKI.agency</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </p>
               </div>
               <div className="pt-1">
                 <a
