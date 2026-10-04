@@ -66,6 +66,11 @@ const REDIRECT_MAP = {
   "/express-zuschlag-lieferung-innerhalb-von-12-std-an-werktagen": "/#konfigurator",
 
   // Legacy Product & Occasion Redirects to real Landingpages
+  "/geburtstagslieder": "/personalisierte-geburtstagslieder",
+  "/personalisiertes-geburtstagslied": "/personalisierte-geburtstagslieder",
+  "/geburtstagslied": "/personalisierte-geburtstagslieder",
+  "/hochzeitslied": "/individuelle-hochzeitsgeschenke",
+  "/hochzeitslieder": "/individuelle-hochzeitsgeschenke",
   "/geburtstagssong-bestellen": "/personalisierte-geburtstagslieder",
   "/individuelles-hochzeitslied": "/individuelle-hochzeitsgeschenke",
   "/individuelle-hochzeitssongs": "/individuelle-hochzeitsgeschenke",
