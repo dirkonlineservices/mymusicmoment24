@@ -6,3 +6,51 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
+
+# Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Browser Caching Headers (Leverage Browser Caching)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # HTML & Feeds (short cache for quick updates)
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/xml "access plus 1 hour"
+
+  # Static Assets with Hash (1 Year Immutable)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # Images & Media (1 Month)
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType audio/mpeg "access plus 1 month"
+  ExpiresByType audio/mp3 "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # 1 Year Cache for hashed Vite assets
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+
+  # 1 Month Cache for images and audio
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico|mp3)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+
+  # HTML no-cache for instant SPA updates
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

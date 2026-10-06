@@ -13,5 +13,19 @@ export default defineConfig({
       }
     }
   },
-  assetsInclude: ['**/*.md']
+  assetsInclude: ['**/*.md'],
+  build: {
+    target: 'es2020',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-icons': ['lucide-react', 'react-icons'],
+          'vendor-paypal': ['@paypal/react-paypal-js'],
+          'vendor-marked': ['marked']
+        }
+      }
+    }
+  }
 });

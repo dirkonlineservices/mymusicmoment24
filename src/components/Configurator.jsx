@@ -382,10 +382,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
+                <label htmlFor="config-names" className="block text-xs sm:text-sm font-semibold text-white mb-1">
                   {t("configurator.storyLabels.namesLabel")}:
                 </label>
                 <input
+                  id="config-names"
+                  name="names"
+                  aria-label={t("configurator.storyLabels.namesLabel")}
                   type="text"
                   placeholder={t("configurator.storyLabels.namesPlaceholder")}
                   value={config.names}
@@ -395,10 +398,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-white mb-1">
+                <label htmlFor="config-story" className="block text-xs sm:text-sm font-semibold text-white mb-1">
                   {t("configurator.storyLabels.storyLabel")}:
                 </label>
                 <textarea
+                  id="config-story"
+                  name="story"
+                  aria-label={t("configurator.storyLabels.storyLabel")}
                   rows={4}
                   placeholder={t("configurator.storyLabels.storyPlaceholder")}
                   value={config.story}
@@ -454,9 +460,12 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
             {/* Extras toggles */}
             <div className="space-y-2.5">
-              <label className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
+              <label htmlFor="config-express" className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
                 <div className="flex items-center gap-3">
                   <input
+                    id="config-express"
+                    name="express"
+                    aria-label={t("configurator.summary.expressTitle")}
                     type="checkbox"
                     checked={config.express}
                     onChange={(e) => setConfig({ ...config, express: e.target.checked })}
@@ -471,8 +480,11 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               </label>
 
               <div className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 transition">
-                <label className="flex items-center gap-3 cursor-pointer flex-1 min-w-0 mr-2">
+                <label htmlFor="config-pdf-lyrics" className="flex items-center gap-3 cursor-pointer flex-1 min-w-0 mr-2">
                   <input
+                    id="config-pdf-lyrics"
+                    name="pdfLyrics"
+                    aria-label={t("configurator.summary.pdfTitle")}
                     type="checkbox"
                     checked={config.pdfLyrics}
                     onChange={(e) => setConfig({ ...config, pdfLyrics: e.target.checked })}

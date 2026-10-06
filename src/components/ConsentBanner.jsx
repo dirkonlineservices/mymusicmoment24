@@ -91,42 +91,48 @@ export default function ConsentBanner() {
                 </div>
                 <input
                   type="checkbox"
+                  id="cookie-consent-essential"
                   checked
                   disabled
+                  aria-label="Technisch notwendige Cookies (immer aktiv)"
                   className="rounded bg-slate-700 border-slate-600 text-amber-500 cursor-not-allowed w-4 h-4"
                 />
               </div>
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
-                <div>
+                <label htmlFor="cookie-consent-analytics" className="cursor-pointer">
                   <span className="font-semibold text-white block">
                     {t("cookieBanner.analytics", "Statistiken & Analyse")}
                   </span>
                   <span className="text-[11px] text-slate-400">
                     {t("cookieBanner.analyticsDesc", "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.")}
                   </span>
-                </div>
+                </label>
                 <input
                   type="checkbox"
+                  id="cookie-consent-analytics"
                   checked={preferences.analytics}
                   onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
+                  aria-label="Statistiken und Analyse Cookies erlauben"
                   className="rounded bg-slate-700 border-slate-600 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
                 />
               </div>
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
-                <div>
+                <label htmlFor="cookie-consent-marketing" className="cursor-pointer">
                   <span className="font-semibold text-white block">
                     {t("cookieBanner.marketing", "Marketing & Personalisierung")}
                   </span>
                   <span className="text-[11px] text-slate-400">
                     {t("cookieBanner.marketingDesc", "Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.")}
                   </span>
-                </div>
+                </label>
                 <input
                   type="checkbox"
+                  id="cookie-consent-marketing"
                   checked={preferences.marketing}
                   onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })}
+                  aria-label="Marketing und Personalisierung Cookies erlauben"
                   className="rounded bg-slate-700 border-slate-600 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
                 />
               </div>

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ards-project/ard-spec/main/spec/schemas/ai-catalog.schema.json",
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "MyMusicMoment24",
+    "identifier": "did:web:mymusicmoment24.de"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:mymusicmoment24.de:service:custom-song",
+      "displayName": "Personalisierter Song Service",
+      "type": "text/markdown",
+      "url": "https://www.mymusicmoment24.de/llms.txt",
+      "description": "Erstellung maßgeschneiderter Musikstücke und Lieder mit persönlicher Geschichte, Namen und Wunsch-Genre ab 19,99 €.",
+      "representativeQueries": [
+        "Personalisierter Song zum Geburtstag",
+        "Eigenes Lied für Hochzeit schreiben lassen",
+        "Individueller Song mit persönlicher Geschichte",
+        "Geschenkgutschein für personalisierten Song"
+      ]
+    },
+    {
+      "identifier": "urn:ai:mymusicmoment24.de:product:song-konfigurator",
+      "displayName": "Song-Konfigurator",
+      "type": "text/html",
+      "url": "https://www.mymusicmoment24.de/#konfigurator",
+      "description": "Interaktiver Konfigurator zur Wahl von Anlass, Genre, Gesangsstimme, Namen und persönlicher Story.",
+      "representativeQueries": [
+        "Musikgenre und Liedstil auswählen",
+        "Songtext mit eigenen Anekdoten erstellen",
+        "Express Song innerhalb von 12 Stunden bestellen"
+      ]
+    },
+    {
+      "identifier": "urn:ai:mymusicmoment24.de:service:b2b-corporate",
+      "displayName": "B2B Musik & Sound Branding",
+      "type": "text/html",
+      "url": "https://www.mymusicmoment24.de/b2b",
+      "description": "Maßgeschneiderte Unternehmenshymnen, Werbemusik, Podcast-Intros und Event-Songs inklusive gewerblicher Nutzungsrechte.",
+      "representativeQueries": [
+        "Unternehmenshymne produzieren lassen",
+        "Podcast Intro Musik erstellen",
+        "B2B Musikproduktion für Events und Kampagnen"
+      ]
+    }
+  ]
+}

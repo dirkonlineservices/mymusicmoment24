@@ -63,9 +63,16 @@ export default function AudioPlayer() {
   const currentTrack = PLAYLIST[currentTrackIndex];
   const audioRef = useRef(null);
 
+  const isFirstMount = useRef(true);
+
   // Sync track change
   useEffect(() => {
     if (audioRef.current) {
+      if (isFirstMount.current) {
+        isFirstMount.current = false;
+        // Skip automatic load on first page mount to save 5MB mobile network payload
+        return;
+      }
       audioRef.current.src = currentTrack.file;
       audioRef.current.load();
       setCurrentTime(0);
@@ -185,7 +192,7 @@ export default function AudioPlayer() {
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
-          preload="metadata"
+          preload="none"
         />
 
         {/* Playlist Selector Buttons (Responsive 5-track Grid) */}

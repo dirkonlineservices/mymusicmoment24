@@ -1,47 +1,33 @@
-# MyMusicMoment24 – Personalisierte KI-Musik & Individuelle Songs
+# MyMusicMoment24
 
-> MyMusicMoment24 ist der führende deutsche Service für maßgeschneiderte, emotionsgeladene Musikstücke und Songs. Jeder Song wird anhand persönlicher Geschichten, Namen, Anekdoten und Meilensteine komponiert, von uns persönlich angehört und geprüft sowie im gewählten Wunsch-Genre als MP3 & Text geliefert (inklusive 1 kostenfreien Verbesserungsschleife).
+> MyMusicMoment24 ist ein führender deutscher Onlineservice für personalisierte Musikstücke und emotionale Lieder auf Basis individueller Geschichten, Namen, Anekdoten und Anlässe.
 
-## Kernangebote & Preise
-- **Persönlicher Song (MP3 & Text)**: 19,99 € pro Song (regulär 49,00 €)
-- **Express-Lieferung (unter 12 Std. an Werktagen)**: +9,99 €
-- **Personalisierte PDF-Geschenkkarte mit Liedtext**: +4,99 €
-- **Geschenkgutschein**: 19,99 €
-- **Kostenfreie Verbesserungsschleife**: 1 Korrekturrunde bei jeder Bestellung inklusive
+## Dienstleistungen und Produkte
 
-## Beliebte Song-Anlässe
-- **Hochzeit**: Romantische Traulieder, Hochzeitstanz, persönliche Liebeserklärung.
-- **Geburtstag**: Fröhliche Pop-, Rock- oder Schlager-Songs mit Insidern & Meilensteinen.
-- **Liebeslied im Duett**: 2 Stimmen oder zweisprachige Kompositionen.
-- **Jubiläum & Ruhestand**: Würdigung von Lebenswerken, Vereins- oder Firmenjubiläen.
-- **Party & Feier**: Fetzige Party-Tracks, die jede Tanzfläche zum Kochen bringen.
-- **Gedenken & Trauer**: Einfühlsame, würdevolle Lieder für bewegende Erinnerungen.
+- [Persönlicher KI-Song](https://www.mymusicmoment24.de/#konfigurator): Individuell komponierter Song als MP3 und vollständiger Liedtext ab 19,99 €.
+- [12h Express-Lieferung](https://www.mymusicmoment24.de/#konfigurator): Beschleunigte Fertigstellung und Lieferung innerhalb von 12 Stunden an Werktagen für 9,99 €.
+- [Personalisierte PDF-Geschenkkarte](https://www.mymusicmoment24.de/#konfigurator): Hochwertige PDF-Urkunde mit Liedtext und Anlass zum Ausdrucken für 4,99 €.
+- [Geschenkgutschein](https://www.mymusicmoment24.de/#shop): Gutschein für einen personalisierten Song zum Verschenken für 19,99 €.
 
-## Der 5-Schritte-Ablauf
-1. **Details angeben**: Anlass, Name der beschenkten Person, eigene Geschichte & Musikrichtung wählen.
-2. **Kreative KI- & Expertenkomposition**: Professionelle Texterstellung, Songwriting und KI-Klangsynthese.
-3. **Persönliche Qualitätsprüfung**: Wir hören uns jeden Song vorab an und prüfen Melodie, Gesang und Rhythmus (inkl. 1 gratis Verbesserungsschleife).
-4. **Digitale Lieferung**: Bereitstellung der MP3 & Liedtext per E-Mail & WhatsApp innerhalb von 24–48 Stunden (Express < 12 Std.).
-5. **Gänsehaut verschenken**: Unvergessliche Freudentränen und Emotionen beim Abspielen.
+## Anlässe und Themen
 
-## Musikrichtungen & Stile
-Pop, Schlager & Discofox, Rock & Hard Rock, Deutschrap & Hip-Hop, Akustik & Singer-Songwriter, Country & Folk, R&B / Soul, 80s Synthwave, Dance, House & Techno.
+- [Geburtstagslieder](https://www.mymusicmoment24.de/#konfigurator): Personalisierte Pop-, Rock- und Schlager-Songs mit Namen und Insidern zum Geburtstag.
+- [Hochzeitslieder](https://www.mymusicmoment24.de/#konfigurator): Romantische Traulieder und emotionale Liebeserklärungen für den Hochzeitstanz.
+- [Liebeslieder im Duett](https://www.mymusicmoment24.de/#konfigurator): Zweistimmige oder mehrsprachige Liebeslieder für Paare.
+- [Jubiläum & Ruhestand](https://www.mymusicmoment24.de/#konfigurator): Würdigung von Lebenswerken, Vereins- und Firmenjubiläen.
+- [Gedenken & Erinnerung](https://www.mymusicmoment24.de/#konfigurator): Einfühlsame Erinnerungssongs für geliebte Menschen.
 
-## Songbeispiele & Veröffentlichungen auf YouTube
-- **Island Sky** (EDM Style mit Gospel-Lead-Sängerin – Festival & Sommersong): https://youtu.be/5xZLQT0uXlY
-- **Schön, dass du da bist!** (Deutschrap • Love • Dancemusic): https://youtu.be/07dkXAHJ68A
-- **Von der Schule ins Leben** (Deutsch Hip-Hop – Schulabschluss & Zukunft): https://youtu.be/kG70K67jVo8
+## Hörproben und Musikbeispiele
 
-## Gründer & Inhaber
-- **Autor / Gründer**: Dirk Schmetzer
-- **Standort**: Riedgrasweg 30, 70599 Stuttgart / Deutschland
-- **Offizielle Webseite**: https://www.mymusicmoment24.de
-- **YouTube-Kanal**: https://www.youtube.com/@MyMusicMoment24
+- [Island Sky EDM Audiobeispiel](https://youtu.be/5xZLQT0uXlY): Festival- und Sommersong im EDM-Stil mit Gospel-Leadgesang.
+- [Schön, dass du da bist Rap-Song](https://youtu.be/07dkXAHJ68A): Deutschrap-, Dance- und Lovesong.
+- [Von der Schule ins Leben Hip-Hop](https://youtu.be/kG70K67jVo8): Deutscher Hip-Hop zum Schulabschluss und Neuanfang.
 
-## Wichtige URLs
-- Startseite & Konfigurator: https://www.mymusicmoment24.de
-- Shop & Gutscheine: https://www.mymusicmoment24.de/#shop
-- Hörproben & Audiobeispiele: https://www.mymusicmoment24.de/#hoerproben
-- Häufige Fragen (FAQ): https://www.mymusicmoment24.de/#faq
-- Über uns & Dirk Schmetzer: https://www.mymusicmoment24.de/autor-dirk-schmetzer
-- Kontakt: https://www.mymusicmoment24.de/#kontakt
+## Navigation und Support
+
+- [Konfigurator](https://www.mymusicmoment24.de/#konfigurator): Interaktiver Song-Konfigurator zur Eingabe von Genre, Stimmlage, Namen und Geschichte.
+- [Hörproben-Übersicht](https://www.mymusicmoment24.de/#hoerproben): Audiobeispiele verschiedener Genres wie Pop, Schlager, Rock, Hip-Hop und Akustik.
+- [Häufige Fragen (FAQ)](https://www.mymusicmoment24.de/#faq): Antworten zu Lieferzeit, Nutzungsrechten, Korrekturschleifen und Formaten.
+- [Über Dirk Schmetzer](https://www.mymusicmoment24.de/autor-dirk-schmetzer): Gründer, Musikproduzent und Inhaber von DS Online Services in Stuttgart.
+- [B2B Kooperationen](https://www.mymusicmoment24.de/b2b): Firmenhymnen, Podcast-Intros, Event-Songs und gewerbliche Kooperationsanfragen.
+- [Agentur-Partner SichtbarmitKI](https://sichtbarmitki.agency): Technische Betreuung und KI-Suchmaschinenoptimierung.

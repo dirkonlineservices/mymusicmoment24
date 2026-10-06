@@ -725,8 +725,15 @@ app.post("/api/verify-stripe-session", async (req, res) => {
   }
 });
 
-// Serve public directory (sitemap.xml, robots.txt, audio files)
-app.use(express.static(path.join(__dirname, "public")));
+// Serve public directory with 30-day cache for media
+app.use(express.static(path.join(__dirname, "public"), {
+  maxAge: "30d",
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith(".html") || filePath.endsWith(".xml")) {
+      res.setHeader("Cache-Control", "public, max-age=3600");
+    }
+  }
+}));
 
 // Dynamic HTML renderer with accurate Canonical and OG:URL tags for Googlebot & SEO
 function serveHtmlWithCanonical(req, res, htmlPath) {
@@ -741,13 +748,22 @@ function serveHtmlWithCanonical(req, res, htmlPath) {
   html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
   html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
 
+  res.setHeader("Cache-Control", "no-cache, must-revalidate");
   res.send(html);
 }
 
 // Check if dist folder exists (production build)
 const distDir = path.join(__dirname, "dist");
 if (fs.existsSync(distDir)) {
-  app.use(express.static(distDir, { index: false }));
+  // Static hashed assets (/assets/...) cached for 1 year immutable
+  app.use("/assets", express.static(path.join(distDir, "assets"), {
+    maxAge: "1y",
+    immutable: true
+  }));
+  app.use(express.static(distDir, {
+    index: false,
+    maxAge: "30d"
+  }));
   app.get("*", (req, res) => {
     serveHtmlWithCanonical(req, res, path.join(distDir, "index.html"));
   });

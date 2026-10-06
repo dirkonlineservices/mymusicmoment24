@@ -270,7 +270,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   src="/images/hero-step-1.jpg"
                   alt={t("hero.storyCard1Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width="400"
+                  height="220"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
@@ -296,7 +300,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   src="/images/hero-step-2.jpg"
                   alt={t("hero.storyCard2Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  width="400"
+                  height="220"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
@@ -322,7 +329,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   src="/images/hero-step-3.jpg"
                   alt={t("hero.storyCard3Title")}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  width="400"
+                  height="220"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
