@@ -12,6 +12,8 @@
     <!-- Performance: Preconnect & LCP Image Preload -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://img.youtube.com" crossorigin />
+    <link rel="dns-prefetch" href="https://img.youtube.com" />
     <link rel="preload" as="image" href="/images/hero-step-1.jpg" fetchpriority="high" />
 
     <!-- SEO Basis -->
@@ -73,7 +75,42 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVXLMBXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
+    <div id="root">
+      <!-- Critical Initial Shell for Zero Render Delay & LCP Boost -->
+      <div class="min-h-screen bg-slate-950 text-slate-100">
+        <header class="h-16 border-b border-slate-800/80 flex items-center px-4 max-w-7xl mx-auto justify-between">
+          <div class="flex items-center gap-3">
+            <img src="/images/logo-icon.png" alt="MyMusicMoment24 Logo" width="40" height="40" class="w-10 h-10 object-contain" />
+            <span class="font-black text-xl text-white">MyMusicMoment<span class="text-amber-400">24</span></span>
+          </div>
+        </header>
+        <section class="pt-8 pb-6 px-4 max-w-5xl mx-auto text-center space-y-6">
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Dein persönlicher Song als einzigartiges Geschenk <span class="text-amber-400">– in 24h fertig</span>
+          </h1>
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+              <div class="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
+                <img
+                  src="/images/hero-step-1.jpg"
+                  alt="Searching for Something Truly Unique"
+                  class="w-full h-full object-cover"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                  width="400"
+                  height="220"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h3 class="font-bold text-sm text-white">Searching for Something Truly Unique</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Von der Idee bis zur perfekten Komposition – jeder Song wird individuell nach deinen Wünschen geschrieben.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

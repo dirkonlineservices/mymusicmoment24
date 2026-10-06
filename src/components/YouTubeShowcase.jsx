@@ -122,7 +122,10 @@ export default function YouTubeShowcase() {
                 <img
                   src={video.thumbnail}
                   alt={video.title}
+                  width="480"
+                  height="360"
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 

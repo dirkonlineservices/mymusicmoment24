@@ -99,6 +99,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <img
               src="/images/logo-icon.png"
               alt="MyMusicMoment24 Logo"
+              width="40"
+              height="40"
               className="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform"
             />
             <div className="flex flex-col">
@@ -548,6 +550,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <img
                   src="/images/logo-icon.png"
                   alt="MyMusicMoment24 Logo"
+                  width="32"
+                  height="32"
+                  loading="lazy"
                   className="w-8 h-8 object-contain"
                 />
                 <div>
