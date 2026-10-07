@@ -18,6 +18,17 @@
 
   <!-- Top-Ranking SEO Landingpages & Ratgeber -->
   <url>
+    <loc>https://www.mymusicmoment24.de/geburtstagslied-personalisiert</loc>
+    <lastmod>2026-10-07T08:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/geburtstag.jpg</image:loc>
+      <image:title>Geburtstagslied personalisiert – Seit 2024 ab 19,99 €</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://www.mymusicmoment24.de/personalisierte-geburtstagslieder</loc>
     <lastmod>2026-09-12T15:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
