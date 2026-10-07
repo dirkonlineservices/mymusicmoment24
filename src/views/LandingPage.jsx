@@ -14,7 +14,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport, onNavigateB2B }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
