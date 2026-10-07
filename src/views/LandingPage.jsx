@@ -620,8 +620,24 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <li><a href="#konfigurator" className="hover:text-white transition">{t("footer.startConfigurator")}</a></li>
                 <li><a href="#faq" className="hover:text-white transition">{t("footer.faq")}</a></li>
                 <li>
+                  <button onClick={() => onNavigateBlog("geburtstagslied-personalisiert")} className="hover:text-amber-300 transition text-left flex items-center gap-1.5 text-amber-400 font-semibold">
+                    <span>🎂</span>
+                    <span>{language === "en" ? "Birthday Song Personalized (New)" : "Geburtstagslied personalisiert (Neu)"}</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigateBlog("personalisierte-geburtstagslieder")} className="hover:text-white transition text-left">
+                    {language === "en" ? "Personalized Birthday Songs" : "Personalisierte Geburtstagslieder"}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigateBlog("personalisierte-lieder")} className="hover:text-white transition text-left">
+                    {language === "en" ? "Personalized Songs with AI" : "Personalisierte Lieder mit KI"}
+                  </button>
+                </li>
+                <li>
                   <button onClick={() => onNavigateBlog("individueller-hochzeitssong")} className="hover:text-white transition text-left">
-                    {t("footer.blogLink")}
+                    {language === "en" ? "Custom Wedding Song" : "Individueller Hochzeitssong"}
                   </button>
                 </li>
                 <li>
