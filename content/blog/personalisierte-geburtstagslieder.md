@@ -84,10 +84,12 @@ Wir generieren die musikalischen Motive und Gesangsspuren und prüfen jeden Song
 
 Möchtest du auf der Feier etwas Greifbares zum Überreichen in den Händen halten? Unsere offizielle **Song-Urkunde** im DIN-A4-Format ist die ideale Ergänzung:
 
+![Personalisierte Song-Urkunde mit Liedtext und scannbarem QR-Code](/images/urkunde-beispiel.jpg)
+
 * Hochwertig gestaltetes PDF zum Ausdrucken und Einrahmen
 * Vollständiger, professionell gesetzter Songtext mit goldenem Siegel
 * **Scannbarer Audio-QR-Code:** Der Beschenkte scannt den Code einfach mit der Smartphone-Kamera und das Lied startet sofort!
-* Für nur **+ 9,99 €** Aufpreis direkt im Konfigurator zubuchbar.
+* Für nur **+ 4,99 €** Aufpreis direkt im Konfigurator zubuchbar.
 
 ---
 

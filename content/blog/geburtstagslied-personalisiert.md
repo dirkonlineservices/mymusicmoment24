@@ -47,6 +47,8 @@ Jeder Mensch fühlt Musik anders. Deshalb wählst du bei uns aus einer breiten P
 ### 3. Emotionale Bindung & Gänsehaut
 Wenn auf der Feier das Licht gedimmt wird, die Musikbox angeht und plötzlich die Stimme aus den Lautsprechern erklingt, realisiert das Geburtstagskind erst nach wenigen Sekunden: *„Das ist ja mein Song! Das geht um mich!“* Dieser Moment der Rührung und Überraschung ist unbezahlbar.
 
+![Gemeinsam feiern mit personalisierter Musik und Gänsehaut-Momenten](/images/party.jpg)
+
 ---
 
 ## Für welche Geburtstage eignen sich personalisierte Geburtstagslieder?
@@ -77,6 +79,8 @@ Mit unserem Online-Konfigurator gestaltest du dein persönliches Geburtstagslied
 ## Extra-Tipp: Die persönliche Song-Urkunde zum Überreichen
 
 Wer auf der Geburtstagsfeier nicht nur eine digitale Datei abspielen, sondern auch etwas Greifbares mit Schleife überreichen möchte, wählt unsere **personalisierte Song-Urkunde (PDF)**:
+
+![Personalisierte Song-Urkunde mit Liedtext und scannbarem QR-Code für den direkten Song-Start](/images/urkunde-beispiel.jpg)
 
 * Hochwertig gestaltetes Dokument mit edlem Siegel zum Ausdrucken und Einrahmen.
 * Der komplette Liedtext ist lesbar und ansprechend layoutet.

@@ -50,11 +50,14 @@ export function getAllBlogPosts() {
     const { data, content } = parseFrontmatter(rawContent);
     const slug = data.slug || path.replace(/^.*[\\\/]/, "").replace(/\.md$/, "");
 
+    // Strip leading duplicate H1 (# Title) from markdown body if present
+    const cleanedContent = content.replace(/^#\s+[^\r\n]+\r?\n+/, "");
+
     posts.push({
       ...data,
       slug,
-      content,
-      html: marked.parse(content),
+      content: cleanedContent,
+      html: marked.parse(cleanedContent),
     });
   }
 

@@ -75,45 +75,63 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
       </header>
 
       {/* Article Header */}
-      <div className="max-w-3xl mx-auto px-4 pt-12 pb-8">
-        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
-          <span className="text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 pb-8">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
+          <span className="text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 font-bold">
             {post.category || (language === "en" ? "Guide" : "Ratgeber")}
           </span>
-          <span className="flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+          <span className="flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-amber-400" />
             {post.date}
           </span>
-          <span className="flex items-center gap-1">
-            <User className="w-3.5 h-3.5 text-slate-400" />
+          <span className="flex items-center gap-1.5">
+            <User className="w-3.5 h-3.5 text-amber-400" />
             {post.author || "Dirk Schmetzer"}
           </span>
           {post.readTime && (
-            <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-amber-400" />
               {post.readTime}
             </span>
           )}
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-[1.2] tracking-tight mb-6">
           {post.title}
         </h1>
 
-        <p className="text-lg text-slate-300 font-light leading-relaxed border-l-4 border-orange-500 pl-4 mb-8">
+        <div className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed bg-slate-900/90 border border-slate-800 border-l-4 border-l-amber-500 p-5 rounded-r-2xl mb-8 shadow-md">
           {post.excerpt}
-        </p>
+        </div>
 
-        <hr className="border-slate-800 my-8" />
+        {/* Hero Cover Image */}
+        {post.coverImage && (
+          <div className="relative w-full h-64 sm:h-96 md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800 shadow-2xl mb-10 group">
+            <img
+              src={post.coverImage}
+              alt={post.title}
+              width="1200"
+              height="800"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-slate-300">
+              <span className="bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-lg uppercase tracking-wider shadow">
+                {post.category || (language === "en" ? "Guide" : "Ratgeber")}
+              </span>
+              <span className="bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-slate-300 font-medium">
+                MyMusicMoment24 • Seit 2024
+              </span>
+            </div>
+          </div>
+        )}
 
-        {/* Rendered HTML content */}
+        {/* Rendered HTML content with High-Readability & Boxed Headings */}
         <div
-          className="prose prose-invert prose-orange max-w-none 
-            prose-headings:text-white prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-            prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-5
-            prose-strong:text-white prose-strong:font-bold
-            prose-ul:text-slate-300 prose-ul:my-4 prose-li:my-1
-            prose-a:text-amber-400 hover:prose-a:text-amber-300"
+          className="blog-content"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
 
