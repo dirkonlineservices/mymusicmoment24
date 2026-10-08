@@ -167,20 +167,20 @@ export default function AudioPlayer() {
 
   return (
     <section id="hoerproben" className="w-full max-w-4xl mx-auto my-12 sm:my-20 px-4">
-      <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl backdrop-blur-sm">
+      <div className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-stone-200/50 backdrop-blur-sm">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 sm:pb-6 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 sm:pb-6 border-b border-stone-200">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> {t("audioPlayer.badge")}
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full mb-2 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" /> {t("audioPlayer.badge")}
             </div>
-            <h2 className="text-xl sm:text-3xl font-bold text-white">
+            <h2 className="text-xl sm:text-3xl font-bold text-stone-900">
               {t("audioPlayer.title")}
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <Disc className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
+          <div className="flex items-center gap-2 text-xs text-stone-500">
+            <Disc className="w-4 h-4 text-amber-500 animate-spin" style={{ animationDuration: isPlaying ? '3s' : '0s' }} />
             <span>{t("audioPlayer.testedBadge")}</span>
           </div>
         </div>
@@ -203,24 +203,24 @@ export default function AudioPlayer() {
               onClick={() => selectTrack(idx)}
               className={`text-left p-3 rounded-xl sm:rounded-2xl border transition-all ${
                 idx === currentTrackIndex
-                  ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
-                  : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-800"
+                  ? "bg-amber-50/90 border-2 border-amber-500 text-stone-900 shadow-md shadow-amber-500/10"
+                  : "bg-stone-50 border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-100"
               }`}
             >
               <div className="flex items-center justify-between gap-1 mb-0.5">
-                <span className="text-[11px] font-semibold text-amber-400 truncate">{track.categoryLabel}</span>
+                <span className="text-[11px] font-semibold text-amber-700 truncate">{track.categoryLabel}</span>
                 {idx === currentTrackIndex && isPlaying && (
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping shrink-0" />
                 )}
               </div>
-              <p className="text-xs sm:text-sm font-bold truncate text-slate-200">{track.title}</p>
-              <p className="text-[10px] text-slate-400 truncate mt-0.5">{track.genre}</p>
+              <p className="text-xs sm:text-sm font-bold truncate text-stone-900">{track.title}</p>
+              <p className="text-[10px] text-stone-500 truncate mt-0.5">{track.genre}</p>
             </button>
           ))}
         </div>
 
         {/* Active Player Card */}
-        <div className="bg-slate-950/90 rounded-2xl p-4 sm:p-5 border border-slate-800 flex flex-col gap-4">
+        <div className="bg-stone-50 rounded-2xl p-4 sm:p-5 border border-stone-200 flex flex-col gap-4 shadow-inner">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               <button
@@ -231,29 +231,29 @@ export default function AudioPlayer() {
                 {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 translate-x-0.5" />}
               </button>
               <div className="min-w-0">
-                <h4 className="text-sm sm:text-base font-bold text-white truncate">{currentTrack.title}</h4>
-                <p className="text-xs text-slate-400 flex items-center gap-1.5 truncate">
+                <h4 className="text-sm sm:text-base font-bold text-stone-900 truncate">{currentTrack.title}</h4>
+                <p className="text-xs text-stone-500 flex items-center gap-1.5 truncate">
                   <span>{currentTrack.genre}</span>
                   <span>•</span>
                   <span>Stimme: {currentTrack.vocal}</span>
                 </p>
-                <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{currentTrack.description}</p>
+                <p className="text-[11px] text-stone-600 mt-0.5 line-clamp-1">{currentTrack.description}</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="text-slate-400 hover:text-white p-2 rounded-lg transition shrink-0 cursor-pointer"
+              className="text-stone-400 hover:text-stone-700 p-2 rounded-lg transition shrink-0 cursor-pointer"
               aria-label={isMuted ? "Ton an" : "Stummschalten"}
             >
-              {isMuted ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5" />}
+              {isMuted ? <VolumeX className="w-5 h-5 text-red-500" /> : <Volume2 className="w-5 h-5" />}
             </button>
           </div>
 
           {/* Progress Bar (Touch-friendly height) */}
           <div className="space-y-1.5">
             <div
-              className="relative w-full h-3 sm:h-3.5 bg-slate-800 rounded-full overflow-hidden cursor-pointer"
+              className="relative w-full h-3 sm:h-3.5 bg-stone-200 rounded-full overflow-hidden cursor-pointer"
               onClick={handleSeek}
               role="slider"
               aria-valuemin={0}
@@ -265,7 +265,7 @@ export default function AudioPlayer() {
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <div className="flex justify-between text-[11px] font-mono text-slate-400">
+            <div className="flex justify-between text-[11px] font-mono text-stone-500">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>

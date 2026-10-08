@@ -180,19 +180,19 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         {showPaymentHelp && (
           <aside
             aria-label="Bezahlhilfe & Anleitung"
-            className="hidden md:flex flex-col w-80 lg:w-96 bg-slate-950/98 backdrop-blur-md border-l border-r border-slate-800 shadow-2xl p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-300 z-10 justify-between"
+            className="hidden md:flex flex-col w-80 lg:w-96 bg-white/98 backdrop-blur-md border-l border-r border-stone-200 shadow-2xl p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-300 z-10 justify-between text-stone-900"
           >
             <div>
-              <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+              <div className="flex items-center justify-between pb-3.5 border-b border-stone-200">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-base">
+                  <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 border border-amber-300 flex items-center justify-center font-bold text-base">
                     💡
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">
+                    <h3 className="text-sm font-bold text-stone-900">
                       {language === "en" ? "Payment Guide & Help" : "Bezahlhilfe & Anleitung"}
                     </h3>
-                    <p className="text-[10px] text-slate-400">
+                    <p className="text-[10px] text-stone-500">
                       {language === "en" ? "Step by step to your song" : "Schritt für Schritt zum Wunschsong"}
                     </p>
                   </div>
@@ -200,7 +200,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <button
                   type="button"
                   onClick={() => setShowPaymentHelp(false)}
-                  className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition"
+                  className="text-stone-400 hover:text-stone-700 p-1.5 rounded-lg hover:bg-stone-100 transition"
                   aria-label="Schließen"
                 >
                   <X className="w-4 h-4" />
@@ -209,12 +209,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
               <div className="mt-4 space-y-3.5 text-xs">
                 {/* Schritt 1: E-Mail & Häkchen */}
-                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 text-amber-400 font-bold">
-                    <span className="w-5 h-5 rounded-full bg-amber-500/20 flex items-center justify-center text-[11px]">1</span>
+                <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                  <div className="flex items-center gap-2 text-amber-700 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center text-[11px] text-amber-800">1</span>
                     <span>{language === "en" ? "Email & Consent Required" : "E-Mail & Häkchen setzen"}</span>
                   </div>
-                  <p className="text-[11px] text-slate-300 leading-relaxed pl-7">
+                  <p className="text-[11px] text-stone-600 leading-relaxed pl-7">
                     {language === "en"
                       ? "Enter your delivery email and check the consent box (waiver of statutory withdrawal for custom songs). The payment buttons will activate immediately!"
                       : "Trage deine E-Mail für die Song-Lieferung ein und setze das Häkchen bei den AGB. Erst danach schalten sich die Bezahl-Buttons aktiv frei!"}
@@ -222,17 +222,17 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </div>
 
                 {/* Schritt 2: PayPal ohne Konto / SEPA-Lastschrift */}
-                <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 space-y-1.5">
-                  <div className="flex items-center gap-2 text-amber-400 font-bold">
-                    <span className="w-5 h-5 rounded-full bg-amber-500/30 flex items-center justify-center text-[11px]">2</span>
+                <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 space-y-1.5">
+                  <div className="flex items-center gap-2 text-amber-800 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-amber-200 flex items-center justify-center text-[11px] text-amber-900">2</span>
                     <span>{language === "en" ? "PayPal or SEPA Direct Debit" : "PayPal oder Bankeinzug (SEPA)"}</span>
                   </div>
-                  <p className="text-[11px] text-slate-200 font-medium pl-7 leading-relaxed">
+                  <p className="text-[11px] text-stone-700 font-medium pl-7 leading-relaxed">
                     {language === "en"
                       ? "No PayPal account needed! You can easily pay as a guest via SEPA bank debit:"
                       : "Du brauchst KEIN PayPal-Konto! Du kannst ganz einfach ohne Registrierung per Bankeinzug zahlen:"}
                   </p>
-                  <ol className="text-[11px] text-slate-300 pl-7 space-y-1 list-decimal list-inside">
+                  <ol className="text-[11px] text-stone-600 pl-7 space-y-1 list-decimal list-inside">
                     <li>{language === "en" ? "Click the yellow PayPal button" : "Auf den gelben PayPal-Button klicken"}</li>
                     <li>{language === "en" ? "Select 'Pay with Debit or Credit Card' / 'Pay as Guest'" : "Im PayPal-Fenster auf „Mit Debit- oder Kreditkarte zahlen“ bzw. „Als Gast zahlen“ klicken"}</li>
                     <li>{language === "en" ? "Enter your IBAN for direct debit" : "Deine IBAN für Lastschrift oder Kartendaten eingeben"}</li>
@@ -241,12 +241,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </div>
 
                 {/* Schritt 3: Stripe Kreditkarte / Apple Pay */}
-                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 text-white font-bold">
-                    <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[11px]">3</span>
+                <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                  <div className="flex items-center gap-2 text-stone-900 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-stone-200 flex items-center justify-center text-[11px] text-stone-700">3</span>
                     <span>{language === "en" ? "Credit Card, Apple Pay, Klarna" : "Kreditkarte, Apple Pay, Klarna"}</span>
                   </div>
-                  <p className="text-[11px] text-slate-300 leading-relaxed pl-7">
+                  <p className="text-[11px] text-stone-600 leading-relaxed pl-7">
                     {language === "en"
                       ? "Choose 'Credit Card & Online Payment' to check out via Stripe with Visa, Mastercard, Apple Pay, Google Pay or Klarna."
                       : "Wähle 'Kreditkarte & Online-Zahlung', um direkt per Visa, Mastercard, Apple Pay, Google Pay oder Klarna zu bezahlen."}
@@ -254,12 +254,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </div>
 
                 {/* Schritt 4: Banküberweisung (Vorkasse) */}
-                <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 text-white font-bold">
-                    <Landmark className="w-4 h-4 text-emerald-400" />
+                <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                  <div className="flex items-center gap-2 text-stone-900 font-bold">
+                    <Landmark className="w-4 h-4 text-emerald-600" />
                     <span>{language === "en" ? "Bank Transfer (Advance Payment)" : "Klassische Banküberweisung"}</span>
                   </div>
-                  <p className="text-[11px] text-slate-300 leading-relaxed pl-6">
+                  <p className="text-[11px] text-stone-600 leading-relaxed pl-6">
                     {language === "en"
                       ? "Select 'Bank Transfer' in checkout to place your order. You will immediately receive your Order ID and our IBAN. Important: Production starts upon payment receipt on our bank account (usually 1 business day)."
                       : "Wähle 'Banküberweisung' im Kassenfenster und bestelle direkt. Du erhältst sofort deine persönliche Bestellnummer und unsere IBAN. Wichtig: Die Produktion deines Liedes beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
@@ -269,7 +269,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             </div>
 
             {/* Bottom Support Callout */}
-            <div className="pt-4 border-t border-slate-800 mt-4 space-y-2">
+            <div className="pt-4 border-t border-stone-200 mt-4 space-y-2">
               <a
                 href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"
                 target="_blank"
@@ -282,7 +282,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
               <div className="text-center">
                 <a
                   href="/support"
-                  className="text-[11px] text-slate-400 hover:text-amber-400 underline transition inline-flex items-center gap-1"
+                  className="text-[11px] text-stone-500 hover:text-amber-600 underline transition inline-flex items-center gap-1"
                 >
                   <span>{language === "en" ? "Open full Support & Help Page" : "Zur ausführlichen Support-Seite"}</span>
                   <ExternalLink className="w-3 h-3" />
@@ -292,11 +292,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           </aside>
         )}
 
-        <div className="w-screen max-w-lg bg-slate-900 border-l border-slate-800 shadow-2xl p-5 sm:p-8 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
+        <div className="w-screen max-w-lg bg-white border-l border-stone-200 shadow-2xl p-5 sm:p-8 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300 text-stone-900">
           
           <div>
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
               <div className="flex items-center gap-2.5">
                 <img
                   src="/images/logo-icon.png"
@@ -304,13 +304,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   className="w-9 h-9 object-contain"
                 />
                 <div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white">{t("checkout.step")}</h3>
-                  <p className="text-[11px] text-slate-400">MyMusicMoment24 • {language === "en" ? "Immediate Production" : "Sofortige Produktion"}</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900">{t("checkout.step")}</h3>
+                  <p className="text-[11px] text-stone-500">MyMusicMoment24 • {language === "en" ? "Immediate Production" : "Sofortige Produktion"}</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
-                className="text-slate-400 hover:text-white p-2 rounded-lg transition"
+                className="text-stone-400 hover:text-stone-700 p-2 rounded-lg transition hover:bg-stone-100"
                 aria-label={t("checkout.closeBtn")}
               >
                 <X className="w-5 h-5" />
@@ -322,13 +322,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 {paymentMethod === "bank_transfer" ? (
                   <div className="space-y-4">
                     <div className="text-center space-y-2">
-                      <div className="w-14 h-14 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
+                      <div className="w-14 h-14 bg-emerald-100 text-emerald-700 border border-emerald-300 rounded-full flex items-center justify-center mx-auto">
                         <CheckCircle className="w-7 h-7" />
                       </div>
-                      <h4 className="text-xl sm:text-2xl font-black text-white">
+                      <h4 className="text-xl sm:text-2xl font-black text-stone-900">
                         {language === "en" ? "Order Successfully Received!" : "Bestellung erfolgreich aufgegeben!"}
                       </h4>
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
+                      <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-md mx-auto">
                         {language === "en"
                           ? "Thank you for your order! Please transfer the amount using your Order ID as the reference. Production starts upon payment receipt."
                           : "Vielen Dank für deine Bestellung! Bitte überweise den Betrag nun unter Angabe deiner Bestellnummer als Verwendungszweck."}
@@ -336,25 +336,25 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </div>
 
                     {/* Bank Details Card with Copy Buttons */}
-                    <div className="bg-slate-950 p-4 sm:p-5 rounded-2xl border-2 border-amber-400/80 shadow-2xl space-y-3">
-                      <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
-                        <span className="text-xs sm:text-sm font-black text-white flex items-center gap-1.5">
-                          <Landmark className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div className="bg-stone-50 p-4 sm:p-5 rounded-2xl border-2 border-amber-300 shadow-lg space-y-3">
+                      <div className="flex items-center justify-between pb-2.5 border-b border-stone-200">
+                        <span className="text-xs sm:text-sm font-black text-stone-900 flex items-center gap-1.5">
+                          <Landmark className="w-4 h-4 text-emerald-600 shrink-0" />
                           <span>{language === "en" ? "Bank Wire Transfer Details:" : "Überweisungsdaten (Vorkasse):"}</span>
                         </span>
-                        <span className="text-[10px] font-black text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] font-black text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full">
                           {language === "en" ? "Prepayment" : "Vorkasse"}
                         </span>
                       </div>
 
                       <div className="space-y-2 text-xs">
                         {/* Verwendungszweck / Order-ID */}
-                        <div className="p-3 bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 border-2 border-amber-400 rounded-xl flex items-center justify-between gap-2 shadow-md">
+                        <div className="p-3 bg-amber-100/70 border-2 border-amber-400 rounded-xl flex items-center justify-between gap-2 shadow-sm">
                           <div className="min-w-0">
-                            <span className="text-[10px] font-black text-amber-300 uppercase block tracking-wider">
+                            <span className="text-[10px] font-black text-amber-900 uppercase block tracking-wider">
                               {language === "en" ? "Payment Reference / Order ID (Important!):" : "Verwendungszweck (Wichtig!):"}
                             </span>
-                            <span className="text-sm sm:text-base font-mono font-black text-white tracking-wider truncate block">
+                            <span className="text-sm sm:text-base font-mono font-black text-stone-900 tracking-wider truncate block">
                               {transactionId}
                             </span>
                           </div>
@@ -369,15 +369,15 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         </div>
 
                         {/* Amount */}
-                        <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between gap-2">
+                        <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                           <div>
-                            <span className="text-[10px] text-slate-400 block">{language === "en" ? "Total Amount:" : "Zu überweisender Betrag:"}</span>
-                            <span className="text-sm font-black text-emerald-400">{currentPrice.toFixed(2).replace(".", ",")} €</span>
+                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Total Amount:" : "Zu überweisender Betrag:"}</span>
+                            <span className="text-sm font-black text-emerald-700">{currentPrice.toFixed(2).replace(".", ",")} €</span>
                           </div>
                           <button
                             type="button"
                             onClick={() => copyToClipboard(currentPrice.toFixed(2).replace(".", ",") + " €", "amount")}
-                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-1 shrink-0"
+                            className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                           >
                             {copiedField === "amount" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                             <span>{copiedField === "amount" ? "Kopiert!" : "Kopieren"}</span>
@@ -385,15 +385,15 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         </div>
 
                         {/* Account Holder */}
-                        <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between gap-2">
+                        <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                           <div className="min-w-0">
-                            <span className="text-[10px] text-slate-400 block">{language === "en" ? "Recipient / Account Holder:" : "Empfänger / Kontoinhaber:"}</span>
-                            <span className="text-xs font-bold text-white truncate block">{BANK_DETAILS.holder}</span>
+                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Recipient / Account Holder:" : "Empfänger / Kontoinhaber:"}</span>
+                            <span className="text-xs font-bold text-stone-900 truncate block">{BANK_DETAILS.holder}</span>
                           </div>
                           <button
                             type="button"
                             onClick={() => copyToClipboard(BANK_DETAILS.holder, "holder")}
-                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-1 shrink-0"
+                            className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                           >
                             {copiedField === "holder" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                             <span>{copiedField === "holder" ? "Kopiert!" : "Kopieren"}</span>
@@ -401,10 +401,10 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         </div>
 
                         {/* IBAN */}
-                        <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between gap-2">
+                        <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                           <div className="min-w-0">
-                            <span className="text-[10px] text-slate-400 block">IBAN:</span>
-                            <span className="text-xs font-mono font-black text-amber-400 tracking-wider truncate block">
+                            <span className="text-[10px] text-stone-500 block">IBAN:</span>
+                            <span className="text-xs font-mono font-black text-amber-700 tracking-wider truncate block">
                               {BANK_DETAILS.iban}
                             </span>
                           </div>
@@ -412,7 +412,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             <button
                               type="button"
                               onClick={() => copyToClipboard(BANK_DETAILS.iban, "iban")}
-                              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-1 shrink-0"
+                              className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                             >
                               {copiedField === "iban" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                               <span>{copiedField === "iban" ? "Kopiert!" : "Kopieren"}</span>
@@ -422,15 +422,15 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                         {/* BIC */}
                         {BANK_DETAILS.bic && (
-                          <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between gap-2">
+                          <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                             <div>
-                              <span className="text-[10px] text-slate-400 block">BIC / Bank:</span>
-                              <span className="text-xs font-mono font-bold text-white">{BANK_DETAILS.bic} ({BANK_DETAILS.bank})</span>
+                              <span className="text-[10px] text-stone-500 block">BIC / Bank:</span>
+                              <span className="text-xs font-mono font-bold text-stone-900">{BANK_DETAILS.bic} ({BANK_DETAILS.bank})</span>
                             </div>
                             <button
                               type="button"
                               onClick={() => copyToClipboard(BANK_DETAILS.bic, "bic")}
-                              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-1 shrink-0"
+                              className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                             >
                               {copiedField === "bic" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                               <span>{copiedField === "bic" ? "Kopiert!" : "Kopieren"}</span>
@@ -440,12 +440,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       </div>
 
                       {/* Important production start notice */}
-                      <div className="p-3.5 rounded-xl bg-amber-500/15 border-2 border-amber-500/40 text-xs space-y-1">
-                        <span className="font-black text-amber-300 block flex items-center gap-1.5">
+                      <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs space-y-1">
+                        <span className="font-black text-amber-900 block flex items-center gap-1.5">
                           <span>⏳</span>
                           <span>{language === "en" ? "Production Start Notice:" : "Wichtiger Produktionshinweis:"}</span>
                         </span>
-                        <p className="text-[11px] text-amber-100/90 leading-relaxed font-medium">
+                        <p className="text-[11px] text-stone-700 leading-relaxed font-medium">
                           {language === "en"
                             ? `The creation of your custom song begins immediately upon receipt of your payment on our bank account (usually 1 business day). A confirmation will be sent to ${customerEmail}.`
                             : `Die Erstellung deines persönlichen Songs beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag). Du erhältst nach Eingang eine Bestätigung an ${customerEmail}.`}
@@ -457,7 +457,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           href={`https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20gerade%20per%20Bank%C3%BCberweisung%20bestellt%20(Bestellnummer:%20${transactionId})`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-bold underline"
+                          className="inline-flex items-center gap-1.5 text-xs text-emerald-700 hover:text-emerald-800 font-bold underline"
                         >
                           <MessageCircle className="w-3.5 h-3.5" />
                           <span>{language === "en" ? "Notify Dirk via WhatsApp" : "Dirk kurz per WhatsApp Bescheid geben"}</span>
@@ -467,7 +467,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                     <button
                       onClick={onClose}
-                      className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm shadow-md"
+                      className="w-full py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold rounded-xl transition text-sm shadow-md"
                     >
                       {language === "en" ? "Back to Shop" : "Zurück zum Shop"}
                     </button>
@@ -475,22 +475,22 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 ) : (
                   /* Standard Confirmation for PayPal / Stripe */
                   <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
+                    <div className="w-16 h-16 bg-emerald-100 text-emerald-700 border border-emerald-300 rounded-full flex items-center justify-center mx-auto">
                       <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h4 className="text-xl sm:text-2xl font-bold text-white">{t("checkout.successTitle")}</h4>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <h4 className="text-xl sm:text-2xl font-bold text-stone-900">{t("checkout.successTitle")}</h4>
+                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                       {t("checkout.successDesc")}
                     </p>
-                    <div className="bg-slate-950 p-4 rounded-xl text-left text-xs font-mono text-slate-300 space-y-1.5 border border-slate-800">
-                      <div>{t("checkout.orderNumber")}: <span className="text-amber-400 font-bold">{transactionId}</span></div>
-                      <div>{language === "en" ? "Recipient" : "Empfänger"}: <span className="text-white">{customerEmail}</span></div>
-                      <div>{language === "en" ? "Delivery via" : "Zustellung via"}: <span className="text-emerald-400 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
-                      <div>{language === "en" ? "Total Amount" : "Gesamtbetrag"}: <span className="text-white font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
+                    <div className="bg-stone-50 p-4 rounded-xl text-left text-xs font-mono text-stone-700 space-y-1.5 border border-stone-200">
+                      <div>{t("checkout.orderNumber")}: <span className="text-amber-700 font-bold">{transactionId}</span></div>
+                      <div>{language === "en" ? "Recipient" : "Empfänger"}: <span className="text-stone-900">{customerEmail}</span></div>
+                      <div>{language === "en" ? "Delivery via" : "Zustellung via"}: <span className="text-emerald-700 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
+                      <div>{language === "en" ? "Total Amount" : "Gesamtbetrag"}: <span className="text-stone-900 font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
                     </div>
                     <button
                       onClick={onClose}
-                      className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm"
+                      className="w-full py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold rounded-xl transition text-sm shadow-md"
                     >
                       {language === "en" ? "Back to Shop" : "Zurück zum Shop"}
                     </button>
@@ -501,38 +501,38 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
               <div className="mt-5 space-y-5">
                 
                 {/* Order Summary Box */}
-                <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2.5">
+                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2.5">
                   <div className="flex justify-between items-start gap-2">
                     <div className="min-w-0">
-                      <h4 className="font-bold text-white text-xs sm:text-sm truncate">{order.name}</h4>
-                      <p className="text-[11px] text-slate-400 truncate">
+                      <h4 className="font-bold text-stone-900 text-xs sm:text-sm truncate">{order.name}</h4>
+                      <p className="text-[11px] text-stone-500 truncate">
                         {order.details?.genre ? `${order.details.genre} • ${order.details.voice}` : t("footer.stickyTitle")}
                       </p>
                     </div>
-                    <span className="text-sm font-black text-amber-400 shrink-0">
+                    <span className="text-sm font-black text-amber-700 shrink-0">
                       {basePrice.toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
 
                   {order.details?.express && (
-                    <div className="flex justify-between text-xs text-slate-300">
+                    <div className="flex justify-between text-xs text-stone-600">
                       <span>{t("configurator.summary.expressTitle")}</span>
-                      <span className="font-semibold text-amber-400">+9,99 €</span>
+                      <span className="font-semibold text-amber-700">+9,99 €</span>
                     </div>
                   )}
 
                   {includeCertificate && (
-                    <div className="flex justify-between text-xs text-slate-300">
+                    <div className="flex justify-between text-xs text-stone-600">
                       <span className="flex items-center gap-1.5">
                         <span>📜</span>
                         <span>{t("checkout.certificateLineItem", "Offizielle Song-Urkunde mit QR-Code")}</span>
                       </span>
-                      <span className="font-semibold text-amber-400">+9,99 €</span>
+                      <span className="font-semibold text-amber-700">+9,99 €</span>
                     </div>
                   )}
 
                   {discountApplied && (
-                    <div className="flex justify-between text-xs text-emerald-400 font-semibold">
+                    <div className="flex justify-between text-xs text-emerald-700 font-semibold">
                       <span>{t("checkout.discountApplied")}</span>
                       <span>-10%</span>
                     </div>
@@ -545,12 +545,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       placeholder={t("checkout.discountCodeLabel")}
                       value={discountCode}
                       onChange={(e) => setDiscountCode(e.target.value)}
-                      className="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white uppercase focus:outline-none focus:border-amber-500"
+                      className="flex-1 bg-white border border-stone-300 rounded-xl px-3 py-2 text-xs text-stone-900 placeholder-stone-400 uppercase focus:outline-none focus:border-amber-500"
                     />
                     <button
                       type="button"
                       onClick={handleApplyDiscount}
-                      className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl border border-slate-700 transition"
+                      className="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-xl border border-stone-300 transition"
                     >
                       {t("checkout.discountApplyBtn")}
                     </button>
@@ -562,8 +562,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       <div
                         className={`p-3 sm:p-3.5 rounded-xl border transition-all ${
                           includeCertificate
-                            ? "bg-amber-500/15 border-amber-500 shadow-md shadow-amber-500/10"
-                            : "bg-slate-900 border-slate-700 hover:border-slate-600"
+                            ? "bg-amber-100/70 border-amber-400 shadow-sm"
+                            : "bg-white border-stone-200 hover:border-amber-400"
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2.5">
@@ -572,18 +572,18 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                               type="checkbox"
                               checked={includeCertificate}
                               onChange={(e) => setIncludeCertificate(e.target.checked)}
-                              className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer"
+                              className="rounded bg-white border-stone-300 text-amber-600 w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer"
                             />
                             <div className="min-w-0">
                               <div className="flex items-center gap-1.5 flex-wrap">
-                                <span className="font-bold text-white text-xs sm:text-sm">
+                                <span className="font-bold text-stone-900 text-xs sm:text-sm">
                                   {t("checkout.certificateAddonTitle", "Offizielle Song-Urkunde (+9,99 €)")}
                                 </span>
-                                <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-bold rounded">
+                                <span className="px-1.5 py-0.5 bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-bold rounded">
                                   {t("checkout.certificateAddonBadge", "Top-Geschenk")}
                                 </span>
                               </div>
-                              <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
+                              <p className="text-[11px] text-stone-500 leading-relaxed mt-1">
                                 {t("checkout.certificateAddonDesc", "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen.")}
                               </p>
                             </div>
@@ -591,7 +591,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           <button
                             type="button"
                             onClick={() => setShowCertificateModal(true)}
-                            className="shrink-0 text-[11px] font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 sm:px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
+                            className="shrink-0 text-[11px] font-bold text-amber-800 hover:text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 px-2 sm:px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
                           >
                             <Eye className="w-3.5 h-3.5" />
                             <span>{t("checkout.certificatePreviewBtn", "Vorschau")}</span>
@@ -601,9 +601,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     </div>
                   )}
 
-                  <div className="border-t border-slate-800 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-white">
-                    <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-slate-400">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>
-                    <span className="text-lg sm:text-xl font-black text-amber-400">
+                  <div className="border-t border-stone-200 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-stone-900">
+                    <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-stone-500">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>
+                    <span className="text-lg sm:text-xl font-black text-amber-700">
                       {currentPrice.toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
@@ -612,7 +612,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 {/* Form Fields */}
                 <form onSubmit={handlePayment} className="space-y-3.5">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label className="block text-xs font-semibold text-stone-700 mb-1">
                       {t("checkout.emailLabel")}:
                     </label>
                     <input
@@ -621,13 +621,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       placeholder={t("checkout.emailPlaceholder")}
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-base focus:outline-none focus:border-amber-500"
+                      className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 placeholder-stone-400 text-base focus:outline-none focus:border-amber-500 shadow-sm"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
+                      <label className="block text-xs font-semibold text-stone-700 mb-1">
                         {t("checkout.nameLabel")}:
                       </label>
                       <input
@@ -636,11 +636,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         placeholder={t("checkout.namePlaceholder")}
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-base focus:outline-none focus:border-amber-500"
+                        className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 placeholder-stone-400 text-base focus:outline-none focus:border-amber-500 shadow-sm"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
+                      <label className="block text-xs font-semibold text-stone-700 mb-1">
                         {t("checkout.phoneLabel")}:
                       </label>
                       <input
@@ -648,13 +648,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         placeholder="+49 170 1234567"
                         value={customerPhone}
                         onChange={(e) => setCustomerPhone(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-base focus:outline-none focus:border-amber-500"
+                        className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 placeholder-stone-400 text-base focus:outline-none focus:border-amber-500 shadow-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label className="block text-xs font-semibold text-stone-700 mb-1">
                       {t("checkout.detailsLabel")}:
                     </label>
                     <textarea
@@ -662,22 +662,22 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       placeholder={t("checkout.detailsPlaceholder")}
                       value={songDetailsText}
                       onChange={(e) => setSongDetailsText(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white text-base focus:outline-none focus:border-amber-500"
+                      className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-stone-900 placeholder-stone-400 text-base focus:outline-none focus:border-amber-500 shadow-sm"
                     />
                   </div>
 
                   {/* Payment Method Selector - Organized in 2 rows */}
                   <div className="space-y-2.5 pt-1">
                     <div className="flex items-center justify-between">
-                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                      <label className="block text-[11px] font-bold text-stone-700 uppercase tracking-wider">
                         {t("checkout.paymentMethodTitle")}
                       </label>
                       <button
                         type="button"
                         onClick={() => setShowPaymentHelp(!showPaymentHelp)}
-                        className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition shadow-sm"
+                        className="text-[11px] text-amber-800 hover:text-amber-900 font-bold flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 transition shadow-sm"
                       >
-                        <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                        <HelpCircle className="w-3.5 h-3.5 text-amber-700" />
                         <span>{showPaymentHelp ? (language === "en" ? "Hide Help" : "Hilfe schließen") : (language === "en" ? "💡 Payment Guide" : "💡 Bezahlhilfe & Anleitung")}</span>
                       </button>
                     </div>
@@ -685,8 +685,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     {/* Row 1: PayPal Express & SEPA-Lastschrift */}
                     <label className={`relative block p-3.5 sm:p-4 rounded-2xl border-2 cursor-pointer transition-all duration-200 group ${
                       paymentMethod === "paypal"
-                        ? "bg-gradient-to-r from-amber-500/30 via-yellow-500/20 to-amber-500/30 border-amber-400 shadow-xl shadow-amber-500/25 ring-2 ring-amber-400/60 text-white"
-                        : "bg-slate-800/90 border-slate-600 hover:bg-gradient-to-r hover:from-amber-500/25 hover:via-yellow-400/20 hover:to-amber-500/20 hover:border-amber-300 hover:shadow-xl hover:shadow-amber-500/25 text-white"
+                        ? "bg-amber-50/90 border-amber-500 shadow-md ring-2 ring-amber-400/40 text-stone-900"
+                        : "bg-white border-stone-300 hover:border-amber-400 hover:bg-amber-50/40 text-stone-900"
                     }`}>
                       <div className="flex items-start justify-between gap-2.5">
                         <div className="flex items-start gap-3">
@@ -695,18 +695,18 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             name="payment"
                             checked={paymentMethod === "paypal"}
                             onChange={() => setPaymentMethod("paypal")}
-                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
+                            className="text-amber-600 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
                           />
                           <div>
                             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                              <span className="font-extrabold text-white text-xs sm:text-sm">
+                              <span className="font-extrabold text-stone-900 text-xs sm:text-sm">
                                 {t("checkout.paypalTitle", "PayPal Express & SEPA-Lastschrift")}
                               </span>
-                              <span className="px-2 py-0.5 bg-emerald-400 text-slate-950 text-[10px] font-black rounded-md shadow-sm">
+                              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-black rounded-md shadow-sm">
                                 {t("checkout.paypalBadge", "Ohne PayPal-Konto möglich")}
                               </span>
                             </div>
-                            <p className="text-[11px] text-amber-100 font-medium mt-1 leading-relaxed">
+                            <p className="text-[11px] text-stone-600 font-medium mt-1 leading-relaxed">
                               {t("checkout.paypalDesc", "Mit PayPal-Konto oder ganz ohne Konto per SEPA-Lastschrift (Bankeinzug) / Debitkarte zahlen.")}
                             </p>
                           </div>
@@ -727,8 +727,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       {/* Option 2A: Stripe (Kreditkarte / Apple Pay / Klarna) */}
                       <label className={`relative block p-3 rounded-2xl border-2 cursor-pointer transition-all duration-200 ${
                         paymentMethod === "stripe"
-                          ? "bg-gradient-to-br from-amber-500/25 via-yellow-500/15 to-slate-900 border-amber-400 shadow-lg shadow-amber-500/15 ring-2 ring-amber-400/40 text-white"
-                          : "bg-slate-800/80 border-slate-700 hover:border-amber-400/80 hover:bg-slate-800 hover:shadow-md text-slate-300"
+                          ? "bg-amber-50/90 border-amber-500 shadow-md ring-2 ring-amber-400/40 text-stone-900"
+                          : "bg-white border-stone-300 hover:border-amber-400 hover:bg-stone-50 text-stone-700"
                       }`}>
                         <div className="flex items-start gap-2.5">
                           <input
@@ -736,13 +736,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             name="payment"
                             checked={paymentMethod === "stripe"}
                             onChange={() => setPaymentMethod("stripe")}
-                            className="text-amber-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
+                            className="text-amber-600 w-4 h-4 mt-0.5 shrink-0 focus:ring-amber-500 cursor-pointer"
                           />
                           <div className="min-w-0 flex-1">
-                            <span className="font-extrabold text-white text-xs block truncate">
+                            <span className="font-extrabold text-stone-900 text-xs block truncate">
                               {t("checkout.stripeTitle", "Kreditkarte & Pay")}
                             </span>
-                            <p className="text-[10px] text-slate-400 mt-0.5 leading-snug truncate">
+                            <p className="text-[10px] text-stone-500 mt-0.5 leading-snug truncate">
                               Apple Pay, Google Pay, Visa
                             </p>
                             <div className="flex items-center gap-1 pt-1.5 flex-wrap">
@@ -757,8 +757,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       {/* Option 2B: Banküberweisung (Vorkasse) */}
                       <label className={`relative block p-3 rounded-2xl border-2 cursor-pointer transition-all duration-200 ${
                         paymentMethod === "bank_transfer"
-                          ? "bg-gradient-to-br from-emerald-500/25 via-teal-500/15 to-slate-900 border-emerald-400 shadow-lg shadow-emerald-500/15 ring-2 ring-emerald-400/40 text-white"
-                          : "bg-slate-800/80 border-slate-700 hover:border-emerald-400/80 hover:bg-slate-800 hover:shadow-md text-slate-300"
+                          ? "bg-emerald-50/90 border-emerald-500 shadow-md ring-2 ring-emerald-400/40 text-stone-900"
+                          : "bg-white border-stone-300 hover:border-emerald-400 hover:bg-stone-50 text-stone-700"
                       }`}>
                         <div className="flex items-start gap-2.5">
                           <input
@@ -766,19 +766,19 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             name="payment"
                             checked={paymentMethod === "bank_transfer"}
                             onChange={() => setPaymentMethod("bank_transfer")}
-                            className="text-emerald-500 w-4 h-4 mt-0.5 shrink-0 focus:ring-emerald-500 cursor-pointer"
+                            className="text-emerald-600 w-4 h-4 mt-0.5 shrink-0 focus:ring-emerald-500 cursor-pointer"
                           />
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="font-extrabold text-white text-xs block">
+                              <span className="font-extrabold text-stone-900 text-xs block">
                                 {t("checkout.bankTransferTitle", "Banküberweisung")}
                               </span>
                             </div>
-                            <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">
+                            <p className="text-[10px] text-stone-500 mt-0.5 leading-snug">
                               {language === "en" ? "Prepayment via IBAN" : "Vorkasse per IBAN"}
                             </p>
                             <div className="flex items-center gap-1.5 pt-1.5">
-                              <span className="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[9px] font-bold rounded flex items-center gap-1">
+                              <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 text-[9px] font-bold rounded flex items-center gap-1">
                                 <Landmark className="w-2.5 h-2.5" />
                                 <span>IBAN & Verwendungszweck</span>
                               </span>
@@ -791,31 +791,31 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                     {/* Mobile Bezahlhilfe Accordion (shown only on mobile < md when showPaymentHelp is open) */}
                     {showPaymentHelp && (
-                      <div className="md:hidden mt-2 p-3.5 bg-slate-950 rounded-2xl border border-amber-500/40 shadow-xl space-y-3 text-xs">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                          <span className="font-bold text-white flex items-center gap-1.5">
+                      <div className="md:hidden mt-2 p-3.5 bg-stone-50 rounded-2xl border border-amber-300 shadow-md space-y-3 text-xs">
+                        <div className="flex items-center justify-between border-b border-stone-200 pb-2">
+                          <span className="font-bold text-stone-900 flex items-center gap-1.5">
                             <span>💡</span>
                             <span>{language === "en" ? "Payment Guide" : "Bezahlhilfe & Anleitung"}</span>
                           </span>
                           <button
                             type="button"
                             onClick={() => setShowPaymentHelp(false)}
-                            className="text-slate-400 hover:text-white text-[11px]"
+                            className="text-stone-400 hover:text-stone-700 text-[11px]"
                           >
                             ✕
                           </button>
                         </div>
-                        <div className="space-y-2 text-[11px] text-slate-300">
-                          <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
-                            <span className="font-bold text-amber-400">1. E-Mail & Häkchen: </span>
+                        <div className="space-y-2 text-[11px] text-stone-700">
+                          <div className="p-2.5 rounded-lg bg-white border border-stone-200">
+                            <span className="font-bold text-amber-800">1. E-Mail & Häkchen: </span>
                             <span>E-Mail eingeben & AGB abhaken – erst dann werden die Bezahl-Buttons aktiv!</span>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                            <span className="font-bold text-amber-400">2. PayPal ohne Konto (Bankeinzug): </span>
+                          <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
+                            <span className="font-bold text-amber-800">2. PayPal ohne Konto (Bankeinzug): </span>
                             <span>PayPal anklicken -&gt; „Als Gast zahlen“ oder „Mit Karte zahlen“ wählen -&gt; IBAN eingeben -&gt; Fertig!</span>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
-                            <span className="font-bold text-white">3. Überweisung (Vorkasse): </span>
+                          <div className="p-2.5 rounded-lg bg-white border border-stone-200">
+                            <span className="font-bold text-stone-900">3. Überweisung (Vorkasse): </span>
                             <span>Bestellung aufgeben, per IBAN & Bestellnummer überweisen. Produktion startet sofort nach Geldeingang!</span>
                           </div>
                         </div>
@@ -834,13 +834,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                   {/* Legal Checkbox */}
                   <div className="pt-1.5">
-                    <label className="flex items-start gap-2.5 cursor-pointer text-[11px] sm:text-xs text-slate-300 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 transition">
+                    <label className="flex items-start gap-2.5 cursor-pointer text-[11px] sm:text-xs text-stone-700 p-2.5 rounded-xl bg-stone-50 border border-stone-200 hover:border-stone-300 transition">
                       <input
                         type="checkbox"
                         required
                         checked={agreedTerms}
                         onChange={(e) => setAgreedTerms(e.target.checked)}
-                        className="rounded bg-slate-800 border-slate-600 text-amber-500 mt-0.5 w-4 h-4 shrink-0 focus:ring-amber-500 cursor-pointer"
+                        className="rounded bg-white border-stone-300 text-amber-600 mt-0.5 w-4 h-4 shrink-0 focus:ring-amber-500 cursor-pointer"
                       />
                       <span className="leading-snug">
                         {t("checkout.termsText")}
@@ -851,16 +851,16 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* Option 1: PayPal Smart Buttons */}
                   {paypalClientId && paymentMethod === "paypal" && (
                     <div className="pt-2">
-                      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-slate-800 via-slate-800/90 to-slate-900 border-2 border-amber-400 shadow-xl shadow-amber-500/20 space-y-3.5">
+                      <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/60 border-2 border-amber-400 shadow-md space-y-3.5">
                         
-                        {/* Bright highlighted bar for PayPal, SEPA & Debitkarte */}
-                        <div className="bg-slate-900/95 border border-amber-400/50 rounded-xl p-3.5 space-y-2.5 shadow-md">
+                        {/* Highlighted bar for PayPal, SEPA & Debitkarte */}
+                        <div className="bg-white border border-amber-300 rounded-xl p-3.5 space-y-2.5 shadow-sm">
                           <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span className="text-xs font-black text-white flex items-center gap-1.5">
-                              <span className="text-amber-400 text-sm">✓</span>
+                            <span className="text-xs font-black text-stone-900 flex items-center gap-1.5">
+                              <span className="text-amber-600 text-sm">✓</span>
                               <span>{language === "en" ? "Payment Methods Included:" : "Enthaltene Zahlungsarten:"}</span>
                             </span>
-                            <span className="text-[10px] font-black text-slate-950 bg-emerald-400 px-2 py-0.5 rounded shadow-sm">
+                            <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded shadow-sm">
                               {language === "en" ? "No account needed" : "Kein PayPal-Konto nötig"}
                             </span>
                           </div>
@@ -871,7 +871,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             <DebitCardBadge />
                           </div>
 
-                          <p className="text-[11px] text-amber-100/90 font-medium leading-relaxed">
+                          <p className="text-[11px] text-stone-600 font-medium leading-relaxed">
                             {language === "en"
                               ? "With PayPal account OR choose 'Pay with Debit or Credit Card / As Guest' below for direct SEPA bank debit."
                               : "Mit deinem PayPal-Konto ODER wähle unten einfach „Mit Debit- oder Kreditkarte zahlen“ / „Als Gast“, um bequem per Bankeinzug (SEPA) zu bezahlen."}
@@ -880,7 +880,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                         {/* Inactive notice if not checked */}
                         {(!customerEmail || !agreedTerms) && (
-                          <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 border-2 border-amber-300 shadow-lg shadow-amber-500/25 animate-pulse">
+                          <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-amber-200 border-2 border-amber-300 shadow-sm animate-pulse">
                             {language === "en"
                               ? "👉 Please enter your email above & check the consent box to activate PayPal & SEPA!"
                               : "👉 Bitte oben E-Mail eintragen & Häkchen setzen, um PayPal, SEPA & Debitkarte freizuschalten!"}
@@ -932,40 +932,40 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   {/* Option 2: Banküberweisung Instruction Box */}
                   {paymentMethod === "bank_transfer" && (
                     <div className="pt-2">
-                      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-b from-slate-800 via-slate-800/90 to-slate-900 border-2 border-emerald-500/70 shadow-xl shadow-emerald-500/15 space-y-3.5">
-                        <div className="flex items-center justify-between pb-2 border-b border-slate-700">
-                          <span className="text-xs font-black text-white flex items-center gap-1.5">
-                            <Landmark className="w-4 h-4 text-emerald-400" />
+                      <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border-2 border-emerald-400 shadow-md space-y-3.5">
+                        <div className="flex items-center justify-between pb-2 border-b border-emerald-200">
+                          <span className="text-xs font-black text-stone-900 flex items-center gap-1.5">
+                            <Landmark className="w-4 h-4 text-emerald-600" />
                             <span>{language === "en" ? "Payment via Bank Transfer:" : "Ablauf der Banküberweisung:"}</span>
                           </span>
-                          <span className="text-[10px] font-black text-emerald-300 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">
                             {language === "en" ? "Prepayment" : "Vorkasse per IBAN"}
                           </span>
                         </div>
 
-                        <div className="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3.5 text-xs text-slate-300 space-y-2.5">
+                        <div className="bg-white border border-stone-200 rounded-xl p-3.5 text-xs text-stone-700 space-y-2.5">
                           <div className="flex items-start gap-2.5">
-                            <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">1</span>
+                            <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">1</span>
                             <p className="leading-relaxed">
                               Klicke unten auf <strong>„Bestellung jetzt aufgeben“</strong>. Du erhältst sofort deine persönliche <strong>Bestellnummer</strong>.
                             </p>
                           </div>
                           <div className="flex items-start gap-2.5">
-                            <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">2</span>
+                            <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">2</span>
                             <p className="leading-relaxed">
                               Überweise den Betrag von <strong>{currentPrice.toFixed(2).replace(".", ",")} €</strong> unter Angabe deiner <strong>Bestellnummer als Verwendungszweck</strong> auf unsere IBAN.
                             </p>
                           </div>
                           <div className="flex items-start gap-2.5">
-                            <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">3</span>
-                            <p className="leading-relaxed text-amber-200 font-medium">
+                            <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">3</span>
+                            <p className="leading-relaxed text-amber-900 font-medium">
                               <strong>Wichtig:</strong> Die Produktion deines Liedes beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).
                             </p>
                           </div>
                         </div>
 
                         {(!customerEmail || !agreedTerms) && (
-                          <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 border-2 border-amber-300 shadow-lg shadow-amber-500/25 animate-pulse">
+                          <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-amber-200 border-2 border-amber-300 shadow-sm animate-pulse">
                             {language === "en"
                               ? "👉 Please enter your email above & check the consent box to place order!"
                               : "👉 Bitte oben E-Mail eintragen & Häkchen setzen, um die Bestellung aufzugeben!"}
@@ -982,7 +982,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       disabled={isProcessing || !customerEmail || !agreedTerms}
                       className={`w-full py-3.5 sm:py-4 font-black text-sm sm:text-base rounded-2xl shadow-xl transition flex items-center justify-center gap-2 ${
                         !customerEmail || !agreedTerms
-                          ? "bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700"
+                          ? "bg-stone-200 text-stone-400 cursor-not-allowed border border-stone-300"
                           : paymentMethod === "bank_transfer"
                             ? "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 shadow-emerald-500/25 active:scale-[0.99]"
                             : "bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 shadow-amber-500/25 active:scale-[0.99]"
@@ -1000,13 +1000,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 </form>
 
                 {/* Trust Badges */}
-                <div className="pt-3.5 border-t border-slate-800 space-y-2.5 text-xs text-slate-300">
+                <div className="pt-3.5 border-t border-stone-200 space-y-2.5 text-xs text-stone-600">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>{t("checkout.secureSsl")}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+                    <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
                     <span>{t("hero.trustDelivery")}</span>
                   </div>
                   <div className="pt-2 flex flex-wrap items-center justify-center gap-2">
@@ -1026,7 +1026,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             )}
           </div>
 
-          <div className="pt-4 text-center text-[11px] text-slate-500">
+          <div className="pt-4 text-center text-[11px] text-stone-400">
             MyMusicMoment24 • {language === "en" ? "From the Heart to the Ears" : "Von Herzen für die Ohren"}
           </div>
 
@@ -1038,37 +1038,37 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
           onClick={() => setShowCertificateModal(false)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-6 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-xl bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-6 max-h-[90vh] overflow-y-auto text-stone-900"
           >
             <button
               onClick={() => setShowCertificateModal(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full bg-slate-800/80 hover:bg-slate-700 transition"
+              className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-700 rounded-full bg-stone-100 hover:bg-stone-200 transition"
               aria-label="Schließen"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="text-center mb-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 {language === "en" ? "Official Keepsake Add-on" : "Offizielles Song-Zusatzprodukt"}
               </span>
-              <h3 className="text-lg sm:text-xl font-black text-white">
+              <h3 className="text-lg sm:text-xl font-black text-stone-900">
                 {language === "en" ? "Official Song Certificate with QR Code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
               </h3>
-              <p className="text-xs text-slate-400 mt-1 max-w-md mx-auto">
+              <p className="text-xs text-stone-500 mt-1 max-w-md mx-auto">
                 {language === "en"
                   ? "Print-ready DIN A4 PDF with your personal lyrics, golden seal and scannable QR code to play the song anytime."
                   : "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen."}
               </p>
             </div>
 
-            <div className="rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl mb-4 bg-slate-950">
+            <div className="rounded-2xl overflow-hidden border border-amber-300 shadow-md mb-4 bg-stone-50">
               <img
                 src="/images/urkunde-beispiel.jpg"
                 alt="Song-Urkunde Muster"
@@ -1076,26 +1076,26 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300 mb-5 bg-slate-950/70 p-3 rounded-xl border border-slate-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-stone-700 mb-5 bg-stone-50 p-3 rounded-xl border border-stone-200">
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span>{language === "en" ? "Print-ready DIN A4 PDF" : "Druckfertig DIN A4"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span>{language === "en" ? "Play & Download QR Code" : "QR-Code: Anhören & Download"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span>{language === "en" ? "Golden Seal" : "Goldenes Siegel"}</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-800">
+            <div className="flex items-center justify-between gap-3 pt-3 border-t border-stone-200">
               <button
                 type="button"
                 onClick={() => setShowCertificateModal(false)}
-                className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition"
+                className="px-4 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-xl transition"
               >
                 {language === "en" ? "Close" : "Schließen"}
               </button>

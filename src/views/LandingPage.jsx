@@ -87,11 +87,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-amber-400 selection:text-stone-950">
       <SchemaJsonLd type="home" />
 
       {/* Top Header / Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
           {/* Brand Logo */}
@@ -104,32 +104,32 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               className="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform"
             />
             <div className="flex flex-col">
-              <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-tight">
-                MyMusicMoment<span className="text-amber-400">24</span>
+              <span className="font-black text-lg sm:text-xl tracking-tight text-stone-900 leading-tight">
+                MyMusicMoment<span className="text-amber-500">24</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-none tracking-normal">
+              <span className="text-[10px] sm:text-[11px] font-medium text-stone-500 leading-none tracking-normal">
                 {t("nav.tagline")}
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <a href="#shop" className="hover:text-amber-400 transition">{t("nav.shop")}</a>
-            <a href="#hoerproben" className="hover:text-amber-400 transition">{t("nav.samples")}</a>
-            <a href="#prozess" className="hover:text-amber-400 transition">{t("nav.process")}</a>
-            <a href="#konfigurator" className="hover:text-amber-400 transition">{t("nav.configurator")}</a>
-            <a href="#kundenstimmen" className="hover:text-amber-400 transition">{t("nav.reviews")}</a>
-            <a href="#faq" className="hover:text-amber-400 transition">{t("nav.faq")}</a>
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-stone-600">
+            <a href="#shop" className="hover:text-amber-600 transition">{t("nav.shop")}</a>
+            <a href="#hoerproben" className="hover:text-amber-600 transition">{t("nav.samples")}</a>
+            <a href="#prozess" className="hover:text-amber-600 transition">{t("nav.process")}</a>
+            <a href="#konfigurator" className="hover:text-amber-600 transition">{t("nav.configurator")}</a>
+            <a href="#kundenstimmen" className="hover:text-amber-600 transition">{t("nav.reviews")}</a>
+            <a href="#faq" className="hover:text-amber-600 transition">{t("nav.faq")}</a>
             <button
               onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-              className="text-amber-400 hover:text-amber-300 transition font-semibold"
+              className="text-amber-600 hover:text-amber-700 transition font-semibold"
             >
               {t("nav.guide")}
             </button>
             <button
               onClick={onNavigateAuthor}
-              className="hover:text-amber-400 transition font-medium"
+              className="hover:text-amber-600 transition font-medium"
             >
               {t("nav.about")}
             </button>
@@ -146,7 +146,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+              className="lg:hidden p-2 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 hover:text-stone-900"
               aria-label="Menü öffnen"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -157,28 +157,28 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-5 space-y-3 animate-in slide-in-from-top-3">
-            <div className="flex items-center justify-between px-3 pb-2 border-b border-slate-800">
-              <span className="text-xs text-slate-400 font-medium">Sprache / Language:</span>
+          <div className="lg:hidden bg-white border-b border-stone-200 px-4 py-5 space-y-3 shadow-xl animate-in slide-in-from-top-3">
+            <div className="flex items-center justify-between px-3 pb-2 border-b border-stone-200">
+              <span className="text-xs text-stone-500 font-medium">Sprache / Language:</span>
               <LanguageSwitcher />
             </div>
-            <nav className="flex flex-col space-y-2.5 text-sm font-semibold text-slate-200">
-              <a href="#shop" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+            <nav className="flex flex-col space-y-2.5 text-sm font-semibold text-stone-700">
+              <a href="#shop" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.shop")} (19,99 €)
               </a>
-              <a href="#hoerproben" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+              <a href="#hoerproben" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.samples")}
               </a>
-              <a href="#prozess" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+              <a href="#prozess" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.process")} &amp; WhatsApp
               </a>
-              <a href="#konfigurator" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+              <a href="#konfigurator" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.configurator")}
               </a>
-              <a href="#kundenstimmen" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+              <a href="#kundenstimmen" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.reviews")}
               </a>
-              <a href="#faq" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-slate-800 transition">
+              <a href="#faq" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.faq")}
               </a>
               <button
@@ -186,7 +186,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   closeMobileMenu();
                   onNavigateBlog("individueller-hochzeitssong");
                 }}
-                className="text-left px-3 py-2 rounded-lg text-amber-400 hover:bg-slate-800 transition"
+                className="text-left px-3 py-2 rounded-lg text-amber-600 hover:bg-stone-50 transition font-semibold"
               >
                 {t("nav.guide")} &amp; Blog
               </button>
@@ -195,7 +195,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   closeMobileMenu();
                   onNavigateAuthor();
                 }}
-                className="text-left px-3 py-2 rounded-lg hover:bg-slate-800 transition"
+                className="text-left px-3 py-2 rounded-lg hover:bg-stone-50 transition"
               >
                 {t("footer.aboutLink")}
               </button>
@@ -204,7 +204,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   closeMobileMenu();
                   onNavigateB2B();
                 }}
-                className="text-left px-3 py-2 rounded-lg text-amber-400/90 hover:bg-slate-800 transition font-semibold"
+                className="text-left px-3 py-2 rounded-lg text-amber-700 hover:bg-stone-50 transition font-semibold"
               >
                 💼 Für Agenturen &amp; B2B
               </button>
@@ -213,7 +213,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   closeMobileMenu();
                   onNavigateLegal("impressum");
                 }}
-                className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
               >
                 {t("nav.impressum")}
               </button>
@@ -222,7 +222,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   closeMobileMenu();
                   onNavigateLegal("datenschutz");
                 }}
-                className="text-left px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
               >
                 {t("nav.privacy")}
               </button>
@@ -241,24 +241,24 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
 
       {/* Hero Section */}
       <section className="relative pt-8 pb-6 sm:pt-16 sm:pb-8 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-gradient-to-tr from-amber-500/15 via-orange-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-gradient-to-tr from-amber-400/20 via-orange-300/15 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-5 sm:space-y-6">
           
           {/* Subheader Slogan */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-600" />
             <span>{t("hero.badge")}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.15]">
             {t("hero.title")}{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600">
               {t("hero.titleHighlight")}
             </span>
           </h1>
 
-          <p className="text-sm sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-sm sm:text-lg md:text-xl text-stone-600 max-w-3xl mx-auto font-normal leading-relaxed">
             {t("hero.description")}
           </p>
 
@@ -266,8 +266,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <div className="pt-4 sm:pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto text-left">
             
             {/* Story Card 1 */}
-            <div className="group bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/40 transition duration-300">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
+            <div className="group bg-white border border-stone-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-stone-200/50 hover:border-amber-400 hover:shadow-2xl transition duration-300">
+              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
                 <img
                   src="/images/hero-step-1.jpg"
                   alt={t("hero.storyCard1Title")}
@@ -278,26 +278,26 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   width="400"
                   height="220"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   {t("hero.storyCard1Badge")}
                 </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
                   <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard1Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard1Title")}</h3>
+                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                   {t("hero.storyCard1Desc")}
                 </p>
               </div>
             </div>
 
             {/* Story Card 2 */}
-            <div className="group bg-slate-900/90 border border-amber-500/40 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/80 transition duration-300 ring-2 ring-amber-500/20">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
+            <div className="group bg-white border-2 border-amber-400/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-amber-500/10 hover:border-amber-500 hover:shadow-2xl transition duration-300 ring-2 ring-amber-400/20">
+              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
                 <img
                   src="/images/hero-step-2.jpg"
                   alt={t("hero.storyCard2Title")}
@@ -307,26 +307,26 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   width="400"
                   height="220"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   {t("hero.storyCard2Badge")}
                 </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
                   <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard2Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard2Title")}</h3>
+                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                   {t("hero.storyCard2Desc")}
                 </p>
               </div>
             </div>
 
             {/* Story Card 3 */}
-            <div className="group bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/40 transition duration-300">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-slate-950">
+            <div className="group bg-white border border-stone-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-stone-200/50 hover:border-amber-400 hover:shadow-2xl transition duration-300">
+              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
                 <img
                   src="/images/hero-step-3.jpg"
                   alt={t("hero.storyCard3Title")}
@@ -336,18 +336,18 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   width="400"
                   height="220"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
                 <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
                   {t("hero.storyCard3Badge")}
                 </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-slate-950/80 backdrop-blur-md border border-white/15 text-slate-300 text-[10px] font-medium rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
                   <span>KI-Creative</span>
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-white">{t("hero.storyCard3Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard3Title")}</h3>
+                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                   {t("hero.storyCard3Desc")}
                 </p>
               </div>
@@ -367,27 +367,27 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </a>
             <a
               href="#hoerproben"
-              className="w-full sm:w-auto px-6 py-3.5 sm:py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs sm:text-base rounded-2xl border border-slate-800 flex items-center justify-center gap-2 transition"
+              className="w-full sm:w-auto px-6 py-3.5 sm:py-4 bg-white hover:bg-stone-50 text-stone-800 font-bold text-xs sm:text-base rounded-2xl border border-stone-300 shadow-sm flex items-center justify-center gap-2 transition"
             >
-              <Headphones className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+              <Headphones className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
               <span>{t("hero.ctaSecondary")}</span>
             </a>
           </div>
 
           {/* Trust Badges */}
-          <div className="pt-4 sm:pt-5 flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs text-slate-400 border-t border-slate-900 max-w-xl mx-auto">
-            <div className="flex items-center gap-1 text-amber-400 font-bold">
+          <div className="pt-4 sm:pt-5 flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs text-stone-600 border-t border-stone-200 max-w-xl mx-auto">
+            <div className="flex items-center gap-1 text-amber-500 font-bold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
               ))}
-              <span className="text-slate-200 ml-1 font-bold">{t("hero.trustReviews")}</span>
+              <span className="text-stone-800 ml-1 font-bold">{t("hero.trustReviews")}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
+              <Clock className="w-3.5 h-3.5 text-amber-600" />
               <span>{t("hero.trustDelivery")}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>{t("hero.trustGuarantee")}</span>
             </div>
           </div>
@@ -415,13 +415,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* 6. Testimonials */}
       <section id="kundenstimmen" className="max-w-6xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full mb-3">
-            <Heart className="w-3.5 h-3.5" /> {t("testimonials.badge")}
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-full mb-3 shadow-sm">
+            <Heart className="w-3.5 h-3.5 text-amber-600" /> {t("testimonials.badge")}
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-stone-900 tracking-tight mb-3">
             {t("testimonials.title")}
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
+          <p className="text-stone-600 max-w-xl mx-auto text-xs sm:text-sm">
             {t("testimonials.subtitle")}
           </p>
         </div>
@@ -429,54 +429,54 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           
           {/* Review Tanja */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+          <div className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg shadow-stone-200/50 hover:shadow-xl transition">
             <div>
               <div className="flex items-center gap-1 text-amber-400 mb-3.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
+              <p className="text-xs sm:text-sm md:text-base text-stone-700 leading-relaxed italic mb-5">
                 {t("testimonials.tanjaText")}
               </p>
             </div>
-            <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
+            <div className="pt-3.5 border-t border-stone-100 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 text-slate-950 font-black flex items-center justify-center text-xs sm:text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 text-slate-950 font-black flex items-center justify-center text-xs sm:text-sm shadow-sm">
                   TS
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xs sm:text-sm">{t("testimonials.tanjaLocation")}</h4>
-                  <p className="text-[11px] text-amber-400 font-medium">{t("testimonials.tanjaTitle")}</p>
+                  <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.tanjaLocation")}</h4>
+                  <p className="text-[11px] text-amber-600 font-semibold">{t("testimonials.tanjaTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-slate-500">{t("testimonials.verifiedBuyer")}</span>
+              <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
           {/* Review Jörn */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+          <div className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg shadow-stone-200/50 hover:shadow-xl transition">
             <div>
               <div className="flex items-center gap-1 text-amber-400 mb-3.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed italic mb-5">
+              <p className="text-xs sm:text-sm md:text-base text-stone-700 leading-relaxed italic mb-5">
                 {t("testimonials.joernText")}
               </p>
             </div>
-            <div className="pt-3.5 border-t border-slate-800 flex items-center justify-between">
+            <div className="pt-3.5 border-t border-stone-100 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-white font-black flex items-center justify-center text-xs sm:text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 text-white font-black flex items-center justify-center text-xs sm:text-sm shadow-sm">
                   JN
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-xs sm:text-sm">{t("testimonials.joernLocation")}</h4>
-                  <p className="text-[11px] text-purple-400 font-medium">{t("testimonials.joernTitle")}</p>
+                  <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.joernLocation")}</h4>
+                  <p className="text-[11px] text-purple-600 font-semibold">{t("testimonials.joernTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-slate-500">{t("testimonials.verifiedBuyer")}</span>
+              <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
@@ -485,21 +485,21 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
 
       {/* 7. Blog Highlight */}
       <section className="max-w-5xl mx-auto my-12 sm:my-16 px-4">
-        <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border-2 border-amber-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl shadow-amber-900/5">
           <div className="space-y-1.5 text-center sm:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 uppercase tracking-wider">
-              <FileText className="w-3.5 h-3.5" /> {t("blogFeature.badge")}
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
+              <FileText className="w-3.5 h-3.5 text-amber-600" /> {t("blogFeature.badge")}
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
+            <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
               {t("blogFeature.title")}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-600 max-w-xl leading-relaxed">
               {t("blogFeature.subtitle")}
             </p>
           </div>
           <button
             onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-            className="w-full sm:w-auto shrink-0 px-5 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-sm"
+            className="w-full sm:w-auto shrink-0 px-5 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-amber-500/20 active:scale-95"
           >
             <span>{t("blogFeature.readArticle")}</span>
             <ArrowRight className="w-4 h-4" />
@@ -510,8 +510,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* 8. FAQ Section */}
       <section id="faq" className="max-w-3xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{t("faq.title")}</h2>
-          <p className="text-slate-400 text-xs sm:text-sm">{t("faq.subtitle")}</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 mb-2">{t("faq.title")}</h2>
+          <p className="text-stone-600 text-xs sm:text-sm">{t("faq.subtitle")}</p>
         </div>
 
         <div className="space-y-3">
@@ -520,17 +520,17 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             return (
               <div
                 key={idx}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden transition"
+                className="bg-white border border-stone-200 hover:border-amber-400 rounded-2xl overflow-hidden shadow-sm transition"
               >
                 <button
                   onClick={() => setActiveFaq(isOpen ? null : idx)}
-                  className="w-full text-left px-5 py-3.5 sm:px-6 sm:py-4 flex items-center justify-between font-bold text-xs sm:text-sm text-slate-200 hover:text-white"
+                  className="w-full text-left px-5 py-3.5 sm:px-6 sm:py-4 flex items-center justify-between font-bold text-xs sm:text-sm text-stone-900 hover:text-amber-700"
                 >
                   <span className="pr-2">{faq.q}</span>
-                  <ChevronRight className={`w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                  <ChevronRight className={`w-4 h-4 sm:w-5 sm:h-5 text-amber-500 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-4 sm:px-6 sm:pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+                  <div className="px-5 pb-4 sm:px-6 sm:pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
                     {faq.a}
                   </div>
                 )}
@@ -715,10 +715,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       </footer>
 
       {/* Sticky Mobile Bottom CTA Bar */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
         <div>
-          <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">{t("footer.stickyTitle")}</span>
-          <span className="text-lg font-black text-amber-400">19,99 €</span>
+          <span className="text-[10px] text-stone-500 block uppercase font-bold tracking-wider">{t("footer.stickyTitle")}</span>
+          <span className="text-lg font-black text-amber-600">19,99 €</span>
         </div>
         <a
           href="#shop"

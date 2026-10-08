@@ -4,15 +4,15 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100;
+    @apply bg-[#faf8f5] text-stone-900;
   }
 }
 
-/* Blog Content Typography & Boxed Headings */
+/* Blog Content Typography & Boxed Headings (Warm Friendly Light Design) */
 .blog-content {
   font-size: 1.125rem; /* 18px */
   line-height: 1.85;
-  color: #cbd5e1; /* slate-300 */
+  color: #334155; /* slate-700 / stone-700 */
 }
 
 .blog-content p {
@@ -20,22 +20,22 @@
   margin-bottom: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.85;
-  color: #cbd5e1;
+  color: #334155;
 }
 
 /* Viereckiger Rahmen für H2-Überschriften */
 .blog-content h2 {
   font-size: 1.625rem; /* ~26px */
   font-weight: 900;
-  color: #ffffff;
-  background: rgba(15, 23, 42, 0.95); /* slate-900 */
-  border: 1px solid #334155; /* slate-700 */
+  color: #0f172a; /* deep slate-900 */
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-left: 6px solid #f59e0b; /* amber-500 goldener Akzent */
   padding: 1.1rem 1.4rem;
   border-radius: 0.85rem;
   margin-top: 3.25rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
   display: block;
 }
 
@@ -51,7 +51,7 @@
 .blog-content h3 {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #fbbf24; /* amber-400 */
+  color: #b45309; /* amber-700 */
   margin-top: 2.25rem;
   margin-bottom: 1rem;
   padding-left: 0.85rem;
@@ -67,14 +67,14 @@
 .blog-content h4 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #1e293b;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
 .blog-content strong {
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .blog-content ul {
@@ -95,11 +95,11 @@
   margin-top: 0.6rem;
   margin-bottom: 0.6rem;
   line-height: 1.75;
-  color: #cbd5e1;
+  color: #334155;
 }
 
 .blog-content a {
-  color: #f59e0b;
+  color: #d97706; /* amber-600 */
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -107,18 +107,19 @@
 }
 
 .blog-content a:hover {
-  color: #fbbf24;
+  color: #b45309;
 }
 
 .blog-content blockquote {
+  background: #fffbeb; /* amber-50 */
+  border: 1px solid #fef3c7;
   border-left: 4px solid #f59e0b;
-  background: rgba(15, 23, 42, 0.6);
-  padding: 1rem 1.25rem;
-  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.1rem 1.4rem;
+  border-radius: 0 0.85rem 0.85rem 0;
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
   font-style: italic;
-  color: #e2e8f0;
+  color: #78350f;
 }
 
 .blog-content table {
@@ -126,30 +127,31 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-collapse: collapse;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid #334155;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 0.75rem;
   overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .blog-content th {
-  background: #0f172a;
+  background: #f8fafc;
   padding: 0.85rem 1rem;
   text-align: left;
   font-weight: 800;
-  color: #ffffff;
-  border-bottom: 2px solid #334155;
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .blog-content td {
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
-  color: #cbd5e1;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
 }
 
 .blog-content hr {
   border: 0;
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid #e2e8f0;
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -157,8 +159,8 @@
 .blog-content img {
   width: 100%;
   border-radius: 1rem;
-  border: 1px solid #334155;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
   margin-top: 2rem;
   margin-bottom: 2rem;
 }

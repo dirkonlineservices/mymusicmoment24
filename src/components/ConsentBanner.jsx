@@ -61,17 +61,17 @@ export default function ConsentBanner() {
   return (
     <aside
       aria-label={t("cookieBanner.title", "Cookie- und Datenschutzeinstellungen")}
-      className="fixed bottom-3 left-3 right-3 md:left-auto md:right-6 md:max-w-xl z-50 bg-slate-900/95 border border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5"
+      className="fixed bottom-3 left-3 right-3 md:left-auto md:right-6 md:max-w-xl z-50 bg-white/95 border border-stone-200 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5 text-stone-900"
     >
       <div className="flex items-start gap-3 sm:gap-4">
-        <div className="p-2 sm:p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shrink-0">
+        <div className="p-2 sm:p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-600 shrink-0">
           <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-white mb-1">
+          <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-1">
             {t("cookieBanner.title", "Privatsphäre & Datenschutz")}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3 sm:mb-4">
+          <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3 sm:mb-4">
             {t(
               "cookieBanner.desc",
               "Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten."
@@ -79,13 +79,13 @@ export default function ConsentBanner() {
           </p>
 
           {showSettings && (
-            <div className="mb-3.5 space-y-2.5 bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50 text-xs sm:text-sm">
+            <div className="mb-3.5 space-y-2.5 bg-stone-50 p-3.5 rounded-xl border border-stone-200 text-xs sm:text-sm">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-semibold text-white block">
+                  <span className="font-semibold text-stone-900 block">
                     {t("cookieBanner.essential", "Technisch Notwendig")}
                   </span>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-stone-500">
                     {t("cookieBanner.essentialDesc", "Erforderlich für Warenkorb, Abspielgerät & Kasse.")}
                   </span>
                 </div>
@@ -95,16 +95,16 @@ export default function ConsentBanner() {
                   checked
                   disabled
                   aria-label="Technisch notwendige Cookies (immer aktiv)"
-                  className="rounded bg-slate-700 border-slate-600 text-amber-500 cursor-not-allowed w-4 h-4"
+                  className="rounded bg-stone-200 border-stone-300 text-amber-500 cursor-not-allowed w-4 h-4"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
+              <div className="flex items-center justify-between pt-2 border-t border-stone-200">
                 <label htmlFor="cookie-consent-analytics" className="cursor-pointer">
-                  <span className="font-semibold text-white block">
+                  <span className="font-semibold text-stone-900 block">
                     {t("cookieBanner.analytics", "Statistiken & Analyse")}
                   </span>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-stone-500">
                     {t("cookieBanner.analyticsDesc", "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.")}
                   </span>
                 </label>
@@ -114,16 +114,16 @@ export default function ConsentBanner() {
                   checked={preferences.analytics}
                   onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
                   aria-label="Statistiken und Analyse Cookies erlauben"
-                  className="rounded bg-slate-700 border-slate-600 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
+                  className="rounded bg-white border-stone-300 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-slate-700/50">
+              <div className="flex items-center justify-between pt-2 border-t border-stone-200">
                 <label htmlFor="cookie-consent-marketing" className="cursor-pointer">
-                  <span className="font-semibold text-white block">
+                  <span className="font-semibold text-stone-900 block">
                     {t("cookieBanner.marketing", "Marketing & Personalisierung")}
                   </span>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-stone-500">
                     {t("cookieBanner.marketingDesc", "Ermöglicht zielgerichtete Empfehlungen auf Partnerplattformen.")}
                   </span>
                 </label>
@@ -133,7 +133,7 @@ export default function ConsentBanner() {
                   checked={preferences.marketing}
                   onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })}
                   aria-label="Marketing und Personalisierung Cookies erlauben"
-                  className="rounded bg-slate-700 border-slate-600 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
+                  className="rounded bg-white border-stone-300 text-amber-500 focus:ring-amber-500 w-4 h-4 cursor-pointer"
                 />
               </div>
             </div>
@@ -144,13 +144,13 @@ export default function ConsentBanner() {
               <>
                 <button
                   onClick={handleSaveCustom}
-                  className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-lg text-xs sm:text-sm font-bold transition"
+                  className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-lg text-xs sm:text-sm font-bold transition shadow-sm"
                 >
                   {t("cookieBanner.save", "Auswahl speichern")}
                 </button>
                 <button
                   onClick={() => setShowSettings(false)}
-                  className="px-3 py-2 text-slate-400 hover:text-white text-xs sm:text-sm"
+                  className="px-3 py-2 text-stone-600 hover:text-stone-900 text-xs sm:text-sm"
                 >
                   {t("cookieBanner.back", "Zurück")}
                 </button>
@@ -165,13 +165,13 @@ export default function ConsentBanner() {
                 </button>
                 <button
                   onClick={handleRejectAll}
-                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs sm:text-sm font-semibold transition border border-slate-700"
+                  className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-lg text-xs sm:text-sm font-semibold transition border border-stone-200"
                 >
                   {t("cookieBanner.rejectAll", "Nur notwendige")}
                 </button>
                 <button
                   onClick={() => setShowSettings(true)}
-                  className="px-2.5 py-2 text-slate-400 hover:text-white text-xs flex items-center gap-1 transition ml-auto"
+                  className="px-2.5 py-2 text-stone-500 hover:text-stone-800 text-xs flex items-center gap-1 transition ml-auto"
                 >
                   <Settings className="w-3.5 h-3.5" />
                   <span>{t("cookieBanner.settings", "Anpassen")}</span>

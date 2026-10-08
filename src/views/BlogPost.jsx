@@ -44,31 +44,31 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
         : "Möchtest du deinen eigenen persönlichen Song hören?");
 
   return (
-    <article className="min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <article className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       <SchemaJsonLd type="blog" blogPost={post} />
 
       {/* Top Header Navigation */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
           <button
             onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition font-medium"
+            className="flex items-center gap-2 text-sm text-stone-600 hover:text-stone-900 transition font-medium"
           >
-            <ArrowLeft className="w-4 h-4 text-orange-400" />
+            <ArrowLeft className="w-4 h-4 text-amber-600" />
             <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
           </button>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
             <button
               onClick={onBackToHome}
-              className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+              className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
             >
               <img
                 src="/images/logo-icon.png"
                 alt="MyMusicMoment24 Logo"
                 className="w-7 h-7 object-contain"
               />
-              <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+              <span>MyMusicMoment<span className="text-amber-500">24</span></span>
             </button>
           </div>
         </div>
@@ -76,37 +76,37 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
 
       {/* Article Header */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 pb-8">
-        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-5">
-          <span className="text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 font-bold">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-stone-500 uppercase tracking-wider mb-5">
+          <span className="text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 font-bold shadow-sm">
             {post.category || (language === "en" ? "Guide" : "Ratgeber")}
           </span>
           <span className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-amber-400" />
+            <Calendar className="w-3.5 h-3.5 text-amber-600" />
             {post.date}
           </span>
           <span className="flex items-center gap-1.5">
-            <User className="w-3.5 h-3.5 text-amber-400" />
+            <User className="w-3.5 h-3.5 text-amber-600" />
             {post.author || "Dirk Schmetzer"}
           </span>
           {post.readTime && (
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
+              <Clock className="w-3.5 h-3.5 text-amber-600" />
               {post.readTime}
             </span>
           )}
         </div>
 
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-[1.2] tracking-tight mb-6">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-stone-900 leading-[1.2] tracking-tight mb-6">
           {post.title}
         </h1>
 
-        <div className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed bg-slate-900/90 border border-slate-800 border-l-4 border-l-amber-500 p-5 rounded-r-2xl mb-8 shadow-md">
+        <div className="text-base sm:text-lg text-stone-800 font-normal leading-relaxed bg-amber-50/70 border border-amber-200 border-l-4 border-l-amber-500 p-5 rounded-r-2xl mb-8 shadow-sm">
           {post.excerpt}
         </div>
 
         {/* Hero Cover Image */}
         {post.coverImage && (
-          <div className="relative w-full h-64 sm:h-96 md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-800 shadow-2xl mb-10 group">
+          <div className="relative w-full h-64 sm:h-96 md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200 shadow-xl mb-10 group bg-stone-100">
             <img
               src={post.coverImage}
               alt={post.title}
@@ -117,12 +117,12 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
               fetchPriority="high"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-slate-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
               <span className="bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-lg uppercase tracking-wider shadow">
                 {post.category || (language === "en" ? "Guide" : "Ratgeber")}
               </span>
-              <span className="bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-slate-300 font-medium">
+              <span className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg border border-stone-200 text-stone-800 font-semibold shadow">
                 MyMusicMoment24 • Seit 2024
               </span>
             </div>
@@ -136,12 +136,12 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
         />
 
         {/* CTA Box at bottom */}
-        <div className="mt-16 bg-gradient-to-br from-amber-500/15 via-slate-900 to-slate-900 border border-amber-500/30 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
+        <div className="mt-16 bg-gradient-to-br from-amber-50 via-white to-amber-100/50 border-2 border-amber-300 rounded-3xl p-8 text-center space-y-4 shadow-xl">
           <div className="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center mx-auto shadow-lg shadow-amber-500/30">
             <Music className="w-6 h-6" />
           </div>
-          <h3 className="text-2xl font-bold text-white">{ctaTitle}</h3>
-          <p className="text-slate-300 text-sm max-w-lg mx-auto leading-relaxed">
+          <h3 className="text-2xl font-bold text-stone-900">{ctaTitle}</h3>
+          <p className="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed">
             {language === "en"
               ? "Configure your custom song in 5 simple steps from €19.99. Usually ready within 24 hours – includes 1 free revision loop."
               : "Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten ab 19,99 €. Meist innerhalb von 24 Stunden fertig – inklusive 1 kostenloser Verbesserungsschleife."}
@@ -163,9 +163,9 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
 
         {/* Weitere Ratgeber & Blog-Artikel */}
         {otherPosts.length > 0 && (
-          <div className="mt-16 pt-12 border-t border-slate-800/80">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-6">
-              <BookOpen className="w-4 h-4" />
+          <div className="mt-16 pt-12 border-t border-stone-200">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 mb-6">
+              <BookOpen className="w-4 h-4 text-amber-600" />
               <span>{language === "en" ? "Related Guides & Song Topics" : "Weitere Ratgeber & Song-Themen"}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -180,22 +180,22 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
                       window.location.reload();
                     }
                   }}
-                  className="text-left bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 p-4 rounded-2xl transition group flex flex-col justify-between"
+                  className="text-left bg-white hover:bg-stone-50 border border-stone-200 hover:border-amber-400 p-4 rounded-2xl transition group flex flex-col justify-between shadow-sm hover:shadow-md"
                 >
                   <div>
-                    <span className="text-[10px] text-amber-400 font-semibold uppercase tracking-wider block mb-1.5">
+                    <span className="text-[10px] text-amber-700 font-bold uppercase tracking-wider block mb-1.5">
                       {op.category || "Ratgeber"}
                     </span>
-                    <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition line-clamp-2 mb-2">
+                    <h4 className="text-sm font-bold text-stone-900 group-hover:text-amber-700 transition line-clamp-2 mb-2">
                       {op.title}
                     </h4>
-                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
                       {op.excerpt}
                     </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500">
+                  <div className="pt-3 mt-3 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
                     <span>{op.readTime || "5 Min."}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-amber-600 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </button>
               ))}

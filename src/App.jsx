@@ -175,7 +175,7 @@ function AppMain() {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100">
+    <div className="relative min-h-screen bg-[#faf8f5] text-stone-900">
       {currentRoute.view === "home" && (
         <LandingPage
           onOpenCheckout={handleOpenCheckout}

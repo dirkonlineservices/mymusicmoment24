@@ -80,59 +80,59 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="min-h-screen bg-[#faf8f5] text-stone-900 pb-20">
       {/* Top Header Navigation */}
-      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <button
             onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition font-medium"
+            className="flex items-center gap-2 text-sm text-stone-600 hover:text-stone-900 transition font-medium"
           >
-            <ArrowLeft className="w-4 h-4 text-amber-400" />
+            <ArrowLeft className="w-4 h-4 text-amber-600" />
             <span>{t("b2b.navBack", "Zurück zur Startseite")}</span>
           </button>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
             <button
               onClick={onBackToHome}
-              className="flex items-center gap-2 text-sm font-bold text-white hover:opacity-90 transition"
+              className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
             >
               <img
                 src="/images/logo-icon.png"
                 alt="MyMusicMoment24 Logo"
                 className="w-7 h-7 object-contain"
               />
-              <span>MyMusicMoment<span className="text-amber-400">24</span></span>
+              <span>MyMusicMoment<span className="text-amber-500">24</span></span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero Header */}
-      <section className="relative py-16 sm:py-20 px-4 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80 overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-4 bg-gradient-to-b from-amber-50/50 via-white to-[#faf8f5] border-b border-stone-200 overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" /> {t("b2b.badge", "B2B & Agentur-Partnerprogramm • DS Online Services")}
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-900 tracking-tight leading-tight">
             {t("b2b.title", "Singende Produktwerbung, Jingles & Audio-Content mit KI")}
           </h1>
 
-          <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-xl text-stone-600 max-w-2xl mx-auto font-light leading-relaxed">
             {t("b2b.subtitle", "Verwandle Produkte, Brand-Storys und Werbekampagnen in virale Ohrwürmer. Maßgeschneiderter Audio-Content für Agenturen, E-Commerce-Marken und Unternehmen – mit vollen kommerziellen Nutzungsrechten.")}
           </p>
 
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
-            <span className="px-3 py-1 rounded-lg bg-slate-800/70 border border-slate-700/60 flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> {t("b2b.tagLicense", "Kommerzielle Lizenz inklusive")}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-stone-600">
+            <span className="px-3 py-1 rounded-lg bg-white border border-stone-200 shadow-sm flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> {t("b2b.tagLicense", "Kommerzielle Lizenz inklusive")}
             </span>
-            <span className="px-3 py-1 rounded-lg bg-slate-800/70 border border-slate-700/60 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" /> {t("b2b.tagCustom", "Maßgeschneiderte Projektumsetzung")}
+            <span className="px-3 py-1 rounded-lg bg-white border border-stone-200 shadow-sm flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" /> {t("b2b.tagCustom", "Maßgeschneiderte Projektumsetzung")}
             </span>
-            <span className="px-3 py-1 rounded-lg bg-slate-800/70 border border-slate-700/60 flex items-center gap-1.5">
-              <Briefcase className="w-3.5 h-3.5 text-blue-400" /> {t("b2b.tagWhiteLabel", "White-Label & Agenturrabatte")}
+            <span className="px-3 py-1 rounded-lg bg-white border border-stone-200 shadow-sm flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5 text-blue-600" /> {t("b2b.tagWhiteLabel", "White-Label & Agenturrabatte")}
             </span>
           </div>
         </div>
@@ -144,10 +144,10 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
         {/* 4 B2B Use Cases */}
         <section>
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight mb-3">
               {t("b2b.useCasesTitle", "Wie Agenturen & Marken unsere Musik nutzen")}
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm">
+            <p className="text-stone-600 max-w-xl mx-auto text-xs sm:text-sm">
               {t("b2b.useCasesSubtitle", "Hochwertiger KI-gestützter Audio-Content hebt Werbekampagnen von der Masse ab und bleibt im Kopf.")}
             </p>
           </div>
@@ -155,77 +155,77 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Card 1: Singende Produktbeschreibungen */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-xl">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+            <div className="bg-white border border-stone-200 hover:border-amber-400 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-lg shadow-stone-200/50">
+              <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 text-amber-700 flex items-center justify-center">
                 <Megaphone className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t("b2b.card1Title", "Singende Produktbeschreibungen & Social Ads")}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <h3 className="text-xl font-bold text-stone-900">{t("b2b.card1Title", "Singende Produktbeschreibungen & Social Ads")}</h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {t("b2b.card1Desc", "Klassische Voiceover-Ads werden auf TikTok, Instagram Reels und YouTube Shorts oft nach 2 Sekunden weggekippt. Ein maßgeschneiderter Song mit Produktnamen und Vorteilen als Hook stoppt das Weiterscrollen sofort und vervielfacht die Conversion-Rate.")}
               </p>
-              <ul className="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+              <ul className="text-xs text-stone-600 space-y-1.5 pt-2 border-t border-stone-200">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {t("b2b.card1Bullet1", "Perfekt für E-Commerce, D2C-Brands & Dropshipping")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" /> {t("b2b.card1Bullet1", "Perfekt für E-Commerce, D2C-Brands & Dropshipping")}
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {t("b2b.card1Bullet2", "Viral optimierte Songstrukturen (15s, 30s & 60s)")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" /> {t("b2b.card1Bullet2", "Viral optimierte Songstrukturen (15s, 30s & 60s)")}
                 </li>
               </ul>
             </div>
 
             {/* Card 2: Marken-Jingles & Soundlogos */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-xl">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+            <div className="bg-white border border-stone-200 hover:border-blue-400 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-lg shadow-stone-200/50">
+              <div className="w-12 h-12 rounded-2xl bg-blue-100 border border-blue-300 text-blue-700 flex items-center justify-center">
                 <Radio className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t("b2b.card2Title", "Audio-Branding & Marken-Jingles")}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <h3 className="text-xl font-bold text-stone-900">{t("b2b.card2Title", "Audio-Branding & Marken-Jingles")}</h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {t("b2b.card2Desc", "Stärke die Wiedererkennung deiner Marke mit einem individuellen Soundlogo oder Opener-Jingle für Podcasts, Imagefilme, YouTube-Kanäle und Radiowerbung. Kurze, prägnante Melodien, die deine Markenbotschaft akustisch verankern.")}
               </p>
-              <ul className="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+              <ul className="text-xs text-stone-600 space-y-1.5 pt-2 border-t border-stone-200">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> {t("b2b.card2Bullet1", "Jingles in 5–15 Sekunden mit Voice & Claim")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" /> {t("b2b.card2Bullet1", "Jingles in 5–15 Sekunden mit Voice & Claim")}
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> {t("b2b.card2Bullet2", "Beliebige Genres von Modern Corporate bis Rock")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" /> {t("b2b.card2Bullet2", "Beliebige Genres von Modern Corporate bis Rock")}
                 </li>
               </ul>
             </div>
 
             {/* Card 3: Mitarbeiter- & Firmensongs */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-xl">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <div className="bg-white border border-stone-200 hover:border-emerald-400 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-lg shadow-stone-200/50">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 border border-emerald-300 text-emerald-700 flex items-center justify-center">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t("b2b.card3Title", "Firmenjubiläen, Mitarbeiter-Incentives & Hymnen")}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <h3 className="text-xl font-bold text-stone-900">{t("b2b.card3Title", "Firmenjubiläen, Mitarbeiter-Incentives & Hymnen")}</h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {t("b2b.card3Desc", "Feiere das 10-, 25- oder 50-jährige Firmenbestehen mit einer eigenen Unternehmenshymne. Oder überrasche verdiente Mitarbeiter beim Abschied in den Ruhestand oder bei der Weihnachtsfeier mit einem persönlichen Song über das gesamte Team.")}
               </p>
-              <ul className="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+              <ul className="text-xs text-stone-600 space-y-1.5 pt-2 border-t border-stone-200">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t("b2b.card3Bullet1", "Einbindung von Firmennamen, Meilensteinen & Werten")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> {t("b2b.card3Bullet1", "Einbindung von Firmennamen, Meilensteinen & Werten")}
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t("b2b.card3Bullet2", "Emotionaler Höhepunkt für jede Betriebsfeier")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> {t("b2b.card3Bullet2", "Emotionaler Höhepunkt für jede Betriebsfeier")}
                 </li>
               </ul>
             </div>
 
             {/* Card 4: White-Label & Agentur-Partner */}
-            <div className="bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-xl">
-              <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
+            <div className="bg-white border border-stone-200 hover:border-purple-400 rounded-3xl p-6 sm:p-8 space-y-4 transition shadow-lg shadow-stone-200/50">
+              <div className="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-300 text-purple-700 flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t("b2b.card4Title", "Laufende Agentur-Partnerschaft & White-Label")}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <h3 className="text-xl font-bold text-stone-900">{t("b2b.card4Title", "Laufende Agentur-Partnerschaft & White-Label")}</h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {t("b2b.card4Desc", "Erweitere das Service-Portfolio deiner Agentur ohne eigene Musikproduzenten oder Audiotechniker. Wir liefern im Hintergrund maßgeschneiderte Audio-Kreationen – du verkaufst sie mit deiner eigenen Marge und unter deinem Namen an deine Kunden.")}
               </p>
-              <ul className="text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+              <ul className="text-xs text-stone-600 space-y-1.5 pt-2 border-t border-stone-200">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" /> {t("b2b.card4Bullet1", "Attraktive Staffelpreise ab mehreren Tracks pro Monat")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0" /> {t("b2b.card4Bullet1", "Attraktive Staffelpreise ab mehreren Tracks pro Monat")}
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" /> {t("b2b.card4Bullet2", "Fester Ansprechpartner & Prioritäts-Produktion")}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0" /> {t("b2b.card4Bullet2", "Fester Ansprechpartner & Prioritäts-Produktion")}
                 </li>
               </ul>
             </div>
@@ -234,15 +234,15 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
         </section>
 
         {/* Agency Synergie Note */}
-        <div className="bg-gradient-to-r from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/20 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border-2 border-amber-300 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg shadow-stone-200/50">
           <div className="space-y-2 text-center sm:text-left">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center justify-center sm:justify-start gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-800 flex items-center justify-center sm:justify-start gap-1.5">
               <Sparkles className="w-3.5 h-3.5" /> {t("b2b.agencyBadge", "Teil von DS Online Services")}
             </span>
-            <h3 className="text-lg sm:text-xl font-bold text-white">
+            <h3 className="text-lg sm:text-xl font-bold text-stone-900">
               {t("b2b.agencyTitle", "SichtbarmitKI.agency – Deine Partner-Agentur für KI-Sichtbarkeit")}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed">
               {t("b2b.agencyDesc", "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben Musikproduktion unterstützen wir Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.")}
             </p>
           </div>
@@ -269,32 +269,32 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
         </div>
 
         {/* B2B Contact Form */}
-        <section id="kooperationsformular" className="max-w-3xl mx-auto bg-slate-900/95 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+        <section id="kooperationsformular" className="max-w-3xl mx-auto bg-white border border-stone-200 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-stone-200/60 relative">
           <div className="text-center mb-8 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
               {t("b2b.formBadge", "Unverbindliche Anfrage")}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-3xl font-black text-stone-900">
               {t("b2b.formTitle", "Kooperationsanfrage stellen")}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-stone-500 max-w-md mx-auto">
               {t("b2b.formSubtitle", "Teile uns deine Projektidee oder deinen Kooperationswunsch mit. Wir melden uns innerhalb von 24 Stunden mit einem maßgeschneiderten Angebot.")}
             </p>
           </div>
 
           {submitSuccess ? (
-            <div className="bg-emerald-950/60 border border-emerald-500/50 rounded-2xl p-8 text-center space-y-4 animate-in fade-in duration-300">
-              <div className="w-14 h-14 bg-emerald-500 text-slate-950 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
+            <div className="bg-emerald-50 border border-emerald-300 rounded-2xl p-8 text-center space-y-4 animate-in fade-in duration-300">
+              <div className="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-emerald-600/20">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t("b2b.successTitle", "Vielen Dank für Ihre Anfrage!")}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+              <h3 className="text-xl font-bold text-stone-900">{t("b2b.successTitle", "Vielen Dank für Ihre Anfrage!")}</h3>
+              <p className="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
                 {t("b2b.successDesc", "Wir haben Ihre Kooperationsanfrage erhalten. Dirk Schmetzer wird sich innerhalb von 24 Stunden per E-Mail oder Telefon bei Ihnen melden.")}
               </p>
               <button
                 type="button"
                 onClick={() => setSubmitSuccess(false)}
-                className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition"
+                className="px-6 py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs rounded-xl transition"
               >
                 {t("b2b.anotherInquiryBtn", "Weitere Anfrage senden")}
               </button>
@@ -302,15 +302,15 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               {errorMessage && (
-                <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl text-xs">
+                <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-xl text-xs">
                   {errorMessage}
                 </div>
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    {t("b2b.nameLabel", "Ihr Name / Ansprechpartner")} <span className="text-amber-400">*</span>
+                  <label className="block text-xs font-bold text-stone-700 mb-1.5">
+                    {t("b2b.nameLabel", "Ihr Name / Ansprechpartner")} <span className="text-amber-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -318,13 +318,13 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                     placeholder={t("b2b.namePlaceholder", "z.B. Julia Weber")}
                     value={formData.contactName}
                     onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition"
+                    className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none transition shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    {t("b2b.companyLabel", "Firma / Agentur")} <span className="text-amber-400">*</span>
+                  <label className="block text-xs font-bold text-stone-700 mb-1.5">
+                    {t("b2b.companyLabel", "Firma / Agentur")} <span className="text-amber-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -332,15 +332,15 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                     placeholder={t("b2b.companyPlaceholder", "z.B. MediaBoost Agency GmbH")}
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition"
+                    className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none transition shadow-sm"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    {t("b2b.emailLabel", "Geschäftliche E-Mail")} <span className="text-amber-400">*</span>
+                  <label className="block text-xs font-bold text-stone-700 mb-1.5">
+                    {t("b2b.emailLabel", "Geschäftliche E-Mail")} <span className="text-amber-600">*</span>
                   </label>
                   <input
                     type="email"
@@ -348,12 +348,12 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                     placeholder={t("b2b.emailPlaceholder", "name@firma.de")}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition"
+                    className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none transition shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-bold text-stone-700 mb-1.5">
                     {t("b2b.phoneLabel", "Telefon / WhatsApp (optional)")}
                   </label>
                   <input
@@ -361,19 +361,19 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                     placeholder={t("b2b.phonePlaceholder", "z.B. 0170 1234567")}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition"
+                    className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none transition shadow-sm"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  {t("b2b.typeLabel", "Art der gewünschten Kooperation")} <span className="text-amber-400">*</span>
+                <label className="block text-xs font-bold text-stone-700 mb-1.5">
+                  {t("b2b.typeLabel", "Art der gewünschten Kooperation")} <span className="text-amber-600">*</span>
                 </label>
                 <select
                   value={formData.inquiryType}
                   onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white outline-none transition"
+                  className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-stone-900 outline-none transition shadow-sm"
                 >
                   <option value="Singende Werbeanzeigen & Social Ads">
                     {t("b2b.typeOptions.ads", "Singende Werbeanzeigen & Social Ads (TikTok/Reels)")}
@@ -394,8 +394,8 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                  {t("b2b.messageLabel", "Projektdetails & Wünsche")} <span className="text-amber-400">*</span>
+                <label className="block text-xs font-bold text-stone-700 mb-1.5">
+                  {t("b2b.messageLabel", "Projektdetails & Wünsche")} <span className="text-amber-600">*</span>
                 </label>
                 <textarea
                   required
@@ -403,7 +403,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                   placeholder={t("b2b.messagePlaceholder", "Beschreiben Sie kurz Ihr Projekt, gewünschte Stückzahl, Zielgruppe oder Fristen...")}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl p-4 text-sm text-white placeholder-slate-500 outline-none transition resize-none"
+                  className="w-full bg-white border border-stone-300 focus:border-amber-500 rounded-xl p-4 text-sm text-stone-900 placeholder-stone-400 outline-none transition resize-none shadow-sm"
                 />
               </div>
 
@@ -424,24 +424,24 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
                 </button>
               </div>
 
-              <p className="text-[11px] text-slate-500 text-center">
+              <p className="text-[11px] text-stone-500 text-center">
                 {t("b2b.privacyNote", "Ihre Daten werden vertraulich behandelt und ausschließlich zur Beantwortung Ihrer Anfrage genutzt.")}
               </p>
             </form>
           )}
 
           {/* Direct Contact Bar */}
-          <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="mt-8 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-600">
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-amber-400" />
+              <Mail className="w-4 h-4 text-amber-600" />
               <span>info@mymusicmoment24.de</span>
             </div>
             <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <MessageSquare className="w-4 h-4 text-emerald-600" />
               <span>WhatsApp: 01590 6122744</span>
             </div>
             <div>
-              <span className="text-slate-500">{t("b2b.locationNote", "Stuttgart (Deutschland)")}</span>
+              <span className="text-stone-500">{t("b2b.locationNote", "Stuttgart (Deutschland)")}</span>
             </div>
           </div>
         </section>

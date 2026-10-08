@@ -153,22 +153,22 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     <section id="konfigurator" className="w-full max-w-5xl mx-auto my-12 sm:my-20 px-4 scroll-mt-20">
       {/* Outer Section Header */}
       <div className="text-center mb-8 sm:mb-12">
-        <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full mb-3 shadow-lg shadow-amber-500/10">
-          <Sparkles className="w-4 h-4 text-amber-400" />
+        <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200/80 px-4 py-1.5 rounded-full mb-3 shadow-sm">
+          <Sparkles className="w-4 h-4 text-amber-600" />
           <span>{t("configurator.badge")}</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-stone-900 tracking-tight mb-3">
           {t("configurator.title")}
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-xs sm:text-base leading-relaxed">
+        <p className="text-stone-600 max-w-2xl mx-auto text-xs sm:text-base leading-relaxed">
           {t("configurator.subtitle")}
         </p>
       </div>
 
-      <div className="bg-gradient-to-b from-slate-900 via-slate-900/98 to-slate-950 border-2 border-amber-500/35 hover:border-amber-500/60 rounded-3xl p-5 sm:p-10 shadow-2xl shadow-amber-500/10 relative overflow-hidden ring-1 ring-amber-500/20 transition-all duration-300">
+      <div className="bg-white border-2 border-amber-400/60 rounded-3xl p-5 sm:p-10 shadow-2xl shadow-stone-200/60 relative overflow-hidden ring-1 ring-amber-400/20 transition-all duration-300">
         {/* Glow Ambient Accents */}
-        <div className="absolute -top-32 -right-32 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-32 -right-32 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-yellow-400/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Interactive Step Navigator */}
         <div className="mb-8 relative z-10">
@@ -185,12 +185,12 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     isActive
                       ? "bg-amber-500 text-slate-950 border-amber-400 font-bold shadow-lg shadow-amber-500/20 scale-[1.02]"
                       : isPast
-                      ? "bg-slate-800/80 border-slate-700 text-amber-400 hover:bg-slate-800"
-                      : "bg-slate-900/60 border-slate-800/80 text-slate-500 hover:text-slate-400"
+                      ? "bg-amber-50 border-amber-200 text-amber-800 hover:bg-amber-100"
+                      : "bg-stone-50 border-stone-200 text-stone-400 hover:text-stone-600"
                   }`}
                 >
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black shrink-0 ${
-                    isActive ? "bg-slate-950 text-amber-400" : isPast ? "bg-amber-400/20 text-amber-400" : "bg-slate-800 text-slate-500"
+                    isActive ? "bg-slate-950 text-amber-400" : isPast ? "bg-amber-200 text-amber-900" : "bg-stone-200 text-stone-500"
                   }`}>
                     {isPast ? "✓" : s.num}
                   </span>
@@ -202,7 +202,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             })}
           </div>
 
-          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-stone-200 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 transition-all duration-300"
               style={{ width: `${(step / 5) * 100}%` }}
@@ -213,7 +213,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 1: Occasion */}
         {step === 1 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.1")}</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.1")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {occasionsList.map((occ) => {
                 const Icon = occ.icon;
@@ -224,16 +224,16 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     onClick={() => setConfig({ ...config, occasion: occ.id })}
                     className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all flex items-start gap-3.5 ${
                       isSelected
-                        ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
-                        : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
+                        ? "bg-amber-50/90 border-2 border-amber-500 text-stone-900 shadow-md shadow-amber-500/10"
+                        : "bg-stone-50 border-stone-200 text-stone-800 hover:bg-stone-100 hover:border-stone-300"
                     }`}
                   >
-                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-700 text-slate-400"}`}>
+                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-stone-200 text-stone-600"}`}>
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm sm:text-base mb-1">{occ.label}</h4>
-                      <p className="text-xs text-slate-400 leading-relaxed">{occ.desc}</p>
+                      <h4 className="font-bold text-sm sm:text-base mb-1 text-stone-900">{occ.label}</h4>
+                      <p className="text-xs text-stone-500 leading-relaxed">{occ.desc}</p>
                     </div>
                   </div>
                 );
@@ -242,7 +242,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="pt-3 sm:pt-4 flex justify-end">
               <button
                 onClick={() => goToStep(2)}
-                className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-amber-500/20 active:scale-95"
               >
                 <span>{t("configurator.next")} ({t("configurator.steps.2")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -254,7 +254,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 2: Genre */}
         {step === 2 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.2")}</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.2")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {genresList.map((g) => {
                 const Icon = g.icon;
@@ -265,19 +265,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     onClick={() => setConfig({ ...config, genre: g.id })}
                     className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all flex items-start gap-3.5 ${
                       isSelected
-                        ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
-                        : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:border-slate-600"
+                        ? "bg-amber-50/90 border-2 border-amber-500 text-stone-900 shadow-md shadow-amber-500/10"
+                        : "bg-stone-50 border-stone-200 text-stone-800 hover:bg-stone-100 hover:border-stone-300"
                     }`}
                   >
-                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-700 text-slate-400"}`}>
+                    <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${isSelected ? "bg-amber-500 text-slate-950" : "bg-stone-200 text-stone-600"}`}>
                       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1 gap-2">
-                        <h4 className="font-bold text-sm sm:text-base truncate">{g.label}</h4>
-                        {isSelected && <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />}
+                        <h4 className="font-bold text-sm sm:text-base truncate text-stone-900">{g.label}</h4>
+                        {isSelected && <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 shrink-0" />}
                       </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{g.desc}</p>
+                      <p className="text-xs text-stone-500 leading-relaxed">{g.desc}</p>
                     </div>
                   </div>
                 );
@@ -286,13 +286,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(1)}
-                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
+                className="px-4 py-2.5 text-xs sm:text-sm text-stone-500 hover:text-stone-900 flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(3)}
-                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20 active:scale-95"
               >
                 <span>{t("configurator.next")} ({t("configurator.steps.3")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -304,7 +304,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 3: Voice & Language */}
         {step === 3 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.3")}</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.3")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {voicesList.map((v) => {
                 const isSelected = config.voice === v.id;
@@ -314,20 +314,20 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     onClick={() => setConfig({ ...config, voice: v.id })}
                     className={`cursor-pointer p-4 rounded-2xl border transition-all text-center ${
                       isSelected
-                        ? "bg-amber-500/15 border-amber-500 text-white shadow-lg shadow-amber-500/10"
-                        : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800"
+                        ? "bg-amber-50/90 border-2 border-amber-500 text-stone-900 shadow-md shadow-amber-500/10"
+                        : "bg-stone-50 border-stone-200 text-stone-800 hover:bg-stone-100 hover:border-stone-300"
                     }`}
                   >
-                    <Mic className={`w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 ${isSelected ? "text-amber-400" : "text-slate-500"}`} />
-                    <h4 className="font-bold text-sm mb-1">{v.label}</h4>
-                    <p className="text-xs text-slate-400">{v.desc}</p>
+                    <Mic className={`w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 ${isSelected ? "text-amber-600" : "text-stone-400"}`} />
+                    <h4 className="font-bold text-sm mb-1 text-stone-900">{v.label}</h4>
+                    <p className="text-xs text-stone-500">{v.desc}</p>
                   </div>
                 );
               })}
             </div>
 
-            <div className="pt-3 border-t border-slate-800">
-              <label className="block text-xs sm:text-sm font-semibold text-white mb-2">
+            <div className="pt-3 border-t border-stone-200">
+              <label className="block text-xs sm:text-sm font-semibold text-stone-900 mb-2">
                 {t("configurator.languageLabel")}
               </label>
               <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -343,7 +343,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border transition ${
                       config.language === item.id
                         ? "bg-amber-500 text-slate-950 font-bold border-amber-500 shadow-md"
-                        : "bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700"
+                        : "bg-stone-100 text-stone-700 border-stone-200 hover:bg-stone-200"
                     }`}
                   >
                     {item.label}
@@ -355,13 +355,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(2)}
-                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
+                className="px-4 py-2.5 text-xs sm:text-sm text-stone-500 hover:text-stone-900 flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(4)}
-                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20 active:scale-95"
               >
                 <span>{t("configurator.next")} ({t("configurator.steps.4")})</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -373,8 +373,8 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 4: Story & Names */}
         {step === 4 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.4")}</h3>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.4")}</h3>
+            <p className="text-xs sm:text-sm text-stone-600">
               {language === "en"
                 ? "The more personal details and anecdotes you share, the more emotional and unique the lyrics will be."
                 : "Je mehr persönliche Details du nennst, desto einzigartiger wird der Text."}
@@ -382,7 +382,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
 
             <div className="space-y-4">
               <div>
-                <label htmlFor="config-names" className="block text-xs sm:text-sm font-semibold text-white mb-1">
+                <label htmlFor="config-names" className="block text-xs sm:text-sm font-semibold text-stone-900 mb-1">
                   {t("configurator.storyLabels.namesLabel")}:
                 </label>
                 <input
@@ -393,12 +393,12 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                   placeholder={t("configurator.storyLabels.namesPlaceholder")}
                   value={config.names}
                   onChange={(e) => setConfig({ ...config, names: e.target.value })}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-white border border-stone-300 rounded-xl px-4 py-3 text-stone-900 text-base placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>
 
               <div>
-                <label htmlFor="config-story" className="block text-xs sm:text-sm font-semibold text-white mb-1">
+                <label htmlFor="config-story" className="block text-xs sm:text-sm font-semibold text-stone-900 mb-1">
                   {t("configurator.storyLabels.storyLabel")}:
                 </label>
                 <textarea
@@ -409,7 +409,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                   placeholder={t("configurator.storyLabels.storyPlaceholder")}
                   value={config.story}
                   onChange={(e) => setConfig({ ...config, story: e.target.value })}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-base placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-white border border-stone-300 rounded-xl px-4 py-3 text-stone-900 text-base placeholder-stone-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
                 />
               </div>
             </div>
@@ -417,13 +417,13 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="pt-3 sm:pt-4 flex items-center justify-between gap-3">
               <button
                 onClick={() => goToStep(3)}
-                className="px-4 py-2.5 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
+                className="px-4 py-2.5 text-xs sm:text-sm text-stone-500 hover:text-stone-900 flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" /> {t("configurator.back")}
               </button>
               <button
                 onClick={() => goToStep(5)}
-                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20"
+                className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20 active:scale-95"
               >
                 <span>{t("configurator.summary.cardTitle", "Zur Übersicht")}</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -435,32 +435,32 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         {/* Step 5: Summary */}
         {step === 5 && (
           <div className="space-y-5 sm:space-y-6">
-            <h3 className="text-xl sm:text-3xl font-bold text-white">{t("configurator.stepTitles.5")}</h3>
+            <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.5")}</h3>
 
-            <div className="bg-slate-950/80 p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-2.5 text-xs sm:text-sm">
-              <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">{t("configurator.summary.occasion")}:</span>
-                <span className="font-semibold text-white capitalize">{config.occasion}</span>
+            <div className="bg-stone-50 p-4 sm:p-5 rounded-2xl border border-stone-200 space-y-2.5 text-xs sm:text-sm">
+              <div className="flex justify-between border-b border-stone-200/80 pb-2">
+                <span className="text-stone-500">{t("configurator.summary.occasion")}:</span>
+                <span className="font-semibold text-stone-900 capitalize">{config.occasion}</span>
               </div>
-              <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">{t("configurator.summary.genre")}:</span>
-                <span className="font-semibold text-white capitalize">{config.genre}</span>
+              <div className="flex justify-between border-b border-stone-200/80 pb-2">
+                <span className="text-stone-500">{t("configurator.summary.genre")}:</span>
+                <span className="font-semibold text-stone-900 capitalize">{config.genre}</span>
               </div>
-              <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                <span className="text-slate-400">{t("configurator.summary.voice")}:</span>
-                <span className="font-semibold text-white capitalize">{config.voice} ({config.language})</span>
+              <div className="flex justify-between border-b border-stone-200/80 pb-2">
+                <span className="text-stone-500">{t("configurator.summary.voice")}:</span>
+                <span className="font-semibold text-stone-900 capitalize">{config.voice} ({config.language})</span>
               </div>
               {config.names && (
-                <div className="flex justify-between border-b border-slate-800/80 pb-2">
-                  <span className="text-slate-400">{t("configurator.summary.storyDetails")}:</span>
-                  <span className="font-semibold text-white truncate max-w-[200px]">{config.names}</span>
+                <div className="flex justify-between border-b border-stone-200/80 pb-2">
+                  <span className="text-stone-500">{t("configurator.summary.storyDetails")}:</span>
+                  <span className="font-semibold text-stone-900 truncate max-w-[200px]">{config.names}</span>
                 </div>
               )}
             </div>
 
             {/* Extras toggles */}
             <div className="space-y-2.5">
-              <label htmlFor="config-express" className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 cursor-pointer transition">
+              <label htmlFor="config-express" className="flex items-center justify-between p-3.5 sm:p-4 bg-stone-50 hover:bg-stone-100/80 rounded-xl border border-stone-200 cursor-pointer transition">
                 <div className="flex items-center gap-3">
                   <input
                     id="config-express"
@@ -469,17 +469,17 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     type="checkbox"
                     checked={config.express}
                     onChange={(e) => setConfig({ ...config, express: e.target.checked })}
-                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
+                    className="rounded bg-white border-stone-300 text-amber-500 focus:ring-amber-500 w-5 h-5 shrink-0"
                   />
                   <div>
-                    <span className="font-bold text-white text-xs sm:text-sm block">{t("configurator.summary.expressTitle")}</span>
-                    <span className="text-[11px] sm:text-xs text-slate-400">{t("configurator.summary.expressDesc")}</span>
+                    <span className="font-bold text-stone-900 text-xs sm:text-sm block">{t("configurator.summary.expressTitle")}</span>
+                    <span className="text-[11px] sm:text-xs text-stone-500">{t("configurator.summary.expressDesc")}</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-400 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
+                <span className="font-bold text-amber-600 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
               </label>
 
-              <div className="flex items-center justify-between p-3.5 sm:p-4 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-slate-700 transition">
+              <div className="flex items-center justify-between p-3.5 sm:p-4 bg-stone-50 hover:bg-stone-100/80 rounded-xl border border-stone-200 transition">
                 <label htmlFor="config-pdf-lyrics" className="flex items-center gap-3 cursor-pointer flex-1 min-w-0 mr-2">
                   <input
                     id="config-pdf-lyrics"
@@ -488,11 +488,11 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     type="checkbox"
                     checked={config.pdfLyrics}
                     onChange={(e) => setConfig({ ...config, pdfLyrics: e.target.checked })}
-                    className="rounded bg-slate-700 border-slate-600 text-amber-500 w-5 h-5 shrink-0"
+                    className="rounded bg-white border-stone-300 text-amber-500 focus:ring-amber-500 w-5 h-5 shrink-0"
                   />
                   <div className="min-w-0">
-                    <span className="font-bold text-white text-xs sm:text-sm block">{t("configurator.summary.pdfTitle")}</span>
-                    <span className="text-[11px] sm:text-xs text-slate-400 block">{t("configurator.summary.pdfDesc")}</span>
+                    <span className="font-bold text-stone-900 text-xs sm:text-sm block">{t("configurator.summary.pdfTitle")}</span>
+                    <span className="text-[11px] sm:text-xs text-stone-500 block">{t("configurator.summary.pdfDesc")}</span>
                   </div>
                 </label>
 
@@ -503,26 +503,26 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                       e.preventDefault();
                       setShowCertificateModal(true);
                     }}
-                    className="text-[11px] sm:text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2.5 py-1.5 rounded-lg transition"
+                    className="text-[11px] sm:text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1 bg-amber-50 hover:bg-amber-100 border border-amber-300 px-2.5 py-1.5 rounded-lg transition"
                     title={t("configurator.summary.previewBtn", "Vorschau ansehen")}
                   >
-                    <Eye className="w-3.5 h-3.5" />
+                    <Eye className="w-3.5 h-3.5 text-amber-600" />
                     <span>{t("configurator.summary.previewBtn", "Vorschau")}</span>
                   </button>
-                  <span className="font-bold text-amber-400 text-sm sm:text-base">+9,99 €</span>
+                  <span className="font-bold text-amber-600 text-sm sm:text-base">+9,99 €</span>
                 </div>
               </div>
             </div>
 
             {/* Total price & Checkout Button */}
-            <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50/60 border-2 border-amber-300 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
               <div>
-                <span className="text-xs sm:text-sm text-slate-300 block">{t("configurator.summary.totalPrice")}</span>
-                <span className="text-2xl sm:text-3xl font-extrabold text-white">{totalPrice.toFixed(2).replace(".", ",")} €</span>
+                <span className="text-xs sm:text-sm text-stone-600 block">{t("configurator.summary.totalPrice")}</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-stone-950">{totalPrice.toFixed(2).replace(".", ",")} €</span>
               </div>
               <button
                 onClick={handleFinish}
-                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-xl flex items-center justify-center gap-2 transition shadow-xl shadow-amber-500/30"
+                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-xl flex items-center justify-center gap-2 transition shadow-xl shadow-amber-500/30 active:scale-95"
               >
                 <span>{t("configurator.orderNow")}</span>
                 <ArrowRight className="w-5 h-5" />
@@ -532,7 +532,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="pt-2 flex justify-start">
               <button
                 onClick={() => goToStep(4)}
-                className="px-4 py-2 text-xs sm:text-sm text-slate-400 hover:text-white flex items-center gap-1.5"
+                className="px-4 py-2 text-xs sm:text-sm text-stone-500 hover:text-stone-900 flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" /> {t("configurator.editStep")}
               </button>
@@ -541,21 +541,21 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
         )}
 
         {/* Trust & Benefits Footer */}
-        <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] sm:text-xs text-slate-400 text-center relative z-10">
+        <div className="mt-8 pt-6 border-t border-stone-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] sm:text-xs text-stone-600 text-center relative z-10">
           <div className="flex items-center justify-center gap-1.5 font-medium">
-            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
             <span>{t("configurator.trustBar.fixedPrice")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
-            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
             <span>{t("configurator.trustBar.fastDelivery")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
-            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
             <span>{t("configurator.trustBar.freeRevision")}</span>
           </div>
           <div className="flex items-center justify-center gap-1.5 font-medium">
-            <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
             <span>{t("configurator.trustBar.privateRights")}</span>
           </div>
         </div>
@@ -567,31 +567,31 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
           role="dialog"
           aria-modal="true"
           aria-label={t("configurator.summary.certificateModal.title", "Offizielle Song-Urkunde")}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => setShowCertificateModal(false)}
         >
           <div
-            className="relative w-full max-w-2xl bg-slate-900 border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/10 flex flex-col max-h-[92vh]"
+            className="relative w-full max-w-2xl bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-950/90">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200 bg-stone-50">
               <div className="flex items-center gap-2.5">
-                <span className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                <span className="p-1.5 rounded-lg bg-amber-50 text-amber-600 border border-amber-200">
                   <Sparkles className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-bold text-white text-sm sm:text-base">
+                  <h3 className="font-bold text-stone-900 text-sm sm:text-base">
                     {t("configurator.summary.certificateModal.title", "Offizielle Song-Urkunde zum Einrahmen")}
                   </h3>
-                  <span className="text-[11px] text-amber-400/90 font-medium">
+                  <span className="text-[11px] text-amber-700 font-semibold">
                     {t("configurator.summary.certificateModal.badge", "Druckreifes Premium-PDF (DIN A4)")}
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setShowCertificateModal(false)}
-                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                className="p-2 rounded-xl text-stone-400 hover:text-stone-900 hover:bg-stone-100 transition"
                 aria-label={t("configurator.summary.certificateModal.closeBtn", "Schließen")}
               >
                 <X className="w-5 h-5" />
@@ -601,7 +601,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             {/* Modal Body with Image and Highlights */}
             <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
               {/* Certificate Image Frame */}
-              <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group">
+              <div className="relative rounded-2xl overflow-hidden border border-stone-200 bg-stone-100 shadow-lg group">
                 <img
                   src="/images/urkunde-beispiel.jpg"
                   alt="Beispiel: Offizielle Song-Urkunde im edlen Rahmen"
@@ -610,29 +610,29 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               </div>
 
               {/* Feature Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs text-slate-300">
-                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs text-stone-700">
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                  <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                   <span>{t("configurator.summary.certificateModal.feature1")}</span>
                 </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                  <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                   <span>{t("configurator.summary.certificateModal.feature2")}</span>
                 </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                  <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                   <span>{t("configurator.summary.certificateModal.feature3")}</span>
                 </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                  <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                   <span>{t("configurator.summary.certificateModal.feature4")}</span>
                 </div>
               </div>
             </div>
 
             {/* Modal Footer CTA */}
-            <div className="px-5 py-4 border-t border-slate-800 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="text-xs text-slate-400">
+            <div className="px-5 py-4 border-t border-stone-200 bg-stone-50 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span className="text-xs text-stone-600">
                 {t("configurator.summary.certificateModal.desc")}
               </span>
               <div className="flex items-center gap-2.5 w-full sm:w-auto">
@@ -642,7 +642,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     setConfig({ ...config, pdfLyrics: true });
                     setShowCertificateModal(false);
                   }}
-                  className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-1.5"
+                  className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-1.5 active:scale-95"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{t("configurator.summary.certificateModal.addBtn", "Jetzt für 9,99 € hinzufügen")}</span>
@@ -650,7 +650,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                 <button
                   type="button"
                   onClick={() => setShowCertificateModal(false)}
-                  className="px-4 py-2.5 text-xs text-slate-400 hover:text-white transition"
+                  className="px-4 py-2.5 text-xs text-stone-500 hover:text-stone-900 transition"
                 >
                   {t("configurator.summary.certificateModal.closeBtn", "Schließen")}
                 </button>
