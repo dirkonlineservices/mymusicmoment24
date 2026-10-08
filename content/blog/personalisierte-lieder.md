@@ -7,7 +7,7 @@ category: "Ratgeber"
 readTime: "8 Min. Lesezeit"
 slug: "personalisierte-lieder"
 excerpt: "Möchtest du ein personalisiertes Lied erstellen lassen? Mit eigener Geschichte, echten Namen und deinem Lieblings-Musikstil – in Studioqualität innerhalb von 24 Stunden fertig."
-coverImage: "/images/hochzeit.jpg"
+coverImage: "/images/duett.jpg"
 tags:
   - Personalisierte Lieder
   - Personalisierter Song
@@ -20,7 +20,7 @@ tags:
 
 Hast du dir schon einmal vorgestellt, wie es wäre, einen eigenen Song im Radio zu hören – und der Text erzählt exakt deine persönliche Lebens- oder Liebesgeschichte? Bis vor kurzem war das ein unerreichbarer Luxus: Ein einzelner Studiosong mit professionellen Textern, Sängern und Toningenieuren kostete schnell mehrere tausend Euro und Wochen an Vorlaufzeit.
 
-Heute verändert moderne KI-Technologie diese Welt grundlegend: Bei **MyMusicMoment24** erstellen wir **personalisierte Lieder** in professioneller Studioqualität – maßgeschneidert mit deinen Namen, Anlässen und Anekdoten, schon ab **19,99 €** und fertig innerhalb von 24 Stunden.
+Heute verändert moderne KI-Technologie diese Welt grundlegend: Bei **MyMusicMoment24** erstellen wir **bereits seit 2024 personalisierte Lieder** in professioneller Studioqualität – maßgeschneidert mit deinen Namen, Anlässen und Anekdoten, schon ab **19,99 €** und fertig innerhalb von 24 Stunden.
 
 ---
 
@@ -44,6 +44,8 @@ Der Soundtrack für den Eröffnungstanz, den feierlichen Einzug in die Kirche od
 
 ### 2. Runder Geburtstag
 Feiere das Leben eines geliebten Menschen: Vom 18. bis zum 80. Geburtstag erzählen die Strophen von all den Stationen und Erlebnissen, die das Geburtstagskind ausmachen.
+
+![Personalisierte Geburtstagslieder für unvergessliche Ehrentage](/images/geburtstag.jpg)
 
 ### 3. Hochzeitstag & Jubiläum
 Silberhochzeit, Goldene Hochzeit oder der jährliche Jahrestag: Ein persönliches Liebeslied würdigt die gemeinsamen Jahre und blickt voller Vorfreude in die gemeinsame Zukunft.

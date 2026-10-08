@@ -7,6 +7,7 @@ category: "Technologie"
 readTime: "6 Min. Lesezeit"
 slug: "was-ist-ki-musik"
 excerpt: "Wie funktioniert KI-Musikkomposition eigentlich genau? Ein verständlicher Blick hinter die Kulissen – von der Idee bis zur fertigen MP3. Und warum KI-Musik heute echte Emotionen erzeugt."
+coverImage: "/images/step-2-kreation.jpg"
 tags:
   - KI Musik
   - Künstliche Intelligenz
@@ -19,7 +20,7 @@ tags:
 
 Du hörst einen Song und er rührt dich zu Tränen. Die Stimme trifft genau die richtige Tonlage, die Melodie steigt im Refrain auf, der Text spricht von Dingen, die du selbst erlebt hast. Was wäre, wenn dieser Song nicht in einem teuren Tonstudio entstanden wäre – sondern durch eine Kombination aus moderner KI-Technologie und deiner persönlichen Geschichte?
 
-Genau das macht KI-Musik möglich. Und in diesem Artikel erklären wir dir, **wie das technisch funktioniert**, warum es trotzdem so persönlich klingt – und wie aus deinen Erinnerungen in weniger als 24 Stunden ein echtes Musikstück wird.
+Genau das macht KI-Musik möglich. Bei **MyMusicMoment24** machen wir das **bereits seit 2024** für unsere Kunden in ganz Deutschland. In diesem Artikel erklären wir dir, **wie das technisch funktioniert**, warum es trotzdem so persönlich klingt – und wie aus deinen Erinnerungen in weniger als 24 Stunden ein echtes Musikstück wird.
 
 ---
 
@@ -51,6 +52,8 @@ Im [Song-Konfigurator](/#konfigurator) gibst du in ca. 2 Minuten die wichtigsten
 - **Gesangsstimme:** Weiblich, männlich oder Duett
 - **Deine Geschichte:** Die Namen, Insider, Meilensteine und Gefühle, die in den Song fließen sollen
 
+![Eingabe deiner persönlichen Details und Wünsche im Konfigurator](/images/step-1-input.jpg)
+
 Je mehr echte Details du einbringst, desto persönlicher wird das Ergebnis. Das ist der wichtigste Punkt.
 
 ### Schritt 2: Kreative Synthese durch Prompt-Engineering
@@ -61,7 +64,9 @@ Dieser Schritt verbindet Technik mit kreativem Handwerk. Nicht jede Eingabe erze
 
 ### Schritt 3: Persönliche Qualitätsprüfung
 
-Das ist der Schritt, der uns von automatisierten Diensten unterscheidet: **Wir hören uns jeden Song selbst an.**
+Das ist der Schritt, der uns von rein automatisierten Plattformen unterscheidet: **Wir hören uns jeden Song vor der Auslieferung persönlich an.**
+
+![Persönliches Abhören und Klangprüfung im Tonstudio](/images/step-3-review.jpg)
 
 Bevor dein Song ausgeliefert wird, prüfen wir:
 

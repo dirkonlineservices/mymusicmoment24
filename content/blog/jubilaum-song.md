@@ -22,7 +22,7 @@ tags:
 
 Ein **personalisierter Jubiläumssong** fasst diese kostbaren Jahrzehnte in Melodie und Poesie zusammen. Er erzählt von den Anfängen, den Herausforderungen, den gemeinsamen Erfolgen und der tiefen Verbundenheit der Beteiligten.
 
-Bei **MyMusicMoment24** erstellen wir maßgeschneiderte Lieder für Jubiläen jeder Art – schon ab **19,99 €**, in Studioqualität und fertig geliefert in meist unter 24 Stunden.
+Bei **MyMusicMoment24** erstellen wir **bereits seit 2024** maßgeschneiderte Lieder für Jubiläen jeder Art – schon ab **19,99 €**, in Studioqualität und fertig geliefert in meist unter 24 Stunden.
 
 ---
 
@@ -34,6 +34,8 @@ Was jedoch unbezahlbar bleibt, ist die **Würdigung der gemeinsamen Lebensgeschi
 * **Die Chronik in Musik:** Wie hat damals alles begonnen? Das erste Treffen in den 70ern, 80ern oder 90ern?
 * **Gemeinsam gemeisterte Zeiten:** Kinder großziehen, das Haus bauen, berufliche Hürden überwinden und immer zusammenhalten.
 * **Der Dank der Familie:** Kinder und Enkelkinder können im Refrain ihre tiefste Dankbarkeit für Liebe, Rat und Unterstützung ausdrücken.
+
+![Personalisierte Song-Urkunde mit edlem Siegel und QR-Code zum Jubiläum](/images/urkunde-beispiel.jpg)
 
 Wenn der Song im Festsaal ertönt, fließen regelmäßig Freudentränen bei Jubilaren und Gästen gleichermaßen.
 

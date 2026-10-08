@@ -25,7 +25,7 @@ Kaum ein Moment auf einer Hochzeit ist so unvergesslich wie dieser.
 
 Und genau hier setzt der individuelle Hochzeitssong an: ein Lied, das es so auf der ganzen Welt nur ein einziges Mal gibt. Eins, das eure Geschichte erzählt – in eurer Sprache, mit euren Namen, in eurer Lieblingsmusik.
 
-Dank moderner KI-Technologie in Verbindung mit persönlicher Qualitätsprüfung ist das heute erschwinglich, schnell und emotional so kraftvoll wie eine klassische Studioproduktion. In diesem Ratgeber erfährst du alles, was du für euren perfekten Hochzeitssong wissen musst.
+Dank moderner KI-Technologie in Verbindung mit persönlicher Qualitätsprüfung ist das heute erschwinglich, schnell und emotional so kraftvoll wie eine klassische Studioproduktion. Bei **MyMusicMoment24** kreieren wir **bereits seit 2024** maßgeschneiderte Hochzeitssongs für Brautpaare, Trauzeugen und Familien in ganz Deutschland. In diesem Ratgeber erfährst du alles, was du für euren perfekten Hochzeitssong wissen musst.
 
 ---
 
@@ -34,6 +34,8 @@ Dank moderner KI-Technologie in Verbindung mit persönlicher Qualitätsprüfung 
 Standardgeschenke verblassen. Die schöne Kaffeemaschine steht nach einem Jahr im Regal. Der Gutschein wird nach drei Monaten eingelöst. Die Kristallvase steht im Wohnzimmer und erinnert an – nun ja, an die Hochzeit. Irgendwie.
 
 Ein individueller Hochzeitssong ist anders. Er ist nicht konsumierbar, nicht vergänglich und nicht austauschbar. Er enthält **eure Meilensteine im Songtext**: vom ersten Kennenlernen über peinliche Dates und mutige Entscheidungen bis hin zum Heiratsantrag. Er klingt so, wie ihr euch Musik vorstellt: als Pop-Ballade, als schwungvoller Uptempo-Track, als gefühlvolles Akustik-Stück oder als Duett.
+
+![Zweistimmiges Duett für den emotionalen Eröffnungstanz](/images/duett.jpg)
 
 Und er löst das aus, was keine Kristallvase je auslösen kann: echte Gänsehaut. Kollektive Rührung. Freudentränen.
 
