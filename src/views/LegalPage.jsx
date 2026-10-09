@@ -81,32 +81,47 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
             {/* Anbieterkennzeichnung */}
             <section className="bg-white border border-stone-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-md shadow-stone-200/50">
               <h2 className="text-xl font-bold text-stone-900 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-amber-600" /> Diensteanbieter
+                <MapPin className="w-5 h-5 text-amber-600" /> Angaben gemäß § 5 DDG (Diensteanbieter)
               </h2>
-              <div className="text-stone-700">
-                <p className="font-semibold text-stone-900">DS Online Services</p>
-                <p>Inhaber: Dirk Schmetzer</p>
+              <div className="text-stone-700 space-y-1">
+                <p className="font-bold text-stone-900 text-base">DS Online Services</p>
+                <p className="font-medium text-stone-800">Inhaber: Dirk Schmetzer</p>
                 <p>Riedgrasweg 30</p>
                 <p>70599 Stuttgart, Deutschland</p>
+                <p className="text-xs text-stone-500 pt-1">
+                  MyMusicMoment24 ist ein spezialisierter Musik- &amp; Audio-Service von DS Online Services.
+                </p>
               </div>
 
-              <div className="pt-2 border-t border-stone-200">
-                <h3 className="font-semibold text-stone-900 mb-1">Kontakt:</h3>
+              <div className="pt-2 border-t border-stone-200 space-y-2">
+                <h3 className="font-semibold text-stone-900 mb-1">Kontakt &amp; Support:</h3>
                 <p className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-amber-600" />
+                  <Mail className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>E-Mail: </span>
-                  <a href="mailto:info@mymusicmoment24.de" className="text-amber-700 hover:underline">
+                  <a href="mailto:info@mymusicmoment24.de" className="text-amber-700 hover:underline font-medium">
                     info@mymusicmoment24.de
                   </a>
                 </p>
-                <p className="text-xs text-stone-500 mt-1">
+                <p className="flex items-center gap-2 text-xs text-stone-600">
+                  <ExternalLink className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>Digitalagentur: </span>
+                  <a
+                    href="https://www.sichtbarmitki.agency"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-700 hover:underline font-medium"
+                  >
+                    sichtbarmitKI.agency
+                  </a>
+                </p>
+                <p className="text-xs text-stone-500">
                   Support auch direkt über WhatsApp für bestehende Bestellungen erreichbar.
                 </p>
               </div>
 
               <div className="pt-2 border-t border-stone-200">
                 <h3 className="font-semibold text-stone-900 mb-1">Verantwortlich für redaktionelle Inhalte gemäß § 18 Abs. 2 MStV:</h3>
-                <p>Dirk Schmetzer, Riedgrasweg 30, 70599 Stuttgart</p>
+                <p>Dirk Schmetzer, Riedgrasweg 30, 70599 Stuttgart, Deutschland</p>
               </div>
             </section>
 
