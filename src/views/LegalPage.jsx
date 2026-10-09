@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink, Music } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink, Music, Sparkles } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
@@ -84,12 +84,12 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
                 <MapPin className="w-5 h-5 text-amber-600" /> Angaben gemäß § 5 DDG (Diensteanbieter)
               </h2>
               <div className="text-stone-700 space-y-1">
-                <p className="font-bold text-stone-900 text-base">DS Online Services</p>
+                <p className="font-bold text-stone-900 text-base">DS Online Services &amp; Digitalagentur SichtbarmitKI</p>
                 <p className="font-medium text-stone-800">Inhaber: Dirk Schmetzer</p>
                 <p>Riedgrasweg 30</p>
                 <p>70599 Stuttgart, Deutschland</p>
                 <p className="text-xs text-stone-500 pt-1">
-                  MyMusicMoment24 ist ein spezialisierter Musik- &amp; Audio-Service von DS Online Services.
+                  MyMusicMoment24 ist ein spezialisierter Musik- &amp; Audio-Service von DS Online Services in Verbindung mit der Digitalagentur SichtbarmitKI.
                 </p>
               </div>
 
@@ -97,21 +97,9 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
                 <h3 className="font-semibold text-stone-900 mb-1">Kontakt &amp; Support:</h3>
                 <p className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-amber-600 shrink-0" />
-                  <span>E-Mail: </span>
+                  <span>E-Mail (Support &amp; Service): </span>
                   <a href="mailto:info@mymusicmoment24.de" className="text-amber-700 hover:underline font-medium">
                     info@mymusicmoment24.de
-                  </a>
-                </p>
-                <p className="flex items-center gap-2 text-xs text-stone-600">
-                  <ExternalLink className="w-4 h-4 text-amber-600 shrink-0" />
-                  <span>Digitalagentur: </span>
-                  <a
-                    href="https://www.sichtbarmitki.agency"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-amber-700 hover:underline font-medium"
-                  >
-                    sichtbarmitKI.agency
                   </a>
                 </p>
                 <p className="text-xs text-stone-500">
@@ -119,7 +107,29 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-stone-200">
+              {/* Digitalagentur SichtbarmitKI */}
+              <div className="pt-3 border-t border-stone-200 space-y-2">
+                <h3 className="font-semibold text-stone-900 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-amber-600" /> Digitalagentur SichtbarmitKI
+                </h3>
+                <p className="text-stone-700 text-xs sm:text-sm">
+                  Webseite &amp; Portfolio:{" "}
+                  <a
+                    href="https://www.sichtbarmitki.agency"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-700 hover:underline font-bold inline-flex items-center gap-1"
+                  >
+                    <span>www.sichtbarmitki.agency</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </p>
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  Die <strong>Digitalagentur SichtbarmitKI</strong> (DS Online Services) ist spezialisiert auf modernste KI-Workflows, automatisierte Content-Erstellung, Webentwicklung und Audio-Branding im Großraum Stuttgart und im gesamten DACH-Raum.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-stone-200">
                 <h3 className="font-semibold text-stone-900 mb-1">Verantwortlich für redaktionelle Inhalte gemäß § 18 Abs. 2 MStV:</h3>
                 <p>Dirk Schmetzer, Riedgrasweg 30, 70599 Stuttgart, Deutschland</p>
               </div>
