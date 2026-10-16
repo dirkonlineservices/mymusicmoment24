@@ -10,6 +10,7 @@ import { translations } from "./src/i18n/translations.js";
 import {
   SITE_URL, DEFAULT_IMAGE, NOT_FOUND_META, blogPostMeta, staticPageMeta,
 } from "./src/lib/pageMeta.js";
+import { orderKind, calculatePrice } from "./src/lib/pricing.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -142,6 +143,72 @@ function getMailTransporter() {
     });
   }
   return null;
+}
+
+// ---------------------------------------------------------------------------
+// Preise & Zahlungsprüfung: Beträge werden nur hier berechnet, nie aus dem Browser übernommen
+// ---------------------------------------------------------------------------
+
+// Rabattcodes kommen aus der Umgebung (Hostinger), z. B. DISCOUNT_CODES=winter10,freunde10
+function discountCodes() {
+  const fromEnv = (process.env.DISCOUNT_CODES || "")
+    .split(",")
+    .map((c) => c.trim().toLowerCase())
+    .filter(Boolean);
+  // Übergangsweise die bisherigen Codes, bis DISCOUNT_CODES gesetzt ist
+  return fromEnv.length ? fromEnv : ["gutschein", "music10"];
+}
+
+function isValidDiscount(code) {
+  return Boolean(code) && discountCodes().includes(String(code).trim().toLowerCase());
+}
+
+/** Erwarteter Preis für eine Bestellung, nur aus den Bestellmerkmalen berechnet */
+function priceForOrder(body = {}) {
+  const kind = orderKind({
+    category: body.category,
+    orderDetails: body.orderDetails,
+    isStreaming: body.isStreaming,
+  });
+  const amount = calculatePrice({
+    kind,
+    express: Boolean(body.orderDetails?.express),
+    certificate: Boolean(body.orderDetails?.pdfLyrics),
+    discount: isValidDiscount(body.discountCode),
+  });
+  return { kind, amount };
+}
+
+function paypalConfig() {
+  const clientId = process.env.PAYPAL_CLIENT_ID || process.env.VITE_PAYPAL_CLIENT_ID;
+  const secret = process.env.PAYPAL_CLIENT_SECRET;
+  if (!clientId || !secret) return null;
+  const base = process.env.PAYPAL_ENV === "sandbox"
+    ? "https://api-m.sandbox.paypal.com"
+    : "https://api-m.paypal.com";
+  return { clientId, secret, base };
+}
+
+async function paypalRequest(config, method, apiPath, body) {
+  const tokenRes = await fetch(`${config.base}/v1/oauth2/token`, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${Buffer.from(`${config.clientId}:${config.secret}`).toString("base64")}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+  if (!tokenRes.ok) throw new Error(`PayPal-Anmeldung fehlgeschlagen (${tokenRes.status})`);
+  const { access_token: token } = await tokenRes.json();
+
+  const res = await fetch(`${config.base}${apiPath}`, {
+    method,
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(`PayPal-Fehler ${res.status}: ${data?.message || data?.name || "unbekannt"}`);
+  return data;
 }
 
 // Shared Order Processor & Mail Dispatcher
@@ -449,6 +516,11 @@ Notes: ${notes}</pre>
       `;
     }
 
+    if (orderData.paymentCheck) {
+      adminSubject = `${orderData.paymentCheck.subjectPrefix} ${adminSubject}`;
+      adminHtml = `<div style="font-family: sans-serif; max-width: 650px; margin: 0 auto 12px; padding: 14px 18px; border-radius: 10px; background: ${orderData.paymentCheck.color}; color: #1e293b; font-size: 14px;"><strong>${orderData.paymentCheck.title}</strong><br>${orderData.paymentCheck.text}</div>` + adminHtml;
+    }
+
     try {
       await transporter.sendMail({
         from: `"MyMusicMoment24" <${smtpUser}>`,
@@ -608,12 +680,103 @@ app.post("/api/b2b-inquiry", async (req, res) => {
 // 1. Standard / PayPal Order Endpoint
 app.post("/api/orders", async (req, res) => {
   try {
-    const orderData = req.body;
+    const body = req.body || {};
+    const provider = body.paymentProvider;
+
+    // Mit hinterlegtem PayPal-Secret laufen PayPal-Zahlungen nur über /api/paypal/capture-order
+    if (provider === "paypal" && paypalConfig()) {
+      return res.status(400).json({ success: false, error: "PayPal-Zahlungen werden serverseitig bestätigt." });
+    }
+    if (provider !== "paypal" && provider !== "bank_transfer") {
+      return res.status(400).json({ success: false, error: "Unbekannte Zahlungsart." });
+    }
+
+    const { kind, amount } = priceForOrder(body);
+    const orderData = {
+      ...body,
+      category: kind === "song" ? body.category || "song" : kind,
+      amount: amount.toFixed(2),
+      paymentCheck: provider === "bank_transfer"
+        ? {
+            subjectPrefix: "[VORKASSE OFFEN]",
+            color: "#fef3c7",
+            title: "Banküberweisung – Zahlung noch nicht eingegangen",
+            text: `Erwarteter Betrag: ${amount.toFixed(2)} €. Erst nach Geldeingang produzieren.`,
+          }
+        : {
+            subjectPrefix: "[⚠️ UNGEPRÜFT]",
+            color: "#fee2e2",
+            title: "PayPal-Zahlung nicht serverseitig geprüft",
+            text: `Bitte im PayPal-Konto kontrollieren, ob ${amount.toFixed(2)} € unter Transaktion ${body.transactionId || "?"} eingegangen sind. Abhilfe: PAYPAL_CLIENT_SECRET bei Hostinger hinterlegen.`,
+          },
+    };
     await processOrderAndSendEmails(orderData);
     res.json({ success: true, message: "Order recorded successfully", transactionId: orderData.transactionId });
   } catch (error) {
     console.error("Fehler beim Speichern der Bestellung:", error);
     res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Rabattcode prüfen, ohne die gültigen Codes an den Browser zu geben
+app.post("/api/validate-discount", (req, res) => {
+  res.json({ valid: isValidDiscount(req.body?.code) });
+});
+
+// PayPal: Zahlung mit serverseitig berechnetem Betrag anlegen
+app.post("/api/paypal/create-order", async (req, res) => {
+  const config = paypalConfig();
+  if (!config) return res.status(503).json({ fallback: true });
+  try {
+    const { amount } = priceForOrder(req.body);
+    const order = await paypalRequest(config, "POST", "/v2/checkout/orders", {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          description: String(req.body?.orderName || "Personalisierter Song").substring(0, 120),
+          amount: { currency_code: "EUR", value: amount.toFixed(2) },
+        },
+      ],
+    });
+    res.json({ id: order.id });
+  } catch (error) {
+    console.error("PayPal create-order:", error.message);
+    res.status(500).json({ error: "PayPal-Zahlung konnte nicht angelegt werden." });
+  }
+});
+
+// PayPal: Zahlung bei PayPal abschließen, Betrag prüfen, erst dann Bestellung verbuchen
+app.post("/api/paypal/capture-order", async (req, res) => {
+  const config = paypalConfig();
+  if (!config) return res.status(503).json({ fallback: true });
+  try {
+    const { orderID, ...body } = req.body || {};
+    if (!orderID) return res.status(400).json({ error: "Fehlende PayPal-Order-ID." });
+
+    const capture = await paypalRequest(config, "POST", `/v2/checkout/orders/${encodeURIComponent(orderID)}/capture`);
+    const captured = capture?.purchase_units?.[0]?.payments?.captures?.[0];
+    const { kind, amount } = priceForOrder(body);
+
+    if (capture.status !== "COMPLETED" || !captured
+        || captured.amount?.currency_code !== "EUR"
+        || Number(captured.amount?.value) !== amount) {
+      console.error(`⚠️ PayPal-Prüfung fehlgeschlagen: Order ${orderID}, Status ${capture.status}, erhalten ${captured?.amount?.value}, erwartet ${amount}`);
+      return res.status(400).json({ error: "Zahlung konnte nicht bestätigt werden." });
+    }
+
+    const orderData = {
+      ...body,
+      transactionId: captured.id || orderID,
+      paymentProvider: "paypal",
+      category: kind === "song" ? body.category || "song" : kind,
+      amount: amount.toFixed(2),
+      payer: capture.payer,
+    };
+    await processOrderAndSendEmails(orderData);
+    res.json({ success: true, transactionId: orderData.transactionId, amount: orderData.amount });
+  } catch (error) {
+    console.error("PayPal capture-order:", error.message);
+    res.status(500).json({ error: "Zahlung konnte nicht abgeschlossen werden." });
   }
 });
 
@@ -645,6 +808,8 @@ app.post("/api/create-stripe-checkout", async (req, res) => {
     const defaultCancel = `${origin}/?stripe_cancel=true`;
 
     const isStreamingOrder = isStreaming || orderDetails?.occasion === "streaming-release";
+    // Betrag nur serverseitig berechnen; "amount" aus dem Browser wird ignoriert
+    const { kind, amount: serverAmount } = priceForOrder(req.body);
 
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -657,7 +822,7 @@ app.post("/api/create-stripe-checkout", async (req, res) => {
                 ? `Release auf Spotify, Apple Music, YouTube Music & Co. unter MyMusicMoment24 (${orderDetails?.songTitle || 'Individueller Titel'})`
                 : (orderDetails?.genre ? `${orderDetails.genre} • ${orderDetails.voice || 'Gesang'}` : "Dein individueller Song"),
             },
-            unit_amount: Math.round(Number(amount) * 100),
+            unit_amount: Math.round(serverAmount * 100),
           },
           quantity: 1,
         },
@@ -674,6 +839,7 @@ app.post("/api/create-stripe-checkout", async (req, res) => {
         express: orderDetails?.express ? "true" : "false",
         pdfLyrics: orderDetails?.pdfLyrics ? "true" : "false",
         isStreaming: isStreamingOrder ? "true" : "false",
+        kind,
         songTitle: (orderDetails?.songTitle || "").substring(0, 200),
         language: orderDetails?.language || "Deutsch",
         explicitLyrics: orderDetails?.explicitLyrics ? "true" : "false",
@@ -716,7 +882,7 @@ app.post("/api/verify-stripe-session", async (req, res) => {
         customerEmail: session.customer_details?.email || session.customer_email || "",
         customerPhone: metadata.customerPhone || "",
         songDetailsText: metadata.songDetailsText || metadata.notes || "",
-        category: isStreamingOrder ? "streaming" : "song",
+        category: isStreamingOrder ? "streaming" : metadata.kind === "gutschein" ? "gutschein" : "song",
         orderDetails: {
           occasion: metadata.occasion,
           genre: metadata.genre,

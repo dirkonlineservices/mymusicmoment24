@@ -4,6 +4,8 @@ import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPre
 import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge, DebitCardBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useLanguage } from "../context/LanguageContext";
+import { PRICES, orderKind, calculatePrice } from "../lib/pricing";
+import { createPayPalOrder, capturePayPalOrder } from "../lib/paypalServer";
 
 // Bank transfer configuration (Vorkasse)
 export const BANK_DETAILS = {
@@ -60,22 +62,48 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
   if (!isOpen || !order) return null;
 
-  const isStreaming = order?.category === "streaming" || order?.id?.includes("streaming");
-  const isVoucher = order?.category === "gutschein" || order?.id?.includes("gutschein");
-  const basePrice = (isStreaming || isVoucher) ? order.price : 19.99;
-  const expressExtra = order.details?.express ? 9.99 : 0;
-  const certificateExtra = (!isStreaming && includeCertificate) ? 9.99 : 0;
-  const rawSubtotal = Number((basePrice + expressExtra + certificateExtra).toFixed(2));
-  const currentPrice = discountApplied ? Number((rawSubtotal * 0.9).toFixed(2)) : rawSubtotal;
+  const kind = orderKind({ category: order?.category, orderDetails: order?.details, id: order?.id });
+  const isStreaming = kind === "streaming";
+  // Anzeige; den verbindlichen Betrag berechnet der Server mit derselben Preisliste
+  const currentPrice = calculatePrice({
+    kind,
+    express: Boolean(order.details?.express),
+    certificate: includeCertificate,
+    discount: discountApplied,
+  });
 
-  const handleApplyDiscount = () => {
-    if (discountCode.trim().toLowerCase() === "gutschein" || discountCode.trim().toLowerCase() === "music10") {
-      setDiscountApplied(true);
-      alert(t("checkout.discountApplied", "10% Rabattcode erfolgreich aktiviert!"));
-    } else if (discountCode.trim()) {
+  const handleApplyDiscount = async () => {
+    if (!discountCode.trim()) return;
+    try {
+      const res = await fetch("/api/validate-discount", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: discountCode }),
+      });
+      const { valid } = await res.json();
+      setDiscountApplied(Boolean(valid));
+      alert(valid
+        ? t("checkout.discountApplied", "10% Rabattcode erfolgreich aktiviert!")
+        : t("checkout.discountInvalid", "Ungültiger Rabattcode."));
+    } catch {
       alert(t("checkout.discountInvalid", "Ungültiger Rabattcode."));
     }
   };
+
+  // Bestelldaten für den Server (ohne Betrag – den berechnet der Server)
+  const orderPayload = () => ({
+    category: order.category,
+    customerEmail,
+    customerName,
+    customerPhone,
+    songDetailsText,
+    orderDetails: {
+      ...order.details,
+      pdfLyrics: includeCertificate,
+    },
+    orderName: order.name,
+    discountCode: discountApplied ? discountCode : "",
+  });
 
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID || "";
 
@@ -85,18 +113,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...orderPayload(),
           transactionId: txId,
           paymentProvider: paymentMethod,
-          amount: currentPrice,
-          customerEmail,
-          customerName,
-          customerPhone,
-          songDetailsText,
-          orderDetails: {
-            ...order.details,
-            pdfLyrics: includeCertificate,
-          },
-          orderName: order.name,
           payer: payerDetails,
         }),
       });
@@ -123,18 +142,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         const response = await fetch("/api/create-stripe-checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            amount: currentPrice,
-            customerEmail,
-            customerName,
-            customerPhone,
-            songDetailsText,
-            orderDetails: {
-              ...order.details,
-              pdfLyrics: includeCertificate,
-            },
-            orderName: order.name,
-          }),
+          body: JSON.stringify(orderPayload()),
         });
         const data = await response.json();
         if (data.url) {
@@ -510,7 +518,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       </p>
                     </div>
                     <span className="text-sm font-black text-amber-700 shrink-0">
-                      {basePrice.toFixed(2).replace(".", ",")} €
+                      {PRICES[kind].toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
 
@@ -891,26 +899,17 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           <PayPalButtons
                             style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
                             disabled={!customerEmail || !agreedTerms || isProcessing}
-                            createOrder={(data, actions) => {
-                              return actions.order.create({
-                                purchase_units: [
-                                  {
-                                    description: order.name || "Personalisierter Song",
-                                    amount: {
-                                      currency_code: "EUR",
-                                      value: currentPrice.toFixed(2),
-                                    },
-                                  },
-                                ],
-                              });
-                            }}
+                            createOrder={(data, actions) =>
+                              createPayPalOrder(actions, orderPayload(), {
+                                description: order.name,
+                                fallbackAmount: currentPrice,
+                              })
+                            }
                             onApprove={async (data, actions) => {
                               setIsProcessing(true);
                               try {
-                                const details = await actions.order.capture();
-                                const txId = details.id || `PAYPAL-${Date.now()}`;
+                                const txId = await capturePayPalOrder(data, actions, orderPayload());
                                 setTransactionId(txId);
-                                await recordOrder(txId, details.payer);
                                 setIsProcessing(false);
                                 setIsCompleted(true);
                                 trackPurchase(txId, { ...order, price: currentPrice });

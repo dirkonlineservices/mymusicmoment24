@@ -7,6 +7,8 @@ import {
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PRICES } from "../lib/pricing";
+import { createPayPalOrder, capturePayPalOrder } from "../lib/paypalServer";
 import { PayPalBadge, StripeBadge, ApplePayBadge, SepaBadge, DebitCardBadge } from "../components/PaymentBadges";
 import { trackPurchase } from "../lib/gtmPreview";
 import SchemaJsonLd from "../components/SchemaJsonLd";
@@ -124,6 +126,27 @@ Amount Paid: 4,99 €
   };
 
   // Stripe Checkout Initiator
+  // Bestelldaten für den Server (Betrag berechnet der Server)
+  const streamingPayload = () => ({
+    customerEmail: formData.customerEmail,
+    customerName: formData.customerName,
+    customerPhone: formData.customerPhone,
+    songDetailsText: `Wunsch-Songtitel: ${formData.songTitle}\nGenre: ${formData.genre}\nSprache: ${formData.songLanguage}\nNotizen: ${formData.notes}`,
+    orderName: `Spotify & Streaming-Release: „${formData.songTitle}“`,
+    category: "streaming",
+    orderDetails: {
+      occasion: "streaming-release",
+      genre: formData.genre,
+      language: formData.songLanguage,
+      explicitLyrics: formData.explicitLyrics,
+      songTitle: formData.songTitle,
+      originalOrderNumber: formData.originalOrderNumber,
+      notes: formData.notes,
+      express: false,
+      pdfLyrics: false,
+    },
+  });
+
   const handleStripeCheckout = async () => {
     if (!formData.songTitle.trim()) {
       alert(language === "en" ? "Please enter the song title for Spotify." : "Bitte gib den gewünschten Songtitel für Spotify an.");
@@ -784,53 +807,17 @@ Amount Paid: 4,99 €
                           <PayPalButtons
                             style={{ layout: "vertical", color: "gold", shape: "rect", label: "paypal" }}
                             disabled={!formData.songTitle || !formData.customerName || !formData.customerEmail || !agreedTerms || isProcessing}
-                            createOrder={(data, actions) => {
-                              return actions.order.create({
-                                purchase_units: [
-                                  {
-                                    description: `Spotify & Streaming Release: ${formData.songTitle}`.substring(0, 120),
-                                    amount: {
-                                      currency_code: "EUR",
-                                      value: "4.99",
-                                    },
-                                  },
-                                ],
-                              });
-                            }}
+                            createOrder={(data, actions) =>
+                              createPayPalOrder(actions, streamingPayload(), {
+                                description: `Spotify & Streaming Release: ${formData.songTitle}`,
+                                fallbackAmount: PRICES.streaming,
+                              })
+                            }
                             onApprove={async (data, actions) => {
                               setIsProcessing(true);
                               try {
-                                const details = await actions.order.capture();
-                                const txId = details.id || `PAYPAL-${Date.now()}`;
-                                const orderData = {
-                                  transactionId: txId,
-                                  paymentProvider: "paypal",
-                                  amount: "4.99",
-                                  customerEmail: formData.customerEmail,
-                                  customerName: formData.customerName,
-                                  customerPhone: formData.customerPhone,
-                                  songDetailsText: `Wunsch-Songtitel: ${formData.songTitle}\nGenre: ${formData.genre}\nSprache: ${formData.songLanguage}\nNotizen: ${formData.notes}`,
-                                  orderName: `Spotify & Streaming-Release: „${formData.songTitle}“`,
-                                  category: "streaming",
-                                  orderDetails: {
-                                    occasion: "streaming-release",
-                                    genre: formData.genre,
-                                    language: formData.songLanguage,
-                                    explicitLyrics: formData.explicitLyrics,
-                                    songTitle: formData.songTitle,
-                                    originalOrderNumber: formData.originalOrderNumber,
-                                    notes: formData.notes,
-                                    express: false,
-                                    pdfLyrics: false,
-                                  },
-                                  payer: details.payer,
-                                };
-
-                                await fetch("/api/orders", {
-                                  method: "POST",
-                                  headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify(orderData),
-                                });
+                                const txId = await capturePayPalOrder(data, actions, streamingPayload());
+                                const orderData = { ...streamingPayload(), transactionId: txId, paymentProvider: "paypal", amount: PRICES.streaming.toFixed(2) };
 
                                 setCompletedOrder(orderData);
                                 trackPurchase(txId, {
