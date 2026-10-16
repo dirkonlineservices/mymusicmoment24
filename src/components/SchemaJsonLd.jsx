@@ -23,7 +23,10 @@ function createProductSchema(prod) {
 
   return {
     "@type": "Product",
-    "@id": `${canonicalUrl}#product`,
+    // Eindeutige Kennung pro Produkt, sonst verschmilzt Google mehrere Produkte zu einem
+    "@id": canonicalUrl.includes("#")
+      ? `https://www.mymusicmoment24.de/#product-${prod.id}`
+      : `${canonicalUrl}#product`,
     name: prod.title,
     image: [imageUrl],
     description: prod.description,

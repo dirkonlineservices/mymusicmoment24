@@ -7,9 +7,9 @@ export function LanguageProvider({ children }) {
   const [language, setLanguageState] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("mmm24_lang");
+      // Englisch nur nach bewusster Auswahl; Browsersprache wird ignoriert,
+      // damit Google (meldet "en-US") die deutsche Seite indexiert
       if (saved === "de" || saved === "en") return saved;
-      const browserLang = navigator.language?.toLowerCase() || "";
-      if (browserLang.startsWith("en")) return "en";
     }
     return "de";
   });
