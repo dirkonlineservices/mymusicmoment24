@@ -161,15 +161,16 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
     schemaItems.push(organizationSchema);
 
     // 2. All Individual Catalog Products (Resolves Google Merchant Center missing prices & availability)
+    // Nur einzeln kaufbare Produkte; Zusatzoptionen (Express, Song-Urkunde) gibt es nur im Konfigurator
     const allCatalogProducts = [
-      ...PRODUCTS,
+      ...PRODUCTS.filter((p) => p.id !== "urkunde"),
       {
-        id: "express",
-        title: "Express Zuschlag (Lieferung innerhalb von 12 Std an Werktagen)",
-        price: 9.99,
-        image: "/images/logo.png",
-        url: "https://www.mymusicmoment24.de/#konfigurator",
-        description: "Garantierte Fertigstellung und Zustellung per E-Mail innerhalb von 12 Stunden an Werktagen bei Bestellung vor 18 Uhr.",
+        id: "gutschein",
+        title: "Geschenkgutschein für ein Wunschlied",
+        price: 19.99,
+        image: "/images/gutschein.jpg",
+        url: "https://www.mymusicmoment24.de/#gutschein",
+        description: "Geschenkgutschein für einen persönlichen Song nach Wahl – als druckfertiges PDF per E-Mail, einlösbar für jeden Anlass und jedes Genre.",
       },
       {
         id: "streaming",

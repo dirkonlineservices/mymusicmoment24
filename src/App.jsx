@@ -257,7 +257,10 @@ function AppMain() {
       <aside
         aria-label="Sprachauswahl / Language Selection"
         className={
-          currentRoute.view === "home"
+          currentRoute.view === "blog"
+            // Artikel haben die Umschaltung schon in der eigenen Kopfzeile
+            ? "hidden"
+            : currentRoute.view === "home"
             // Startseite: Platz für das Weihnachtsbanner; mobil steckt die Umschaltung im Menü
             ? "hidden sm:block fixed sm:top-28 sm:right-6 z-40 transition-all duration-300"
             : "fixed top-20 right-3 sm:top-20 sm:right-6 z-40 transition-all duration-300"

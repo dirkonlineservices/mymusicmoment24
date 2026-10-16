@@ -109,6 +109,23 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const [heroVideoOpen, setHeroVideoOpen] = useState(false);
   const xmasDaysLeft = getXmasDaysLeft();
 
+  const handleBuyVoucher = () => {
+    onOpenCheckout({
+      id: `prod-gutschein-${Date.now()}`,
+      name: t("home.voucherProductName"),
+      price: 19.99,
+      category: "gutschein",
+      details: {
+        occasion: "gutschein",
+        genre: "Wahl beim Einlösen",
+        voice: "Wahl beim Einlösen",
+        language: "Deutsch",
+        express: false,
+        pdfLyrics: false,
+      },
+    });
+  };
+
   const handleSelectOccasion = (occasion) => {
     scrollToConfigurator();
     window.dispatchEvent(new CustomEvent("preselect-occasion", { detail: { occasion } }));
@@ -131,7 +148,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <span className="font-black text-amber-200">
               {xmasDaysLeft === 0 ? t("home.xmasLastDay") : t("home.xmasDaysLeft").replace("{n}", xmasDaysLeft)}
             </span>
-            <a href="#konfigurator" className="underline underline-offset-2 font-bold hover:text-amber-200">
+            <a href="/personalisierter-song-weihnachtsgeschenk" className="underline underline-offset-2 font-bold hover:text-amber-200">
               {t("home.xmasCta")}
             </a>
           </div>
@@ -582,6 +599,44 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <span>{t("home.priceCta")}</span>
               <ArrowRight className="w-5 h-5" />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Geschenkgutschein */}
+      <section id="gutschein" className="max-w-5xl mx-auto px-4 my-12 sm:my-16 scroll-mt-20">
+        <div className="bg-gradient-to-br from-red-50 via-white to-amber-50 border border-red-200 rounded-3xl shadow-xl shadow-red-900/5 overflow-hidden grid md:grid-cols-5 items-center">
+          <div className="md:col-span-3 p-6 sm:p-10 space-y-4">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-red-700 bg-red-100 px-2.5 py-1 rounded-full">
+              <Gift className="w-3.5 h-3.5" /> {t("catalog.voucherBanner.badge")}
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">{t("catalog.voucherBanner.title")}</h2>
+            <p className="text-sm sm:text-base text-stone-600 leading-relaxed">{t("catalog.voucherBanner.desc")}</p>
+            <ul className="space-y-2 text-sm text-stone-800">
+              {["feature1", "feature2", "feature3"].map((key) => (
+                <li key={key} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 mt-0.5 text-emerald-600 shrink-0" />
+                  {t(`catalog.voucherBanner.${key}`)}
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              onClick={handleBuyVoucher}
+              className="w-full sm:w-auto px-7 py-4 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-black rounded-2xl shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 transition active:scale-95"
+            >
+              <Gift className="w-5 h-5" />
+              <span>{t("catalog.voucherBanner.btn")}</span>
+            </button>
+          </div>
+          <div className="md:col-span-2 p-6 sm:p-8">
+            <img
+              src="/images/gutschein.jpg"
+              alt={t("catalog.voucherBanner.title")}
+              className="w-full rounded-2xl shadow-2xl rotate-1"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </section>

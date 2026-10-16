@@ -48,10 +48,11 @@ export const translations = {
     // Startseite (Verkaufsaufbau)
     home: {
       xmasBadge: "Weihnachten",
+      voucherProductName: "Geschenkgutschein für ein Wunschlied",
       xmasText: "Bis 23.12. bestellen, damit dein Song rechtzeitig unter dem Baum liegt.",
       xmasDaysLeft: "Noch {n} Tage",
       xmasLastDay: "Heute letzter Bestelltag",
-      xmasCta: "Jetzt sichern",
+      xmasCta: "Geschenkideen ansehen",
       heroEyebrow: "Das Geschenk, bei dem alle still werden",
       heroTitle: "Ein Song nur über euch.",
       heroTitleHighlight: "Mit euren Namen, eurer Geschichte.",
@@ -652,10 +653,11 @@ export const translations = {
     // Home page (sales layout)
     home: {
       xmasBadge: "Christmas",
+      voucherProductName: "Gift Voucher for a Custom Song",
       xmasText: "Order by Dec 23 so your song is ready in time for the holidays.",
       xmasDaysLeft: "{n} days left",
       xmasLastDay: "Last day to order",
-      xmasCta: "Order now",
+      xmasCta: "See gift ideas",
       heroEyebrow: "The gift that leaves everyone speechless",
       heroTitle: "A song just about you.",
       heroTitleHighlight: "With your names, your story.",
