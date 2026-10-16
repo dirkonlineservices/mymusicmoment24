@@ -183,7 +183,9 @@ function paypalConfig() {
   const clientId = process.env.PAYPAL_CLIENT_ID || process.env.VITE_PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_CLIENT_SECRET;
   if (!clientId || !secret) return null;
-  const base = process.env.PAYPAL_ENV === "sandbox"
+  // PAYPAL_MODE ist bei Hostinger hinterlegt ("live" oder "sandbox")
+  const mode = String(process.env.PAYPAL_MODE || process.env.PAYPAL_ENV || "live").trim().toLowerCase();
+  const base = mode === "sandbox"
     ? "https://api-m.sandbox.paypal.com"
     : "https://api-m.paypal.com";
   return { clientId, secret, base };
