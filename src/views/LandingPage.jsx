@@ -29,6 +29,31 @@ function getXmasDaysLeft(now = new Date()) {
   return Math.round((startOfDeadline - startOfToday) / 86400000);
 }
 
+// Sterne-Zeile mit der echten Google-Bewertung aus dem Unternehmensprofil
+const GOOGLE_PROFILE_URL = "https://g.page/r/CSSesokOK__iEBM";
+
+function GoogleRating({ className = "" }) {
+  const { t } = useLanguage();
+  return (
+    <div className={`flex ${className}`}>
+      <a
+        href={GOOGLE_PROFILE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-sm hover:underline underline-offset-2"
+      >
+        <span className="flex">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+          ))}
+        </span>
+        <span className="font-bold text-stone-900">{t("testimonials.googleRating")}</span>
+        <span className="text-stone-500">· {t("testimonials.googleCount")}</span>
+      </a>
+    </div>
+  );
+}
+
 function scrollToConfigurator() {
   const el = document.getElementById("konfigurator");
   if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -80,6 +105,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const steps = t("home.steps", []);
   const priceIncluded = t("home.priceIncluded", []);
   const priceExtras = t("home.priceExtras", []);
+  const googleReviews = t("testimonials.googleItems", []);
   const [heroVideoOpen, setHeroVideoOpen] = useState(false);
   const xmasDaysLeft = getXmasDaysLeft();
 
@@ -300,6 +326,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               </a>
             </div>
 
+            <GoogleRating className="justify-center lg:justify-start" />
+
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 max-w-md mx-auto lg:mx-0 text-sm text-stone-700 text-left">
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600 shrink-0" />{t("home.trustPrice")}</li>
               <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustDelivery")}</li>
@@ -428,9 +456,10 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <p className="text-stone-600 max-w-xl mx-auto text-xs sm:text-sm">
             {t("testimonials.subtitle")}
           </p>
+          <GoogleRating className="justify-center mt-4" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           
           {/* Review Tanja */}
           <div className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg shadow-stone-200/50 hover:shadow-xl transition">
@@ -483,6 +512,32 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
+
+          {/* Google-Rezensionen (nur sichtbar, bewusst ohne Schema-Auszeichnung) */}
+          {googleReviews.map((review) => (
+            <div key={review.name} className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg shadow-stone-200/50 hover:shadow-xl transition">
+              <div>
+                <div className="flex items-center gap-1 text-amber-400 mb-3.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm md:text-base text-stone-700 leading-relaxed italic mb-5">{review.text}</p>
+              </div>
+              <div className="pt-3.5 border-t border-stone-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white font-black flex items-center justify-center text-xs sm:text-sm shadow-sm">
+                    {review.initials}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{review.name}</h4>
+                    <p className="text-[11px] text-blue-600 font-semibold">{review.title}</p>
+                  </div>
+                </div>
+                <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.googleSource")}</span>
+              </div>
+            </div>
+          ))}
 
         </div>
       </section>

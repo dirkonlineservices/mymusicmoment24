@@ -387,6 +387,14 @@ export const translations = {
       joernTitle: "Hochzeitstag",
       joernLocation: "Jörn aus Neunkirchen",
       joernText: "„Ich habe etwas Besonderes für einen ganz besonderen Menschen in meinem Leben gesucht – und hier das perfekte Geschenk gefunden. Wunderschöne Arbeit, mit viel Liebe gemacht. Vielen Dank! 😊👍“",
+      googleRating: "5,0 bei Google",
+      googleCount: "3 Rezensionen",
+      googleSource: "Google-Rezension",
+      googleItems: [
+        { name: "Peter R.", initials: "PR", title: "18. Geburtstag der Enkel", text: "„Hatte nach persönlichen Songs zum 18. Geburtstag meiner Enkel gesucht und bin auf MyMusicMoment24.de gestoßen. Ein Glücksfall! Das Team hat wunderbare persönliche Songs in verschiedenen Genres für die Jungs erstellt und das in ganz kurzer Zeit. Wenn ihr ein tolles persönliches Geschenk sucht, dann kann ich den Shop nur wärmstens empfehlen. Auch die Kommunikation war super, das Team hat sich \"voll reingehangen\". Tolle Arbeit, danke euch!!“" },
+        { name: "Tanja K.", initials: "TK", title: "Persönliches Geschenk", text: "„Es hat meine Erwartung mehr als übertroffen!! Schnell und unkompliziertes umsetzten! Auch nach Wünschen oder Änderungen/Ergänzungen hat das Team dafür vollstes Verständnis gezeigt und dementsprechend wurde es angepasst! Bin sehr Dankbar! Eine tolle Geschenkidee wo einzigartig ist!“" },
+        { name: "Monika M.", initials: "MM", title: "Persönlicher Song", text: "„Bin total begeistert, kann ich nur weiter empfehlen.“" },
+      ],
     },
 
     // Blog Feature
@@ -983,6 +991,14 @@ export const translations = {
       joernTitle: "Wedding Anniversary",
       joernLocation: "Jörn from Neunkirchen",
       joernText: "“I was searching for something truly extraordinary for someone very special in my life – and found the perfect gift right here. Beautiful work, crafted with love. Thank you so much! 😊👍”",
+      googleRating: "5.0 on Google",
+      googleCount: "3 reviews",
+      googleSource: "Google review",
+      googleItems: [
+        { name: "Peter R.", initials: "PR", title: "Grandchildren’s 18th birthday", text: "“I was looking for personal songs for my grandchildren’s 18th birthday and came across MyMusicMoment24.de. A stroke of luck! The team created wonderful personal songs in different genres for the boys, and in a very short time. If you’re looking for a great personal gift, I can warmly recommend the shop. Communication was great too, the team really went all in. Great work, thank you!!”" },
+        { name: "Tanja K.", initials: "TK", title: "Personal gift", text: "“It more than exceeded my expectations!! Quick and uncomplicated! The team was fully understanding of requests, changes and additions and adjusted everything accordingly! Very grateful! A wonderful gift idea that is truly unique!”" },
+        { name: "Monika M.", initials: "MM", title: "Personal song", text: "“Totally thrilled, I can only recommend it.”" },
+      ],
     },
 
     // Blog Feature
