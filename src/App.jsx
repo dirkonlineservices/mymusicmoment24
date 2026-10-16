@@ -12,6 +12,27 @@ import { trackPurchase } from "./lib/gtmPreview";
 import { LanguageProvider } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import { getBlogPostBySlug } from "./lib/blog";
+import { SITE_URL, blogPostMeta, staticPageMeta, NOT_FOUND_META } from "./lib/pageMeta";
+
+// Titel, Beschreibung und Canonical beim Seitenwechsel im Browser aktualisieren
+function syncDocumentMeta() {
+  const path = window.location.pathname === "/" ? "/" : window.location.pathname.replace(/\/$/, "");
+  const slug = path.startsWith("/blog/") ? path.slice(6) : path.slice(1);
+  const post = slug ? getBlogPostBySlug(slug) : null;
+  const meta = post ? blogPostMeta(post) : staticPageMeta(path) || { ...NOT_FOUND_META, canonicalPath: path };
+  const url = `${SITE_URL}${meta.canonicalPath}`;
+
+  document.title = meta.title;
+  const set = (selector, attr, value) => {
+    const el = document.querySelector(selector);
+    if (el) el.setAttribute(attr, value);
+  };
+  set('meta[name="description"]', "content", meta.description);
+  set('link[rel="canonical"]', "href", url);
+  set('meta[property="og:url"]', "content", url);
+  set('meta[property="og:title"]', "content", meta.title);
+  set('meta[property="og:description"]', "content", meta.description);
+}
 
 function AppMain() {
   const [currentRoute, setCurrentRoute] = useState({
@@ -20,6 +41,10 @@ function AppMain() {
   });
 
   const [checkoutOrder, setCheckoutOrder] = useState(null);
+
+  useEffect(() => {
+    syncDocumentMeta();
+  }, [currentRoute]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   // Sync with browser URL & routing
@@ -65,17 +90,6 @@ function AppMain() {
         }
       }
 
-      // Sync document canonical link and og:url
-      try {
-        const clean = window.location.pathname === "/" ? "/" : window.location.pathname.replace(/\/$/, "");
-        const canonicalUrl = `https://www.mymusicmoment24.de${clean === "/" ? "/" : clean}`;
-        const canonicalEl = document.querySelector('link[rel="canonical"]');
-        if (canonicalEl) canonicalEl.setAttribute("href", canonicalUrl);
-        const ogUrlEl = document.querySelector('meta[property="og:url"]');
-        if (ogUrlEl) ogUrlEl.setAttribute("content", canonicalUrl);
-      } catch (e) {
-        // ignore in SSR / non-DOM environments
-      }
     };
 
     handlePopState();
@@ -121,7 +135,7 @@ function AppMain() {
   }, []);
 
   const navigateToBlog = (slug) => {
-    window.history.pushState({}, "", `/blog/${slug}`);
+    window.history.pushState({}, "", `/${slug}`);
     setCurrentRoute({ view: "blog", slug });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -242,7 +256,12 @@ function AppMain() {
       {/* Floating Language Switcher on the Top Right */}
       <aside
         aria-label="Sprachauswahl / Language Selection"
-        className="fixed top-20 right-3 sm:top-20 sm:right-6 z-40 transition-all duration-300"
+        className={
+          currentRoute.view === "home"
+            // Startseite: Platz für das Weihnachtsbanner; mobil steckt die Umschaltung im Menü
+            ? "hidden sm:block fixed sm:top-28 sm:right-6 z-40 transition-all duration-300"
+            : "fixed top-20 right-3 sm:top-20 sm:right-6 z-40 transition-all duration-300"
+        }
       >
         <LanguageSwitcher />
       </aside>

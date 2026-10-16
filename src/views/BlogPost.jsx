@@ -176,7 +176,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
                     if (onNavigateBlog) {
                       onNavigateBlog(op.slug);
                     } else {
-                      window.history.pushState({}, "", `/blog/${op.slug}`);
+                      window.history.pushState({}, "", `/${op.slug}`);
                       window.location.reload();
                     }
                   }}

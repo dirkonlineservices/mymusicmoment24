@@ -4,6 +4,12 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
+import matter from "gray-matter";
+import { marked } from "marked";
+import { translations } from "./src/i18n/translations.js";
+import {
+  SITE_URL, DEFAULT_IMAGE, NOT_FOUND_META, blogPostMeta, staticPageMeta,
+} from "./src/lib/pageMeta.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,21 +41,22 @@ const REDIRECT_MAP = {
   "/llmstxt": "/llms.txt",
 
   // Core Trust & Author routes
-  "/kontakt-fur-personalisierte-songs": "/#kontakt",
+  "/kontakt-fur-personalisierte-songs": "/support",
   "/partner-fuer-songprojekt": "/#kontakt",
   "/b2b-dienstleistungen": "/#kontakt",
   "/faq-seite": "/#faq",
   "/ueber-uns-musikservice": "/autor-dirk-schmetzer",
+  "/ueber-uns": "/autor-dirk-schmetzer",
 
   // Informational Blog Articles
-  "/ki-musik-studien-trends-und-was-sie-fur-mymusicmoment24-bedeuten": "/blog/ki-musik-studien-trends",
-  "/echt-oder-ki-die-revolution-der-personalisierten-musik-or-mymusicmoment24de": "/blog/ki-musik-revolution",
-  "/10-tipps-fur-personalisierte-geschenkideen": "/blog/10-tipps-fuer-personalisierte-geschenke",
-  "/was-ist-ki-musik-chancen-und-risiken-fur-content-creator": "/blog/was-ist-ki-musik",
-  "/individuelle-hochzeitssongs-mit-ki-so-entsteht-euer-einzigartiger-liebessong": "/blog/individueller-hochzeitssong",
-  "/blog-post": "/blog/individueller-hochzeitssong",
-  "/ki-musik-blog": "/blog/individueller-hochzeitssong",
-  "/blog-geburtstagsgeschenke": "/blog/10-tipps-fuer-personalisierte-geschenke",
+  "/ki-musik-studien-trends-und-was-sie-fur-mymusicmoment24-bedeuten": "/ki-musik-studien-trends",
+  "/echt-oder-ki-die-revolution-der-personalisierten-musik-or-mymusicmoment24de": "/ki-musik-revolution",
+  "/10-tipps-fur-personalisierte-geschenkideen": "/10-tipps-fuer-personalisierte-geschenke",
+  "/was-ist-ki-musik-chancen-und-risiken-fur-content-creator": "/was-ist-ki-musik",
+  "/individuelle-hochzeitssongs-mit-ki-so-entsteht-euer-einzigartiger-liebessong": "/individueller-hochzeitssong",
+  "/blog-post": "/individueller-hochzeitssong",
+  "/ki-musik-blog": "/individueller-hochzeitssong",
+  "/blog-geburtstagsgeschenke": "/10-tipps-fuer-personalisierte-geschenke",
 
   // Showcase & Audio Examples
   "/beispiele-ki-musikvideos": "/#hoerproben",
@@ -91,6 +98,17 @@ const REDIRECT_MAP = {
 // Middleware: 301 Redirect Handler
 app.use((req, res, next) => {
   const reqPath = req.path;
+
+  // Nur eine Domain-Variante: mymusicmoment24.de -> www.mymusicmoment24.de
+  if (req.hostname === "mymusicmoment24.de") {
+    return res.redirect(301, `https://www.mymusicmoment24.de${req.originalUrl}`);
+  }
+
+  // Blogartikel liegen direkt unter /slug (so kennt Google sie), /blog/slug leitet dorthin
+  if (reqPath.startsWith("/blog/")) {
+    const slug = reqPath.slice("/blog/".length).replace(/\/$/, "");
+    if (BLOG_BY_SLUG.has(slug)) return res.redirect(301, `/${slug}`);
+  }
 
   // Check 301 map
   if (REDIRECT_MAP[reqPath]) {
@@ -735,21 +753,149 @@ app.use(express.static(path.join(__dirname, "public"), {
   }
 }));
 
-// Dynamic HTML renderer with accurate Canonical and OG:URL tags for Googlebot & SEO
+// ---------------------------------------------------------------------------
+// SEO: pro Adresse eigener Titel, Beschreibung, Canonical und lesbarer Inhalt
+// im HTML, damit Google & KI-Suchen die Seite auch ohne JavaScript verstehen.
+// Die App ersetzt den Inhalt von #root beim Laden komplett.
+// ---------------------------------------------------------------------------
+
+const BLOG_DIR = path.join(__dirname, "content", "blog");
+
+function loadBlogPosts() {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  return fs.readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((file) => {
+      const { data, content } = matter(fs.readFileSync(path.join(BLOG_DIR, file), "utf8"));
+      const slug = data.slug || file.replace(/\.md$/, "");
+      // Doppelte H1 am Anfang entfernen (wird separat ausgegeben)
+      const body = content.replace(/^\s*#\s+[^\r\n]+\r?\n+/, "");
+      return { ...data, slug, html: marked.parse(body) };
+    });
+}
+
+const BLOG_POSTS = loadBlogPosts();
+const BLOG_BY_SLUG = new Map(BLOG_POSTS.map((p) => [p.slug, p]));
+
+function escapeHtml(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function findBlogPost(cleanPath) {
+  return BLOG_BY_SLUG.get(cleanPath.slice(1)) || null;
+}
+
+function blogLinksHtml() {
+  return BLOG_POSTS
+    .map((p) => `<li><a href="/${escapeHtml(p.slug)}">${escapeHtml(p.title)}</a></li>`)
+    .join("");
+}
+
+function renderHomeShell(html) {
+  const de = translations.de;
+  const faq = (de.faq.items || [])
+    .map((item) => `<h3>${escapeHtml(item.q)}</h3><p>${escapeHtml(item.a)}</p>`)
+    .join("");
+  const occasions = Object.values(de.home.occasions)
+    .map((o) => `<li><strong>${escapeHtml(o.label)}</strong> – ${escapeHtml(o.desc)}</li>`)
+    .join("");
+  const steps = de.home.steps
+    .map((s) => `<li><strong>${escapeHtml(s.title)}:</strong> ${escapeHtml(s.desc)}</li>`)
+    .join("");
+  const included = de.home.priceIncluded.map((i) => `<li>${escapeHtml(i)}</li>`).join("");
+  const seoContent = `
+        <section class="max-w-3xl mx-auto px-4 pb-16 text-stone-700 space-y-4">
+          <h2>${escapeHtml(de.home.occasionsTitle)}</h2><ul>${occasions}</ul>
+          <h2>${escapeHtml(de.home.stepsTitle)}</h2><ol>${steps}</ol>
+          <h2>${escapeHtml(de.home.priceTitle)}</h2><ul>${included}</ul>
+          <h2>${escapeHtml(de.faq.title)}</h2>${faq}
+          <h2>Ratgeber</h2><ul>${blogLinksHtml()}</ul>
+        </section>`;
+  return html.replace("<!--seo-content-->", seoContent);
+}
+
+function renderBlogShell(html, post) {
+  const article = `
+      <div class="min-h-screen bg-[#faf8f5] text-stone-900">
+        <article class="max-w-3xl mx-auto px-4 py-10 blog-content">
+          <p><a href="/">MyMusicMoment24</a> › Ratgeber</p>
+          <h1>${escapeHtml(post.title)}</h1>
+          ${post.author ? `<p>Von ${escapeHtml(post.author)}${post.dateModified || post.date ? ` · Aktualisiert am ${escapeHtml(post.dateModified || post.date)}` : ""}</p>` : ""}
+          ${post.html}
+          <p><a href="/#konfigurator">Jetzt persönlichen Song gestalten – 19,99 €</a></p>
+          <h2>Weitere Ratgeber</h2><ul>${blogLinksHtml()}</ul>
+        </article>
+      </div>`;
+  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, article);
+}
+
+function renderPageShell(html, meta) {
+  const shell = `
+      <div class="min-h-screen bg-[#faf8f5] text-stone-900">
+        <main class="max-w-3xl mx-auto px-4 py-10">
+          <h1>${escapeHtml(meta.title.replace(/\s*\|\s*MyMusicMoment24$/, ""))}</h1>
+          <p>${escapeHtml(meta.description)}</p>
+          <p><a href="/">Zur Startseite</a></p>
+        </main>
+      </div>`;
+  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, shell);
+}
+
+function setMeta(html, meta) {
+  const url = `${SITE_URL}${meta.canonicalPath === "/" ? "/" : meta.canonicalPath}`;
+  const image = meta.image.startsWith("http") ? meta.image : `${SITE_URL}${meta.image}`;
+  const title = escapeHtml(meta.title);
+  const description = escapeHtml(meta.description);
+  const swaps = [
+    [/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`],
+    [/<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${description}" />`],
+    [/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${url}" />`],
+    [/<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${url}" />`],
+    [/<meta property="og:type" content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="${meta.type}" />`],
+    [/<meta property="og:title" content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${title}" />`],
+    [/<meta property="og:description" content="[^"]*"\s*\/?>/i, `<meta property="og:description" content="${description}" />`],
+    [/<meta property="og:image" content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${image}" />`],
+    [/<meta name="twitter:title" content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${title}" />`],
+    [/<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${description}" />`],
+    [/<meta name="twitter:image" content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${image}" />`],
+  ];
+  for (const [pattern, replacement] of swaps) html = html.replace(pattern, replacement);
+  if (meta.noindex) {
+    html = html.replace(/<meta name="robots" content="[^"]*"\s*\/?>/i, `<meta name="robots" content="noindex, follow" />`);
+  }
+  return html;
+}
+
 function serveHtmlWithCanonical(req, res, htmlPath) {
   if (!fs.existsSync(htmlPath)) {
     return res.status(404).send("Build or index.html not found. Please run 'npm run build' first.");
   }
   let html = fs.readFileSync(htmlPath, "utf8");
   const cleanPath = req.path === "/" ? "/" : req.path.replace(/\/$/, "");
-  const canonicalUrl = `https://www.mymusicmoment24.de${cleanPath === "/" ? "/" : cleanPath}`;
 
-  // Replace default homepage canonical with the exact URL of the requested page
-  html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
-  html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+  const post = findBlogPost(cleanPath);
+  let meta;
+  let status = 200;
 
+  if (post) {
+    meta = blogPostMeta(post);
+    html = renderBlogShell(html, post);
+  } else if ((meta = staticPageMeta(cleanPath))) {
+    html = cleanPath === "/" ? renderHomeShell(html) : renderPageShell(html, meta);
+  } else {
+    // Unbekannte Adresse: echte 404 statt Startseite mit Status 200
+    status = 404;
+    meta = { ...NOT_FOUND_META, image: DEFAULT_IMAGE, canonicalPath: cleanPath, type: "website", noindex: true };
+    html = renderHomeShell(html);
+  }
+
+  html = setMeta(html, meta);
   res.setHeader("Cache-Control", "no-cache, must-revalidate");
-  res.send(html);
+  res.status(status).send(html);
 }
 
 // Check if dist folder exists (production build)

@@ -81,7 +81,8 @@ function createProductSchema(prod) {
         },
       },
     },
-    ...(prod.rating ? {
+    // Nur mit echten, belegbaren Bewertungen ausgeben
+    ...(prod.reviewsCount > 0 ? {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: (prod.rating || 5.0).toFixed(1),
@@ -228,7 +229,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       // BlogPosting Schema
       const blogPostingSchema = {
         "@type": "BlogPosting",
-        "@id": `https://www.mymusicmoment24.de/blog/${blogPost.slug}#article`,
+        "@id": `https://www.mymusicmoment24.de/${blogPost.slug}#article`,
         headline: blogPost.title,
         description: blogPost.excerpt,
         image: blogPost.image || "https://www.mymusicmoment24.de/images/hochzeit.jpg",
@@ -251,7 +252,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         },
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `https://www.mymusicmoment24.de/blog/${blogPost.slug}`,
+          "@id": `https://www.mymusicmoment24.de/${blogPost.slug}`,
         },
       };
 
