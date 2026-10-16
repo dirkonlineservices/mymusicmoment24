@@ -1,18 +1,38 @@
 import React, { useState } from "react";
 import { 
-  Music, Sparkles, Heart, Star, ShieldCheck, Clock, Headphones, 
-  ArrowRight, CheckCircle2, ChevronRight, FileText, Menu, X, ExternalLink 
+  Music, Sparkles, Heart, Star, ShieldCheck, Clock, Headphones, Gift, Play, Check,
+  ArrowRight, ChevronRight, FileText, Menu, X, ExternalLink, CreditCard, PartyPopper, Cake
 } from "lucide-react";
 import AudioPlayer from "../components/AudioPlayer";
 import Configurator from "../components/Configurator";
-import ProductCatalog from "../components/ProductCatalog";
 import YouTubeShowcase from "../components/YouTubeShowcase";
-import StepProcess from "../components/StepProcess";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 import PaymentBadges from "../components/PaymentBadges";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 
+const HERO_VIDEO_ID = "MCL9AYpNQa0";
+
+const OCCASION_TILES = [
+  { id: "hochzeit", image: "/images/hochzeit.jpg", icon: Heart },
+  { id: "geburtstag", image: "/images/geburtstag.jpg", icon: Cake },
+  { id: "liebe", image: "/images/duett.jpg", icon: Sparkles },
+  { id: "party", image: "/images/party.jpg", icon: PartyPopper },
+];
+
+// Letzter Bestelltag für Weihnachten; Banner erscheint von Oktober bis zu diesem Tag
+function getXmasDaysLeft(now = new Date()) {
+  const deadline = new Date(now.getFullYear(), 11, 23, 23, 59, 59);
+  if (now.getMonth() < 9 || now > deadline) return null;
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const startOfDeadline = new Date(now.getFullYear(), 11, 23);
+  return Math.round((startOfDeadline - startOfToday) / 86400000);
+}
+
+function scrollToConfigurator() {
+  const el = document.getElementById("konfigurator");
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+}
 export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport, onNavigateB2B }) {
   const { t, language } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
@@ -57,31 +77,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     },
   ]);
 
-  const handleSelectProduct = (product) => {
-    if (product.id === "urkunde") {
-      const el = document.getElementById("konfigurator");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-      window.dispatchEvent(new CustomEvent("preselect-urkunde"));
-      return;
-    }
+  const steps = t("home.steps", []);
+  const priceIncluded = t("home.priceIncluded", []);
+  const priceExtras = t("home.priceExtras", []);
+  const [heroVideoOpen, setHeroVideoOpen] = useState(false);
+  const xmasDaysLeft = getXmasDaysLeft();
 
-    const orderData = {
-      id: `prod-${product.id}-${Date.now()}`,
-      name: product.title,
-      price: product.price,
-      category: product.category,
-      details: {
-        occasion: product.category || "individuell",
-        genre: "Wahl nach Wunsch",
-        voice: "Passend zum Song",
-        language: "Deutsch",
-        express: false,
-        pdfLyrics: false,
-      },
-    };
-    onOpenCheckout(orderData);
+  const handleSelectOccasion = (occasion) => {
+    scrollToConfigurator();
+    window.dispatchEvent(new CustomEvent("preselect-occasion", { detail: { occasion } }));
   };
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -90,6 +94,23 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-amber-400 selection:text-stone-950">
       <SchemaJsonLd type="home" />
 
+      {/* Weihnachts-Banner */}
+      {xmasDaysLeft !== null && (
+        <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white">
+          <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-center">
+            <span className="inline-flex items-center gap-1.5 font-black uppercase tracking-wider text-[11px] bg-white/15 px-2 py-0.5 rounded">
+              <Gift className="w-3.5 h-3.5" /> {t("home.xmasBadge")}
+            </span>
+            <span className="font-medium">{t("home.xmasText")}</span>
+            <span className="font-black text-amber-200">
+              {xmasDaysLeft === 0 ? t("home.xmasLastDay") : t("home.xmasDaysLeft").replace("{n}", xmasDaysLeft)}
+            </span>
+            <a href="#konfigurator" className="underline underline-offset-2 font-bold hover:text-amber-200">
+              {t("home.xmasCta")}
+            </a>
+          </div>
+        </div>
+      )}
       {/* Top Header / Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -114,11 +135,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-stone-600">
+          <nav className="hidden xl:flex items-center gap-5 xl:gap-6 text-sm font-medium text-stone-600 whitespace-nowrap">
             <a href="#shop" className="hover:text-amber-600 transition">{t("nav.shop")}</a>
             <a href="#hoerproben" className="hover:text-amber-600 transition">{t("nav.samples")}</a>
             <a href="#prozess" className="hover:text-amber-600 transition">{t("nav.process")}</a>
-            <a href="#konfigurator" className="hover:text-amber-600 transition">{t("nav.configurator")}</a>
+            <a href="#preise" className="hover:text-amber-600 transition">{t("nav.prices", "Preise")}</a>
             <a href="#kundenstimmen" className="hover:text-amber-600 transition">{t("nav.reviews")}</a>
             <a href="#faq" className="hover:text-amber-600 transition">{t("nav.faq")}</a>
             <button
@@ -139,14 +160,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <div className="flex items-center gap-3">
             <a
               href="#konfigurator"
-              className="hidden sm:inline-flex px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
+              className="hidden sm:inline-flex whitespace-nowrap px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
             >
               {t("nav.orderCta")}
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 hover:text-stone-900"
+              className="xl:hidden p-2 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 hover:text-stone-900"
               aria-label="Menü öffnen"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -157,14 +178,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-stone-200 px-4 py-5 space-y-3 shadow-xl animate-in slide-in-from-top-3">
+          <div className="xl:hidden bg-white border-b border-stone-200 px-4 py-5 space-y-3 shadow-xl animate-in slide-in-from-top-3">
             <div className="flex items-center justify-between px-3 pb-2 border-b border-stone-200">
               <span className="text-xs text-stone-500 font-medium">Sprache / Language:</span>
               <LanguageSwitcher />
             </div>
             <nav className="flex flex-col space-y-2.5 text-sm font-semibold text-stone-700">
               <a href="#shop" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
-                {t("nav.shop")} (19,99 €)
+                {t("nav.shop")}
               </a>
               <a href="#hoerproben" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.samples")}
@@ -239,180 +260,163 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         )}
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-8 pb-6 sm:pt-16 sm:pb-8 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-gradient-to-tr from-amber-400/20 via-orange-300/15 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-4 text-center relative z-10 space-y-5 sm:space-y-6">
-          
-          {/* Subheader Slogan */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-600" />
-            <span>{t("hero.badge")}</span>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute -top-32 right-0 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-gradient-to-bl from-amber-300/25 via-orange-200/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 pt-8 pb-12 sm:pt-14 sm:pb-16 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
+          <div className="space-y-5 sm:space-y-6 text-center lg:text-left">
+            <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-600" />
+              <span>{t("home.heroEyebrow")}</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.1]">
+              {t("home.heroTitle")}{" "}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-orange-500">
+                {t("home.heroTitleHighlight")}
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              {t("home.heroText")}
+            </p>
+
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center lg:justify-start gap-3">
+              <a
+                href="#konfigurator"
+                className="w-full sm:w-auto whitespace-nowrap px-7 py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
+              >
+                <span>{t("home.heroCta")}</span>
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <a
+                href="#hoerproben"
+                className="w-full sm:w-auto whitespace-nowrap px-6 py-4 bg-white hover:bg-stone-50 text-stone-800 font-bold text-sm sm:text-base rounded-2xl border border-stone-300 shadow-sm flex items-center justify-center gap-2 transition"
+              >
+                <Headphones className="w-5 h-5 text-amber-600" />
+                <span>{t("home.heroCtaSecondary")}</span>
+              </a>
+            </div>
+
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 max-w-md mx-auto lg:mx-0 text-sm text-stone-700 text-left">
+              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600 shrink-0" />{t("home.trustPrice")}</li>
+              <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustDelivery")}</li>
+              <li className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />{t("home.trustRevision")}</li>
+              <li className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustPayment")}</li>
+            </ul>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.15]">
-            {t("hero.title")}{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600">
-              {t("hero.titleHighlight")}
-            </span>
-          </h1>
-
-          <p className="text-sm sm:text-lg md:text-xl text-stone-600 max-w-3xl mx-auto font-normal leading-relaxed">
-            {t("hero.description")}
-          </p>
-
-          {/* 3 Emotional Story Cards */}
-          <div className="pt-4 sm:pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto text-left">
-            
-            {/* Story Card 1 */}
-            <div className="group bg-white border border-stone-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-stone-200/50 hover:border-amber-400 hover:shadow-2xl transition duration-300">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
-                <img
-                  src="/images/hero-step-1.jpg"
-                  alt={t("hero.storyCard1Title")}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  width="400"
-                  height="220"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
-                <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  {t("hero.storyCard1Badge")}
-                </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
-                  <span>KI-Creative</span>
-                </span>
-              </div>
-              <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard1Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                  {t("hero.storyCard1Desc")}
-                </p>
-              </div>
-            </div>
-
-            {/* Story Card 2 */}
-            <div className="group bg-white border-2 border-amber-400/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-amber-500/10 hover:border-amber-500 hover:shadow-2xl transition duration-300 ring-2 ring-amber-400/20">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
-                <img
-                  src="/images/hero-step-2.jpg"
-                  alt={t("hero.storyCard2Title")}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="eager"
-                  decoding="async"
-                  width="400"
-                  height="220"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
-                <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  {t("hero.storyCard2Badge")}
-                </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
-                  <span>KI-Creative</span>
-                </span>
-              </div>
-              <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard2Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                  {t("hero.storyCard2Desc")}
-                </p>
+          {/* Hörprobe im Hero: erst Bild, Video lädt erst nach Klick */}
+          <div className="relative max-w-xl w-full mx-auto">
+            <div className="absolute -inset-3 bg-gradient-to-tr from-amber-400/30 to-orange-300/20 rounded-[2rem] blur-xl pointer-events-none" />
+            <div className="relative bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-2xl shadow-stone-300/50">
+              <div className="aspect-[4/3] relative bg-stone-900">
+                {heroVideoOpen ? (
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${HERO_VIDEO_ID}?autoplay=1&rel=0`}
+                    title={t("home.heroVideoLabel")}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setHeroVideoOpen(true)}
+                    className="group absolute inset-0 w-full h-full"
+                    aria-label={t("home.heroVideoHint")}
+                  >
+                    <img
+                      src="/images/hochzeit.jpg"
+                      alt={t("home.heroVideoLabel")}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
+                      width="800"
+                      height="600"
+                    />
+                    <span className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/10 to-transparent" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="w-20 h-20 rounded-full bg-white/95 shadow-2xl flex items-center justify-center group-hover:scale-110 transition">
+                        <Play className="w-8 h-8 text-amber-600 fill-amber-500 ml-1" />
+                      </span>
+                    </span>
+                    <span className="absolute bottom-4 left-4 right-4 text-left text-white">
+                      <span className="block text-xs font-bold uppercase tracking-wider text-amber-300">{t("home.heroVideoHint")}</span>
+                      <span className="block text-base sm:text-lg font-bold">{t("home.heroVideoLabel")}</span>
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
-
-            {/* Story Card 3 */}
-            <div className="group bg-white border border-stone-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-stone-200/50 hover:border-amber-400 hover:shadow-2xl transition duration-300">
-              <div className="h-44 sm:h-52 overflow-hidden relative bg-stone-100">
-                <img
-                  src="/images/hero-step-3.jpg"
-                  alt={t("hero.storyCard3Title")}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  loading="eager"
-                  decoding="async"
-                  width="400"
-                  height="220"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
-                <span className="absolute top-2.5 left-2.5 bg-amber-500 text-slate-950 font-black text-[11px] sm:text-xs px-2.5 py-0.5 rounded-md shadow-md">
-                  {t("hero.storyCard3Badge")}
-                </span>
-                <span className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-white/90 backdrop-blur-md border border-stone-200 text-stone-800 text-[10px] font-semibold rounded-md shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
-                  <span>KI-Creative</span>
-                </span>
-              </div>
-              <div className="p-3.5 sm:p-4 space-y-1">
-                <h3 className="font-bold text-xs sm:text-sm text-stone-900">{t("hero.storyCard3Title")}</h3>
-                <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                  {t("hero.storyCard3Desc")}
-                </p>
-              </div>
-            </div>
-
+            <p className="relative text-[11px] text-stone-400 text-center mt-2">{t("home.heroVideoPrivacy")}</p>
           </div>
-
-          {/* Hero CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 sm:pt-6">
-            <a
-              href="#konfigurator"
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
-            >
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
-              <span>{t("hero.ctaPrimary")}</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-            <a
-              href="#hoerproben"
-              className="w-full sm:w-auto px-6 py-3.5 sm:py-4 bg-white hover:bg-stone-50 text-stone-800 font-bold text-xs sm:text-base rounded-2xl border border-stone-300 shadow-sm flex items-center justify-center gap-2 transition"
-            >
-              <Headphones className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
-              <span>{t("hero.ctaSecondary")}</span>
-            </a>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="pt-4 sm:pt-5 flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs text-stone-600 border-t border-stone-200 max-w-xl mx-auto">
-            <div className="flex items-center gap-1 text-amber-500 font-bold">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="text-stone-800 ml-1 font-bold">{t("hero.trustReviews")}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-600" />
-              <span>{t("hero.trustDelivery")}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{t("hero.trustGuarantee")}</span>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      {/* 1. Interactive Configurator in the Spotlight */}
-      <Configurator onOpenCheckout={onOpenCheckout} />
+      {/* Anlässe: Einstieg direkt in den Konfigurator */}
+      <section id="shop" className="max-w-7xl mx-auto px-4 my-10 sm:my-16 scroll-mt-20">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mb-2">{t("home.occasionsTitle")}</h2>
+          <p className="text-stone-600 text-sm sm:text-base">{t("home.occasionsSubtitle")}</p>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          {OCCASION_TILES.map(({ id, image, icon: Icon }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => handleSelectOccasion(id)}
+              className="group text-left bg-white border border-stone-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-stone-200/50 hover:border-amber-400 hover:shadow-xl hover:-translate-y-1 transition duration-300"
+            >
+              <div className="aspect-square overflow-hidden bg-stone-100 relative">
+                <img
+                  src={image}
+                  alt={t(`home.occasions.${id}.label`)}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="400"
+                />
+                <span className="absolute top-3 left-3 w-9 h-9 rounded-full bg-white/95 shadow flex items-center justify-center">
+                  <Icon className="w-4 h-4 text-amber-600" />
+                </span>
+              </div>
+              <div className="p-3.5 sm:p-5">
+                <h3 className="font-bold text-sm sm:text-lg text-stone-900">{t(`home.occasions.${id}.label`)}</h3>
+                <p className="text-xs sm:text-sm text-stone-600 mt-0.5 leading-snug">{t(`home.occasions.${id}.desc`)}</p>
+                <span className="mt-2.5 inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-amber-700 group-hover:gap-2 transition-all">
+                  {t("home.occasionsCta")} <ChevronRight className="w-4 h-4" />
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
 
-      {/* 2. YouTube Showcase */}
+      {/* Hörproben */}
       <YouTubeShowcase />
-
-      {/* 3. Audio Player */}
       <AudioPlayer />
 
-      {/* 4. Product Catalog */}
-      <ProductCatalog onSelectProduct={handleSelectProduct} />
-
-      {/* 5. Step Process */}
-      <div id="prozess">
-        <StepProcess />
-      </div>
-
-      {/* 6. Testimonials */}
+      {/* Ablauf in 3 Schritten */}
+      <section id="prozess" className="max-w-6xl mx-auto px-4 my-12 sm:my-20 scroll-mt-20">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight text-center mb-8 sm:mb-10">{t("home.stepsTitle")}</h2>
+        <ol className="grid md:grid-cols-3 gap-4 sm:gap-6">
+          {steps.map((step, idx) => (
+            <li key={idx} className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 shadow-lg shadow-stone-200/50">
+              <span className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 text-slate-950 font-black flex items-center justify-center mb-4 shadow-md">
+                {idx + 1}
+              </span>
+              <h3 className="font-bold text-lg text-stone-900 mb-1.5">{step.title}</h3>
+              <p className="text-sm text-stone-600 leading-relaxed">{step.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+      {/* Kundenstimmen */}
       <section id="kundenstimmen" className="max-w-6xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-full mb-3 shadow-sm">
@@ -483,31 +487,53 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         </div>
       </section>
 
-      {/* 7. Blog Highlight */}
-      <section className="max-w-5xl mx-auto my-12 sm:my-16 px-4">
-        <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border-2 border-amber-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl shadow-amber-900/5">
-          <div className="space-y-1.5 text-center sm:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
-              <FileText className="w-3.5 h-3.5 text-amber-600" /> {t("blogFeature.badge")}
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
-              {t("blogFeature.title")}
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-600 max-w-xl leading-relaxed">
-              {t("blogFeature.subtitle")}
-            </p>
+      {/* Preis & Leistungen */}
+      <section id="preise" className="max-w-5xl mx-auto px-4 my-12 sm:my-20 scroll-mt-20">
+        <div className="bg-white border-2 border-amber-300 rounded-3xl shadow-2xl shadow-amber-900/10 overflow-hidden grid md:grid-cols-5">
+          <div className="md:col-span-3 p-6 sm:p-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">{t("home.priceTitle")}</h2>
+            <p className="text-stone-600 text-sm mt-1 mb-6">{t("home.priceSubtitle")}</p>
+            <ul className="space-y-3">
+              {priceIncluded.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-stone-800">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-700" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <button
-            onClick={() => onNavigateBlog("individueller-hochzeitssong")}
-            className="w-full sm:w-auto shrink-0 px-5 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-amber-500/20 active:scale-95"
-          >
-            <span>{t("blogFeature.readArticle")}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="md:col-span-2 bg-gradient-to-b from-amber-50 to-orange-50/60 border-t md:border-t-0 md:border-l border-amber-200 p-6 sm:p-10 flex flex-col">
+            <div className="text-5xl font-black text-stone-900 tracking-tight">19,99 €</div>
+            <p className="text-xs text-stone-500 mt-1 mb-6">{t("home.trustPayment")}</p>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-3">{t("home.priceExtrasTitle")}</h3>
+            <ul className="space-y-2 text-sm text-stone-700 mb-6">
+              {priceExtras.map((extra, idx) => (
+                <li key={idx} className="flex justify-between gap-3">
+                  <span>{extra.label}</span>
+                  <span className="font-semibold text-stone-900 whitespace-nowrap">{extra.price}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex items-start gap-2 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl p-3 mb-6">
+              <ShieldCheck className="w-5 h-5 shrink-0 text-emerald-600" />
+              <span>{t("home.priceGuarantee")}</span>
+            </div>
+            <a
+              href="#konfigurator"
+              className="mt-auto w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-2xl shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 transition active:scale-95"
+            >
+              <span>{t("home.priceCta")}</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* 8. FAQ Section */}
+      {/* Konfigurator */}
+      <Configurator onOpenCheckout={onOpenCheckout} />
+      {/* FAQ */}
       <section id="faq" className="max-w-3xl mx-auto my-12 sm:my-20 px-4">
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 mb-2">{t("faq.title")}</h2>
@@ -540,6 +566,46 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         </div>
       </section>
 
+      {/* Ratgeber-Hinweis */}
+      <section className="max-w-5xl mx-auto my-12 sm:my-16 px-4">
+        <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border-2 border-amber-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl shadow-amber-900/5">
+          <div className="space-y-1.5 text-center sm:text-left">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 uppercase tracking-wider">
+              <FileText className="w-3.5 h-3.5 text-amber-600" /> {t("blogFeature.badge")}
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
+              {t("blogFeature.title")}
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-600 max-w-xl leading-relaxed">
+              {t("blogFeature.subtitle")}
+            </p>
+          </div>
+          <button
+            onClick={() => onNavigateBlog("individueller-hochzeitssong")}
+            className="w-full sm:w-auto shrink-0 px-5 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-amber-500/20 active:scale-95"
+          >
+            <span>{t("blogFeature.readArticle")}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+
+      {/* Abschluss-CTA */}
+      <section className="max-w-5xl mx-auto px-4 my-12 sm:my-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-stone-900 via-stone-800 to-amber-900 text-white p-8 sm:p-14 text-center shadow-2xl">
+          <div className="absolute -top-20 -right-20 w-72 h-72 bg-amber-400/20 rounded-full blur-3xl pointer-events-none" />
+          <Music className="w-10 h-10 text-amber-400 mx-auto mb-4" />
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">{t("home.finalTitle")}</h2>
+          <p className="text-stone-300 text-sm sm:text-lg max-w-xl mx-auto mb-7">{t("home.finalText")}</p>
+          <a
+            href="#konfigurator"
+            className="inline-flex px-8 py-4 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-slate-950 font-black rounded-2xl shadow-xl shadow-amber-500/30 items-center gap-2 transition active:scale-95"
+          >
+            <span>{t("home.finalCta")}</span>
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </section>
       {/* Comprehensive 4-Column Footer */}
       <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-28 sm:pb-16 text-slate-400 text-xs sm:text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -717,11 +783,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           <span className="text-lg font-black text-amber-600">19,99 €</span>
         </div>
         <a
-          href="#shop"
-          className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
+          href="#konfigurator"
+          className="px-5 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
         >
           <span>{t("footer.stickyCta")}</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-4 h-4" />
         </a>
       </div>
 

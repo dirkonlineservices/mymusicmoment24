@@ -130,6 +130,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     return () => window.removeEventListener("preselect-urkunde", handlePreselect);
   }, []);
 
+  // Anlass-Kacheln auf der Startseite: Anlass vorauswählen und direkt zu Schritt 2
+  useEffect(() => {
+    const handleOccasion = (e) => {
+      const occasion = e.detail?.occasion;
+      if (!OCCASIONS_DATA.some((o) => o.id === occasion)) return;
+      setConfig((prev) => ({ ...prev, occasion }));
+      setStep(2);
+      trackConfiguratorStep(2, "Step_2", { occasion });
+    };
+    window.addEventListener("preselect-occasion", handleOccasion);
+    return () => window.removeEventListener("preselect-occasion", handleOccasion);
+  }, []);
+
   const goToStep = (nextStep) => {
     setStep(nextStep);
     trackConfiguratorStep(nextStep, `Step_${nextStep}`, config);
