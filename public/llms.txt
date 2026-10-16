@@ -1,17 +1,23 @@
 # MyMusicMoment24
 
-> MyMusicMoment24 ist ein führender deutscher Onlineservice für personalisierte Musikstücke und emotionale Lieder auf Basis individueller Geschichten, Namen, Anekdoten und Anlässe.
+> MyMusicMoment24 ist ein deutscher Onlineservice für personalisierte Musikstücke und emotionale Lieder auf Basis individueller Geschichten, Namen, Anekdoten und Anlässe.
 
 ## Dienstleistungen und Produkte
 
 - [Persönlicher KI-Song](https://www.mymusicmoment24.de/#konfigurator): Individuell komponierter Song als MP3 und vollständiger Liedtext ab 19,99 €.
 - [12h Express-Lieferung](https://www.mymusicmoment24.de/#konfigurator): Beschleunigte Fertigstellung und Lieferung innerhalb von 12 Stunden an Werktagen für 9,99 €.
-- [Personalisierte PDF-Geschenkkarte](https://www.mymusicmoment24.de/#konfigurator): Hochwertige PDF-Urkunde mit Liedtext und Anlass zum Ausdrucken für 4,99 €.
-- [Geschenkgutschein](https://www.mymusicmoment24.de/#shop): Gutschein für einen personalisierten Song zum Verschenken für 19,99 €.
+- [Song-Urkunde](https://www.mymusicmoment24.de/#konfigurator): PDF-Urkunde mit Liedtext und QR-Code zum Anhören, zum Ausdrucken für 9,99 €.
+- [Geschenkgutschein](https://www.mymusicmoment24.de/#gutschein): Gutschein für einen personalisierten Song zum Verschenken für 19,99 €.
 
 ## Anlässe und Themen
 
-- [Geburtstagslied personalisiert](https://www.mymusicmoment24.de/geburtstagslied-personalisiert): Warum personalisierte Lieder seit 2024 das emotionalste Geschenk für runde Geburtstage sind.
+- [Personalisierter Song erstellen lassen](https://www.mymusicmoment24.de/personalisierte-lieder): Was ein personalisiertes Lied ist, was es kostet und wie es entsteht.
+- [Personalisiertes Geburtstagslied](https://www.mymusicmoment24.de/personalisierte-geburtstagslieder): Geburtstagslied mit Namen vom 18. bis zum 80. Geburtstag.
+- [Song zum 18. Geburtstag](https://www.mymusicmoment24.de/song-zum-18-geburtstag): Persönliches Lied zur Volljährigkeit.
+- [Song zum 50. Geburtstag](https://www.mymusicmoment24.de/song-zum-50-geburtstag): Fünf Jahrzehnte in einem Lied.
+- [Lied für Mama](https://www.mymusicmoment24.de/lied-fuer-mama): Persönlicher Song zum Geburtstag, Muttertag oder als Dankeschön.
+- [Jubiläumssong](https://www.mymusicmoment24.de/jubilaum-song): Lied zur Silberhochzeit, Goldenen Hochzeit und zum Firmenjubiläum.
+- [Song als Weihnachtsgeschenk](https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk): Geschenkideen und Bestellschluss 23.12.
 - [Geburtstagslieder](https://www.mymusicmoment24.de/#konfigurator): Personalisierte Pop-, Rock- und Schlager-Songs mit Namen und Insidern zum Geburtstag.
 - [Hochzeitslieder](https://www.mymusicmoment24.de/#konfigurator): Romantische Traulieder und emotionale Liebeserklärungen für den Hochzeitstanz.
 - [Liebeslieder im Duett](https://www.mymusicmoment24.de/#konfigurator): Zweistimmige oder mehrsprachige Liebeslieder für Paare.

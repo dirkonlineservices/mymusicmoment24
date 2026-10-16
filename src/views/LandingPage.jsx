@@ -20,6 +20,18 @@ const OCCASION_TILES = [
   { id: "party", image: "/images/party.jpg", icon: PartyPopper },
 ];
 
+// Ratgeber-Seiten pro Anlass (Fußzeile)
+const OCCASION_GUIDES = [
+  { slug: "personalisierter-song-weihnachtsgeschenk", label: "Song als Weihnachtsgeschenk" },
+  { slug: "individueller-hochzeitssong", label: "Hochzeitslied" },
+  { slug: "personalisierte-geburtstagslieder", label: "Geburtstagslied mit Namen" },
+  { slug: "song-zum-18-geburtstag", label: "Song zum 18. Geburtstag" },
+  { slug: "song-zum-50-geburtstag", label: "Song zum 50. Geburtstag" },
+  { slug: "lied-fuer-mama", label: "Lied für Mama" },
+  { slug: "jubilaum-song", label: "Jubiläum & Hochzeitstag" },
+  { slug: "personalisierte-lieder", label: "Personalisierten Song erstellen lassen" },
+];
+
 // Letzter Bestelltag für Weihnachten; Banner erscheint von Oktober bis zu diesem Tag
 function getXmasDaysLeft(now = new Date()) {
   const deadline = new Date(now.getFullYear(), 11, 23, 23, 59, 59);
@@ -766,18 +778,18 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               </div>
             </div>
 
-            {/* Col 2: Beliebte Anlässe */}
+            {/* Col 2: Beliebte Anlässe (echte Links für Google) */}
             <div className="space-y-3">
               <h3 className="font-bold text-white text-xs uppercase tracking-wider text-amber-400">
                 {t("footer.popularSongs")}
               </h3>
               <ul className="space-y-2 text-xs">
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.weddingSong")}</a></li>
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.birthdaySong")}</a></li>
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.duetSong")}</a></li>
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.anniversarySong")}</a></li>
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.partySong")}</a></li>
-                <li><a href="#shop" className="hover:text-white transition">{t("footer.giftVoucher")}</a></li>
+                {OCCASION_GUIDES.map((guide) => (
+                  <li key={guide.slug}>
+                    <a href={`/${guide.slug}`} className="hover:text-white transition">{guide.label}</a>
+                  </li>
+                ))}
+                <li><a href="#gutschein" className="hover:text-white transition">{t("footer.giftVoucher")}</a></li>
               </ul>
             </div>
 
@@ -791,27 +803,6 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <li><a href="#hoerproben" className="hover:text-white transition">{t("footer.audioSamples")}</a></li>
                 <li><a href="#konfigurator" className="hover:text-white transition">{t("footer.startConfigurator")}</a></li>
                 <li><a href="#faq" className="hover:text-white transition">{t("footer.faq")}</a></li>
-                <li>
-                  <button onClick={() => onNavigateBlog("geburtstagslied-personalisiert")} className="hover:text-amber-300 transition text-left flex items-center gap-1.5 text-amber-400 font-semibold">
-                    <span>🎂</span>
-                    <span>{language === "en" ? "Birthday Song Personalized (New)" : "Geburtstagslied personalisiert (Neu)"}</span>
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => onNavigateBlog("personalisierte-geburtstagslieder")} className="hover:text-white transition text-left">
-                    {language === "en" ? "Personalized Birthday Songs" : "Personalisierte Geburtstagslieder"}
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => onNavigateBlog("personalisierte-lieder")} className="hover:text-white transition text-left">
-                    {language === "en" ? "Personalized Songs with AI" : "Personalisierte Lieder mit KI"}
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => onNavigateBlog("individueller-hochzeitssong")} className="hover:text-white transition text-left">
-                    {language === "en" ? "Custom Wedding Song" : "Individueller Hochzeitssong"}
-                  </button>
-                </li>
                 <li>
                   <button onClick={onNavigateAuthor} className="hover:text-white transition text-left">
                     {t("footer.aboutLink")}

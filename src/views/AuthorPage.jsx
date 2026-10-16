@@ -80,7 +80,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Über hunderte begeisterte Kundenlieder</span>
+                <span>Seit 2024 Songs für Familien, Paare & Vereine</span>
               </div>
               <div className="flex items-center gap-2">
                 <Youtube className="w-4 h-4 text-red-500 shrink-0" />

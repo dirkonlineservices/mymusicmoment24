@@ -73,7 +73,7 @@ Noch vor fünf Jahren klangen KI-generierte Songs nach Roboter. Monotone Melodie
 
 Am Ende ist eine einzige Frage relevant: Berührt der Song denjenigen, für den er gemacht wurde?
 
-Wir haben hunderte Reaktionen erlebt. Freudentränen beim Hochzeitsempfang. Ein 80-Jähriger, der seinen Geburtstagssong dreimal hintereinander hört. Eine Tochter, die ihren Vater mit einem Lied über seine gesamte Lebensreise überrascht – und beide halten sich danach minutenlang in den Armen.
+Wir erleben es bei unseren Kundinnen und Kunden immer wieder: Freudentränen beim Hochzeitsempfang. Ein 80-Jähriger, der seinen Geburtstagssong dreimal hintereinander hört. Eine Tochter, die ihren Vater mit einem Lied über seine gesamte Lebensreise überrascht – und beide halten sich danach minutenlang in den Armen.
 
 In keiner dieser Situationen hat sich jemand gefragt: „Wurde das von KI gemacht?" Die Frage löst sich auf, sobald der Song das trifft, was er treffen soll: das Herz.
 

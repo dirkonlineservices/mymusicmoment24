@@ -153,7 +153,7 @@ Für die Standard-Lieferung (24 Stunden) reicht es, wenn du spätestens einen Ta
 
 ## Tipps für den perfekten Hochzeitssong
 
-Nach hunderten von Hochzeitssongs wissen wir, was den Unterschied macht:
+Aus unseren bisherigen Songs wissen wir, was den Unterschied macht:
 
 **1. Sei konkret, nicht allgemein.**  
 „Er macht immer den besten Grillabend im Sommer" ist besser als „Er liebt Essen". Konkrete Details erzeugen echte Bilder.

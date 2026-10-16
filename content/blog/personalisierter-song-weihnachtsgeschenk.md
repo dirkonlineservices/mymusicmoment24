@@ -41,6 +41,9 @@ Ein Song über Familiengeschichten, gemeinsame Sonntage und die Enkel. Gerade f�
 ### Für den Partner oder die Partnerin
 Wie habt ihr euch kennengelernt? Was war euer schönster Moment in diesem Jahr? Daraus wird eine Liebeserklärung zum Fest – romantisch als Pop-Ballade oder als Duett mit zwei Stimmen.
 
+### Für die ganze Familie
+Warum nur ein Lied? Eine unserer Kundinnen hat für jedes Familienmitglied einen eigenen Song bestellt – rund 20 Lieder, jedes mit eigenen Erinnerungen. Zu Weihnachten, wenn alle zusammenkommen, ist das ein besonderer Moment: Jeder bekommt seinen eigenen Song.
+
 ### Für Freunde, das Team oder den Verein
 Eine Weihnachtsfeier mit eigenem Song wird garantiert zum Gesprächsthema. Für Kollegen, die Mannschaft oder die Freundesgruppe eignet sich ein lustiger Mitsing-Refrain mit Anspielungen auf das gemeinsame Jahr.
 

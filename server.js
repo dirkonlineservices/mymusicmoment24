@@ -48,6 +48,11 @@ const REDIRECT_MAP = {
   "/faq-seite": "/#faq",
   "/ueber-uns-musikservice": "/autor-dirk-schmetzer",
   "/ueber-uns": "/autor-dirk-schmetzer",
+  // Zusammengeführte Artikel (16.10.2026)
+  "/geburtstagslied-personalisiert": "/personalisierte-geburtstagslieder",
+  "/blog/geburtstagslied-personalisiert": "/personalisierte-geburtstagslieder",
+  "/personalisierter-song-erstellen-lassen": "/personalisierte-lieder",
+  "/blog/personalisierter-song-erstellen-lassen": "/personalisierte-lieder",
 
   // Informational Blog Articles
   "/ki-musik-studien-trends-und-was-sie-fur-mymusicmoment24-bedeuten": "/ki-musik-studien-trends",
