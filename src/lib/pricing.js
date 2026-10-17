@@ -12,7 +12,25 @@ export const PRICES = {
   certificate: 9.99,
 };
 
-export const DISCOUNT_RATE = 0.1;
+// Öffentliche Aktionscodes (werden auf der Website beworben, dürfen daher im Code stehen)
+export const PROMO_CODES = {
+  MOMENT25: { rate: 0.25, validUntil: "2026-12-23T23:59:59+01:00" },
+};
+
+/** Aktuell beworbene Aktion oder null, wenn abgelaufen */
+export function activePromo(now = new Date()) {
+  for (const [code, promo] of Object.entries(PROMO_CODES)) {
+    if (now <= new Date(promo.validUntil)) return { code, ...promo };
+  }
+  return null;
+}
+
+/** Rabattsatz für einen Code (0, wenn ungültig oder abgelaufen) */
+export function promoRate(code, now = new Date()) {
+  const promo = PROMO_CODES[String(code || "").trim().toUpperCase()];
+  if (!promo || now > new Date(promo.validUntil)) return 0;
+  return promo.rate;
+}
 
 /** Art der Bestellung aus den Bestelldaten ableiten */
 export function orderKind({ category, orderDetails, isStreaming, id } = {}) {
@@ -26,10 +44,10 @@ export function orderKind({ category, orderDetails, isStreaming, id } = {}) {
 }
 
 /** Endpreis in Euro (zwei Nachkommastellen) */
-export function calculatePrice({ kind = "song", express = false, certificate = false, discount = false }) {
+export function calculatePrice({ kind = "song", express = false, certificate = false, discountRate = 0 }) {
   const base = PRICES[kind] ?? PRICES.song;
   const expressExtra = kind === "song" && express ? PRICES.express : 0;
   const certificateExtra = kind !== "streaming" && certificate ? PRICES.certificate : 0;
   const subtotal = Number((base + expressExtra + certificateExtra).toFixed(2));
-  return discount ? Number((subtotal * (1 - DISCOUNT_RATE)).toFixed(2)) : subtotal;
+  return discountRate > 0 ? Number((subtotal * (1 - discountRate)).toFixed(2)) : subtotal;
 }

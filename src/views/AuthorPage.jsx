@@ -136,7 +136,8 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
               <ol className="space-y-2.5 text-sm text-stone-700">
                 {[
                   ["Du erzählst", "Im Konfigurator wählst du Anlass, Musikstil und Stimme und schreibst ein paar Sätze über die Person. Stichpunkte reichen."],
-                  ["Text und Musik entstehen", "Aus deinen Angaben werden Strophen und ein Refrain, dazu Melodie und Gesang im gewählten Stil."],
+                  ["Du gibst den Liedtext frei", "Ich schreibe aus deinen Angaben den Text und schicke ihn dir vorab. Erst wenn er dir gefällt, geht es weiter."],
+                  ["Die Musik entsteht", "Zu deinem Text entstehen Melodie und Gesang im gewählten Stil."],
                   ["Ich höre jeden Song an", "Stimmen die Namen, die Betonung und das Gefühl? Erst wenn das passt, geht der Song raus."],
                   ["Du bekommst deinen Song", "Als MP3 per E-Mail oder WhatsApp, meist innerhalb von 24 Stunden an Werktagen."],
                   ["Wenn etwas nicht passt", "Eine Änderungsrunde ist immer dabei. Sag mir einfach, was anders sein soll."],

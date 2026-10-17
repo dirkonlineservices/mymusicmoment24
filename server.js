@@ -10,7 +10,7 @@ import { translations } from "./src/i18n/translations.js";
 import {
   SITE_URL, DEFAULT_IMAGE, NOT_FOUND_META, blogPostMeta, staticPageMeta,
 } from "./src/lib/pageMeta.js";
-import { orderKind, calculatePrice } from "./src/lib/pricing.js";
+import { orderKind, calculatePrice, promoRate } from "./src/lib/pricing.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -159,18 +159,19 @@ function getMailTransporter() {
 // Preise & Zahlungsprüfung: Beträge werden nur hier berechnet, nie aus dem Browser übernommen
 // ---------------------------------------------------------------------------
 
-// Rabattcodes kommen aus der Umgebung (Hostinger), z. B. DISCOUNT_CODES=winter10,freunde10
-function discountCodes() {
-  const fromEnv = (process.env.DISCOUNT_CODES || "")
-    .split(",")
-    .map((c) => c.trim().toLowerCase())
-    .filter(Boolean);
-  // Übergangsweise die bisherigen Codes, bis DISCOUNT_CODES gesetzt ist
-  return fromEnv.length ? fromEnv : ["gutschein", "music10"];
+// Rabattcodes: öffentliche Aktionen aus src/lib/pricing.js, zusätzlich optional
+// private Codes aus der Umgebung (Hostinger), z. B. DISCOUNT_CODES=freunde10:10,vip20:20
+function envDiscountRate(code) {
+  const wanted = String(code || "").trim().toLowerCase();
+  for (const entry of (process.env.DISCOUNT_CODES || "").split(",")) {
+    const [name, percent] = entry.split(":").map((x) => x.trim().toLowerCase());
+    if (name && name === wanted) return Math.min(Math.max(Number(percent) || 10, 0), 50) / 100;
+  }
+  return 0;
 }
 
-function isValidDiscount(code) {
-  return Boolean(code) && discountCodes().includes(String(code).trim().toLowerCase());
+function discountRateFor(code) {
+  return promoRate(code) || envDiscountRate(code);
 }
 
 /** Erwarteter Preis für eine Bestellung, nur aus den Bestellmerkmalen berechnet */
@@ -184,7 +185,7 @@ function priceForOrder(body = {}) {
     kind,
     express: Boolean(body.orderDetails?.express),
     certificate: Boolean(body.orderDetails?.pdfLyrics),
-    discount: isValidDiscount(body.discountCode),
+    discountRate: discountRateFor(body.discountCode),
   });
   return { kind, amount };
 }
@@ -732,7 +733,8 @@ app.post("/api/orders", async (req, res) => {
 
 // Rabattcode prüfen, ohne die gültigen Codes an den Browser zu geben
 app.post("/api/validate-discount", (req, res) => {
-  res.json({ valid: isValidDiscount(req.body?.code) });
+  const rate = discountRateFor(req.body?.code);
+  res.json({ valid: rate > 0, rate });
 });
 
 // PayPal: Zahlung mit serverseitig berechnetem Betrag anlegen

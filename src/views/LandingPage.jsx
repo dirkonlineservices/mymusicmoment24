@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { 
   Music, Sparkles, Heart, Star, ShieldCheck, Clock, Headphones, Gift, Play, Check,
-  ArrowRight, ChevronRight, FileText, Menu, X, ExternalLink, CreditCard, PartyPopper, Cake
+  ArrowRight, ChevronRight, FileText, Menu, X, ExternalLink, PartyPopper, Cake
 } from "lucide-react";
 import AudioPlayer from "../components/AudioPlayer";
 import Configurator from "../components/Configurator";
@@ -10,6 +10,8 @@ import SchemaJsonLd from "../components/SchemaJsonLd";
 import PaymentBadges from "../components/PaymentBadges";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
+import PromoTeaser, { rememberPromoCode } from "../components/PromoTeaser";
+import { activePromo, PRICES, calculatePrice } from "../lib/pricing";
 
 const HERO_VIDEO_ID = "MCL9AYpNQa0";
 
@@ -83,6 +85,18 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const priceIncluded = t("home.priceIncluded", []);
   const priceExtras = t("home.priceExtras", []);
   const googleReviews = t("testimonials.googleItems", []);
+  const promo = activePromo();
+  const promoNote = promo
+    ? t("home.promoPriceNote")
+        .replace("{code}", promo.code)
+        .replace("{price}", calculatePrice({ kind: "song", discountRate: promo.rate }).toFixed(2).replace(".", ","))
+        .replace("{old}", PRICES.song.toFixed(2).replace(".", ","))
+        .replace("{until}", new Date(promo.validUntil).toLocaleDateString("de-DE", { day: "numeric", month: "numeric" }))
+    : "";
+  const handleUsePromo = () => {
+    rememberPromoCode(promo.code);
+    scrollToConfigurator();
+  };
   const [heroVideoOpen, setHeroVideoOpen] = useState(false);
   const xmasDaysLeft = getXmasDaysLeft();
 
@@ -121,7 +135,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <span className="inline-flex items-center gap-1.5 font-black uppercase tracking-wider text-[11px] bg-white/15 px-2 py-0.5 rounded">
               <Gift className="w-3.5 h-3.5" /> {t("home.xmasBadge")}
             </span>
-            <span className="font-medium">{t("home.xmasText")}</span>
+            <span className="font-medium">{t("home.xmasText")}{promo ? ` ${t("home.xmasPromo").replace("{code}", promo.code).replace("{n}", Math.round(promo.rate * 100))}` : ""}</span>
             <span className="font-black text-amber-200">
               {xmasDaysLeft === 0 ? t("home.xmasLastDay") : t("home.xmasDaysLeft").replace("{n}", xmasDaysLeft)}
             </span>
@@ -326,7 +340,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-600 shrink-0" />{t("home.trustPrice")}</li>
               <li className="flex items-center gap-2"><Clock className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustDelivery")}</li>
               <li className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />{t("home.trustRevision")}</li>
-              <li className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustPayment")}</li>
+              <li className="flex items-center gap-2"><FileText className="w-4 h-4 text-amber-600 shrink-0" />{t("home.trustLyrics")}</li>
             </ul>
           </div>
 
@@ -429,7 +443,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       {/* Ablauf in 3 Schritten */}
       <section id="prozess" className="max-w-6xl mx-auto px-4 my-12 sm:my-20 scroll-mt-20">
         <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 tracking-tight text-center mb-8 sm:mb-10">{t("home.stepsTitle")}</h2>
-        <ol className="grid md:grid-cols-3 gap-4 sm:gap-6">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {steps.map((step, idx) => (
             <li key={idx} className="bg-white border border-stone-200 rounded-2xl sm:rounded-3xl p-6 shadow-lg shadow-stone-200/50">
               <span className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 text-slate-950 font-black flex items-center justify-center mb-4 shadow-md">
@@ -558,6 +572,15 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </div>
           <div className="md:col-span-2 bg-gradient-to-b from-amber-50 to-orange-50/60 border-t md:border-t-0 md:border-l border-amber-200 p-6 sm:p-10 flex flex-col">
             <div className="text-5xl font-black text-stone-900 tracking-tight">19,99 €</div>
+            {promo && (
+              <button
+                type="button"
+                onClick={handleUsePromo}
+                className="mt-2 text-left text-sm font-bold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2 hover:bg-red-100 transition"
+              >
+                {promoNote}
+              </button>
+            )}
             <p className="text-xs text-stone-500 mt-1 mb-6">{t("home.trustPayment")}</p>
             <h3 className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-3">{t("home.priceExtrasTitle")}</h3>
             <ul className="space-y-2 text-sm text-stone-700 mb-6">
@@ -844,6 +867,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </div>
         </div>
       </footer>
+
+      <PromoTeaser />
 
       {/* Sticky Mobile Bottom CTA Bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">

@@ -22,7 +22,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const [customerPhone, setCustomerPhone] = useState("");
   const [songDetailsText, setSongDetailsText] = useState("");
   const [discountCode, setDiscountCode] = useState("");
-  const [discountApplied, setDiscountApplied] = useState(false);
+  const [discountRate, setDiscountRate] = useState(0);
+  const discountApplied = discountRate > 0;
   const [agreedTerms, setAgreedTerms] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("paypal");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -60,6 +61,23 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Code aus der Gutschein-Karte der Startseite automatisch übernehmen
+  useEffect(() => {
+    if (!isOpen) return;
+    let stored = "";
+    try { stored = sessionStorage.getItem("mmm24_promo_code") || ""; } catch {}
+    if (!stored) return;
+    setDiscountCode(stored);
+    fetch("/api/validate-discount", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: stored }),
+    })
+      .then((res) => res.json())
+      .then(({ valid, rate }) => setDiscountRate(valid ? rate : 0))
+      .catch(() => {});
+  }, [isOpen]);
+
   if (!isOpen || !order) return null;
 
   const kind = orderKind({ category: order?.category, orderDetails: order?.details, id: order?.id });
@@ -69,26 +87,31 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     kind,
     express: Boolean(order.details?.express),
     certificate: includeCertificate,
-    discount: discountApplied,
+    discountRate,
   });
 
-  const handleApplyDiscount = async () => {
-    if (!discountCode.trim()) return;
+  // Code beim Server prüfen; der Server liefert den Rabattsatz
+  const applyDiscount = async (code, { silent = false } = {}) => {
+    if (!String(code || "").trim()) return;
     try {
       const res = await fetch("/api/validate-discount", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: discountCode }),
+        body: JSON.stringify({ code }),
       });
-      const { valid } = await res.json();
-      setDiscountApplied(Boolean(valid));
-      alert(valid
-        ? t("checkout.discountApplied", "10% Rabattcode erfolgreich aktiviert!")
-        : t("checkout.discountInvalid", "Ungültiger Rabattcode."));
+      const { valid, rate } = await res.json();
+      setDiscountRate(valid ? rate : 0);
+      if (!silent) {
+        alert(valid
+          ? t("checkout.discountAppliedRate", "Rabattcode aktiviert: {n} % günstiger").replace("{n}", Math.round(rate * 100))
+          : t("checkout.discountInvalid", "Ungültiger Rabattcode."));
+      }
     } catch {
-      alert(t("checkout.discountInvalid", "Ungültiger Rabattcode."));
+      if (!silent) alert(t("checkout.discountInvalid", "Ungültiger Rabattcode."));
     }
   };
+
+  const handleApplyDiscount = () => applyDiscount(discountCode);
 
   // Bestelldaten für den Server (ohne Betrag – den berechnet der Server)
   const orderPayload = () => ({
@@ -541,8 +564,8 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                   {discountApplied && (
                     <div className="flex justify-between text-xs text-emerald-700 font-semibold">
-                      <span>{t("checkout.discountApplied")}</span>
-                      <span>-10%</span>
+                      <span>{t("checkout.discountAppliedRate", "Rabattcode aktiviert: {n} % günstiger").replace("{n}", Math.round(discountRate * 100))}</span>
+                      <span>-{Math.round(discountRate * 100)} %</span>
                     </div>
                   )}
 
