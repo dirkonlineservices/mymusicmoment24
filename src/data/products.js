@@ -48,7 +48,7 @@ export const PRODUCTS = [
   },
   {
     id: "party",
-    title: "Dein Partytrack – Die ultimative musikalische Überraschung! 🎉🎶",
+    title: "Dein Partytrack: der Song für eure Feier",
     category: "party",
     categoryLabel: "Personalisierte KI Partytracks",
     price: 19.99,

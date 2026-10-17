@@ -11,7 +11,7 @@ const YOUTUBE_TRACKS = [
     genreDetail: "Emotionales Hochzeitslied & Liebeserklärung",
     youtubeUrl: "https://www.youtube.com/watch?v=MCL9AYpNQa0&list=OLAK5uy_myIzhhIJiSFaj7HQEY-sU4ZZie58BL4xo",
     thumbnail: "https://img.youtube.com/vi/MCL9AYpNQa0/hqdefault.jpg",
-    description: "Der emotionale Hochzeitssong für Trauung, Eröffnungstanz und den schönsten Tag im Leben – Gänsehaut und Freudentränen garantiert.",
+    description: "Der emotionale Hochzeitssong für Trauung, Eröffnungstanz und den schönsten Tag im Leben.",
     durationBadge: "Hochzeit",
   },
   {
@@ -33,7 +33,7 @@ const YOUTUBE_TRACKS = [
     genreDetail: "Liebe & Freundschaft mit Beat",
     youtubeUrl: "https://youtu.be/07dkXAHJ68A?si=RUaYiTPdsrM6ohzU",
     thumbnail: "https://img.youtube.com/vi/07dkXAHJ68A/hqdefault.jpg",
-    description: "Gefühlvoller Deutschrap kombiniert mit tanzbaren Rhythmen und tiefgehender Liebesbotschaft – ehrlich, modern und direkt ins Herz.",
+    description: "Gefühlvoller Deutschrap kombiniert mit tanzbaren Rhythmen und tiefgehender Liebesbotschaft. Ehrlich, modern und direkt ins Herz.",
     durationBadge: "Deutschrap",
   },
   {

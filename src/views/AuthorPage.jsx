@@ -44,7 +44,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
             Dirk Schmetzer
           </h1>
           <p className="text-lg md:text-xl text-stone-600 font-light max-w-2xl mx-auto">
-            Gründer von MyMusicMoment24 – Emotionale Songwriting-Kreativität trifft auf modernste KI-Klangsynthese.
+            Gründer von MyMusicMoment24. Ich mache aus euren Geschichten Songs, mit KI als Werkzeug und mit viel Herz.
           </p>
         </div>
       </section>
@@ -58,7 +58,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
               <div className="absolute -inset-1 bg-gradient-to-tr from-amber-400 via-orange-400 to-yellow-400 rounded-full blur-sm opacity-60 group-hover:opacity-100 transition duration-300"></div>
               <img
                 src="/images/dirk-schmetzer.png"
-                alt="Dirk Schmetzer – Gründer & Musikproduzent bei MyMusicMoment24"
+                alt="Dirk Schmetzer, Gründer von MyMusicMoment24"
                 className="relative w-32 h-32 rounded-full object-cover border-2 border-amber-400 shadow-xl shadow-amber-500/20"
               />
             </div>
@@ -104,43 +104,64 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
           <div className="md:col-span-2 space-y-6 text-stone-700 leading-relaxed">
             <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-md shadow-stone-200/50">
               <h3 className="text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
-                <Heart className="w-5 h-5 text-rose-500" /> Meine Mission: Musik, die mitten ins Herz trifft
+                <Heart className="w-5 h-5 text-rose-500" /> Warum ich das mache
               </h3>
               <p className="mb-4 text-stone-600">
-                "Ein Song ist mehr als nur Melodie und Takt – Musik ist der direkteste Weg zur menschlichen Seele. Vor wenigen Jahren war ein individuell geschriebener, professionell produzierter Song für private Anlässe unbezahlbar. Man brauchte Tonstudios, Studiomusiker und Tausende von Euro."
+                Ein Lied kann etwas sagen, das man sonst nur schwer über die Lippen bringt. Danke, ich liebe dich, ich bin stolz auf dich. Früher war ein eigener Song für private Anlässe kaum bezahlbar. Man brauchte ein Tonstudio, Musiker und viel Geld.
               </p>
               <p className="text-stone-600">
-                Mit <strong>MyMusicMoment24</strong> habe ich mir zum Ziel gesetzt, diese Barriere komplett einzureißen: Jeder Mensch soll seinen Liebsten ein unverwechselbares Lied schenken können – mit echten Namen, privaten Anekdoten, Insider-Witzen und Meilensteinen – ab fairen <strong>19,99 €</strong>.
+                Mit <strong>MyMusicMoment24</strong> möchte ich das ändern. Jeder soll einem Menschen, der ihm wichtig ist, ein eigenes Lied schenken können. Mit echten Namen, kleinen Geschichten und Insidern, die nur ihr kennt. Zu einem fairen Festpreis von <strong>19,99 €</strong>.
               </p>
             </div>
 
             <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-md shadow-stone-200/50">
               <h3 className="text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" /> Wie entstehen die Songs?
+                <Sparkles className="w-5 h-5 text-amber-500" /> So entsteht dein Song
               </h3>
               <p className="mb-3 text-stone-600">
-                Viele denken, KI spuckt auf Knopfdruck fertige Hits aus – die Realität ist jedoch viel anspruchsvoller:
+                Viele denken, KI macht auf Knopfdruck einen fertigen Song. So einfach ist es nicht. Die KI ist ein Werkzeug, die Entscheidungen treffe ich. So läuft eine Bestellung ab:
               </p>
-              <ul className="space-y-2 text-sm text-stone-700">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Empathisches Texten:</strong> Eure persönlichen Geschichten werden in reimende Strophen und mitreißende Refrains gefasst.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Genre-Optimierung:</strong> Ob Discofox, gefühlvolle Akustik-Ballade, Deutschrap oder 80s Rock – das Sounddesign wird präzise gesteuert.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Persönliche Qualitätskontrolle:</strong> Wir hören uns jeden Song vor der Übergabe an, um zu prüfen, ob alles harmonisch passt – inklusive 1 kostenfreien Verbesserungsschleife für Eure Änderungswünsche.</span>
-                </li>
+              <ol className="space-y-2.5 text-sm text-stone-700">
+                {[
+                  ["Du erzählst", "Im Konfigurator wählst du Anlass, Musikstil und Stimme und schreibst ein paar Sätze über die Person. Stichpunkte reichen."],
+                  ["Text und Musik entstehen", "Aus deinen Angaben werden Strophen und ein Refrain, dazu Melodie und Gesang im gewählten Stil."],
+                  ["Ich höre jeden Song an", "Stimmen die Namen, die Betonung und das Gefühl? Erst wenn das passt, geht der Song raus."],
+                  ["Du bekommst deinen Song", "Als MP3 per E-Mail oder WhatsApp, meist innerhalb von 24 Stunden an Werktagen."],
+                  ["Wenn etwas nicht passt", "Eine Änderungsrunde ist immer dabei. Sag mir einfach, was anders sein soll."],
+                ].map(([title, text], idx) => (
+                  <li key={title} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center shrink-0">{idx + 1}</span>
+                    <span><strong>{title}:</strong> {text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-md shadow-stone-200/50">
+              <h3 className="text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
+                <Award className="w-5 h-5 text-amber-600" /> Ein ehrlicher Blick zurück und nach vorn
+              </h3>
+              <p className="mb-3 text-stone-600">
+                Im vergangenen Jahr war es bei MyMusicMoment24 ruhiger. Bei mir war vieles im Umbruch, und deshalb sind in dieser Zeit nur wenige Songs entstanden. Die, die entstanden sind, habe ich mit derselben Sorgfalt gemacht wie immer. Das sieht man auch an den Bewertungen.
+              </p>
+              <p className="mb-3 text-stone-600">
+                Die ruhigere Zeit habe ich genutzt, um vieles besser zu machen:
+              </p>
+              <ul className="space-y-1.5 text-sm text-stone-700 mb-3">
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" /><span>eine neue, übersichtliche Website mit Hörproben und klaren Preisen</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" /><span>einen einfachen Konfigurator, mit dem du in 2 Minuten bestellst</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" /><span>sichere Bezahlung per PayPal, Karte oder Überweisung</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" /><span>Ratgeber zu Hochzeit, Geburtstag, Jubiläum und vielen anderen Anlässen</span></li>
               </ul>
+              <p className="text-stone-600">
+                Jetzt geht es wieder richtig los. Mit neuer Energie, aber mit demselben Anspruch wie am Anfang: Jeder Song soll sich anfühlen, als wäre er nur für diesen einen Menschen geschrieben. Weil er das ist.
+              </p>
             </div>
 
             <div className="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50/60 border-2 border-amber-300 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
               <div>
-                <h4 className="font-bold text-stone-900 text-lg">Möchtest Du einen Song erstellen?</h4>
-                <p className="text-sm text-stone-600">Wähle Deinen Anlass und erhalte Dein Lied in 24–48 Std. (Express unter 12 Std.).</p>
+                <h3 className="font-bold text-stone-900 text-lg">Möchtest du einen Song verschenken?</h3>
+                <p className="text-sm text-stone-600">Wähle deinen Anlass. Dein Lied ist meist in 24 Stunden fertig, mit Express in 12 Stunden.</p>
               </div>
               <button
                 onClick={onGoToConfigurator}
@@ -156,7 +177,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
         <section className="border-t border-stone-200 pt-10 text-center">
           <h3 className="text-lg font-bold text-stone-900 mb-2">Fragen oder individuelle Wünsche?</h3>
           <p className="text-sm text-stone-600 mb-6">
-            Ich bin persönlich für Dich da – per E-Mail oder unkompliziert via WhatsApp.
+            Schreib mir einfach. Ich antworte persönlich, per E-Mail oder WhatsApp.
           </p>
           <div className="inline-flex flex-wrap justify-center gap-4">
             <a

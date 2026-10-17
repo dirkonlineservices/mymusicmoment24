@@ -6,7 +6,7 @@ author: "Dirk Schmetzer"
 category: "Abschied"
 readTime: "6 Min. Lesezeit"
 slug: "song-zum-ruhestand"
-excerpt: "Persönliches Lied zum Ruhestand eines Kollegen – mit Namen, Dienstjahren und Insidern aus dem Team. Ideen, Musikstile und Tipps für die Abschiedsfeier. 19,99 €."
+excerpt: "Persönliches Lied zum Ruhestand eines Kollegen, mit Namen, Dienstjahren und Insidern aus dem Team. Ideen, Musikstile und Tipps für die Abschiedsfeier. 19,99 €."
 coverImage: "/images/party.jpg"
 tags:
   - Song zum Ruhestand
@@ -17,15 +17,15 @@ tags:
 
 # Song zum Ruhestand: Das Abschiedslied für Kolleginnen und Kollegen
 
-Nach 20, 30 oder 40 Jahren im Betrieb geht eine Kollegin oder ein Kollege in den Ruhestand. Das Team sucht ein Abschiedsgeschenk – und landet oft beim Präsentkorb, einem Gutschein oder einer Karte, die alle unterschreiben. Ein **Song zum Ruhestand** ist persönlicher: Er erzählt die Geschichte dieser Jahre, mit allen Insidern, die nur das Team kennt.
+Nach 20, 30 oder 40 Jahren im Betrieb geht eine Kollegin oder ein Kollege in den Ruhestand. Das Team sucht ein Abschiedsgeschenk und landet oft beim Präsentkorb, einem Gutschein oder einer Karte, die alle unterschreiben. Ein **Song zum Ruhestand** ist persönlicher. Er erzählt die Geschichte dieser Jahre, mit allen Insidern, die nur das Team kennt.
 
-Bei MyMusicMoment24 entsteht dein Abschiedslied mit moderner KI-Komposition und persönlichem Feinschliff. Wir hören jeden Song vor der Übergabe an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Bei einem Team von zehn Leuten sind das zwei Euro pro Person.
+Bei MyMusicMoment24 entsteht dein Abschiedslied mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Bei einem Team von zehn Leuten sind das zwei Euro pro Person.
 
-## Warum ein Lied das beste Abschiedsgeschenk zur Rente ist
+## Warum ein Lied ein schönes Abschiedsgeschenk zur Rente ist
 
-- **Es würdigt die Arbeit eines ganzen Berufslebens** – statt nur „Danke und alles Gute“ auf einer Karte.
-- **Es macht die Abschiedsfeier unvergesslich:** Wenn der Song läuft und das ganze Team mitsingt, wird gelacht und oft auch geweint.
-- **Es bleibt:** Der neue Ruheständler kann den Song zu Hause immer wieder anhören – und wird an die Kolleginnen und Kollegen erinnert.
+- **Es würdigt die Arbeit eines ganzen Berufslebens.** Das sagt mehr als „Danke und alles Gute“ auf einer Karte.
+- **Es schenkt der Abschiedsfeier einen besonderen Moment:** Wenn der Song läuft und das Team mitsingt, wird gelacht und oft auch geweint.
+- **Es bleibt:** Der neue Ruheständler kann den Song zu Hause immer wieder anhören und denkt dabei an die Kolleginnen und Kollegen.
 
 ## Ideen für den Songtext
 
@@ -35,7 +35,7 @@ Sammelt im Team, was diese Person ausmacht. Stichpunkte reichen:
 - **Typische Sprüche:** „Das haben wir schon immer so gemacht“, „Erst mal einen Kaffee“.
 - **Legendäre Geschichten:** die Weihnachtsfeier, der Betriebsausflug, das Projekt, das fast schiefging.
 - **Was das Team vermissen wird:** gute Laune am Montag, Kuchen zum Geburtstag, die Hilfe bei jedem Problem.
-- **Was jetzt kommt:** Garten, Enkel, Reisen, Wohnmobil, Golfplatz – und endlich ausschlafen.
+- **Was jetzt kommt:** Garten, Enkel, Reisen, Wohnmobil, Golfplatz. Und endlich ausschlafen.
 
 ## Beispiel: So können die Angaben aussehen
 
@@ -59,8 +59,8 @@ Ein guter Kompromiss für gemischte Teams: lustige Strophen mit Insidern und ein
 
 - **Zum Abschluss der Rede abspielen**, wenn alle versammelt sind.
 - **Liedtext für alle ausdrucken**, damit das Team beim zweiten Durchlauf mitsingen kann.
-- **Die Song-Urkunde (+ 9,99 €)** mit Liedtext und QR-Code überreichen – passt gut zur Abschiedskarte.
-- **Auf Spotify veröffentlichen** mit dem [Streaming-Release](/streaming) (+ 4,99 €) – dann kann der Song auch nach der Feier jederzeit gehört werden.
+- **Die Song-Urkunde (+ 9,99 €)** mit Liedtext und QR-Code überreichen. Sie passt gut zur Abschiedskarte.
+- **Auf Spotify veröffentlichen** mit dem [Streaming-Release](/streaming) (einmalig 4,99 €). Dann kann der Song auch nach der Feier jederzeit gehört werden.
 
 ## Auch für andere Abschiede
 
@@ -69,16 +69,16 @@ Der gleiche Gedanke passt zu vielen Anlässen: der Abschied einer langjährigen 
 ## In 3 Schritten zum Song zum Ruhestand
 
 1. **Anlass „Party, Verein & Abschied“ und Musikstil wählen.**
-2. **Erinnerungen aus dem Team eintragen:** Name, Dienstjahre, Sprüche, Geschichten – etwa 2 Minuten.
+2. **Erinnerungen aus dem Team eintragen:** Name, Dienstjahre, Sprüche, Geschichten. Das dauert etwa 2 Minuten.
 3. **Song erhalten:** meist innerhalb von 24 Stunden als MP3, mit einer kostenlosen Änderungsrunde.
 
 ## Häufige Fragen
 
 ### Was kostet ein Abschiedslied zum Ruhestand?
-19,99 € Festpreis. Optional: Express-Lieferung in 12 Stunden (+ 9,99 €) und Song-Urkunde (+ 9,99 €).
+19,99 € Festpreis. Optional gibt es die Express-Lieferung in 12 Stunden (+ 9,99 €) und die Song-Urkunde (+ 9,99 €).
 
-### Die Feier ist schon übermorgen – reicht das?
-Ja. Standard ist meist 24 Stunden an Werktagen, mit Express 12 Stunden.
+### Die Feier ist schon übermorgen. Reicht das?
+Ja. Der Song ist meist innerhalb von 24 Stunden an Werktagen fertig, mit Express in 12 Stunden.
 
 ### Dürfen wir den Song auf der Firmenfeier abspielen?
 Ja, auf der internen Feier ist das kein Problem. Für Werbung oder öffentliche Nutzung sprich uns über die [B2B-Seite](/b2b) an.

@@ -388,7 +388,7 @@ Amount Paid: 4,99 €
               </div>
               <div>
                 <h4 className="font-bold text-stone-900 text-sm sm:text-base mb-1">
-                  {language === "en" ? "Live in 2–5 Days" : "Live in ca. 2–5 Werktagen"}
+                  {language === "en" ? "Live in 3 to 7 days" : "Live in ca. 3 bis 7 Tagen"}
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
@@ -510,7 +510,7 @@ Amount Paid: 4,99 €
               </h4>
               <p>1. 🎨 <strong>Cover-Artwork:</strong> Wir erstellen das 3000x3000px Titelbild für deinen Release.</p>
               <p>2. 🚀 <strong>DistroKid-Upload:</strong> Wir laden den Track hoch und vergeben die weltweiten ISRC-Codes.</p>
-              <p>3. ⏳ <strong>Verfügbarkeit:</strong> Innerhalb von 2–5 Werktagen ist dein Song auf Spotify, Apple Music & Co. live.</p>
+              <p>3. ⏳ <strong>Verfügbarkeit:</strong> Je nach Musikvertrieb ist dein Song nach 3 bis 7 Tagen auf Spotify, Apple Music & Co. live.</p>
               <p>4. 📩 <strong>Streaming-Link:</strong> Wir senden dir den offiziellen Spotify-Link direkt per E-Mail zu!</p>
             </div>
 

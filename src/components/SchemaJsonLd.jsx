@@ -170,7 +170,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         price: 19.99,
         image: "/images/gutschein.jpg",
         url: "https://www.mymusicmoment24.de/#gutschein",
-        description: "Geschenkgutschein für einen persönlichen Song nach Wahl – als druckfertiges PDF per E-Mail, einlösbar für jeden Anlass und jedes Genre.",
+        description: "Geschenkgutschein für einen persönlichen Song nach Wahl, als druckfertiges PDF per E-Mail, einlösbar für jeden Anlass und jedes Genre.",
       },
       {
         id: "streaming",
@@ -214,7 +214,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
             name: "In welchem Format erhalte ich meinen fertigen Song?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Du erhältst deinen Song als hochauflösende MP3-Datei in Studioqualität per E-Mail und sicherem Download-Link – inklusive des vollständigen Liedtexts.",
+              text: "Du erhältst deinen Song als hochauflösende MP3-Datei in Studioqualität per E-Mail und sicherem Download-Link, inklusive des vollständigen Liedtexts.",
             },
           },
           {

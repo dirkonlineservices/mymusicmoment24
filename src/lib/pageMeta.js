@@ -9,14 +9,14 @@ export const SITE_NAME = "MyMusicMoment24";
 export const DEFAULT_IMAGE = "/images/hochzeit.jpg";
 
 const HOME = {
-  title: "Personalisierter Song als Geschenk – mit Namen & eurer Geschichte | MyMusicMoment24",
+  title: "Personalisierter Song als Geschenk mit Namen & eurer Geschichte | MyMusicMoment24",
   description:
     "Personalisierter Song für Hochzeit, Geburtstag oder Jahrestag: mit euren Namen und eurer Geschichte, in Studioqualität, meist in 24h fertig. Festpreis 19,99 €.",
 };
 
 const SUPPORT = {
   title: "Kontakt & WhatsApp-Support | MyMusicMoment24",
-  description: "Fragen zu deinem persönlichen Song? Schreib uns per WhatsApp oder E-Mail – wir helfen dir schnell und persönlich weiter.",
+  description: "Fragen zu deinem persönlichen Song? Schreib uns per WhatsApp oder E-Mail. Wir helfen dir schnell und persönlich weiter.",
   canonicalPath: "/support",
 };
 
@@ -28,7 +28,7 @@ const B2B = {
 
 const STREAMING = {
   title: "Deinen Song auf Spotify & Apple Music veröffentlichen | MyMusicMoment24",
-  description: "Lass deinen persönlichen Song auf Spotify, Apple Music, YouTube Music und Amazon Music veröffentlichen – einmalig 4,99 €, ohne Abo.",
+  description: "Lass deinen persönlichen Song auf Spotify, Apple Music, YouTube Music und Amazon Music veröffentlichen. Einmalig 4,99 €, ohne Abo.",
   canonicalPath: "/streaming",
 };
 

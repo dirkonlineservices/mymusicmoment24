@@ -25,7 +25,7 @@ export const translations = {
 
     // Hero Section
     hero: {
-      badge: "„Von Herzen für die Ohren – MyMusicMoment“",
+      badge: "„Von Herzen für die Ohren“",
       title: "Ein persönlicher Song, der eure Geschichte erzählt –",
       titleHighlight: "emotional, individuell & unvergesslich.",
       description: "Perfekt für Hochzeit, Geburtstag oder jeden besonderen Moment. Produktion von Mensch & KI & Storytelling. Lieferung meist in 24 Stunden (werktags) für nur 19,99 €.",
@@ -40,7 +40,7 @@ export const translations = {
       storyCard3Badge: "3. Freudentränen",
       storyCard3Title: "Ein unvergesslicher Moment",
       storyCard3Desc: "Der gemeinsame Moment auf der Feier: Wenn die ersten Tränen der Rührung fließen.",
-      trustReviews: "Kunden lieben unsere Musik!",
+      trustReviews: "Echte Bewertungen unserer Kunden",
       trustDelivery: "Lieferung in 24h",
       trustGuarantee: "Käuferschutz & Gratis-Verbesserungsschleife",
     },
@@ -107,7 +107,7 @@ export const translations = {
     configurator: {
       badge: "Interaktiver Song-Generator • In 2 Minuten fertig",
       title: "Konfiguriere deinen persönlichen Song",
-      subtitle: "Wähle Anlass, Musikstil & deine persönliche Geschichte – wir komponieren daraus dein Unikat in Studioqualität für nur 19,99 €.",
+      subtitle: "Wähle Anlass, Musikstil und Stimme und erzähl uns eure Geschichte. Daraus entsteht dein eigener Song für 19,99 €.",
       stepLabel: "Schritt",
       of: "von",
       next: "Weiter",
@@ -135,7 +135,7 @@ export const translations = {
         },
         geburtstag: {
           label: "Runder Geburtstag",
-          desc: "Lustig, berührend oder mitreißend mit allen Meilensteinen",
+          desc: "Lustig oder berührend, mit allen Meilensteinen",
         },
         liebe: {
           label: "Liebeserklärung & Jahrestag",
@@ -149,23 +149,23 @@ export const translations = {
       genres: {
         "pop-radio": {
           label: "Modern Pop / Radio-Hit",
-          desc: "Eingängige Melodien, moderner Beat & mitreißender Refrain für jeden Tag",
+          desc: "Eingängige Melodie, moderner Beat und ein Refrain zum Mitsingen",
         },
         "pop-ballade": {
           label: "Gefühlvolle Pop-Ballade",
-          desc: "Emotionales Klavier, Streicher & berührender Gänsehaut-Moment",
+          desc: "Klavier und Streicher für die leisen, berührenden Momente",
         },
         akustik: {
           label: "Akustik / Singer-Songwriter",
-          desc: "Warme Akustikgitarre, intim, handgemacht & 100% authentisch",
+          desc: "Warme Akustikgitarre, nah und ehrlich",
         },
         schlager: {
           label: "Moderner Schlager / Party-Pop",
-          desc: "Tanzbar, schwungvoll, beste Feierlaune & garantiert sofort im Ohr",
+          desc: "Tanzbar, schwungvoll und gut für Feierlaune",
         },
         rock: {
           label: "Rock / Deutschrock & Power-Ballade",
-          desc: "E-Gitarren, mitreißende Drums, Energie & emotionale Dynamik",
+          desc: "E-Gitarren, kräftige Drums und viel Energie",
         },
         rnb: {
           label: "R&B / Soul / Urban",
@@ -177,7 +177,7 @@ export const translations = {
         },
         "country-folk": {
           label: "Country / Folk & Storytelling",
-          desc: "Leichtfüßige Klänge, lebensfroh & perfekt für persönliche Geschichten",
+          desc: "Leichte, lebensfrohe Klänge, die gut Geschichten erzählen",
         },
       },
       voices: {
@@ -234,7 +234,7 @@ export const translations = {
           desc: "Mache deinen persönlichen Song zu einem greifbaren, bleibenden Geschenk:",
           feature1: "Druckfertiges High-Resolution PDF (DIN A4, 300 DPI)",
           feature2: "Individueller Songtext mit Namen, Anlass & Datum",
-          feature3: "Mit scannbarem Audio-QR-Code – Song direkt abspielen & auf das Smartphone herunterladen!",
+          feature3: "Mit QR-Code: scannen, und der Song startet auf dem Smartphone",
           feature4: "Edles goldenes Echtheitszertifikat & Wachssiegel-Optik",
           addBtn: "Jetzt für 9,99 € hinzufügen",
           closeBtn: "Schließen",
@@ -245,7 +245,7 @@ export const translations = {
         fixedPrice: "Nur 19,99 € Festpreis",
         fastDelivery: "Lieferung in unter 24h",
         freeRevision: "1 Gratis-Korrekturschleife",
-        privateRights: "100% Private Nutzungsrechte",
+        privateRights: "Private Nutzungsrechte inklusive",
       },
     },
 
@@ -253,7 +253,7 @@ export const translations = {
     showcase: {
       badge: "Echte Songbeispiele auf YouTube",
       title: "Höre Dir Beispiele unserer Songs an",
-      subtitle: "Vom emotionalen Hochzeitssong über kraftvollen EDM bis zu modernem Hip-Hop – jedes Lied ein individuelles Meisterwerk. Klicke auf ein Lied, um es direkt anzuhören.",
+      subtitle: "Vom Hochzeitslied über EDM bis zu Hip-Hop: So unterschiedlich können unsere Songs klingen. Klick auf ein Lied, um es anzuhören.",
       channelBtn: "Kanal @MyMusicMoment24",
       playLabel: "abspielen",
       hdAudio: "HD Audio",
@@ -264,7 +264,7 @@ export const translations = {
     // Audio Player
     audioPlayer: {
       badge: "Echte KI-Hörproben",
-      title: "Höre den Unterschied: Dein Song mit Gänsehaut-Faktor",
+      title: "Hör rein, wie unsere Songs klingen",
       testedBadge: "Persönlich geprüft • Gratis-Korrekturschleife",
       nowPlaying: "Aktueller Titel",
       play: "Abspielen",
@@ -277,11 +277,11 @@ export const translations = {
     catalog: {
       badge: "Echte Studioqualität • Nur 19,99 € je Lied",
       title: "Alle Musikstücke & Geschenke",
-      subtitle: "Wähle deinen Wunsch-Song – professionell komponiert, individuell getextet und in 24 Stunden geliefert.",
+      subtitle: "Wähle deinen Wunsch-Song. Eigener Text, eigene Musik, meist in 24 Stunden fertig.",
       allCategories: "Alle Produkte",
       fixedPrice: "Festpreis",
       addonPriceLabel: "Song-Zusatz",
-      orderBtn: "Jetzt bestellen!",
+      orderBtn: "Jetzt bestellen",
       videoPreviewBtn: "Hörprobe:",
       videoPreviewSuffix: "abspielen",
       newBadge: "Neu im Sortiment",
@@ -320,7 +320,7 @@ export const translations = {
         },
         party: {
           badge: "Brandneu",
-          title: "Dein Partytrack – Die ultimative musikalische Überraschung! 🎉🎶",
+          title: "Dein Partytrack: der Song für eure Feier",
           categoryLabel: "Personalisierte KI Partytracks",
           desc: "Uptempo-Feiertrack mit mitreißendem Beat und Mitsing-Refrain für Feiern, Junggesellenabschiede und Vereinsfeste.",
         },
@@ -346,7 +346,7 @@ export const translations = {
     process: {
       badge: "In 5 einfachen Schritten zum Wunsch-Song",
       title: "Wie sehen die nächsten Schritte aus?",
-      subtitle: "Vom ersten Gedanken bis zum fertigen Gänsehaut-Song auf deinem Smartphone.",
+      subtitle: "Vom ersten Gedanken bis zum fertigen Song auf deinem Smartphone.",
       steps: [
         {
           num: "1",
@@ -361,7 +361,7 @@ export const translations = {
         {
           num: "3",
           title: "Review & Feedback",
-          desc: "Hör ganz entspannt in deinen Song rein. 1 kostenfreie Verbesserungsschleife ist bei jeder Bestellung inklusive!",
+          desc: "Hör ganz entspannt in deinen Song rein. Eine kostenlose Änderungsrunde ist bei jeder Bestellung dabei.",
         },
         {
           num: "4",
@@ -378,7 +378,7 @@ export const translations = {
 
     // Testimonials
     testimonials: {
-      badge: "100% Echte Bewertungen",
+      badge: "Echte Bewertungen",
       title: "Was Kunden sagen",
       subtitle: "Echte Rückmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.",
       verifiedBuyer: "Verifizierter Kauf",
@@ -421,27 +421,27 @@ export const translations = {
         },
         {
           q: "Wie erhalte ich meinen fertigen Song?",
-          a: "Wir senden dir deinen fertig erstellten und persönlich geprüften Song als hochwertige MP3-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
+          a: "Du bekommst deinen persönlich geprüften Song als MP3-Datei per E-Mail. Auf Wunsch schicken wir ihn dir auch per WhatsApp aufs Smartphone.",
         },
         {
           q: "Klingt der Song nach künstlicher Computerstimme?",
-          a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit menschlichem Feinschliff und persönlicher Qualitätskontrolle. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
+          a: "Nein. Wir nutzen aktuelle KI-Modelle und verbinden sie mit menschlichem Feinschliff. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
         },
         {
           q: "Was passiert, wenn ich nach Erhalt noch einen Änderungswunsch habe?",
-          a: "Kein Problem! Wir hören uns jeden Song vorab sorgfältig an. Solltest du dennoch eine Text- oder Detailanpassung wünschen, ist 1 kostenfreie Verbesserungsschleife bei jeder Bestellung garantiert inklusive.",
+          a: "Kein Problem. Wir hören jeden Song vorher sorgfältig an. Möchtest du trotzdem etwas am Text oder an einem Detail ändern, ist eine kostenlose Änderungsrunde bei jeder Bestellung dabei.",
         },
         {
           q: "Welche Angaben von mir benötigt ihr für den Songtext?",
-          a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
+          a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Daraus schreiben wir Strophen und einen Refrain, der hängen bleibt. Reimen musst du nichts.",
         },
         {
           q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
-          a: "Ja, absolut! Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
+          a: "Ja. Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
         },
         {
           q: "Kann ich auch per Banküberweisung oder ohne PayPal-Konto zahlen?",
-          a: "Ja, selbstverständlich! Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen – kontaktiere uns dazu einfach kurz per WhatsApp oder E-Mail für unsere IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).",
+          a: "Ja. Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen. Schreib uns dazu kurz per WhatsApp oder E-Mail für unsere IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).",
         },
         {
           q: "Warum ist der Bezahl-Button anfangs inaktiv / ausgegraut?",
@@ -516,7 +516,7 @@ export const translations = {
 
     // Footer
     footer: {
-      brandDesc: "Personalisierte Musikstücke und Songs mit echter Gänsehaut-Garantie. Maßgeschneiderte Texte, moderne KI-Synthese und persönliche Qualitätsprüfung ab 19,99 €.",
+      brandDesc: "Persönliche Songs mit euren Namen und eurer Geschichte. Eigener Text, KI-Komposition und eine persönliche Prüfung jedes Songs, für 19,99 €.",
       popularSongs: "Beliebte Songs",
       weddingSong: "Hochzeitssong & Traulied",
       birthdaySong: "Personalisierter Geburtstagssong",
@@ -552,7 +552,7 @@ export const translations = {
       navBack: "Zurück zur Startseite",
       badge: "B2B & Agentur-Partnerprogramm • DS Online Services",
       title: "Singende Produktwerbung, Jingles & Audio-Content mit KI",
-      subtitle: "Verwandle Produkte, Brand-Storys und Werbekampagnen in virale Ohrwürmer. Maßgeschneiderter Audio-Content für Agenturen, E-Commerce-Marken und Unternehmen – mit vollen kommerziellen Nutzungsrechten.",
+      subtitle: "Verwandle Produkte, Brand-Storys und Werbekampagnen in virale Ohrwürmer. Maßgeschneiderter Audio-Content für Agenturen, E-Commerce-Marken und Unternehmen, mit vollen kommerziellen Nutzungsrechten.",
       tagLicense: "Kommerzielle Lizenz inklusive",
       tagCustom: "Maßgeschneiderte Projektumsetzung",
       tagWhiteLabel: "White-Label & Agenturrabatte",
@@ -571,11 +571,11 @@ export const translations = {
       card3Bullet1: "Einbindung von Firmennamen, Meilensteinen & Werten",
       card3Bullet2: "Emotionaler Höhepunkt für jede Betriebsfeier",
       card4Title: "Laufende Agentur-Partnerschaft & White-Label",
-      card4Desc: "Erweitere das Service-Portfolio deiner Agentur ohne eigene Musikproduzenten oder Audiotechniker. Wir liefern im Hintergrund maßgeschneiderte Audio-Kreationen – du verkaufst sie mit deiner eigenen Marge und unter deinem Namen an deine Kunden.",
+      card4Desc: "Erweitere das Service-Portfolio deiner Agentur ohne eigene Musikproduzenten oder Audiotechniker. Wir liefern im Hintergrund maßgeschneiderte Audio-Kreationen, und du verkaufst sie mit deiner eigenen Marge und unter deinem Namen an deine Kunden.",
       card4Bullet1: "Attraktive Staffelpreise ab mehreren Tracks pro Monat",
       card4Bullet2: "Fester Ansprechpartner & Prioritäts-Produktion",
       agencyBadge: "Teil von DS Online Services",
-      agencyTitle: "SichtbarmitKI.agency – Deine Partner-Agentur für KI-Sichtbarkeit",
+      agencyTitle: "SichtbarmitKI.agency: deine Partner-Agentur für KI-Sichtbarkeit",
       agencyDesc: "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben Musikproduktion unterstützen wir Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.",
       whatsappBtn: "WhatsApp-Direktkontakt",
       formBadge: "Unverbindliche Anfrage",

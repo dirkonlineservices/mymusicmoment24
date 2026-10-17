@@ -468,7 +468,7 @@ Notes: ${notes}</pre>
           <ol style="line-height: 1.7; color: #334155;">
             <li><strong>Cover-Artwork:</strong> Wir erstellen das hochauflösende 3000x3000px Cover für deinen Song.</li>
             <li><strong>DistroKid-Übermittlung:</strong> Dein Song wird mit ISRC-Codes an alle weltweiten Streaming-Plattformen übergeben.</li>
-            <li><strong>Freischaltung (ca. 2–5 Werktage):</strong> Die Streaming-Dienste (Spotify, Apple etc.) prüfen und aktivieren deinen Titel.</li>
+            <li><strong>Freischaltung (ca. 3 bis 7 Tage, je nach DistroKid):</strong> Die Streaming-Dienste (Spotify, Apple etc.) prüfen und aktivieren deinen Titel.</li>
             <li><strong>Dein Link:</strong> Sobald der Song live ist, senden wir dir deinen offiziellen Spotify-Link per E-Mail an <strong>${orderData.customerEmail}</strong>!</li>
           </ol>
 
@@ -979,7 +979,7 @@ function renderHomeShell(html) {
     .map((item) => `<h3>${escapeHtml(item.q)}</h3><p>${escapeHtml(item.a)}</p>`)
     .join("");
   const occasions = Object.values(de.home.occasions)
-    .map((o) => `<li><strong>${escapeHtml(o.label)}</strong> – ${escapeHtml(o.desc)}</li>`)
+    .map((o) => `<li><strong>${escapeHtml(o.label)}:</strong> ${escapeHtml(o.desc)}</li>`)
     .join("");
   const steps = de.home.steps
     .map((s) => `<li><strong>${escapeHtml(s.title)}:</strong> ${escapeHtml(s.desc)}</li>`)
@@ -1004,7 +1004,7 @@ function renderBlogShell(html, post) {
           <h1>${escapeHtml(post.title)}</h1>
           ${post.author ? `<p>Von ${escapeHtml(post.author)}${post.dateModified || post.date ? ` · Aktualisiert am ${escapeHtml(post.dateModified || post.date)}` : ""}</p>` : ""}
           ${post.html}
-          <p><a href="/#konfigurator">Jetzt persönlichen Song gestalten – 19,99 €</a></p>
+          <p><a href="/#konfigurator">Jetzt persönlichen Song gestalten (19,99 €)</a></p>
           <h2>Weitere Ratgeber</h2><ul>${blogLinksHtml()}</ul>
         </article>
       </div>`;
