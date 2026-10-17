@@ -40,7 +40,7 @@ Gegenstände verstauben, Bücher bleiben ungelesen, Parfum ist irgendwann aufgeb
 
 Ein **personalisierter Song** mit euren Namen, eurer Geschichte und dem Lieblingsgenre der beschenkten Person geht nah. Ob bei der Geburtstagsfeier, beim Hochzeitsempfang oder als stille Überraschung per WhatsApp: Oft fließen dabei ein paar Tränen.
 
-Bei [MyMusicMoment24](/) schreiben und produzieren wir **seit 2024** persönliche Lieder für 19,99 € Festpreis. Du bekommst deinen Song meist innerhalb von 24 Stunden an Werktagen als MP3, inklusive Liedtext.
+Bei [MyMusicMoment24](/) schreibe und produziere ich **seit 2024** persönliche Lieder für 19,99 € Festpreis. Du bekommst deinen Song meist innerhalb von 24 Stunden an Werktagen als MP3, inklusive Liedtext.
 
 ![Personalisierte Song-Urkunde als greifbares Geschenk zum Einrahmen](/images/urkunde-beispiel.jpg)
 
@@ -107,7 +107,7 @@ Humor ist eine Form von Zuneigung. Wenn du jemanden zum Lachen bringst, schenkst
 
 Morgen ist der große Tag, und du hast noch kein Geschenk? Das passiert, und es ist kein Grund zur Panik. Mit der **Express-Lieferung in 12 Stunden** (+ 9,99 €) kannst du auch kurzfristig noch einen persönlichen Song verschenken.
 
-Wichtig dabei: Leg dir deine Angaben (Namen, Anlass, Genre, persönliche Geschichte) schon bereit, damit wir sofort loslegen können. Bei MyMusicMoment24 geht das direkt über den [Konfigurator](/#konfigurator). Das sind 5 Schritte und dauert etwa 2 Minuten.
+Wichtig dabei: Leg dir deine Angaben (Namen, Anlass, Genre, persönliche Geschichte) schon bereit, damit ich sofort loslegen kann. Bei MyMusicMoment24 geht das direkt über den [Konfigurator](/#konfigurator). Das sind 5 Schritte und dauert etwa 2 Minuten.
 
 ---
 

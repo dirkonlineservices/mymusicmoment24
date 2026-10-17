@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { PRODUCTS } from "../data/products";
+import { translations } from "../i18n/translations";
 
 /**
  * Helper to build Google Merchant Center & Rich Results compliant Product Schema
@@ -192,40 +193,12 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       const faqSchema = {
         "@type": "FAQPage",
         "@id": "https://www.mymusicmoment24.de/#faq",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Wie viel kostet ein persönlicher Song?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Jedes personalisierte Lied kostet bei uns nur 19,99 € Festpreis in voller Studioqualität. Es gibt keine versteckten Kosten oder Abos.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Wie lange dauert die Erstellung meines Songs?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "In der Regel ist dein Song innerhalb von 24 Stunden fertig (werktags). Mit unserem Express-Zuschlag erhältst du deinen Song garantiert innerhalb von 12 Stunden.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "In welchem Format erhalte ich meinen fertigen Song?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Du erhältst deinen Song als hochauflösende MP3-Datei in Studioqualität per E-Mail und sicherem Download-Link, inklusive des vollständigen Liedtexts.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Darf ich den Song öffentlich abspielen oder verschenken?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Ja! Du erhältst die vollen privaten Nutzungsrechte für Feiern, Hochzeiten, Videos und persönliche Geschenke.",
-            },
-          },
-        ],
+        // Gleiche Fragen und Antworten wie die sichtbare FAQ auf der Startseite
+        mainEntity: (translations.de.faq.items || []).map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
       };
 
       schemaItems.push(faqSchema);

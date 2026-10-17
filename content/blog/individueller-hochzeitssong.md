@@ -25,7 +25,7 @@ Solche Momente bleiben hängen.
 
 Darum geht es bei einem individuellen Hochzeitssong. Es ist ein Lied, das es nur einmal gibt. Es erzählt eure Geschichte, in eurer Sprache, mit euren Namen und in der Musik, die ihr mögt.
 
-Mit KI-Komposition und einer persönlichen Prüfung jedes Songs ist das heute bezahlbar und geht schnell. Bei **MyMusicMoment24** schreiben wir **seit 2024** Hochzeitssongs für Brautpaare, Trauzeugen und Familien. In diesem Ratgeber erfährst du, was du für euren Hochzeitssong wissen solltest.
+Mit KI-Komposition und einer persönlichen Prüfung jedes Songs ist das heute bezahlbar und geht schnell. Bei **MyMusicMoment24** schreibe ich **seit 2024** Hochzeitssongs für Brautpaare, Trauzeugen und Familien. In diesem Ratgeber erfährst du, was du für euren Hochzeitssong wissen solltest.
 
 ---
 
@@ -39,7 +39,7 @@ Ein individueller Hochzeitssong ist anders. Er nutzt sich nicht ab, und man kann
 
 Und er kann etwas, das eine Vase nicht kann: Menschen berühren. Oft wird es still im Saal, und manchmal fließen Freudentränen.
 
-Wir erleben das regelmäßig, und es berührt uns jedes Mal wieder.
+Ich erlebe das regelmäßig, und es berührt mich jedes Mal wieder.
 
 ---
 
@@ -95,7 +95,7 @@ Das ist der wichtigste Schritt und der persönlichste. Je mehr echte Details du 
 Es war keine Liebe auf den ersten Blick? Kein Problem. Gerade ungewöhnliche Liebesgeschichten ergeben oft die schönsten Songs.
 
 ### Schritt 4: Produktion, Prüfung & Lieferung
-Bevor wir euch den Song schicken, hören wir ihn uns persönlich an. Wir achten auf Textverständlichkeit, Rhythmus, Melodie und darauf, ob er die richtige Stimmung trifft. Ihr bekommt den fertigen Song **meist innerhalb von 24 Stunden an Werktagen (per Express in 12 Stunden)** als MP3 per E-Mail oder WhatsApp.
+Bevor ich euch den Song schicke, höre ich ihn mir persönlich an. Ich achte auf Textverständlichkeit, Rhythmus, Melodie und darauf, ob er die richtige Stimmung trifft. Ihr bekommt den fertigen Song **meist innerhalb von 24 Stunden an Werktagen (per Express in 12 Stunden)** als MP3 per E-Mail oder WhatsApp.
 
 Dabei sind der vollständige Liedtext und 1 kostenlose Änderungsrunde. Wenn ihr möchtet, gibt es dazu die [Song-Urkunde](/) als PDF mit Liedtext und QR-Code.
 
@@ -140,10 +140,10 @@ Kein Abo und keine versteckten Kosten. Du zahlst einen festen Preis, und das war
 So persönlich, wie du möchtest. Je mehr Details du im Konfigurator einträgst, also Namen, Orte, Insider und besondere Momente, desto mehr wird es euer Song. Manche schreiben einen ganzen Absatz, andere nur drei Stichpunkte. Beides funktioniert.
 
 **Klingt der Song nach KI oder nach echter Musik?**  
-Nach echter Musik. Der Song entsteht mit KI-Komposition, und wir hören jeden Song persönlich an, bevor wir ihn euch schicken. Passt etwas nicht, arbeiten wir nach, bevor er rausgeht.
+Nach echter Musik. Der Song entsteht mit KI-Komposition, und ich höre jeden Song persönlich an, bevor ich ihn euch schicke. Passt etwas nicht, arbeite ich nach, bevor er rausgeht.
 
 **Was passiert, wenn uns der Song nicht gefällt?**  
-Jede Bestellung enthält garantiert eine kostenlose Änderungsrunde. Wenn du konkrete Wünsche hast, etwa einen anderen Refrain, eine andere Betonung oder ein Detail im Text, setzen wir das um.
+Jede Bestellung enthält garantiert eine kostenlose Änderungsrunde. Wenn du konkrete Wünsche hast, etwa einen anderen Refrain, eine andere Betonung oder ein Detail im Text, setze ich das um.
 
 **Können wir den Song auch auf Spotify veröffentlichen?**  
 Ja. Mit dem optionalen [Streaming-Release](/streaming) erscheint euer Hochzeitssong je nach Musikvertrieb nach 3 bis 7 Tagen auf Spotify, Apple Music, YouTube Music und weiteren Plattformen, unter dem Künstlerprofil „MyMusicMoment24". Das kostet einmalig 4,99 € und bleibt dauerhaft online.
@@ -155,7 +155,7 @@ Die Standard-Lieferung kommt meist innerhalb von 24 Stunden an Werktagen. Plane 
 
 ## Tipps für einen gelungenen Hochzeitssong
 
-Aus den bisherigen Songs wissen wir, worauf es ankommt:
+Aus den bisherigen Songs weiß ich, worauf es ankommt:
 
 **1. Sei konkret, nicht allgemein.**  
 „Er macht im Sommer immer den besten Grillabend" ist besser als „Er liebt Essen". Konkrete Details erzeugen Bilder im Kopf.

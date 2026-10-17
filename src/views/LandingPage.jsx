@@ -77,44 +77,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const faqs = t("faq.items", [
-    {
-      q: "Wie viel kostet ein persönlicher Song?",
-      a: "Jedes personalisierte Musikstück kostet bei uns nur 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
-    },
-    {
-      q: "Wie lange dauert es, bis mein Song fertig ist?",
-      a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. Für ganz eilige Anlässe bieten wir zusätzlich einen 12-Stunden-Express-Service an.",
-    },
-    {
-      q: "Wie erhalte ich meinen fertigen Song?",
-      a: "Wir senden dir deinen fertig erstellten und persönlich geprüften Song als hochwertige MP3-Audiodatei per E-Mail und auf Wunsch bequem und direkt auf dein Smartphone via WhatsApp!",
-    },
-    {
-      q: "Klingt der Song nach künstlicher Computerstimme?",
-      a: "Nein! Wir nutzen hochentwickelte KI-Modelle neuester Generation, kombiniert mit menschlichem Feinschliff und persönlicher Qualitätskontrolle. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
-    },
-    {
-      q: "Was passiert, wenn ich nach Erhalt noch einen Änderungswunsch habe?",
-      a: "Kein Problem! Wir hören uns jeden Song vorab sorgfältig an. Solltest du dennoch eine Text- oder Detailanpassung wünschen, ist 1 kostenfreie Verbesserungsschleife bei jeder Bestellung garantiert inklusive.",
-    },
-    {
-      q: "Welche Angaben von mir benötigt ihr für den Songtext?",
-      a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Wir dichten daraus berührende, perfekt gereimte Strophen und einen einprägsamen Refrain.",
-    },
-    {
-      q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
-      a: "Ja, absolut! Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
-    },
-    {
-      q: "Kann ich auch per Banküberweisung oder ohne PayPal-Konto zahlen?",
-      a: "Ja, selbstverständlich! Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen – kontaktiere uns dazu einfach kurz per WhatsApp oder E-Mail für unsere IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).",
-    },
-    {
-      q: "Warum ist der Bezahl-Button anfangs inaktiv / ausgegraut?",
-      a: "Aus rechtlichen Gründen (Verzicht auf das 14-tägige Widerrufsrecht bei individueller digitaler Maßanfertigung deines Liedes) wird der Bezahl-Button erst aktiv, sobald du deine E-Mail-Adresse für die Songzustellung eingegeben und das Zustimmungs-Kästchen für unsere AGB und den sofortigen Produktionsstart angehakt hast.",
-    },
-  ]);
+  const faqs = t("faq.items", []);
 
   const steps = t("home.steps", []);
   const priceIncluded = t("home.priceIncluded", []);

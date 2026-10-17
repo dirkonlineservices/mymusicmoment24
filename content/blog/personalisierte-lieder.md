@@ -36,7 +36,7 @@ Ein personalisiertes Lied ist kein fertiger Song, in den nachträglich ein Name 
 1. **Ein echtes Unikat:** Text, Stimmung und Gesang erzählen von eurer Beziehung.
 2. **Die Überraschung:** Kaum jemand rechnet damit, in einem richtigen Song mit dem eigenen Namen besungen zu werden.
 3. **Immer wieder anhörbar:** im Auto, am Jahrestag, auf dem Handy oder sogar auf Spotify.
-4. **Keine Vorkenntnisse nötig:** Du lieferst Stichpunkte, wir kümmern uns um Songwriting und Produktion.
+4. **Keine Vorkenntnisse nötig:** Du lieferst Stichpunkte, ich kümmere mich um Songwriting und Produktion.
 
 Wie sehr so ein Lied berühren kann, zeigt eine Kundin: Nach ihrem ersten Song hat sie für jedes Mitglied ihrer Familie ein eigenes Lied bestellt. Rund 20 Songs sind so entstanden, jeder mit einer anderen Geschichte.
 
@@ -59,11 +59,11 @@ Für Eltern, Kollegen, Trainer oder Freunde. Ideen findest du im [Lied für Mama
 
 ## Wie entsteht ein personalisierter Song bei MyMusicMoment24?
 
-Reine KI-Tools aus dem Internet erzeugen zwar in Sekunden Musik. Auf Deutsch liefern sie aber oft holprige Reime und falsche Betonungen. Deshalb verbinden wir KI-Komposition mit **menschlicher Qualitätskontrolle**:
+Reine KI-Tools aus dem Internet erzeugen zwar in Sekunden Musik. Auf Deutsch liefern sie aber oft holprige Reime und falsche Betonungen. Deshalb verbinde ich KI-Komposition mit **menschlicher Qualitätskontrolle**:
 
 1. **Deine Angaben:** Namen, Musikstil, Stimme und eure Geschichte.
 2. **Komposition:** Text, Melodie, Gesang und Arrangement entstehen mit KI.
-3. **Persönliche Prüfung:** Wir hören jeden Song vor der Übergabe an. Stimmen Rhythmus, Aussprache und Gefühl?
+3. **Persönliche Prüfung:** Ich höre jeden Song vor der Übergabe an. Stimmen Rhythmus, Aussprache und Gefühl?
 4. **Lieferung:** Die fertige MP3 kommt per E-Mail oder WhatsApp. Meist dauert das 24 Stunden an Werktagen, mit Express 12 Stunden.
 
 ## Was kostet ein personalisierter Song?
@@ -92,7 +92,7 @@ Du kennst die Geschichte noch nicht genau? Dann verschenke einen [Geschenkgutsch
 ## Häufige Fragen
 
 ### Muss ich den Songtext selbst reimen können?
-Nein. Stichpunkte in deinen eigenen Worten reichen, zum Beispiel: *„Lukas und Sarah, kennengelernt beim Studium in Köln, lieben Camping in Italien, Hochzeit am 15. August.“* Daraus schreiben wir einen Songtext mit Strophen und Refrain.
+Nein. Stichpunkte in deinen eigenen Worten reichen, zum Beispiel: *„Lukas und Sarah, kennengelernt beim Studium in Köln, lieben Camping in Italien, Hochzeit am 15. August.“* Daraus schreibe ich einen Songtext mit Strophen und Refrain.
 
 ### Wie wird das Lied geliefert?
 Als MP3-Datei per E-Mail oder per WhatsApp. Sie läuft auf jedem Smartphone, PC oder Lautsprecher.
@@ -101,7 +101,7 @@ Als MP3-Datei per E-Mail oder per WhatsApp. Sie läuft auf jedem Smartphone, PC 
 Ist ein Name nicht ganz richtig ausgesprochen oder passt eine Zeile nicht, ist eine Änderungsrunde kostenlos inklusive.
 
 ### Kann der Song auf Spotify erscheinen?
-Ja. Mit dem [Streaming-Release](/streaming) für einmalig 4,99 € veröffentlichen wir deinen Song unter unserem Künstlerprofil auf Spotify, Apple Music, YouTube Music und Amazon Music.
+Ja. Mit dem [Streaming-Release](/streaming) für einmalig 4,99 € veröffentliche ich deinen Song unter dem Künstlerprofil MyMusicMoment24 auf Spotify, Apple Music, YouTube Music und Amazon Music.
 
 ## Fazit: Schenke Musik, die bleibt
 

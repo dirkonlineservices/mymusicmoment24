@@ -33,8 +33,8 @@ const STREAMING = {
 };
 
 const AUTHOR = {
-  title: "Über uns: Dirk Schmetzer & das Team | MyMusicMoment24",
-  description: "Wer hinter MyMusicMoment24 steckt: Seit 2024 entstehen bei uns personalisierte Songs mit KI und persönlichem Feinschliff.",
+  title: "Über mich: Dirk Schmetzer, der Mensch hinter MyMusicMoment24",
+  description: "MyMusicMoment24 mache ich allein, ohne Firma, Gruppe oder Investoren dahinter. Seit 2024 entstehen hier persönliche Songs, mit direktem Kontakt zu mir.",
   canonicalPath: "/autor-dirk-schmetzer",
 };
 

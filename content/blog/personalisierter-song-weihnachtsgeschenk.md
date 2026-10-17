@@ -19,7 +19,7 @@ tags:
 
 Jedes Jahr dieselbe Frage: Was schenkt man zu Weihnachten jemandem, der eigentlich schon alles hat? Noch ein Schal, das nächste Parfüm oder ein Gutschein vom Kaufhaus sind schnell vergessen. Ein **personalisierter Song als Weihnachtsgeschenk** erzählt dagegen eure eigene Geschichte. Mit echten Namen, gemeinsamen Erinnerungen und kleinen Insidern, die nur ihr kennt.
 
-Bei MyMusicMoment24 entsteht dein Weihnachtslied mit KI-Komposition und persönlichem Feinschliff. Wir hören jeden Song vor der Übergabe an. Du bekommst ihn als MP3 per E-Mail oder WhatsApp, **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
+Bei MyMusicMoment24 entsteht dein Weihnachtslied mit KI-Komposition und persönlichem Feinschliff. Ich höre jeden Song vor der Übergabe an. Du bekommst ihn als MP3 per E-Mail oder WhatsApp, **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
 
 ## Warum ein eigenes Lied ein schönes Weihnachtsgeschenk ist
 
@@ -42,14 +42,14 @@ Ein Song über Familiengeschichten, gemeinsame Sonntage und die Enkel. Gerade f�
 Wie habt ihr euch kennengelernt? Was war euer schönster Moment in diesem Jahr? Daraus wird eine Liebeserklärung zum Fest, romantisch als Pop-Ballade oder als Duett mit zwei Stimmen.
 
 ### Für die ganze Familie
-Warum nur ein Lied? Eine unserer Kundinnen hat für jedes Familienmitglied einen eigenen Song bestellt. Rund 20 Lieder sind so entstanden, jedes mit eigenen Erinnerungen. Gerade zu Weihnachten, wenn alle zusammenkommen, ist das ein besonderer Moment: Jeder bekommt sein eigenes Lied.
+Warum nur ein Lied? Eine meiner Kundinnen hat für jedes Familienmitglied einen eigenen Song bestellt. Rund 20 Lieder sind so entstanden, jedes mit eigenen Erinnerungen. Gerade zu Weihnachten, wenn alle zusammenkommen, ist das ein besonderer Moment: Jeder bekommt sein eigenes Lied.
 
 ### Für Freunde, das Team oder den Verein
 Über eine Weihnachtsfeier mit eigenem Song wird meist noch lange gesprochen. Für Kollegen, die Mannschaft oder die Freundesgruppe eignet sich ein lustiger Refrain zum Mitsingen, mit Anspielungen auf das gemeinsame Jahr.
 
 ## Keine Idee für die Geschichte? Verschenke einen Song-Gutschein
 
-Vielleicht möchtest du, dass die beschenkte Person ihre Geschichte selbst erzählt. Oder du weißt noch nicht, welcher Musikstil am besten passt. Dann ist unser **Geschenkgutschein für ein Wunschlied (19,99 €)** eine gute Wahl. Du bekommst ihn als druckfertiges PDF per E-Mail, kannst ihn ausdrucken und unter den Baum legen. Der Song wird erst gestaltet, wenn der Gutschein eingelöst wird.
+Vielleicht möchtest du, dass die beschenkte Person ihre Geschichte selbst erzählt. Oder du weißt noch nicht, welcher Musikstil am besten passt. Dann ist der **Geschenkgutschein für ein Wunschlied (19,99 €)** eine gute Wahl. Du bekommst ihn als druckfertiges PDF per E-Mail, kannst ihn ausdrucken und unter den Baum legen. Der Song wird erst gestaltet, wenn der Gutschein eingelöst wird.
 
 ## Bestellschluss für Weihnachten: Bis 23.12. bestellen
 
@@ -59,8 +59,8 @@ Tipp: Bestell lieber ein paar Tage früher. Dann bleibt in Ruhe Zeit für die **
 
 ## In 3 Schritten zu deinem Weihnachtslied
 
-1. **Erzählen:** Wähle Anlass, Musikstil und Stimme und schreib uns ein paar Sätze über die beschenkte Person. Das dauert etwa 2 Minuten.
-2. **Wir produzieren:** Text, Melodie und Gesang entstehen mit KI und menschlichem Feinschliff. Wir hören jeden Song vor der Übergabe an.
+1. **Erzählen:** Wähle Anlass, Musikstil und Stimme und schreib mir ein paar Sätze über die beschenkte Person. Das dauert etwa 2 Minuten.
+2. **Ich produziere:** Text, Melodie und Gesang entstehen mit KI und menschlichem Feinschliff. Ich höre jeden Song vor der Übergabe an.
 3. **Verschenken:** Du bekommst die MP3 per E-Mail oder WhatsApp. Dann ist alles bereit für den Moment unter dem Baum.
 
 ## So wird die Übergabe zu einem besonderen Moment
@@ -78,9 +78,9 @@ Tipp: Bestell lieber ein paar Tage früher. Dann bleibt in Ruhe Zeit für die **
 Bis zum 23. Dezember. Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen, mit Express in 12 Stunden.
 
 **Kann der Song auch ein klassisches Weihnachtslied sein?**
-Wir schreiben einen eigenen, neuen Song mit euren Namen und eurer Geschichte. Gern mit weihnachtlicher Stimmung und in dem Musikstil, den du im Konfigurator wählst.
+Ich schreibe einen eigenen, neuen Song mit euren Namen und eurer Geschichte. Gern mit weihnachtlicher Stimmung und in dem Musikstil, den du im Konfigurator wählst.
 
 **Was, wenn mir etwas nicht gefällt?**
 Eine Änderungsrunde ist bei jeder Bestellung kostenlos inklusive.
 
-Weitere Ideen findest du in unseren Ratgebern zum [personalisierten Geburtstagslied](/personalisierte-geburtstagslieder), zum [Jubiläumssong](/jubilaum-song) und in den [10 Tipps für personalisierte Geschenke](/10-tipps-fuer-personalisierte-geschenke).
+Weitere Ideen findest du in meinen Ratgebern zum [personalisierten Geburtstagslied](/personalisierte-geburtstagslieder), zum [Jubiläumssong](/jubilaum-song) und in den [10 Tipps für personalisierte Geschenke](/10-tipps-fuer-personalisierte-geschenke).

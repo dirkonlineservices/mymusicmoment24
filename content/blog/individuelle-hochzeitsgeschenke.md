@@ -22,7 +22,7 @@ Wenn zwei Menschen heiraten, möchten Freunde, Trauzeugen und Familie etwas sche
 
 Solche Geschenke sind praktisch. Aber berühren sie? Erinnern sich das Brautpaar und die Gäste in zehn Jahren noch daran?
 
-Ein **individueller Hochzeitssong mit den echten Namen und der Liebesgeschichte** des Brautpaars kann das. Er schafft einen Moment auf der Feier, über den noch lange gesprochen wird. Bei **MyMusicMoment24** schreiben wir **seit 2024** Hochzeitssongs für Paare, Familien und Trauzeugen.
+Ein **individueller Hochzeitssong mit den echten Namen und der Liebesgeschichte** des Brautpaars kann das. Er schafft einen Moment auf der Feier, über den noch lange gesprochen wird. Bei **MyMusicMoment24** schreibe ich **seit 2024** Hochzeitssongs für Paare, Familien und Trauzeugen.
 
 ---
 
@@ -72,7 +72,7 @@ Aus diesen Details entstehen Strophen und ein Refrain im gewünschten Musikstil,
 
 ## Einfach, schnell und bezahlbar für 19,99 €
 
-Früher war ein eigener Song für die meisten zu teuer. Bei MyMusicMoment24 verbinden wir KI-Komposition mit einer persönlichen Prüfung jedes Songs. So wird dieses Geschenk für viele erschwinglich:
+Früher war ein eigener Song für die meisten zu teuer. Bei MyMusicMoment24 verbinde ich KI-Komposition mit einer persönlichen Prüfung jedes Songs. So wird dieses Geschenk für viele erschwinglich:
 
 * **Festpreis 19,99 €** ohne versteckte Kosten
 * **Meist innerhalb von 24 Stunden an Werktagen fertig** (Express in 12 Stunden für + 9,99 €)

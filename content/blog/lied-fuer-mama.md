@@ -19,7 +19,7 @@ tags:
 
 Mütter sind oft schwer zu beschenken. „Ich brauche nichts“, sagen sie, und meistens meinen sie das auch so. Was sie sich trotzdem wünschen: zu spüren, dass all die Jahre voller Fürsorge, Geduld und Liebe gesehen werden. Ein **Lied für Mama** mit ihrem Namen und euren gemeinsamen Erinnerungen kann genau das sagen.
 
-Bei MyMusicMoment24 entsteht dein Song mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
+Bei MyMusicMoment24 entsteht dein Song mit KI-Komposition und persönlichem Feinschliff. Bevor ich ihn dir schicke, höre ich jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
 
 ## Zu welchen Anlässen passt ein Lied für Mama?
 

@@ -20,7 +20,7 @@ tags:
 
 Du hörst einen Song und er geht dir nah. Die Stimme trifft den Ton, die Melodie steigt im Refrain an, und der Text erzählt von Dingen, die du selbst erlebt hast. Und jetzt stell dir vor, dieser Song ist nicht in einem teuren Tonstudio entstanden. Sondern aus moderner KI-Technik und deiner persönlichen Geschichte.
 
-Genau das macht KI-Musik möglich. Bei **MyMusicMoment24** machen wir das **seit 2024**. In diesem Artikel erkläre ich dir, **wie das technisch funktioniert**, warum der Song trotzdem persönlich klingt und wie aus deinen Erinnerungen meist innerhalb von 24 Stunden an Werktagen ein fertiges Lied wird.
+Genau das macht KI-Musik möglich. Bei **MyMusicMoment24** mache ich das **seit 2024**. In diesem Artikel erkläre ich dir, **wie das technisch funktioniert**, warum der Song trotzdem persönlich klingt und wie aus deinen Erinnerungen meist innerhalb von 24 Stunden an Werktagen ein fertiges Lied wird.
 
 ---
 
@@ -58,17 +58,17 @@ Je mehr echte Details du mitgibst, desto persönlicher wird der Song. Das ist de
 
 ### Schritt 2: Kreative Synthese durch Prompt-Engineering
 
-Unsere Aufgabe ist es, dein Briefing in genaue musikalische Anweisungen zu übersetzen. Diese Anweisungen heißen **Prompts**. Das ist kreative Arbeit, die viel mit Erfahrung zu tun hat. Welche Formulierung erzeugt welchen Klang? Wie beschreibt man eine melancholische Strophe mit einem hoffnungsvollen Refrain? Wie baut man eine Bridge ein, die überrascht?
+Meine Aufgabe ist es, dein Briefing in genaue musikalische Anweisungen zu übersetzen. Diese Anweisungen heißen **Prompts**. Das ist kreative Arbeit, die viel mit Erfahrung zu tun hat. Welche Formulierung erzeugt welchen Klang? Wie beschreibt man eine melancholische Strophe mit einem hoffnungsvollen Refrain? Wie baut man eine Bridge ein, die überrascht?
 
-Hier treffen Technik und Handwerk aufeinander. Nicht jeder Versuch gelingt auf Anhieb. Deshalb entstehen manchmal mehrere Versionen, und wir wählen die stärkste aus.
+Hier treffen Technik und Handwerk aufeinander. Nicht jeder Versuch gelingt auf Anhieb. Deshalb entstehen manchmal mehrere Versionen, und ich wähle die stärkste aus.
 
 ### Schritt 3: Persönliche Qualitätsprüfung
 
-Diesen Schritt nehmen wir besonders ernst: **Wir hören uns jeden Song vor der Übergabe persönlich an.**
+Diesen Schritt nehme ich besonders ernst: **Ich höre mir jeden Song vor der Übergabe persönlich an.**
 
 ![Persönliches Abhören und Klangprüfung im Tonstudio](/images/step-3-review.jpg)
 
-Bevor dein Song rausgeht, prüfen wir:
+Bevor dein Song rausgeht, prüfe ich:
 
 - Ist der Text klar und verständlich zu hören?
 - Passen Rhythmus und Betonung zum deutschen Sprachfluss?
@@ -76,7 +76,7 @@ Bevor dein Song rausgeht, prüfen wir:
 - Passt die Gesangsstimme zum gewünschten Stil?
 - Sind alle persönlichen Details richtig eingebaut?
 
-Erst wenn wir zufrieden sind, bekommst du den Song. Und falls du danach noch etwas ändern möchtest: **1 kostenlose Änderungsrunde** ist bei jeder Bestellung dabei.
+Erst wenn ich zufrieden bin, bekommst du den Song. Und falls du danach noch etwas ändern möchtest: **1 kostenlose Änderungsrunde** ist bei jeder Bestellung dabei.
 
 ### Schritt 4: Lieferung als MP3
 
@@ -138,6 +138,6 @@ Für fast alle. Hier sind die häufigsten:
 
 KI-Musik klingt nach Zukunft, ist aber längst da und für jeden zugänglich. Das Wichtigste bleibt dabei du: deine Geschichte, deine Erinnerungen, deine Liebe zu dem Menschen, dem du den Song schenkst.
 
-Die KI ist ein Werkzeug. Sie gibt deiner Geschichte eine Melodie. Wir prüfen, ob das Ergebnis stimmt. Und das Herz dahinter kommt von dir.
+Die KI ist ein Werkzeug. Sie gibt deiner Geschichte eine Melodie. Ich prüfe, ob das Ergebnis stimmt. Und das Herz dahinter kommt von dir.
 
 **Wenn du magst:** Stell deinen persönlichen Song im [Konfigurator](/#konfigurator) zusammen. 19,99 € Festpreis, meist innerhalb von 24 Stunden an Werktagen fertig, mit einer kostenlosen Änderungsrunde.

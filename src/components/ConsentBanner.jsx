@@ -74,7 +74,7 @@ export default function ConsentBanner() {
           <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-3 sm:mb-4">
             {t(
               "cookieBanner.desc",
-              "Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten."
+              "Ich nutze Cookies und Tracking-Technologien (Google Consent Mode v2), um die Website zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten."
             )}
           </p>
 
@@ -105,7 +105,7 @@ export default function ConsentBanner() {
                     {t("cookieBanner.analytics", "Statistiken & Analyse")}
                   </span>
                   <span className="text-[11px] text-stone-500">
-                    {t("cookieBanner.analyticsDesc", "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.")}
+                    {t("cookieBanner.analyticsDesc", "Hilft mir zu verstehen, welche Musikrichtungen am beliebtesten sind.")}
                   </span>
                 </label>
                 <input

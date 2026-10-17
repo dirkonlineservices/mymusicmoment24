@@ -19,16 +19,16 @@ tags:
 
 Mit 18 beginnt ein neues Kapitel: Führerschein, Ausziehen, Ausbildung oder Studium, die erste große Reise. Gleichzeitig blicken Eltern und Großeltern auf achtzehn Jahre voller Erinnerungen zurück. Ein **Song zum 18. Geburtstag** verbindet beides: die Kindheit, die gerade zu Ende geht, und die Zukunft, die jetzt beginnt.
 
-Bei MyMusicMoment24 entsteht dein Lied mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
+Bei MyMusicMoment24 entsteht dein Lied mit KI-Komposition und persönlichem Feinschliff. Bevor ich es dir schicke, höre ich jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
 
 ## Ein Beispiel aus der Praxis
 
-Ein Kunde hat für seine Enkel zum 18. Geburtstag gleich mehrere Songs bestellt und uns danach bei Google bewertet:
+Ein Kunde hat für seine Enkel zum 18. Geburtstag gleich mehrere Songs bestellt und mich danach bei Google bewertet:
 
 > *„Hatte nach persönlichen Songs zum 18. Geburtstag meiner Enkel gesucht und bin auf MyMusicMoment24.de gestoßen. Ein Glücksfall! Das Team hat wunderbare persönliche Songs in verschiedenen Genres für die Jungs erstellt und das in ganz kurzer Zeit.“*
 > — Peter R., Google-Rezension
 
-Die beiden Enkel waren Zwillinge. Jeder bekam seinen eigenen Song in seinem Lieblingsstil. Als kleines Dankeschön haben wir den beiden noch ein drittes Lied geschenkt, das von ihnen gemeinsam erzählt. Gerade bei Geschwistern ist das eine schöne Idee: ein eigener Song für jeden und einer für beide zusammen.
+Die beiden Enkel waren Zwillinge. Jeder bekam seinen eigenen Song in seinem Lieblingsstil. Als kleines Dankeschön habe ich den beiden noch ein drittes Lied geschenkt, das von ihnen gemeinsam erzählt. Gerade bei Geschwistern ist das eine schöne Idee: ein eigener Song für jeden und einer für beide zusammen.
 
 ## Wer verschenkt einen Song zum 18.?
 
@@ -56,7 +56,7 @@ Der Song soll zum Geschmack des Geburtstagskindes passen, nicht zu dem der Schen
 - **Rock / Deutschrock:** für alle, die es laut mögen.
 - **Gefühlvolle Pop-Ballade:** wenn Eltern oder Großeltern etwas Berührendes sagen möchten.
 
-Tipp: Wie unterschiedlich die Stile klingen, hörst du in unseren [Hörproben](/#hoerproben).
+Tipp: Wie unterschiedlich die Stile klingen, hörst du in meinen [Hörproben](/#hoerproben).
 
 ## Lustig für die Party oder berührend für die Familie?
 

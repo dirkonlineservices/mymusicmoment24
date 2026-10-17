@@ -114,6 +114,18 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
               </p>
             </div>
 
+            <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6 shadow-md shadow-stone-200/50">
+              <h3 className="text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-600" /> Hier arbeitet nur einer: ich
+              </h3>
+              <p className="mb-3 text-stone-600">
+                MyMusicMoment24 mache ich allein. Dahinter stehen kein Unternehmen mit Mitarbeitern, keine Gruppe und keine Investoren. Nur ich.
+              </p>
+              <p className="text-stone-600">
+                Das heißt für dich: Wenn du eine Frage hast, schreibst du direkt mit mir. Ich lese deine Bestellung, ich höre deinen Song an, und ich kümmere mich um deine Änderungswünsche. Es gibt keine Hotline und keine Warteschleife, sondern immer den persönlichen Kontakt mit mir.
+              </p>
+            </div>
+
             <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-md shadow-stone-200/50">
               <h3 className="text-xl font-bold text-stone-900 mb-3 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-amber-500" /> So entsteht dein Song

@@ -53,14 +53,14 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
             {language === "en" ? (
               <>We're here to help you personally</>
             ) : (
-              <>Wir sind persönlich für Dich da!</>
+              <>Ich bin persönlich für dich da</>
             )}
           </h1>
 
           <p className="text-sm sm:text-base text-stone-600 max-w-2xl mx-auto leading-relaxed">
             {language === "en"
               ? "Do you have questions about your order, wish to clarify details, or need assistance with PayPal or bank transfers? Reach out to founder Dirk Schmetzer directly."
-              : "Du hast Fragen zu Deiner Bestellung, möchtest besondere Details besprechen oder kommst bei der Bezahlung mit PayPal oder Stripe nicht weiter? Wir helfen Dir gerne und schnell."}
+              : "Du hast Fragen zu Deiner Bestellung, möchtest besondere Details besprechen oder kommst bei der Bezahlung mit PayPal oder Stripe nicht weiter? Ich helfe dir gern und schnell."}
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
               <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
                 {language === "en"
                   ? "Chat directly with founder Dirk Schmetzer. Perfect for quick questions, lyrics changes, or immediate payment assistance."
-                  : "Schreib uns direkt eine Nachricht auf WhatsApp. Ideal für eilige Fragen zum Song, Textanpassungen oder wenn die Zahlung hakt."}
+                  : "Schreib mir direkt eine Nachricht auf WhatsApp. Ideal für eilige Fragen zum Song, Textanpassungen oder wenn die Zahlung hakt."}
               </p>
             </div>
 
@@ -117,7 +117,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
               <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
                 {language === "en"
                   ? "Prefer writing an email? Send us your questions, order references, or custom audio wishes anytime."
-                  : "Du bevorzugst E-Mail? Sende uns Deine Anfrage, Bestellnummer oder individuelle Sonderwünsche jederzeit per Mail."}
+                  : "Du schreibst lieber eine E-Mail? Schick mir deine Anfrage, Bestellnummer oder individuelle Sonderwünsche jederzeit per Mail."}
               </p>
             </div>
 
@@ -197,7 +197,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
               <p className="text-xs text-stone-600 leading-relaxed">
                 {language === "en"
                   ? "Pay seamlessly via Apple Pay, Google Pay, Visa, Mastercard, Klarna, or contact us for classic bank wire transfer."
-                  : "Zahle bequem mit Apple Pay, Google Pay, Kreditkarte, Klarna oder kontaktiere uns für eine klassische Banküberweisung per IBAN."}
+                  : "Zahle bequem mit Apple Pay, Google Pay, Kreditkarte, Klarna oder schreib mir für eine klassische Banküberweisung per IBAN."}
               </p>
             </div>
 
@@ -214,7 +214,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed mb-3">
                   {language === "en"
                     ? "You can choose 'Bank Transfer' directly in our checkout to immediately receive your Order ID and our bank details. Important: Production begins immediately once the payment is credited to our bank account (usually 1 business day)."
-                    : "Du kannst die Banküberweisung direkt in unserem Song-Checkout auswählen und erhältst sofort deine persönliche Bestellnummer als Verwendungszweck. Wichtiger Hinweis: Bei manueller Banküberweisung beginnt die Produktion Deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
+                    : "Du kannst die Banküberweisung direkt in der Kasse auswählen und erhältst sofort deine persönliche Bestellnummer als Verwendungszweck. Wichtiger Hinweis: Bei manueller Banküberweisung beginnt die Produktion Deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
                 </p>
                 <div className="bg-white p-3.5 rounded-xl border border-stone-200 text-xs space-y-1.5 mb-3 font-mono shadow-sm">
                   <div className="flex flex-col sm:flex-row sm:justify-between text-stone-700 font-sans gap-0.5">

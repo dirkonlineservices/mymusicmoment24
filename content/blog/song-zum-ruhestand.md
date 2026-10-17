@@ -19,7 +19,7 @@ tags:
 
 Nach 20, 30 oder 40 Jahren im Betrieb geht eine Kollegin oder ein Kollege in den Ruhestand. Das Team sucht ein Abschiedsgeschenk und landet oft beim Präsentkorb, einem Gutschein oder einer Karte, die alle unterschreiben. Ein **Song zum Ruhestand** ist persönlicher. Er erzählt die Geschichte dieser Jahre, mit allen Insidern, die nur das Team kennt.
 
-Bei MyMusicMoment24 entsteht dein Abschiedslied mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Bei einem Team von zehn Leuten sind das zwei Euro pro Person.
+Bei MyMusicMoment24 entsteht dein Abschiedslied mit KI-Komposition und persönlichem Feinschliff. Bevor ich ihn dir schicke, höre ich jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Bei einem Team von zehn Leuten sind das zwei Euro pro Person.
 
 ## Warum ein Lied ein schönes Abschiedsgeschenk zur Rente ist
 
@@ -81,7 +81,7 @@ Der gleiche Gedanke passt zu vielen Anlässen: der Abschied einer langjährigen 
 Ja. Der Song ist meist innerhalb von 24 Stunden an Werktagen fertig, mit Express in 12 Stunden.
 
 ### Dürfen wir den Song auf der Firmenfeier abspielen?
-Ja, auf der internen Feier ist das kein Problem. Für Werbung oder öffentliche Nutzung sprich uns über die [B2B-Seite](/b2b) an.
+Ja, auf der internen Feier ist das kein Problem. Für Werbung oder öffentliche Nutzung sprich mich über die [B2B-Seite](/b2b) an.
 
 👉 **[Jetzt Song zum Ruhestand gestalten (19,99 €)](/#konfigurator)**
 👉 **[Erst mal Hörproben anhören](/#hoerproben)**

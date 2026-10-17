@@ -273,7 +273,7 @@ Amount Paid: 4,99 €
           <p className="text-sm sm:text-lg text-stone-600 font-normal max-w-2xl mx-auto leading-relaxed mb-8">
             {language === "en" 
               ? "Make your customized song permanently available worldwide. We handle the entire release process through our music distribution network (DistroKid) under our verified artist label 'MyMusicMoment24' — for a one-time fee of only €4.99."
-              : "Mache deinen persönlichen Song weltweit auf allen großen Plattformen streambar! Wir übernehmen den kompletten Veröffentlichungsprozess über unseren Musikvertrieb (DistroKid) unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ – dauerhaft online für einmalig nur 4,99 €."}
+              : "Mache deinen persönlichen Song weltweit auf allen großen Plattformen streambar! Ich übernehme die komplette Veröffentlichung über den Musikvertrieb DistroKid unter dem Künstlerprofil „MyMusicMoment24“ – dauerhaft online für einmalig nur 4,99 €."}
           </p>
 
           {/* Platform Badges */}
@@ -319,7 +319,7 @@ Amount Paid: 4,99 €
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               {language === "en"
                 ? "Published under 'MyMusicMoment24' (e.g. MyMusicMoment24 – Your Song Title) including cover artwork & ISRC codes."
-                : "Erscheint offiziell unter unserem verifizierten Künstlerprofil „MyMusicMoment24“ inklusive professionellem Cover-Artwork & ISRC-Codes."}
+                : "Erscheint offiziell unter dem verifizierten Künstlerprofil „MyMusicMoment24“ inklusive professionellem Cover-Artwork & ISRC-Codes."}
             </p>
           </div>
 
@@ -377,7 +377,7 @@ Amount Paid: 4,99 €
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
                     ? "We generate the 3000x3000px artwork, master the audio, and distribute via DistroKid to all stores."
-                    : "Wir erstellen das offizielle Cover-Artwork, prüfen die Audio-Metadaten und übermitteln den Song via DistroKid."}
+                    : "Ich erstelle das Cover-Artwork, prüfe die Audio-Metadaten und übermittle den Song via DistroKid."}
                 </p>
               </div>
             </div>
@@ -393,7 +393,7 @@ Amount Paid: 4,99 €
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
                     ? "Spotify and Apple Music review and publish the song. You'll receive your direct streaming links via email!"
-                    : "Sobald die Plattformen den Song freigegeben haben, senden wir dir deinen offiziellen Spotify-Link per E-Mail zu!"}
+                    : "Sobald die Plattformen den Song freigegeben haben, schicke ich dir deinen Spotify-Link per E-Mail."}
                 </p>
               </div>
             </div>
@@ -420,7 +420,7 @@ Amount Paid: 4,99 €
               <p className="text-xs sm:text-sm text-stone-600">
                 {language === "en" 
                   ? "We received your streaming release order and sent a confirmation email. Production and DistroKid distribution are starting now." 
-                  : "Wir haben deinen Streaming-Auftrag erhalten. Eine Bestätigungs-E-Mail wurde an dich und die Benachrichtigung an unser Team versendet."}
+                  : "Ich habe deinen Streaming-Auftrag erhalten. Eine Bestätigung ist per E-Mail an dich unterwegs."}
               </p>
               <div className="mt-3 inline-block bg-stone-100 px-3 py-1 rounded-lg text-xs font-mono text-emerald-800 border border-stone-200">
                 Tx-ID: {completedOrder.transactionId || "N/A"}
@@ -508,10 +508,10 @@ Amount Paid: 4,99 €
                 <Sparkles className="w-4 h-4 text-emerald-600" />
                 {language === "en" ? "What happens now?" : "Wie geht es nun weiter?"}
               </h4>
-              <p>1. 🎨 <strong>Cover-Artwork:</strong> Wir erstellen das 3000x3000px Titelbild für deinen Release.</p>
-              <p>2. 🚀 <strong>DistroKid-Upload:</strong> Wir laden den Track hoch und vergeben die weltweiten ISRC-Codes.</p>
+              <p>1. 🎨 <strong>Cover-Artwork:</strong> Ich erstelle das 3000x3000px Titelbild für deinen Release.</p>
+              <p>2. 🚀 <strong>DistroKid-Upload:</strong> Ich lade den Track hoch und vergebe die ISRC-Codes.</p>
               <p>3. ⏳ <strong>Verfügbarkeit:</strong> Je nach Musikvertrieb ist dein Song nach 3 bis 7 Tagen auf Spotify, Apple Music & Co. live.</p>
-              <p>4. 📩 <strong>Streaming-Link:</strong> Wir senden dir den offiziellen Spotify-Link direkt per E-Mail zu!</p>
+              <p>4. 📩 <strong>Streaming-Link:</strong> Ich schicke dir den Spotify-Link per E-Mail.</p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -19,7 +19,7 @@ tags:
 
 Der 50. Geburtstag ist ein großer Meilenstein. Ein halbes Jahrhundert voller Geschichten: Schulzeit, erste Liebe, Ausbildung oder Studium, Familie, Beruf, vielleicht der Hausbau, viele Urlaube und Freundschaften, die Jahrzehnte gehalten haben. Ein **Song zum 50. Geburtstag** erzählt genau diese Geschichte, mit dem Namen des Geburtstagskindes im Refrain.
 
-Bei MyMusicMoment24 entsteht dein Lied mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
+Bei MyMusicMoment24 entsteht dein Lied mit KI-Komposition und persönlichem Feinschliff. Bevor ich es dir schicke, höre ich jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
 
 ## Warum ein Song gut zum 50. passt
 

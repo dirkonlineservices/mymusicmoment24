@@ -43,11 +43,11 @@ Denn eine KI weiß nichts von dir. Sie kennt nicht den ersten Kuss im Regen auf 
 
 Darum geht es bei personalisierter Musik: **Die KI liefert den musikalischen Rahmen. Du lieferst das, was ihn einzigartig macht.**
 
-Bei **MyMusicMoment24** arbeiten wir **seit 2024** so:
+Bei **MyMusicMoment24** arbeite ich **seit 2024** so:
 
 1. **Du erzählst deine Geschichte:** Namen, Anlass, Insider, Gefühle, besondere Momente
-2. **Wir übersetzen sie in Musik:** mit sorgfältigem Prompt-Engineering und KI-Komposition
-3. **Wir prüfen persönlich:** Jeden Song hören wir vor der Übergabe an und achten auf Klang, Textverständlichkeit und Wirkung
+2. **Ich übersetze sie in Musik:** mit sorgfältigem Prompt-Engineering und KI-Komposition
+3. **Ich prüfe persönlich:** Jeden Song höre ich vor der Übergabe an und achten auf Klang, Textverständlichkeit und Wirkung
 4. **Du bekommst dein Unikat:** als MP3 per E-Mail oder WhatsApp, mit dem vollständigen Liedtext
 
 ![Schnelle digitale Lieferung des fertigen Songs per E-Mail und WhatsApp](/images/step-4-delivery.jpg)
@@ -65,7 +65,7 @@ Vor einigen Jahren klangen KI-generierte Songs noch nach Roboter. Monotone Melod
 **Heute:** Mit den richtigen Informationen entsteht ein Song, den es so nur einmal gibt.
 
 **Früher:** Eine professionelle Musikproduktion kostete oft mehrere hundert bis tausend Euro.  
-**Heute:** Ein vollständiger, persönlicher Song kostet bei uns 19,99 € Festpreis.
+**Heute:** Ein vollständiger, persönlicher Song kostet bei mir 19,99 € Festpreis.
 
 ---
 
@@ -73,7 +73,7 @@ Vor einigen Jahren klangen KI-generierte Songs noch nach Roboter. Monotone Melod
 
 Am Ende zählt eine Frage: Berührt der Song den Menschen, für den er gemacht wurde?
 
-Wir haben es bei unseren Kundinnen und Kunden erlebt: Freudentränen beim Hochzeitsempfang. Ein 80-Jähriger, der seinen Geburtstagssong dreimal hintereinander hört. Eine Tochter, die ihren Vater mit einem Lied über seine gesamte Lebensreise überrascht. Danach halten sich beide minutenlang in den Armen.
+Ich habe es bei meinen Kundinnen und Kunden erlebt: Freudentränen beim Hochzeitsempfang. Ein 80-Jähriger, der seinen Geburtstagssong dreimal hintereinander hört. Eine Tochter, die ihren Vater mit einem Lied über seine gesamte Lebensreise überrascht. Danach halten sich beide minutenlang in den Armen.
 
 In keinem dieser Momente hat jemand gefragt: „Wurde das von KI gemacht?" Die Frage spielt keine Rolle mehr, wenn der Song das trifft, worum es geht: das Herz.
 
@@ -88,7 +88,7 @@ Je konkreter du bist, desto persönlicher wird das Ergebnis:
 - ❌ „Er mag Musik und ist lustig." → austauschbarer Song
 - ✅ „Er heißt Marco, wird 50, liebt Bayern München, macht immer denselben Witz über sein erstes Auto (einen rostigen Golf II) und hat letztes Jahr seinen ersten Halbmarathon gelaufen." → ein Song, der nach Marco klingt
 
-**Von dir brauchen wir nur etwa zwei Minuten im Konfigurator.** Um den Rest kümmern wir uns.
+**Von dir brauche ich nur etwa zwei Minuten im Konfigurator.** Um den Rest kümmere ich mich.
 
 ---
 
@@ -96,15 +96,15 @@ Je konkreter du bist, desto persönlicher wird das Ergebnis:
 
 Diese Frage höre ich immer öfter, und sie ist berechtigt. Meine Antwort: **Ja, wenn man offen und sorgfältig damit umgeht.**
 
-Bei MyMusicMoment24 machen wir personalisierte Songs für den privaten Gebrauch. Wir sagen offen, dass wir mit KI-gestützter Komposition arbeiten. Jeden Song prüft ein Mensch, bevor er rausgeht. Und die Nutzungsrechte (Suno Pro Lizenz) erlauben die kommerzielle Weitergabe an Endkunden ausdrücklich.
+Bei MyMusicMoment24 mache ich personalisierte Songs für den privaten Gebrauch. Ich sage offen, dass ich mit KI-gestützter Komposition arbeite. Jeden Song prüft ein Mensch, bevor er rausgeht. Und die Nutzungsrechte (Suno Pro Lizenz) erlauben die kommerzielle Weitergabe an Endkunden ausdrücklich.
 
-Was wir nicht tun: fremde Künstler imitieren, Songs ohne Zustimmung verbreiten oder Lizenzen missachten.
+Was ich nicht tue: fremde Künstler imitieren, Songs ohne Zustimmung verbreiten oder Lizenzen missachten.
 
 ---
 
 ## Fazit: Das Wichtigste bleibt menschlich
 
-KI-Musik verändert die Musikproduktion grundlegend. Der Kern bleibt aber menschlich. Die Geschichte, die Erinnerung, das Gefühl: Das kommt von dir. Die KI ist ein Werkzeug, das ihr einen Klang gibt. Wir hören hin und entscheiden, ob es passt.
+KI-Musik verändert die Musikproduktion grundlegend. Der Kern bleibt aber menschlich. Die Geschichte, die Erinnerung, das Gefühl: Das kommt von dir. Die KI ist ein Werkzeug, das ihr einen Klang gibt. Ich höre hin und entscheide, ob es passt.
 
 Das finde ich das Schöne daran: Heute kann fast jeder einem anderen Menschen einen persönlichen Song schenken. Ohne Tonstudio und ohne großes Budget. Für 19,99 € Festpreis, meist innerhalb von 24 Stunden an Werktagen fertig.
 

@@ -455,7 +455,7 @@ Notes: ${notes}</pre>
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
           <h2 style="color: #059669;">Dein Song kommt auf Spotify & Streaming-Dienste! 🎧</h2>
           <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
-          <p>vielen Dank für deinen Auftrag! Deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich bei uns eingegangen.</p>
+          <p>vielen Dank für deinen Auftrag! Deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich bei mir eingegangen.</p>
           
           <div style="background: #f0fdf4; border: 1px solid #86efac; padding: 16px; border-radius: 10px; margin: 20px 0;">
             <p style="margin: 0 0 8px;"><strong>Songtitel auf Streaming:</strong> ${songTitle}</p>
@@ -466,13 +466,13 @@ Notes: ${notes}</pre>
 
           <h3 style="color: #0f172a; margin-top: 24px;">Wie geht es jetzt weiter?</h3>
           <ol style="line-height: 1.7; color: #334155;">
-            <li><strong>Cover-Artwork:</strong> Wir erstellen das hochauflösende 3000x3000px Cover für deinen Song.</li>
+            <li><strong>Cover-Artwork:</strong> Ich erstelle das 3000x3000px Cover für deinen Song.</li>
             <li><strong>DistroKid-Übermittlung:</strong> Dein Song wird mit ISRC-Codes an alle weltweiten Streaming-Plattformen übergeben.</li>
             <li><strong>Freischaltung (ca. 3 bis 7 Tage, je nach DistroKid):</strong> Die Streaming-Dienste (Spotify, Apple etc.) prüfen und aktivieren deinen Titel.</li>
-            <li><strong>Dein Link:</strong> Sobald der Song live ist, senden wir dir deinen offiziellen Spotify-Link per E-Mail an <strong>${orderData.customerEmail}</strong>!</li>
+            <li><strong>Dein Link:</strong> Sobald der Song live ist, schicke ich dir deinen Spotify-Link per E-Mail an <strong>${orderData.customerEmail}</strong>!</li>
           </ol>
 
-          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk von MyMusicMoment24<br><span style="font-size: 12px;">Fragen? Antworte einfach auf diese Mail oder schreib mir per WhatsApp.</span></p>
         </div>
       `;
     } else if (isBankTransfer) {
@@ -481,7 +481,7 @@ Notes: ${notes}</pre>
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
           <h2 style="color: #059669;">Vielen Dank für deine Song-Bestellung! 🎵</h2>
           <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
-          <p>wir haben deine Bestellung dankend erhalten. Bitte überweise den Betrag von <strong>${orderData.amount} €</strong> per Banküberweisung an folgende Bankverbindung:</p>
+          <p>danke für deine Bestellung. Bitte überweise den Betrag von <strong>${orderData.amount} €</strong> per Banküberweisung an folgende Bankverbindung:</p>
           
           <div style="background: #f0fdf4; border: 2px solid #10b981; padding: 18px; border-radius: 10px; margin: 20px 0;">
             <p style="margin: 0 0 10px; font-weight: bold; color: #065f46; font-size: 15px;">🏦 Bankverbindung für deine Überweisung:</p>
@@ -495,7 +495,7 @@ Notes: ${notes}</pre>
 
           <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 14px; border-radius: 8px; margin: 20px 0; font-size: 13px; color: #92400e;">
             ⏳ <strong>Wichtiger Hinweis zum Produktionsstart:</strong><br>
-            Die Erstellung deines individuellen Songs beginnt unmittelbar nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).
+            Die Erstellung deines individuellen Songs beginnt unmittelbar nach Geldeingang auf meinem Konto (in der Regel 1 Werktag).
           </div>
 
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -504,8 +504,8 @@ Notes: ${notes}</pre>
             <p style="margin: 0;"><strong>Zustellung nach Fertigstellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
           </div>
 
-          <p>Sobald deine Zahlung eingegangen ist, erhältst du eine kurze Bestätigung und wir legen mit der Komposition deines Wunschliedes los.</p>
-          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+          <p>Sobald deine Zahlung eingegangen ist, bekommst du eine kurze Bestätigung, und ich fange mit deinem Song an.</p>
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk von MyMusicMoment24<br><span style="font-size: 12px;">Fragen? Antworte einfach auf diese Mail oder schreib mir per WhatsApp.</span></p>
         </div>
       `;
     } else {
@@ -514,7 +514,7 @@ Notes: ${notes}</pre>
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
           <h2 style="color: #d97706;">Vielen Dank für deine Bestellung bei MyMusicMoment24! 🎵</h2>
           <p>Hallo ${orderData.customerName || 'Musikfreund'},</p>
-          <p>deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich eingegangen. Wir legen sofort mit der Produktion deines persönlichen Songs los!</p>
+          <p>deine Zahlung über <strong>${orderData.amount} €</strong> ist erfolgreich eingegangen. Ich fange jetzt mit deinem persönlichen Song an.</p>
           
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0 0 8px;"><strong>Bestell-Nr:</strong> ${orderData.transactionId}</p>
@@ -522,8 +522,8 @@ Notes: ${notes}</pre>
             <p style="margin: 0;"><strong>Zustellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
           </div>
 
-          <p>Sobald dein Song fertiggestellt und menschlich klanggeprüft ist, senden wir dir deine fertige MP3-Datei zu.</p>
-          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk Schmetzer & dein Team von MyMusicMoment24</p>
+          <p>Sobald dein Song fertiggestellt und menschlich klanggeprüft ist, schicke ich dir die fertige MP3-Datei.</p>
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk von MyMusicMoment24<br><span style="font-size: 12px;">Fragen? Antworte einfach auf diese Mail oder schreib mir per WhatsApp.</span></p>
         </div>
       `;
     }
@@ -642,7 +642,7 @@ app.post("/api/b2b-inquiry", async (req, res) => {
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
           <h2 style="color: #f59e0b;">Vielen Dank für Ihre Kooperationsanfrage! 🎵</h2>
           <p>Hallo ${contactName},</p>
-          <p>wir haben Ihre Anfrage für <strong>${companyName}</strong> bezüglich <em>„${inquiryType}“</em> erfolgreich erhalten.</p>
+          <p>danke für Ihre Anfrage für <strong>${companyName}</strong> zum Thema <em>„${inquiryType}“</em>. Ich habe sie erhalten und melde mich persönlich bei Ihnen.</p>
           <p>Dirk Schmetzer wird Ihre Projektdetails persönlich prüfen und sich innerhalb von <strong>24 Stunden</strong> mit einem passenden Vorschlag bei Ihnen melden.</p>
           
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 13px;">

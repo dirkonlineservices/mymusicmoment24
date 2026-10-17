@@ -270,7 +270,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   <p className="text-[11px] text-stone-600 leading-relaxed pl-6">
                     {language === "en"
                       ? "Select 'Bank Transfer' in checkout to place your order. You will immediately receive your Order ID and our IBAN. Important: Production starts upon payment receipt on our bank account (usually 1 business day)."
-                      : "Wähle 'Banküberweisung' im Kassenfenster und bestelle direkt. Du erhältst sofort deine persönliche Bestellnummer und unsere IBAN. Wichtig: Die Produktion deines Liedes beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
+                      : "Wähle 'Banküberweisung' im Kassenfenster und bestelle direkt. Du erhältst sofort deine persönliche Bestellnummer und meine IBAN. Wichtig: Die Produktion deines Liedes beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag)."}
                   </p>
                 </div>
               </div>
@@ -456,7 +456,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <p className="text-[11px] text-stone-700 leading-relaxed font-medium">
                           {language === "en"
                             ? `The creation of your custom song begins immediately upon receipt of your payment on our bank account (usually 1 business day). A confirmation will be sent to ${customerEmail}.`
-                            : `Die Erstellung deines persönlichen Songs beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag). Du erhältst nach Eingang eine Bestätigung an ${customerEmail}.`}
+                            : `Die Erstellung deines persönlichen Songs beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag). Du erhältst nach Eingang eine Bestätigung an ${customerEmail}.`}
                         </p>
                       </div>
 
@@ -952,13 +952,13 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           <div className="flex items-start gap-2.5">
                             <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">2</span>
                             <p className="leading-relaxed">
-                              Überweise den Betrag von <strong>{currentPrice.toFixed(2).replace(".", ",")} €</strong> unter Angabe deiner <strong>Bestellnummer als Verwendungszweck</strong> auf unsere IBAN.
+                              Überweise den Betrag von <strong>{currentPrice.toFixed(2).replace(".", ",")} €</strong> unter Angabe deiner <strong>Bestellnummer als Verwendungszweck</strong> auf meine IBAN.
                             </p>
                           </div>
                           <div className="flex items-start gap-2.5">
                             <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">3</span>
                             <p className="leading-relaxed text-amber-900 font-medium">
-                              <strong>Wichtig:</strong> Die Produktion deines Liedes beginnt sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).
+                              <strong>Wichtig:</strong> Die Produktion deines Liedes beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag).
                             </p>
                           </div>
                         </div>

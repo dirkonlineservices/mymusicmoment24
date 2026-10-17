@@ -16,7 +16,7 @@ export const translations = {
       reviews: "Erfahrungen",
       faq: "FAQ",
       guide: "Ratgeber",
-      about: "Über uns",
+      about: "Über mich",
       orderCta: "Song gestalten · 19,99 €",
       mobileOrderCta: "Jetzt Song Konfigurieren (19,99 €)",
       impressum: "Impressum",
@@ -40,7 +40,7 @@ export const translations = {
       storyCard3Badge: "3. Freudentränen",
       storyCard3Title: "Ein unvergesslicher Moment",
       storyCard3Desc: "Der gemeinsame Moment auf der Feier: Wenn die ersten Tränen der Rührung fließen.",
-      trustReviews: "Echte Bewertungen unserer Kunden",
+      trustReviews: "Echte Bewertungen meiner Kunden",
       trustDelivery: "Lieferung in 24h",
       trustGuarantee: "Käuferschutz & Gratis-Verbesserungsschleife",
     },
@@ -56,7 +56,7 @@ export const translations = {
       heroEyebrow: "Das Geschenk, bei dem alle still werden",
       heroTitle: "Ein Song nur über euch.",
       heroTitleHighlight: "Mit euren Namen, eurer Geschichte.",
-      heroText: "Du erzählst uns in 2 Minuten, was euch verbindet. Wir machen daraus einen fertigen Song in Studioqualität, persönlich geprüft und meist in 24 Stunden bei dir.",
+      heroText: "Du erzählst mir in 2 Minuten, was euch verbindet. Ich mache daraus einen fertigen Song in Studioqualität, persönlich geprüft und meist in 24 Stunden bei dir.",
       heroCta: "Song gestalten für 19,99 €",
       heroCtaSecondary: "Erst mal reinhören",
       heroVideoLabel: "Hörprobe: Hochzeitslied „Für immer Heut!“",
@@ -67,7 +67,7 @@ export const translations = {
       trustRevision: "1 Änderung gratis",
       trustPayment: "PayPal, Karte, SEPA",
       occasionsTitle: "Für welchen Moment ist dein Song?",
-      occasionsSubtitle: "Wähle den Anlass, und wir starten den Konfigurator direkt für dich.",
+      occasionsSubtitle: "Wähle den Anlass, und der Konfigurator startet direkt für dich.",
       occasionsCta: "Song dafür gestalten",
       occasions: {
         hochzeit: { label: "Hochzeit", desc: "Für Trauung, Eröffnungstanz oder die Rede" },
@@ -78,7 +78,7 @@ export const translations = {
       stepsTitle: "So einfach geht’s",
       steps: [
         { title: "Erzählen", desc: "Anlass, Musikstil und Stimme wählen, dazu ein paar Sätze über euch. Dauert etwa 2 Minuten." },
-        { title: "Wir produzieren", desc: "Text, Melodie und Gesang entstehen mit KI und menschlichem Feinschliff. Wir hören jeden Song vor der Übergabe an." },
+        { title: "Ich produziere", desc: "Text, Melodie und Gesang entstehen mit KI und menschlichem Feinschliff. Ich höre jeden Song vor der Übergabe an." },
         { title: "Verschenken", desc: "Du bekommst die MP3 per E-Mail oder WhatsApp, meist innerhalb von 24 Stunden an Werktagen." },
       ],
       priceTitle: "Alles drin für 19,99 €",
@@ -97,7 +97,7 @@ export const translations = {
         { label: "Song-Urkunde mit Liedtext & QR-Code (PDF)", price: "+ 9,99 €" },
         { label: "Veröffentlichung auf Spotify & Co.", price: "+ 4,99 €" },
       ],
-      priceGuarantee: "Nicht ganz getroffen? Wir passen deinen Song einmal kostenlos an.",
+      priceGuarantee: "Nicht ganz getroffen? Ich passe deinen Song einmal kostenlos an.",
       priceCta: "Jetzt Song gestalten",
       finalTitle: "Mach aus eurer Geschichte einen Song",
       finalText: "In 2 Minuten bestellt, meist morgen schon da. Für einen Moment, der bleibt.",
@@ -107,7 +107,7 @@ export const translations = {
     configurator: {
       badge: "Interaktiver Song-Generator • In 2 Minuten fertig",
       title: "Konfiguriere deinen persönlichen Song",
-      subtitle: "Wähle Anlass, Musikstil und Stimme und erzähl uns eure Geschichte. Daraus entsteht dein eigener Song für 19,99 €.",
+      subtitle: "Wähle Anlass, Musikstil und Stimme und erzähl mir eure Geschichte. Daraus entsteht dein eigener Song für 19,99 €.",
       stepLabel: "Schritt",
       of: "von",
       next: "Weiter",
@@ -125,7 +125,7 @@ export const translations = {
         1: "Für welchen Anlass ist dein Song?",
         2: "Welcher Musikstil passt am besten?",
         3: "Welche Stimme soll deinen Song singen?",
-        4: "Erzähle uns eure persönliche Geschichte",
+        4: "Erzähl mir eure persönliche Geschichte",
         5: "Dein Song-Paket & Optionen",
       },
       occasions: {
@@ -252,8 +252,8 @@ export const translations = {
     // YouTube Showcase
     showcase: {
       badge: "Echte Songbeispiele auf YouTube",
-      title: "Höre Dir Beispiele unserer Songs an",
-      subtitle: "Vom Hochzeitslied über EDM bis zu Hip-Hop: So unterschiedlich können unsere Songs klingen. Klick auf ein Lied, um es anzuhören.",
+      title: "Hör dir Beispiele meiner Songs an",
+      subtitle: "Vom Hochzeitslied über EDM bis zu Hip-Hop: So unterschiedlich können meine Songs klingen. Klick auf ein Lied, um es anzuhören.",
       channelBtn: "Kanal @MyMusicMoment24",
       playLabel: "abspielen",
       hdAudio: "HD Audio",
@@ -264,7 +264,7 @@ export const translations = {
     // Audio Player
     audioPlayer: {
       badge: "Echte KI-Hörproben",
-      title: "Hör rein, wie unsere Songs klingen",
+      title: "Hör rein, wie meine Songs klingen",
       testedBadge: "Persönlich geprüft • Gratis-Korrekturschleife",
       nowPlaying: "Aktueller Titel",
       play: "Abspielen",
@@ -334,7 +334,7 @@ export const translations = {
       voucherBanner: {
         badge: "Das flexible Geschenk",
         title: "Überlasse dem Beschenkten die Wahl: Der Geschenkgutschein",
-        desc: "Du möchtest einen Song verschenken, bist dir bei Musikstil oder Anekdoten aber noch unsicher? Mit unserem Gutschein verschenkst du pure Vorfreude und die volle kreative Freiheit.",
+        desc: "Du möchtest einen Song verschenken, bist dir bei Musikstil oder Anekdoten aber noch unsicher? Mit dem Gutschein verschenkst du Vorfreude und lässt der beschenkten Person die Wahl.",
         feature1: "Flexibel einlösbar für jeden Anlass & jedes Genre",
         feature2: "Sofort druckfertig per E-Mail für eilige Geschenke",
         feature3: "Inklusive 1 Gratis-Korrekturschleife & privater Nutzungsrechte",
@@ -356,7 +356,7 @@ export const translations = {
         {
           num: "2",
           title: "Kreation & Produktion",
-          desc: "Wir erstellen dein persönliches Unikat mit Mensch, KI-Komposition & feinfühligem Storytelling.",
+          desc: "Ich erstelle deinen persönlichen Song mit KI-Komposition und eigenem Feinschliff.",
         },
         {
           num: "3",
@@ -371,7 +371,7 @@ export const translations = {
         {
           num: "5",
           title: "Bewertung abgeben",
-          desc: "Teile deine emotionale Erfahrung mit uns und hilf unserer Community zu wachsen.",
+          desc: "Erzähl mir, wie dein Song angekommen ist. Eine kurze Bewertung hilft mir sehr.",
         },
       ],
     },
@@ -380,7 +380,7 @@ export const translations = {
     testimonials: {
       badge: "Echte Bewertungen",
       title: "Was Kunden sagen",
-      subtitle: "Echte Rückmeldungen von Menschen, die mit unseren Liedern besondere Momente geschaffen haben.",
+      subtitle: "Echte Rückmeldungen von Menschen, die mit meinen Liedern besondere Momente erlebt haben.",
       verifiedBuyer: "Verifizierter Kauf",
       tanjaTitle: "individuelle Geburtstagslieder",
       tanjaLocation: "Tanja aus Stuttgart",
@@ -400,7 +400,7 @@ export const translations = {
 
     // Blog Feature
     blogFeature: {
-      badge: "Aus unserem Ratgeber",
+      badge: "Aus meinem Ratgeber",
       title: "Individueller Hochzeitssong mit KI: So entsteht euer Song",
       subtitle: "Erfahre alles über die Vorteile, den Entstehungsprozess und wie du die schönsten Anekdoten in den Text einfließen lässt.",
       readArticle: "Artikel lesen",
@@ -413,39 +413,39 @@ export const translations = {
       items: [
         {
           q: "Wie viel kostet ein persönlicher Song?",
-          a: "Jedes personalisierte Musikstück kostet bei uns nur 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
+          a: "Jeder persönliche Song kostet bei mir 19,99 € Festpreis. Es gibt keine versteckten Kosten.",
         },
         {
           q: "Wie lange dauert es, bis mein Song fertig ist?",
-          a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. Für ganz eilige Anlässe bieten wir zusätzlich einen 12-Stunden-Express-Service an.",
+          a: "Die Lieferung erfolgt meist innerhalb von 24 Stunden an Werktagen. Für eilige Anlässe gibt es zusätzlich die Express-Lieferung in 12 Stunden.",
         },
         {
           q: "Wie erhalte ich meinen fertigen Song?",
-          a: "Du bekommst deinen persönlich geprüften Song als MP3-Datei per E-Mail. Auf Wunsch schicken wir ihn dir auch per WhatsApp aufs Smartphone.",
+          a: "Du bekommst deinen persönlich geprüften Song als MP3-Datei per E-Mail. Auf Wunsch schicke ich ihn dir auch per WhatsApp aufs Smartphone.",
         },
         {
           q: "Klingt der Song nach künstlicher Computerstimme?",
-          a: "Nein. Wir nutzen aktuelle KI-Modelle und verbinden sie mit menschlichem Feinschliff. Wir hören uns jeden Song vor der Übergabe an und stellen sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
+          a: "Nein. Ich nutze aktuelle KI-Modelle und verbinde sie mit menschlichem Feinschliff. Ich höre mir jeden Song vor der Übergabe an und stelle sicher, dass Melodie, Gesang und Rhythmus harmonieren.",
         },
         {
           q: "Was passiert, wenn ich nach Erhalt noch einen Änderungswunsch habe?",
-          a: "Kein Problem. Wir hören jeden Song vorher sorgfältig an. Möchtest du trotzdem etwas am Text oder an einem Detail ändern, ist eine kostenlose Änderungsrunde bei jeder Bestellung dabei.",
+          a: "Kein Problem. Ich höre jeden Song vorher sorgfältig an. Möchtest du trotzdem etwas am Text oder an einem Detail ändern, ist eine kostenlose Änderungsrunde bei jeder Bestellung dabei.",
         },
         {
           q: "Welche Angaben von mir benötigt ihr für den Songtext?",
-          a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Daraus schreiben wir Strophen und einen Refrain, der hängen bleibt. Reimen musst du nichts.",
+          a: "Die Namen der Personen, den Anlass und ein paar persönliche Anekdoten, Insider oder Gefühle, die dir am Herzen liegen. Daraus schreibe ich Strophen und einen Refrain, der hängen bleibt. Reimen musst du nichts.",
         },
         {
           q: "Kann mein Song auch auf Spotify, Apple Music & YouTube Music veröffentlicht werden?",
-          a: "Ja. Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehmen wir gerne die Veröffentlichung über unseren Musikvertrieb (DistroKid) für dich. Dein Song erscheint dann unter unserem offiziellen Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder kannst uns jederzeit ansprechen.",
+          a: "Ja. Wenn du möchtest, dass dein Lied weltweit gestreamt und in Playlists geteilt werden kann, übernehme ich gern die Veröffentlichung über den Musikvertrieb DistroKid für dich. Dein Song erscheint dann unter dem Künstlerprofil „MyMusicMoment24“ auf Spotify, Apple Music, YouTube Music, Amazon Music und Co. Dieser Service kostet einmalig nur 4,99 € (dauerhaft online, kein Abo). Du erhältst den Link dazu direkt in deiner Fertigstellungs-E-Mail oder du sprichst mich jederzeit an.",
         },
         {
           q: "Kann ich auch per Banküberweisung oder ohne PayPal-Konto zahlen?",
-          a: "Ja. Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen. Schreib uns dazu kurz per WhatsApp oder E-Mail für unsere IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag).",
+          a: "Ja. Bei PayPal kannst du auch ohne eigenes PayPal-Konto ganz einfach per SEPA-Lastschrift oder Debitkarte als Gast bezahlen. Alternativ kannst du auch per normaler Banküberweisung (Vorkasse) zahlen. Schreib mir dazu kurz per WhatsApp oder E-Mail, dann bekommst du meine IBAN. Wichtig: Bei Überweisung beginnt die Produktion deines Songs sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag).",
         },
         {
           q: "Warum ist der Bezahl-Button anfangs inaktiv / ausgegraut?",
-          a: "Aus rechtlichen Gründen (Verzicht auf das 14-tägige Widerrufsrecht bei individueller digitaler Maßanfertigung deines Liedes) wird der Bezahl-Button erst aktiv, sobald du deine E-Mail-Adresse für die Songzustellung eingegeben und das Zustimmungs-Kästchen für unsere AGB und den sofortigen Produktionsstart angehakt hast.",
+          a: "Aus rechtlichen Gründen (Verzicht auf das 14-tägige Widerrufsrecht bei individueller digitaler Maßanfertigung deines Liedes) wird der Bezahl-Button erst aktiv, sobald du deine E-Mail-Adresse für die Songzustellung eingegeben und das Zustimmungs-Kästchen für die AGB und den sofortigen Produktionsstart angehakt hast.",
         },
       ],
     },
@@ -491,7 +491,7 @@ export const translations = {
       processing: "Zahlung wird verarbeitet...",
       secureSsl: "Sichere 256-Bit SSL-Verschlüsselung • Käuferschutz garantiert",
       successTitle: "Zahlung erfolgreich!",
-      successDesc: "Vielen Dank für dein Vertrauen. Wir haben deine Bestellung erhalten und beginnen mit der Produktion.",
+      successDesc: "Vielen Dank für dein Vertrauen. Ich habe deine Bestellung erhalten und fange mit deinem Song an.",
       orderNumber: "Bestellnummer",
       confirmationSent: "Eine Bestätigung wurde an deine E-Mail gesendet.",
       closeBtn: "Fenster schließen",
@@ -500,7 +500,7 @@ export const translations = {
     // Cookie Banner
     cookieBanner: {
       title: "Privatsphäre & Datenschutz",
-      desc: "Wir nutzen Cookies und Tracking-Technologien (Google Consent Mode v2), um unsere Webseite zu optimieren, Hörproben bereitzustellen und dir ein erstklassiges Nutzungserlebnis zu bieten.",
+      desc: "Ich nutze Cookies und Tracking-Technologien (Google Consent Mode v2), um die Website zu verbessern und Hörproben bereitzustellen.",
       acceptAll: "Alle akzeptieren",
       rejectAll: "Nur notwendige",
       settings: "Anpassen",
@@ -509,7 +509,7 @@ export const translations = {
       essential: "Technisch Notwendig",
       essentialDesc: "Erforderlich für Warenkorb, Abspielgerät & Kasse.",
       analytics: "Statistiken & Analyse",
-      analyticsDesc: "Hilft uns zu verstehen, welche Musikrichtungen am beliebtesten sind.",
+      analyticsDesc: "Hilft mir zu verstehen, welche Musikrichtungen am beliebtesten sind.",
       marketing: "Marketing & Personalisierung",
       marketingDesc: "Ermöglicht personalisierte Empfehlungen und Conversion-Tracking.",
     },
@@ -556,7 +556,7 @@ export const translations = {
       tagLicense: "Kommerzielle Lizenz inklusive",
       tagCustom: "Maßgeschneiderte Projektumsetzung",
       tagWhiteLabel: "White-Label & Agenturrabatte",
-      useCasesTitle: "Wie Agenturen & Marken unsere Musik nutzen",
+      useCasesTitle: "Wie Agenturen & Marken meine Musik nutzen",
       useCasesSubtitle: "Hochwertiger KI-gestützter Audio-Content hebt Werbekampagnen von der Masse ab und bleibt im Kopf.",
       card1Title: "Singende Produktbeschreibungen & Social Ads",
       card1Desc: "Klassische Voiceover-Ads werden auf TikTok, Instagram Reels und YouTube Shorts oft nach 2 Sekunden weggekippt. Ein maßgeschneiderter Song mit Produktnamen und Vorteilen als Hook stoppt das Weiterscrollen sofort und vervielfacht die Conversion-Rate.",
@@ -571,16 +571,16 @@ export const translations = {
       card3Bullet1: "Einbindung von Firmennamen, Meilensteinen & Werten",
       card3Bullet2: "Emotionaler Höhepunkt für jede Betriebsfeier",
       card4Title: "Laufende Agentur-Partnerschaft & White-Label",
-      card4Desc: "Erweitere das Service-Portfolio deiner Agentur ohne eigene Musikproduzenten oder Audiotechniker. Wir liefern im Hintergrund maßgeschneiderte Audio-Kreationen, und du verkaufst sie mit deiner eigenen Marge und unter deinem Namen an deine Kunden.",
+      card4Desc: "Erweitere das Service-Portfolio deiner Agentur ohne eigene Musikproduzenten oder Audiotechniker. Ich liefere im Hintergrund maßgeschneiderte Audio-Kreationen, und du verkaufst sie mit deiner eigenen Marge und unter deinem Namen an deine Kunden.",
       card4Bullet1: "Attraktive Staffelpreise ab mehreren Tracks pro Monat",
       card4Bullet2: "Fester Ansprechpartner & Prioritäts-Produktion",
       agencyBadge: "Teil von DS Online Services",
       agencyTitle: "SichtbarmitKI.agency: deine Partner-Agentur für KI-Sichtbarkeit",
-      agencyDesc: "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben Musikproduktion unterstützen wir Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.",
+      agencyDesc: "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben der Musikproduktion unterstütze ich Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.",
       whatsappBtn: "WhatsApp-Direktkontakt",
       formBadge: "Unverbindliche Anfrage",
       formTitle: "Kooperationsanfrage stellen",
-      formSubtitle: "Teile uns deine Projektidee oder deinen Kooperationswunsch mit. Wir melden uns zeitnah für ein persönliches Beratungsgespräch.",
+      formSubtitle: "Erzähl mir von deiner Projektidee oder deinem Kooperationswunsch. Ich melde mich zeitnah für ein persönliches Gespräch.",
       nameLabel: "Ihr Name / Ansprechpartner",
       namePlaceholder: "z.B. Julia Weber",
       companyLabel: "Firma / Agentur",
@@ -603,7 +603,7 @@ export const translations = {
       submitting: "Anfrage wird übermittelt...",
       privacyNote: "Ihre Daten werden vertraulich behandelt und ausschließlich zur Beantwortung Ihrer Anfrage genutzt.",
       successTitle: "Vielen Dank für Ihre Anfrage!",
-      successDesc: "Wir haben Ihre Kooperationsanfrage erhalten. Dirk Schmetzer wird sich zeitnah per E-Mail oder Telefon bei Ihnen melden.",
+      successDesc: "Danke für Ihre Anfrage. Ich melde mich zeitnah persönlich per E-Mail oder Telefon bei Ihnen.",
       anotherInquiryBtn: "Weitere Anfrage senden",
       locationNote: "Stuttgart (Deutschland)",
     },

@@ -20,7 +20,7 @@ tags:
 
 Jedes Jahr dieselbe Frage: Was schenkt man jemandem, der eigentlich schon alles hat? Pralinen sind schnell gegessen, Gutscheine landen in der Schublade, und Socken lösen selten echte Gefühle aus. Ein **personalisiertes Geburtstagslied mit Namen** ist anders. Es erzählt die Geschichte des Geburtstagskindes, berührt die Gäste auf der Feier und bleibt als Erinnerung.
 
-Bei MyMusicMoment24 entsteht dein Geburtstagssong seit 2024 mit KI-Komposition und persönlichem Feinschliff. Wir hören jeden Song vor der Übergabe an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Eine Änderungsrunde ist kostenlos dabei.
+Bei MyMusicMoment24 entsteht dein Geburtstagssong seit 2024 mit KI-Komposition und persönlichem Feinschliff. Ich höre jeden Song vor der Übergabe an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**. Eine Änderungsrunde ist kostenlos dabei.
 
 ## Warum ein personalisiertes Geburtstagslied mehr bedeutet als ein Sachgeschenk
 
@@ -31,7 +31,7 @@ Musik weckt Erinnerungen schneller als jedes geschriebene Wort. Wenn auf der Fei
 - **Eine Erinnerung, die bleibt:** Die MP3 läuft auf jedem Smartphone und im Auto, und du kannst sie per WhatsApp weiterschicken.
 - **Kein langes Warten:** Statt Wochen im Tonstudio ist dein Lied meist am nächsten Werktag fertig. Mit Express dauert es 12 Stunden.
 
-Wichtig: Wir tauschen nicht einfach einen Vornamen in einem fertigen Playback aus. Jeder Song wird neu geschrieben, mit eigenem Text, eigener Melodie und dem Musikstil deiner Wahl.
+Wichtig: Ich tausche nicht einfach einen Vornamen in einem fertigen Playback aus. Jeder Song wird neu geschrieben, mit eigenem Text, eigener Melodie und dem Musikstil deiner Wahl.
 
 ## Welcher Stil passt zu welchem Geburtstag?
 
@@ -45,7 +45,7 @@ Ein persönliches Lied passt zu jedem Alter. Als Orientierung können diese Komb
 | **60. & 70. Geburtstag** | Schlager, Country / Folk, Akustik | Lebenswerk, Kinder und Enkel, Garten, Ruhestand |
 | **80. Geburtstag und älter** | Pop-Ballade, Akustik, Schlager | Rückblick, die große Liebe, Familienzusammenhalt |
 
-Mehr Ideen für zwei besonders beliebte Anlässe findest du in unseren Ratgebern zum [Song zum 18. Geburtstag](/song-zum-18-geburtstag) und zum [Song zum 50. Geburtstag](/song-zum-50-geburtstag). Für ein Geburtstagslied an die eigene Mutter gibt es eigene Tipps im Ratgeber [Lied für Mama](/lied-fuer-mama).
+Mehr Ideen für zwei besonders beliebte Anlässe findest du in meinen Ratgebern zum [Song zum 18. Geburtstag](/song-zum-18-geburtstag) und zum [Song zum 50. Geburtstag](/song-zum-50-geburtstag). Für ein Geburtstagslied an die eigene Mutter gibt es eigene Tipps im Ratgeber [Lied für Mama](/lied-fuer-mama).
 
 ## Diese Musikstile stehen zur Wahl
 
@@ -60,7 +60,7 @@ Im Konfigurator wählst du aus acht Genres:
 
 Dazu wählst du die Stimme: weiblich, männlich oder ein Duett.
 
-## Was wir von dir brauchen
+## Was ich von dir brauche
 
 Das Herzstück deines Liedes sind deine Angaben. Stichpunkte reichen völlig, reimen musst du nichts:
 
@@ -75,7 +75,7 @@ Das Herzstück deines Liedes sind deine Angaben. Stichpunkte reichen völlig, re
 1. **Anlass und Musikstil wählen:** Im Konfigurator „Geburtstag“ auswählen und das passende Genre aussuchen.
 2. **Stimme festlegen:** weiblich, männlich oder Duett.
 3. **Geschichte erzählen:** Namen und Erinnerungen eintragen. Das dauert etwa 2 Minuten.
-4. **Song erhalten:** Wir produzieren dein Lied, hören es persönlich an und schicken dir die MP3 per E-Mail oder WhatsApp.
+4. **Song erhalten:** Ich produziere dein Lied, höre es persönlich an und schicke dir die MP3 per E-Mail oder WhatsApp.
 
 ## Tipp: Die Song-Urkunde zum Überreichen
 

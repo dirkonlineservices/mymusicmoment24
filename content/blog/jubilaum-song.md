@@ -20,7 +20,7 @@ tags:
 
 25 Jahre verheiratet, ein halbes Jahrhundert Ehe oder 50 Jahre Firmengeschichte: Bei einem Jubiläum hält man inne, schaut zurück und feiert, was man gemeinsam geschafft hat. Ein **persönlicher Jubiläumssong** fasst diese Jahre in Melodie und Text zusammen. Er erzählt von den Anfängen, den schweren Zeiten, den Erfolgen und von dem, was die Menschen verbindet.
 
-Bei MyMusicMoment24 entsteht dein Jubiläumslied seit 2024 mit KI-Komposition und persönlichem Feinschliff. Wir hören jeden Song vor der Übergabe an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**, mit einer kostenlosen Änderungsrunde.
+Bei MyMusicMoment24 entsteht dein Jubiläumslied seit 2024 mit KI-Komposition und persönlichem Feinschliff. Ich höre jeden Song vor der Übergabe an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**, mit einer kostenlosen Änderungsrunde.
 
 ## Warum ein Lied ein so schönes Jubiläumsgeschenk ist
 
@@ -100,7 +100,7 @@ Meist innerhalb von 24 Stunden an Werktagen. Wird es knapp vor der Feier, wähle
 Ja. Sammelt eure Erinnerungen vorab und tragt sie gemeinsam ins Textfeld ein. Je konkreter sie sind, desto persönlicher wird der Song.
 
 ### Kann ein Firmenjubiläums-Song öffentlich gespielt werden?
-Auf der eigenen Feier ja. Für Werbung, Social-Media-Kampagnen oder andere gewerbliche Nutzung sprich uns über die [B2B-Seite](/b2b) an.
+Auf der eigenen Feier ja. Für Werbung, Social-Media-Kampagnen oder andere gewerbliche Nutzung sprich mich über die [B2B-Seite](/b2b) an.
 
 ## Fazit: Ein Lied, das die gemeinsamen Jahre feiert
 

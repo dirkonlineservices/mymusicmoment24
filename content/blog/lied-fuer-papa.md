@@ -19,7 +19,7 @@ tags:
 
 Väter winken gern ab. „Schenkt mir nichts“, heißt es jedes Jahr. Am Ende gibt es dann wieder Socken, eine Flasche Wein oder ein Werkzeug, das er schon hat. Dabei freuen sich gerade Väter über etwas, das sie selten hören: dass gesehen wird, was sie alles getan haben. Ein **Lied für Papa** mit seinem Namen und euren gemeinsamen Erinnerungen sagt genau das. Auch wenn es im Alltag nicht so leicht über die Lippen kommt.
 
-Bei MyMusicMoment24 entsteht dein Song mit KI-Komposition und persönlichem Feinschliff. Bevor wir ihn dir schicken, hören wir jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
+Bei MyMusicMoment24 entsteht dein Song mit KI-Komposition und persönlichem Feinschliff. Bevor ich ihn dir schicke, höre ich jeden Song selbst an. Du bekommst ihn **meist innerhalb von 24 Stunden an Werktagen, für 19,99 € Festpreis**.
 
 ## Zu welchen Anlässen passt ein Lied für Papa?
 
