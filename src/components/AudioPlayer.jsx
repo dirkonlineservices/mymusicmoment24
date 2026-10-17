@@ -231,7 +231,7 @@ export default function AudioPlayer() {
                 {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 translate-x-0.5" />}
               </button>
               <div className="min-w-0">
-                <h4 className="text-sm sm:text-base font-bold text-stone-900 truncate">{currentTrack.title}</h4>
+                <h3 className="text-sm sm:text-base font-bold text-stone-900 truncate">{currentTrack.title}</h3>
                 <p className="text-xs text-stone-500 flex items-center gap-1.5 truncate">
                   <span>{currentTrack.genre}</span>
                   <span>•</span>
@@ -256,6 +256,7 @@ export default function AudioPlayer() {
               className="relative w-full h-3 sm:h-3.5 bg-stone-200 rounded-full overflow-hidden cursor-pointer"
               onClick={handleSeek}
               role="slider"
+              aria-label="Wiedergabeposition"
               aria-valuemin={0}
               aria-valuemax={duration || 100}
               aria-valuenow={currentTime}

@@ -28,6 +28,8 @@ const OCCASION_GUIDES = [
   { slug: "song-zum-18-geburtstag", label: "Song zum 18. Geburtstag" },
   { slug: "song-zum-50-geburtstag", label: "Song zum 50. Geburtstag" },
   { slug: "lied-fuer-mama", label: "Lied für Mama" },
+  { slug: "lied-fuer-papa", label: "Lied für Papa" },
+  { slug: "song-zum-ruhestand", label: "Song zum Ruhestand" },
   { slug: "jubilaum-song", label: "Jubiläum & Hochzeitstag" },
   { slug: "personalisierte-lieder", label: "Personalisierten Song erstellen lassen" },
 ];
@@ -171,7 +173,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="/" className="flex items-center gap-2.5 sm:gap-3 group" aria-label="MyMusicMoment24 Startseite">
+          <a href="/" className="flex items-center gap-2.5 sm:gap-3 group">
             <img
               src="/images/logo-icon.png"
               alt="MyMusicMoment24 Logo"
@@ -383,10 +385,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                     type="button"
                     onClick={() => setHeroVideoOpen(true)}
                     className="group absolute inset-0 w-full h-full"
-                    aria-label={t("home.heroVideoHint")}
                   >
                     <img
-                      src="/images/hochzeit.jpg"
+                      src="/images/hochzeit-600.jpg"
+                      srcSet="/images/hochzeit-600.jpg 600w, /images/hochzeit.jpg 800w"
+                      sizes="(min-width: 1024px) 576px, 100vw"
                       alt={t("home.heroVideoLabel")}
                       className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                       loading="eager"
@@ -409,7 +412,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 )}
               </div>
             </div>
-            <p className="relative text-[11px] text-stone-400 text-center mt-2">{t("home.heroVideoPrivacy")}</p>
+            <p className="relative text-[11px] text-stone-500 text-center mt-2">{t("home.heroVideoPrivacy")}</p>
           </div>
         </div>
       </section>
@@ -430,7 +433,9 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             >
               <div className="aspect-square overflow-hidden bg-stone-100 relative">
                 <img
-                  src={image}
+                  src={image.replace(".jpg", "-400.jpg")}
+                  srcSet={`${image.replace(".jpg", "-400.jpg")} 400w, ${image} 800w`}
+                  sizes="(min-width: 1024px) 290px, 50vw"
                   alt={t(`home.occasions.${id}.label`)}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   loading="lazy"
@@ -508,11 +513,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   TS
                 </div>
                 <div>
-                  <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.tanjaLocation")}</h4>
-                  <p className="text-[11px] text-amber-600 font-semibold">{t("testimonials.tanjaTitle")}</p>
+                  <h3 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.tanjaLocation")}</h3>
+                  <p className="text-[11px] text-amber-700 font-semibold">{t("testimonials.tanjaTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.verifiedBuyer")}</span>
+              <span className="text-[10px] sm:text-xs text-stone-500">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
@@ -534,11 +539,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   JN
                 </div>
                 <div>
-                  <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.joernLocation")}</h4>
+                  <h3 className="font-bold text-stone-900 text-xs sm:text-sm">{t("testimonials.joernLocation")}</h3>
                   <p className="text-[11px] text-purple-600 font-semibold">{t("testimonials.joernTitle")}</p>
                 </div>
               </div>
-              <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.verifiedBuyer")}</span>
+              <span className="text-[10px] sm:text-xs text-stone-500">{t("testimonials.verifiedBuyer")}</span>
             </div>
           </div>
 
@@ -559,11 +564,11 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                     {review.initials}
                   </div>
                   <div>
-                    <h4 className="font-bold text-stone-900 text-xs sm:text-sm">{review.name}</h4>
+                    <h3 className="font-bold text-stone-900 text-xs sm:text-sm">{review.name}</h3>
                     <p className="text-[11px] text-blue-600 font-semibold">{review.title}</p>
                   </div>
                 </div>
-                <span className="text-[10px] sm:text-xs text-stone-400">{t("testimonials.googleSource")}</span>
+                <span className="text-[10px] sm:text-xs text-stone-500">{t("testimonials.googleSource")}</span>
               </div>
             </div>
           ))}
@@ -858,12 +863,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </div>
 
           {/* Bottom Bar: Copyright & Payment */}
-          <div className="pt-8 border-t border-slate-900/80 flex flex-col lg:flex-row items-center justify-between gap-5 text-[11px] text-slate-500 text-center lg:text-left">
+          <div className="pt-8 border-t border-slate-900/80 flex flex-col lg:flex-row items-center justify-between gap-5 text-[11px] text-slate-400 text-center lg:text-left">
             <div className="space-y-1">
               <p>
                 {t("footer.allRights")}
               </p>
-              <p className="text-[10px] text-slate-600">
+              <p className="text-[10px] text-slate-400">
                 {t("footer.sslSecurity")}
               </p>
             </div>

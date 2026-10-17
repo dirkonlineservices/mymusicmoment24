@@ -81,7 +81,7 @@ Eine Änderungsrunde ist bei jeder Bestellung kostenlos inklusive – etwa wenn 
 
 ## Fazit
 
-Ein Lied für Mama ist ein Dankeschön, das sie immer wieder anhören kann – und das ihr zeigt, wie viel sie euch bedeutet.
+Ein Lied für Mama ist ein Dankeschön, das sie immer wieder anhören kann – und das ihr zeigt, wie viel sie euch bedeutet. Für den Vater gibt es eigene Ideen im Ratgeber [Lied für Papa](/lied-fuer-papa).
 
 👉 **[Jetzt Lied für Mama gestalten (19,99 €)](/#konfigurator)**
 👉 **[Erst mal Hörproben anhören](/#hoerproben)**

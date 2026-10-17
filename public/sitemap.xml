@@ -63,7 +63,7 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/lied-fuer-mama</loc>
-    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -91,6 +91,28 @@
     <image:image>
       <image:loc>https://www.mymusicmoment24.de/images/hero-step-2.jpg</image:loc>
       <image:title>Song zum 18. Geburtstag</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.mymusicmoment24.de/lied-fuer-papa</loc>
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hero-step-1.jpg</image:loc>
+      <image:title>Lied für Papa</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.mymusicmoment24.de/song-zum-ruhestand</loc>
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/party.jpg</image:loc>
+      <image:title>Song zum Ruhestand</image:title>
     </image:image>
   </url>
 

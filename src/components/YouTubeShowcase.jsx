@@ -117,7 +117,6 @@ export default function YouTubeShowcase() {
                 type="button"
                 onClick={() => setActiveVideo(video)}
                 className="w-full aspect-video relative overflow-hidden bg-stone-100 text-left focus:outline-none focus:ring-2 focus:ring-red-500"
-                aria-label={`${video.title} abspielen`}
               >
                 <img
                   src={video.thumbnail}
@@ -219,9 +218,9 @@ export default function YouTubeShowcase() {
                   <Music className="w-4 h-4 text-red-600" />
                 </div>
                 <div className="min-w-0">
-                  <h4 className="text-sm sm:text-base font-bold text-stone-900 truncate">
+                  <h3 className="text-sm sm:text-base font-bold text-stone-900 truncate">
                     {activeVideo.title}
-                  </h4>
+                  </h3>
                   <p className="text-[11px] text-amber-700 truncate font-medium">
                     {activeVideo.badge} • {activeVideo.genreDetail}
                   </p>

@@ -105,6 +105,11 @@ const REDIRECT_MAP = {
 app.use((req, res, next) => {
   const reqPath = req.path;
 
+  // Kurzlink für Google-Bewertungen (302, falls sich der Google-Link einmal ändert)
+  if (reqPath === "/bewerten" || reqPath === "/bewertung") {
+    return res.redirect(302, "https://g.page/r/CSSesokOK__iEBM/review");
+  }
+
   // Nur eine Domain-Variante: mymusicmoment24.de -> www.mymusicmoment24.de
   if (req.hostname === "mymusicmoment24.de") {
     return res.redirect(301, `https://www.mymusicmoment24.de${req.originalUrl}`);

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import LandingPage from "./views/LandingPage";
-import BlogPost from "./views/BlogPost";
-import AuthorPage from "./views/AuthorPage";
-import LegalPage from "./views/LegalPage";
-import StreamingReleasePage from "./views/StreamingReleasePage";
-import SupportPage from "./views/SupportPage";
-import B2BPage from "./views/B2BPage";
-import PayPalCheckout from "./components/PayPalCheckout";
+const BlogPost = lazy(() => import("./views/BlogPost"));
+const AuthorPage = lazy(() => import("./views/AuthorPage"));
+const LegalPage = lazy(() => import("./views/LegalPage"));
+const StreamingReleasePage = lazy(() => import("./views/StreamingReleasePage"));
+const SupportPage = lazy(() => import("./views/SupportPage"));
+const B2BPage = lazy(() => import("./views/B2BPage"));
+const PayPalCheckout = lazy(() => import("./components/PayPalCheckout"));
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -34,11 +34,52 @@ function syncDocumentMeta() {
   set('meta[property="og:description"]', "content", meta.description);
 }
 
+// Seite aus der aktuellen Adresse bestimmen (auch für den ersten Render)
+function routeFromLocation() {
+  if (typeof window === "undefined") return { view: "home", slug: null };
+  const path = window.location.pathname;
+  const hash = window.location.hash;
+  if (
+    path === "/streaming" || 
+    path === "/spotify-release" || 
+    path === "/streaming-release" ||
+    hash === "#/streaming" ||
+    hash === "#/spotify-release"
+  ) {
+    return ({ view: "streaming", slug: null });
+  } else if (path === "/support" || path === "/kontakt" || hash === "#/support") {
+    return ({ view: "support", slug: null });
+  } else if (
+    path === "/b2b" || 
+    path === "/kooperation" || 
+    path === "/b2b-dienstleistungen" || 
+    path === "/agenturen" || 
+    hash === "#/b2b"
+  ) {
+    return ({ view: "b2b", slug: null });
+  } else if (path.startsWith("/blog/")) {
+    const slug = path.replace("/blog/", "").replace(/\/$/, "");
+    return ({ view: "blog", slug });
+  } else if (path === "/autor-dirk-schmetzer" || path === "/ueber-uns-musikservice") {
+    return ({ view: "author", slug: null });
+  } else if (path === "/impressum") {
+    return ({ view: "legal", slug: "impressum" });
+  } else if (path === "/datenschutz") {
+    return ({ view: "legal", slug: "datenschutz" });
+  } else {
+    // Check if path matches a blog post slug directly (e.g. /personalisierte-geburtstagslieder)
+    const cleanPath = path.replace(/^\//, "").replace(/\/$/, "");
+    const matchedPost = cleanPath ? getBlogPostBySlug(cleanPath) : null;
+    if (matchedPost) {
+      return ({ view: "blog", slug: matchedPost.slug });
+    } else {
+      return ({ view: "home", slug: null });
+    }
+  }
+}
+
 function AppMain() {
-  const [currentRoute, setCurrentRoute] = useState({
-    view: "home",
-    slug: null,
-  });
+  const [currentRoute, setCurrentRoute] = useState(routeFromLocation);
 
   const [checkoutOrder, setCheckoutOrder] = useState(null);
 
@@ -50,46 +91,7 @@ function AppMain() {
   // Sync with browser URL & routing
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname;
-      const hash = window.location.hash;
-      if (
-        path === "/streaming" || 
-        path === "/spotify-release" || 
-        path === "/streaming-release" ||
-        hash === "#/streaming" ||
-        hash === "#/spotify-release"
-      ) {
-        setCurrentRoute({ view: "streaming", slug: null });
-      } else if (path === "/support" || path === "/kontakt" || hash === "#/support") {
-        setCurrentRoute({ view: "support", slug: null });
-      } else if (
-        path === "/b2b" || 
-        path === "/kooperation" || 
-        path === "/b2b-dienstleistungen" || 
-        path === "/agenturen" || 
-        hash === "#/b2b"
-      ) {
-        setCurrentRoute({ view: "b2b", slug: null });
-      } else if (path.startsWith("/blog/")) {
-        const slug = path.replace("/blog/", "").replace(/\/$/, "");
-        setCurrentRoute({ view: "blog", slug });
-      } else if (path === "/autor-dirk-schmetzer" || path === "/ueber-uns-musikservice") {
-        setCurrentRoute({ view: "author", slug: null });
-      } else if (path === "/impressum") {
-        setCurrentRoute({ view: "legal", slug: "impressum" });
-      } else if (path === "/datenschutz") {
-        setCurrentRoute({ view: "legal", slug: "datenschutz" });
-      } else {
-        // Check if path matches a blog post slug directly (e.g. /personalisierte-geburtstagslieder)
-        const cleanPath = path.replace(/^\//, "").replace(/\/$/, "");
-        const matchedPost = cleanPath ? getBlogPostBySlug(cleanPath) : null;
-        if (matchedPost) {
-          setCurrentRoute({ view: "blog", slug: matchedPost.slug });
-        } else {
-          setCurrentRoute({ view: "home", slug: null });
-        }
-      }
-
+      setCurrentRoute(routeFromLocation());
     };
 
     handlePopState();
@@ -201,6 +203,7 @@ function AppMain() {
         />
       )}
 
+      <Suspense fallback={<div className="min-h-screen bg-[#faf8f5]" />}>
       {currentRoute.view === "support" && (
         <SupportPage
           onBackToHome={() => navigateToHome()}
@@ -246,12 +249,18 @@ function AppMain() {
         />
       )}
 
-      {/* Slide-over PayPal Checkout Drawer */}
-      <PayPalCheckout
-        isOpen={isCheckoutOpen}
-        onClose={handleCloseCheckout}
-        order={checkoutOrder}
-      />
+      </Suspense>
+
+      {/* Kasse wird erst beim ersten Öffnen geladen */}
+      {checkoutOrder && (
+        <Suspense fallback={null}>
+          <PayPalCheckout
+            isOpen={isCheckoutOpen}
+            onClose={handleCloseCheckout}
+            order={checkoutOrder}
+          />
+        </Suspense>
+      )}
 
       {/* Floating Language Switcher on the Top Right */}
       <aside
