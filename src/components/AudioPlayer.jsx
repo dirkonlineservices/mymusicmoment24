@@ -5,54 +5,54 @@ import { useLanguage } from "../context/LanguageContext";
 
 const PLAYLIST = [
   {
-    id: "snoopy-groove",
-    title: "Snoopy's Groove",
-    genre: "House / Electronic Dance",
-    categoryLabel: "House",
-    vocal: "Club & Party-Beat",
-    file: "/audio/snoopy-s-groove.mp3",
-    description: "Treibender House-Track mit pulsierendem Groove und Club-Vibes.",
-    en: { genre: "House / Electronic dance", vocal: "Club & party beat", description: "A driving house track with a pulsing groove and club vibes." },
-  },
-  {
-    id: "squad-warzone",
-    title: "Squad in der Zone (Warzone)",
-    genre: "Gamer & Gaming-Song",
-    categoryLabel: "Gaming",
-    vocal: "Deutschrap & Action",
-    file: "/audio/squad-in-der-zone-warzone.mp3",
-    description: "Speziell für Gamer: Packender Beat über Warzone-Battles, Squads und Siege.",
-    en: { genre: "Gamer & gaming song", vocal: "German rap & action", description: "Made for gamers: a gripping beat about Warzone battles, squads and wins." },
-  },
-  {
-    id: "game-over",
-    title: "Game Over (Gorillaz Mode)",
-    genre: "Gaming / Hip-Hop & Style",
-    categoryLabel: "Gamer Part 4",
-    vocal: "Gorillaz-Vibes",
-    file: "/audio/game-over-gorillaz-mode.mp3",
-    description: "Einzigartiger Gaming-Sound im unverwechselbaren Gorillaz-Style.",
-    en: { genre: "Gaming / Hip-hop & style", vocal: "Gorillaz vibes", description: "A unique gaming sound in the distinctive Gorillaz style." },
+    id: "tanzt-der-floh",
+    title: "Auf der Wiese tanzt der Floh",
+    genre: "Kinderlied & Familie",
+    categoryLabel: "Familie & Kinder",
+    vocal: "Fröhlich & Herzlich",
+    file: "/audio/auf-der-wiese-tanzt-der-floh.mp3",
+    description: "Liebevolles, fröhliches Familien- & Kinderlied zum Mitsingen, Tanzen und Verschenken.",
+    en: { genre: "Children's song & family", categoryLabel: "Family & Kids", vocal: "Cheerful & warm", description: "A loving, cheerful family & children's song to sing, dance along to and gift." },
   },
   {
     id: "brustring-herza",
     title: "Brustring und Herza",
-    genre: "Vereinssong & Fan-Hymne",
-    categoryLabel: "Vereine",
-    vocal: "Stadion & Leidenschaft",
+    genre: "Hymne, Jubiläum & Verein",
+    categoryLabel: "Hymne & Team",
+    vocal: "Emotional & Mitreißend",
     file: "/audio/brustring-und-herza.mp3",
-    description: "Für Vereine, Teams und Fans: Ein Song voller Herzblut, Zusammenhalt und Stolz.",
-    en: { genre: "Club song & fan anthem", categoryLabel: "Clubs", vocal: "Stadium & passion", description: "For clubs, teams and fans: a song full of heart, team spirit and pride." },
+    description: "Gänsehaut-Hymne voller Herzblut, Zusammenhalt und Stolz – ideal für Jubiläen, Teams & Freunde.",
+    en: { genre: "Anthem, anniversary & club", categoryLabel: "Anthem & Team", vocal: "Emotional & rousing", description: "A goosebump anthem full of heart, team spirit and pride – ideal for anniversaries, teams & friends." },
   },
   {
-    id: "tanzt-der-floh",
-    title: "Auf der Wiese tanzt der Floh",
-    genre: "Kinderlied & Familie",
-    categoryLabel: "Kinder",
-    vocal: "Fröhlich & Spielerisch",
-    file: "/audio/auf-der-wiese-tanzt-der-floh.mp3",
-    description: "Liebevolles, fröhliches Kinderlied zum Mitsingen und Tanzen für die Kleinen.",
-    en: { genre: "Children's song & family", categoryLabel: "Kids", vocal: "Cheerful & playful", description: "A loving, cheerful children's song for little ones to sing and dance along to." },
+    id: "snoopy-groove",
+    title: "Snoopy's Groove",
+    genre: "Geburtstags-Party & Dance",
+    categoryLabel: "Party & Dance",
+    vocal: "Club & Feier-Beat",
+    file: "/audio/snoopy-s-groove.mp3",
+    description: "Treibender Party-Track mit pulsierendem Groove – perfekt zum Feiern und Anstoßen.",
+    en: { genre: "Birthday party & dance", categoryLabel: "Party & Dance", vocal: "Club & party beat", description: "A driving party track with a pulsing groove – perfect for celebrating." },
+  },
+  {
+    id: "game-over",
+    title: "Game Over (Gorillaz Mode)",
+    genre: "Urban Pop / Hip-Hop & Style",
+    categoryLabel: "Urban & Style",
+    vocal: "Moderne Beats & Flow",
+    file: "/audio/game-over-gorillaz-mode.mp3",
+    description: "Moderner Urban-Sound im unverwechselbaren Gorillaz-Style mit coolem Beat.",
+    en: { genre: "Urban pop / Hip-hop & style", categoryLabel: "Urban & Style", vocal: "Modern beats & flow", description: "A modern urban sound in the distinctive Gorillaz style with a cool beat." },
+  },
+  {
+    id: "squad-warzone",
+    title: "Squad in der Zone (Warzone)",
+    genre: "Deutschrap & Freunde-Song",
+    categoryLabel: "Rap & Gaming",
+    vocal: "Deutschrap & Action",
+    file: "/audio/squad-in-der-zone-warzone.mp3",
+    description: "Packender Deutschrap-Beat über Freundschaft, gemeinsame Nächte, Gaming-Squads und Insider.",
+    en: { genre: "German rap & friends song", categoryLabel: "Rap & Gaming", vocal: "German rap & action", description: "A gripping rap beat about friendship, gaming squads and inside jokes." },
   },
 ];
 
@@ -150,9 +150,26 @@ export default function AudioPlayer() {
   };
 
   const selectTrack = (index) => {
+    if (index === currentTrackIndex) {
+      handleTogglePlay();
+      return;
+    }
     setCurrentTrackIndex(index);
     setCurrentTime(0);
-    setIsPlaying(true);
+    setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
+    if (audioRef.current) {
+      audioRef.current.src = PLAYLIST[index].file;
+      audioRef.current.load();
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          trackAudioEvent("play", PLAYLIST[index].title, { genre: PLAYLIST[index].genre });
+        })
+        .catch(() => {
+          setIsPlaying(false);
+        });
+    }
   };
 
   const handleSeek = (e) => {

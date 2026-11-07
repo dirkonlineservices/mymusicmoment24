@@ -153,6 +153,14 @@ export const translations = {
           label: "Runder Geburtstag",
           desc: "Lustig oder berührend, mit allen Meilensteinen",
         },
+        weihnachten: {
+          label: "Weihnachten & Festtage",
+          desc: "Das persönliche Musikgeschenk unterm Weihnachtsbaum",
+        },
+        familie: {
+          label: "Für Mama, Papa & Familie",
+          desc: "Ein liebevolles Dankeschön an Eltern, Großeltern oder Kinder",
+        },
         liebe: {
           label: "Liebeserklärung & Jahrestag",
           desc: "Sag ‚Ich liebe dich‘ mit einer unvergesslichen Ballade",
@@ -782,6 +790,14 @@ export const translations = {
         geburtstag: {
           label: "Milestone birthday",
           desc: "Funny or touching, with all the milestones",
+        },
+        weihnachten: {
+          label: "Christmas & holidays",
+          desc: "A personal musical gift under the Christmas tree",
+        },
+        familie: {
+          label: "For Mom, Dad & family",
+          desc: "A heartfelt thank-you song for parents, grandparents or kids",
         },
         liebe: {
           label: "Declaration of love & anniversary",

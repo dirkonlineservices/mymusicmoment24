@@ -9,6 +9,8 @@ import { useLanguage } from "../context/LanguageContext";
 const OCCASIONS_DATA = [
   { id: "hochzeit", label: "Hochzeit & Verlobung", icon: Heart, desc: "Euer emotionaler Soundtrack für Trauung & Eröffnungstanz" },
   { id: "geburtstag", label: "Runder Geburtstag", icon: Gift, desc: "Lustig, berührend oder mitreißend mit allen Meilensteinen" },
+  { id: "weihnachten", label: "Weihnachten & Festtage", icon: Sparkles, desc: "Das persönliche Musikgeschenk unterm Weihnachtsbaum" },
+  { id: "familie", label: "Für Mama, Papa & Familie", icon: Heart, desc: "Ein liebevolles Dankeschön an Eltern, Großeltern oder Kinder" },
   { id: "liebe", label: "Liebeserklärung & Jahrestag", icon: Sparkles, desc: "Sag ‚Ich liebe dich‘ mit einer unvergesslichen Ballade" },
   { id: "party", label: "Party, Verein & Abschied", icon: Flame, desc: "Uptempo-Hymne mit Ohrwurm-Refrain zum Mitsingen" },
 ];
