@@ -130,7 +130,7 @@ function AppMain() {
     // Check for Stripe Checkout return (only for standard home page orders)
     const urlParams = new URLSearchParams(window.location.search);
     const currentLang = langFromPath(window.location.pathname);
-    const isStreamingRoute = stripLangPrefix(window.location.pathname).startsWith("/streaming") || window.location.hash.includes("streaming");
+    const isStreamingRoute = (toInternalPath(window.location.pathname) || "").startsWith("/streaming") || window.location.hash.includes("streaming");
     
     if (!isStreamingRoute && urlParams.get("stripe_success") === "true" && urlParams.get("session_id")) {
       const sessionId = urlParams.get("session_id");
