@@ -111,25 +111,25 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
             <span>{en ? "Black Deal Month • 25% OFF Everything" : "Black Deal Monat • 25 % Rabatt auf alles"}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] mb-5">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.12] mb-5">
             {en ? (
               <>
-                Your Personal Song for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500">
+                <span className="block">Your Personal Song for</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500">
                   €14.99 instead of €19.99
                 </span>
               </>
             ) : (
               <>
-                Dein persönlicher Song für{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500">
+                <span className="block">Dein persönlicher Song für</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500">
                   14,99 € statt 19,99 €
                 </span>
               </>
             )}
           </h1>
 
-          <p className="text-base sm:text-xl text-stone-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-base sm:text-xl text-stone-300 max-w-2xl mx-auto leading-relaxed sm:min-h-[5.5rem] mb-8">
             {en
               ? "Save 25% all month long during our Black Deal Month! Tell me your story in 2 minutes – I write the custom lyrics first for your approval, then produce your studio-quality MP3 song within 24 hours."
               : "Unser Black Deal Monat für euch: Sichere dir den ganzen Monat 25 % Rabatt auf dein unvergessliches Geschenk für Weihnachten, Hochzeit oder Geburtstag! Inklusive Songtext-Freigabe vorab per E-Mail."}
