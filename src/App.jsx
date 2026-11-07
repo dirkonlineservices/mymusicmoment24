@@ -118,11 +118,33 @@ function AppMain() {
     setCurrentRoute({ ...route, lang });
   };
 
-  // Sprachumschalter: gleiche Seite in der anderen Sprache
+  // Sprachumschalter: gleiche Seite in der anderen Sprache (ohne Sprung der Scroll-Position)
   const changeLanguage = (newLang) => {
+    let anchorEl = null;
+    let prevTop = 0;
+    if (typeof window !== "undefined" && window.scrollY > 40) {
+      const candidates = document.querySelectorAll("section, main, article, footer");
+      for (const el of candidates) {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom > 80) {
+          anchorEl = el;
+          prevTop = rect.top;
+          break;
+        }
+      }
+    }
     const target = alternatePath(window.location.pathname, newLang) || localizePath("/", newLang);
     window.history.pushState({}, "", `${target}${window.location.hash}`);
     setCurrentRoute(routeFromLocation());
+    if (anchorEl) {
+      requestAnimationFrame(() => {
+        const nextTop = anchorEl.getBoundingClientRect().top;
+        const delta = nextTop - prevTop;
+        if (Math.abs(delta) > 1) {
+          window.scrollBy({ top: delta, behavior: "instant" });
+        }
+      });
+    }
   };
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 

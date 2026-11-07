@@ -21,9 +21,9 @@ export default function LanguageSwitcher({ className = "" }) {
         href={altHref("de")}
         hrefLang="de"
         onClick={handleClick("de")}
-        className={`flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-black transition-all duration-200 ${
+        className={`flex items-center justify-center gap-1 min-w-[3.25rem] px-2.5 py-1 rounded-xl text-xs font-black transition-colors duration-200 ${
           language === "de"
-            ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30 scale-[1.02]"
+            ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30"
             : "text-stone-600 hover:text-stone-900 hover:bg-stone-100"
         }`}
         aria-current={language === "de" ? "true" : undefined}
@@ -37,9 +37,9 @@ export default function LanguageSwitcher({ className = "" }) {
         href={altHref("en")}
         hrefLang="en"
         onClick={handleClick("en")}
-        className={`flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-black transition-all duration-200 ${
+        className={`flex items-center justify-center gap-1 min-w-[3.25rem] px-2.5 py-1 rounded-xl text-xs font-black transition-colors duration-200 ${
           language === "en"
-            ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30 scale-[1.02]"
+            ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30"
             : "text-stone-600 hover:text-stone-900 hover:bg-stone-100"
         }`}
         aria-current={language === "en" ? "true" : undefined}

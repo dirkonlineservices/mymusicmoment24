@@ -39,9 +39,27 @@ export const BLOG_SLUGS = {
   "ki-musik-studien-trends": "ai-music-trends",
 };
 
+const DE_ALIASES = {
+  "/blackweek": "/black-week",
+  "/black-deal": "/black-week",
+  "/black-friday": "/black-week",
+  "/kontakt": "/support",
+  "/kooperation": "/b2b",
+  "/b2b-dienstleistungen": "/b2b",
+  "/agenturen": "/b2b",
+  "/spotify": "/streaming",
+  "/spotify-release": "/streaming",
+  "/streaming-release": "/streaming",
+  "/ueber-uns-musikservice": "/autor-dirk-schmetzer",
+  "/ueber-uns": "/autor-dirk-schmetzer",
+};
+
 const EN_TO_DE = Object.fromEntries([
   ...Object.entries(STATIC_PATHS).map(([de, en]) => [en, de]),
   ...Object.entries(BLOG_SLUGS).map(([de, en]) => [`/en/${en}`, `/${de}`]),
+  ["/en/blackweek", "/black-week"],
+  ["/en/black-deal", "/black-week"],
+  ["/en/black-friday", "/black-week"],
 ]);
 
 function clean(path = "/") {
@@ -57,11 +75,18 @@ export function langFromPath(path) {
 
 /**
  * Interner (deutscher) Pfad zu einer Adresse, oder null, wenn eine /en-Adresse unbekannt ist.
- * Deutsche Adressen werden unverändert zurückgegeben.
+ * Deutsche Adressen werden unverändert (bzw. auf den kanonischen internen Pfad normalisiert) zurückgegeben.
  */
 export function toInternalPath(path) {
   const p = clean(path);
-  if (langFromPath(p) === "de") return p;
+  if (langFromPath(p) === "de") {
+    if (DE_ALIASES[p]) return DE_ALIASES[p];
+    if (p.startsWith("/blog/")) {
+      const slug = p.slice("/blog/".length);
+      if (BLOG_SLUGS[slug]) return `/${slug}`;
+    }
+    return p;
+  }
   return EN_TO_DE[p] || null;
 }
 

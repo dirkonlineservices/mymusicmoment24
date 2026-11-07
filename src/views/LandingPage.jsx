@@ -170,7 +170,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href={lp("/")} className="flex items-center gap-2.5 sm:gap-3 group">
+          <a href={lp("/")} className="flex items-center gap-2.5 sm:gap-3 group xl:min-w-[235px]">
             <img
               src="/images/logo-icon.png"
               alt="MyMusicMoment24 Logo"
@@ -189,7 +189,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-5 xl:gap-6 text-sm font-medium text-stone-600 whitespace-nowrap">
+          <nav className="hidden xl:flex items-center justify-center gap-5 xl:gap-6 text-sm font-medium text-stone-600 whitespace-nowrap">
             <a href="#shop" className="hover:text-amber-600 transition">{t("nav.shop")}</a>
             <a href="#hoerproben" className="hover:text-amber-600 transition">{t("nav.samples")}</a>
             <a href="#prozess" className="hover:text-amber-600 transition">{t("nav.process")}</a>
@@ -221,7 +221,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
           </nav>
 
           {/* Desktop Action Button & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-end gap-3 xl:min-w-[235px]">
             <a
               href="#konfigurator"
               className="hidden sm:inline-flex whitespace-nowrap px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 text-xs sm:text-sm font-black rounded-xl shadow-md shadow-amber-500/20 transition active:scale-95"
@@ -375,14 +375,14 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <span>{t("home.heroEyebrow")}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.1]">
-              {t("home.heroTitle")}{" "}
+            <h1 className="text-3xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.4rem] font-extrabold text-stone-900 tracking-tight leading-[1.12] lg:min-h-[3.36em]">
+              <span className="block">{t("home.heroTitle")}</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-orange-500">
                 {t("home.heroTitleHighlight")}
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed lg:min-h-[7rem]">
               {t("home.heroText")}
             </p>
 
@@ -494,8 +494,8 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 </span>
               </div>
               <div className="p-3.5 sm:p-5">
-                <h3 className="font-bold text-sm sm:text-lg text-stone-900">{t(`home.occasions.${id}.label`)}</h3>
-                <p className="text-xs sm:text-sm text-stone-600 mt-0.5 leading-snug">{t(`home.occasions.${id}.desc`)}</p>
+                <h3 className="font-bold text-sm sm:text-lg text-stone-900 truncate">{t(`home.occasions.${id}.label`)}</h3>
+                <p className="text-xs sm:text-sm text-stone-600 mt-0.5 leading-snug min-h-[2.5rem]">{t(`home.occasions.${id}.desc`)}</p>
                 <span className="mt-2.5 inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-amber-700 group-hover:gap-2 transition-all">
                   {t("home.occasionsCta")} <ChevronRight className="w-4 h-4" />
                 </span>
@@ -519,7 +519,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 {idx + 1}
               </span>
               <h3 className="font-bold text-lg text-stone-900 mb-1.5">{step.title}</h3>
-              <p className="text-sm text-stone-600 leading-relaxed">{step.desc}</p>
+              <p className="text-sm text-stone-600 leading-relaxed lg:min-h-[5.75rem]">{step.desc}</p>
             </li>
           ))}
         </ol>
