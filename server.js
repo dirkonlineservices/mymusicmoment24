@@ -690,7 +690,7 @@ app.post("/api/b2b-inquiry", async (req, res) => {
           <p style="color: #64748b; font-size: 13px; margin-top: 30px;">
             Herzliche Grüße,<br>
             <strong>Dirk Schmetzer</strong><br>
-            MyMusicMoment24 • DS Online Services (SichtbarmitKI.agency)<br>
+            MyMusicMoment24 • DS Online Services<br>
             Stuttgart, Deutschland
           </p>
         </div>

@@ -72,15 +72,7 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
             <div className="flex flex-col gap-2.5 text-left text-xs text-stone-700 border-t border-stone-200 pt-4">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <a
-                  href="https://www.sichtbarmitki.agency"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-700 hover:text-amber-800 font-medium inline-flex items-center gap-1 transition-colors"
-                >
-                  <span>DS Online Services • sichtbarmitKI.agency</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                <span className="text-amber-700 font-medium">DS Online Services</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-600 shrink-0" />

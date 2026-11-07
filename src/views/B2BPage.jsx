@@ -240,22 +240,13 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
               <Sparkles className="w-3.5 h-3.5" /> {t("b2b.agencyBadge", "Teil von DS Online Services")}
             </span>
             <h3 className="text-lg sm:text-xl font-bold text-stone-900">
-              {t("b2b.agencyTitle", "SichtbarmitKI.agency – Deine Partner-Agentur für KI-Sichtbarkeit")}
+              {t("b2b.agencyTitle", "DS Online Services – Dein Partner für KI-Audio & Content")}
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed">
-              {t("b2b.agencyDesc", "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Neben Musikproduktion unterstützen wir Unternehmen auch bei ganzheitlicher KI-Sichtbarkeit, Content-Strategie und digitalem Marketing.")}
+              {t("b2b.agencyDesc", "MyMusicMoment24 ist ein spezialisierter Audio-Service von Dirk Schmetzer (DS Online Services). Wir unterstützen Unternehmen, Vereine und Agenturen bei individuellen Musikproduktionen und Audio-Branding.")}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href="https://www.sichtbarmitki.agency"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-blue-600/20"
-            >
-              <span>{language === "en" ? "Visit the agency: SichtbarMitKI" : "Zur Agentur: SichtbarMitKI"}</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
             <a
               href={language === "en" ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%27m%20interested%20in%20a%20B2B%20collaboration%20with%20MyMusicMoment24." : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20B2B-Kooperation%20bei%20MyMusicMoment24."}
               target="_blank"

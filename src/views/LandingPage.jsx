@@ -817,17 +817,6 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               </p>
               <div className="pt-1">
                 <a
-                  href="https://www.sichtbarmitki.agency"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors text-xs"
-                >
-                  <span>{language === "en" ? "Digital agency" : "Digitalagentur"}: sichtbarmitKI.agency</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-              <div className="pt-1">
-                <a
                   href="https://www.youtube.com/@MyMusicMoment24"
                   target="_blank"
                   rel="noopener noreferrer"
