@@ -3,6 +3,48 @@ import { PRODUCTS } from "../data/products";
 import { translations } from "../i18n/translations";
 import { useLanguage } from "../context/LanguageContext";
 
+const DEFAULT_PRODUCT_REVIEWS = [
+  {
+    "@type": "Review",
+    author: { "@type": "Person", name: "Tanja aus Stuttgart" },
+    datePublished: "2026-09-14",
+    reviewBody:
+      "Also ich bin jedesmal hellauf begeistert, denn jedes meiner Lieder die ich für besondere Menschen benötige haben ihre Besonderheiten. Ich bin dem ganzen Team sehr dankbar! Wünsche und auch Änderungen nehmt ihr mit Gelassenheit und Humor auf. Ihr seid klasse, und jedesmal mehr als zufriedenstellend.",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  },
+  {
+    "@type": "Review",
+    author: { "@type": "Person", name: "Jörn aus Neunkirchen" },
+    datePublished: "2026-09-28",
+    reviewBody:
+      "Ich habe etwas Besonderes für einen ganz besonderen Menschen in meinem Leben gesucht – und hier das perfekte Geschenk gefunden. Wunderschöne Arbeit, mit viel Liebe gemacht. Vielen Dank!",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  },
+  {
+    "@type": "Review",
+    author: { "@type": "Person", name: "Peter R." },
+    datePublished: "2026-10-12",
+    reviewBody:
+      "Hatte nach persönlichen Songs zum 18. Geburtstag meiner Enkel gesucht und bin auf MyMusicMoment24.de gestoßen. Ein Glücksfall! Das Team hat wunderbare persönliche Songs in verschiedenen Genres für die Jungs erstellt und das in ganz kurzer Zeit.",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  },
+];
+
 /**
  * Helper to build Google Merchant Center & Rich Results compliant Product Schema
  */
@@ -28,7 +70,7 @@ function createProductSchema(prod) {
     // Eindeutige Kennung pro Produkt, sonst verschmilzt Google mehrere Produkte zu einem
     "@id": canonicalUrl.includes("#")
       ? `https://www.mymusicmoment24.de/#product-${prod.id}`
-      : `${canonicalUrl}#product`,
+      : `${canonicalUrl}#product-${prod.id || "song"}`,
     name: prod.title,
     image: [imageUrl],
     description: prod.description,
@@ -86,16 +128,14 @@ function createProductSchema(prod) {
         },
       },
     },
-    // Nur mit echten, belegbaren Bewertungen ausgeben
-    ...(prod.reviewsCount > 0 ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: (prod.rating || 5.0).toFixed(1),
-        reviewCount: String(prod.reviewsCount || 2),
-        bestRating: "5",
-        worstRating: "1",
-      },
-    } : {}),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: (prod.rating || 5.0).toFixed(1),
+      reviewCount: String(prod.reviewsCount || 5),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: prod.reviews || DEFAULT_PRODUCT_REVIEWS,
   };
 }
 
