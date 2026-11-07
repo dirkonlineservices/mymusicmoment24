@@ -1,4 +1,4 @@
-import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
@@ -75,12 +75,12 @@ function ImprintEn() {
           <MapPin className="w-5 h-5 text-amber-600" /> Information pursuant to § 5 DDG (service provider)
         </h2>
         <div className="text-stone-700 space-y-1">
-          <p className="font-bold text-stone-900 text-base">DS Online Services &amp; Digitalagentur SichtbarmitKI</p>
+          <p className="font-bold text-stone-900 text-base">DS Online Services</p>
           <p className="font-medium text-stone-800">Owner: Dirk Schmetzer</p>
           <p>Riedgrasweg 30</p>
           <p>70599 Stuttgart, Germany</p>
           <p className="text-xs text-stone-500 pt-1">
-            MyMusicMoment24 is a music and audio service of DS Online Services in connection with the digital agency SichtbarmitKI.
+            MyMusicMoment24 is a music and audio service of DS Online Services.
           </p>
         </div>
         <div className="pt-2 border-t border-stone-200 space-y-2">
@@ -95,18 +95,6 @@ function ImprintEn() {
         <div className="pt-2 border-t border-stone-200">
           <h3 className="font-semibold text-stone-900 mb-1">VAT:</h3>
           <p>Small business owner under § 19 of the German VAT Act (UStG). No VAT is charged or shown.</p>
-        </div>
-        <div className="pt-3 border-t border-stone-200 space-y-2">
-          <h3 className="font-semibold text-stone-900 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-600" /> Digitalagentur SichtbarmitKI
-          </h3>
-          <p className="text-stone-700 text-xs sm:text-sm">
-            Website &amp; portfolio:{" "}
-            <a href="https://www.sichtbarmitki.agency" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:underline font-bold inline-flex items-center gap-1">
-              <span>www.sichtbarmitki.agency</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </p>
         </div>
         <div className="pt-3 border-t border-stone-200">
           <h3 className="font-semibold text-stone-900 mb-1">Responsible for editorial content pursuant to § 18 (2) MStV:</h3>
@@ -256,7 +244,7 @@ function TermsEn() {
           (1) These General Terms and Conditions (GTC) apply to all contracts for the creation and delivery of personalized songs, gift vouchers and related digital services concluded via the website <strong>mymusicmoment24.de</strong> between
         </p>
         <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs my-2">
-          <p className="font-semibold text-stone-900">DS Online Services &amp; Digitalagentur SichtbarmitKI</p>
+          <p className="font-semibold text-stone-900">DS Online Services</p>
           <p>Owner: Dirk Schmetzer</p>
           <p>Riedgrasweg 30, 70599 Stuttgart, Germany</p>
           <p>Email: <a href="mailto:info@mymusicmoment24.de" className="text-amber-700 underline font-medium">info@mymusicmoment24.de</a></p>
@@ -487,7 +475,7 @@ function TermsDe() {
           (1) Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge über die Erstellung und Lieferung personalisierter Musikstücke, Gutscheine und damit zusammenhängender digitaler Dienstleistungen, die über die Website <strong>mymusicmoment24.de</strong> zwischen der
         </p>
         <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs my-2">
-          <p className="font-semibold text-stone-900">DS Online Services &amp; Digitalagentur SichtbarmitKI</p>
+          <p className="font-semibold text-stone-900">DS Online Services</p>
           <p>Inhaber: Dirk Schmetzer</p>
           <p>Riedgrasweg 30, 70599 Stuttgart, Deutschland</p>
           <p>E-Mail: <a href="mailto:info@mymusicmoment24.de" className="text-amber-700 underline font-medium">info@mymusicmoment24.de</a></p>
@@ -812,12 +800,12 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
                 <MapPin className="w-5 h-5 text-amber-600" /> Angaben gemäß § 5 DDG (Diensteanbieter)
               </h2>
               <div className="text-stone-700 space-y-1">
-                <p className="font-bold text-stone-900 text-base">DS Online Services &amp; Digitalagentur SichtbarmitKI</p>
+                <p className="font-bold text-stone-900 text-base">DS Online Services</p>
                 <p className="font-medium text-stone-800">Inhaber: Dirk Schmetzer</p>
                 <p>Riedgrasweg 30</p>
                 <p>70599 Stuttgart, Deutschland</p>
                 <p className="text-xs text-stone-500 pt-1">
-                  MyMusicMoment24 ist ein spezialisierter Musik- &amp; Audio-Service von DS Online Services in Verbindung mit der Digitalagentur SichtbarmitKI.
+                  MyMusicMoment24 ist ein spezialisierter Musik- &amp; Audio-Service von DS Online Services.
                 </p>
               </div>
 
@@ -838,28 +826,6 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
               <div className="pt-2 border-t border-stone-200">
                 <h3 className="font-semibold text-stone-900 mb-1">Umsatzsteuer:</h3>
                 <p>Kleinunternehmer gemäß § 19 UStG, daher wird keine Umsatzsteuer berechnet und ausgewiesen.</p>
-              </div>
-
-              {/* Digitalagentur SichtbarmitKI */}
-              <div className="pt-3 border-t border-stone-200 space-y-2">
-                <h3 className="font-semibold text-stone-900 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-600" /> Digitalagentur SichtbarmitKI
-                </h3>
-                <p className="text-stone-700 text-xs sm:text-sm">
-                  Webseite &amp; Portfolio:{" "}
-                  <a
-                    href="https://www.sichtbarmitki.agency"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-amber-700 hover:underline font-bold inline-flex items-center gap-1"
-                  >
-                    <span>www.sichtbarmitki.agency</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </p>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  Die <strong>Digitalagentur SichtbarmitKI</strong> (DS Online Services) ist spezialisiert auf modernste KI-Workflows, automatisierte Content-Erstellung, Webentwicklung und Audio-Branding im Großraum Stuttgart und im gesamten DACH-Raum.
-                </p>
               </div>
 
               <div className="pt-3 border-t border-stone-200">
