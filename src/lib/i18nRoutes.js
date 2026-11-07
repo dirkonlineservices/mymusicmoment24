@@ -9,6 +9,7 @@ export const LANGS = ["de", "en"];
 // Feste Seiten: deutscher Pfad → englischer Pfad
 export const STATIC_PATHS = {
   "/": "/en",
+  "/black-week": "/en/black-week",
   "/support": "/en/support",
   "/b2b": "/en/b2b",
   "/streaming": "/en/streaming",

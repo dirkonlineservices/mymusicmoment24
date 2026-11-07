@@ -10,10 +10,14 @@ import SupportPage from "./views/SupportPage";
 import B2BPage from "./views/B2BPage";
 import AuthorPage from "./views/AuthorPage";
 import StreamingReleasePage from "./views/StreamingReleasePage";
+import BlackWeekPage from "./views/BlackWeekPage";
 
 const noop = () => {};
 
 const PAGES = {
+  "/black-week": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
+  "/blackweek": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
+  "/black-friday": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
   "/impressum": () => <LegalPage type="impressum" onBackToHome={noop} onSwitchTab={noop} />,
   "/datenschutz": () => <LegalPage type="datenschutz" onBackToHome={noop} onSwitchTab={noop} />,
   "/agb": () => <LegalPage type="agb" onBackToHome={noop} onSwitchTab={noop} />,

@@ -6,6 +6,7 @@ const LegalPage = lazy(() => import("./views/LegalPage"));
 const StreamingReleasePage = lazy(() => import("./views/StreamingReleasePage"));
 const SupportPage = lazy(() => import("./views/SupportPage"));
 const B2BPage = lazy(() => import("./views/B2BPage"));
+const BlackWeekPage = lazy(() => import("./views/BlackWeekPage"));
 const PayPalCheckout = lazy(() => import("./components/PayPalCheckout"));
 import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
@@ -51,6 +52,13 @@ function routeFromLocation() {
 
 function matchRoute(path, hash) {
   if (
+    path === "/black-week" ||
+    path === "/blackweek" ||
+    path === "/black-friday" ||
+    hash === "#/black-week"
+  ) {
+    return ({ view: "blackweek", slug: null });
+  } else if (
     path === "/streaming" || 
     path === "/spotify-release" || 
     path === "/streaming-release" ||
@@ -253,6 +261,13 @@ function AppMain() {
 
       {currentRoute.view === "streaming" && (
         <StreamingReleasePage
+          onBackToHome={() => navigateToHome()}
+          onOpenCheckout={handleOpenCheckout}
+        />
+      )}
+
+      {currentRoute.view === "blackweek" && (
+        <BlackWeekPage
           onBackToHome={() => navigateToHome()}
           onOpenCheckout={handleOpenCheckout}
         />

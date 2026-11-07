@@ -129,8 +129,27 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-amber-400 selection:text-stone-950">
       <SchemaJsonLd type="home" />
 
-      {/* Weihnachts-Banner */}
-      {xmasDaysLeft !== null && (
+      {/* Black Week / Weihnachts-Banner */}
+      {promo?.code === "BLACK25" ? (
+        <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white border-b border-amber-500/30">
+          <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-center">
+            <span className="inline-flex items-center gap-1.5 font-black uppercase tracking-wider text-[11px] bg-amber-400 text-stone-950 px-2.5 py-0.5 rounded">
+              <Sparkles className="w-3.5 h-3.5" /> BLACK WEEK -25 %
+            </span>
+            <span className="font-medium">
+              {language === "en"
+                ? "Your personal song for €14.99 instead of €19.99 with code BLACK25!"
+                : "Dein persönlicher Song für 14,99 € statt 19,99 € mit Code BLACK25!"}
+            </span>
+            <a
+              href={lp("/black-week")}
+              className="underline underline-offset-2 font-black text-amber-300 hover:text-amber-200"
+            >
+              {language === "en" ? "View Black Week Deal →" : "Zum Black-Week-Deal →"}
+            </a>
+          </div>
+        </div>
+      ) : xmasDaysLeft !== null ? (
         <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white">
           <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-center">
             <span className="inline-flex items-center gap-1.5 font-black uppercase tracking-wider text-[11px] bg-white/15 px-2 py-0.5 rounded">
@@ -145,7 +164,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </a>
           </div>
         </div>
-      )}
+      ) : null}
       {/* Top Header / Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">

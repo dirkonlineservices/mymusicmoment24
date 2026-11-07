@@ -40,8 +40,17 @@ const AUTHOR = {
   canonicalPath: "/autor-dirk-schmetzer",
 };
 
+const BLACK_WEEK = {
+  title: "Black Week: 25 % auf deinen persönlichen Song (14,99 €) | MyMusicMoment24",
+  description: "Black Week Deal bei MyMusicMoment24: 25 % Rabatt mit Code BLACK25! Dein persönlicher Song mit euren Namen & eurer Geschichte für 14,99 € statt 19,99 €.",
+  canonicalPath: "/black-week",
+};
+
 export const STATIC_PAGE_META = {
   "/": HOME,
+  "/black-week": BLACK_WEEK,
+  "/blackweek": BLACK_WEEK,
+  "/black-friday": BLACK_WEEK,
   "/support": SUPPORT,
   "/kontakt": SUPPORT,
   "/b2b": B2B,
@@ -93,10 +102,17 @@ const EN = {
     title: "About Me: Dirk Schmetzer | MyMusicMoment24",
     description: "I run MyMusicMoment24 on my own, with no company, group or investors behind it. Since 2024 I have been making personal songs, with direct contact to me.",
   },
+  blackWeek: {
+    title: "Black Week: 25% OFF Your Personalized Song (€14.99) | MyMusicMoment24",
+    description: "Black Week Deal at MyMusicMoment24: Save 25% with code BLACK25! Your custom song with your names & story for €14.99 instead of €19.99.",
+  },
 };
 
 export const STATIC_PAGE_META_EN = {
   "/": EN.home,
+  "/black-week": EN.blackWeek,
+  "/blackweek": EN.blackWeek,
+  "/black-friday": EN.blackWeek,
   "/support": EN.support,
   "/kontakt": EN.support,
   "/b2b": EN.b2b,
