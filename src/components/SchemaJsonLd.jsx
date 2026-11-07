@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { PRODUCTS } from "../data/products";
 import { translations } from "../i18n/translations";
 import { useLanguage } from "../context/LanguageContext";

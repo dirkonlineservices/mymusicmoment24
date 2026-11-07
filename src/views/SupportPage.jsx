@@ -1,8 +1,7 @@
-import React from "react";
-import { ArrowLeft, MessageSquare, Mail, ShieldCheck, CheckCircle2, HelpCircle, ArrowRight, Clock, AlertCircle } from "lucide-react";
+import { ArrowLeft, MessageSquare, Mail, ShieldCheck, CheckCircle2, HelpCircle, ArrowRight, AlertCircle } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import PaymentBadges, { PayPalBadge, StripeBadge, SepaBadge, ApplePayBadge, KlarnaBadge } from "../components/PaymentBadges";
+import PaymentBadges from "../components/PaymentBadges";
 
 export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
   const { language } = useLanguage();

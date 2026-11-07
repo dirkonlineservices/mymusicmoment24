@@ -1,6 +1,4 @@
-import React from "react";
-
-import { ArrowLeft, CheckCircle2, Music, Sparkles, Youtube, Heart, Award, ShieldCheck, Mail, MessageSquare, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Sparkles, Youtube, Heart, Award, ShieldCheck, Mail, MessageSquare, ExternalLink } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 

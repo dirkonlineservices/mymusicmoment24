@@ -3,7 +3,6 @@
  * Support, B2B, Autor). Wird beim Build nach dist-ssr/ kompiliert und von server.js genutzt,
  * damit der Inhalt schon im ausgelieferten HTML steht. Im Browser ersetzt die App ihn danach.
  */
-import React from "react";
 import { renderToString } from "react-dom/server";
 import { LanguageProvider } from "./context/LanguageContext";
 import LegalPage from "./views/LegalPage";

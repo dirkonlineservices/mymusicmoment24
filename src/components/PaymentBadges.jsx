@@ -1,4 +1,3 @@
-import React from "react";
 import { SiPaypal, SiVisa } from "react-icons/si";
 import { FaApplePay, FaGooglePay } from "react-icons/fa6";
 import { useLanguage } from "../context/LanguageContext";
@@ -142,7 +141,6 @@ export default function PaymentBadges({ className = "" }) {
       <MastercardBadge />
       <ApplePayBadge />
       <GooglePayBadge />
-      <KlarnaBadge />
     </div>
   );
 }

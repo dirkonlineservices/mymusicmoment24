@@ -1,5 +1,4 @@
-import React from "react";
-import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink, Music, Sparkles } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Scale, FileText, Mail, MapPin, ExternalLink, Sparkles } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 

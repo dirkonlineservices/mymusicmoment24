@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { 
   ArrowLeft, Sparkles, CheckCircle2, Music, Radio, Disc, Globe, 
-  ShieldCheck, ArrowRight, Clock, Share2, Headphones, Award, Heart,
+  ShieldCheck, ArrowRight, Award, Heart,
   Copy, Check
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
