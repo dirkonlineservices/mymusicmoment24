@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
 import matter from "gray-matter";
@@ -1064,15 +1064,22 @@ function renderBlogShell(html, post) {
   return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, () => article);
 }
 
-// Vorgerenderte React-Seiten (npm run build erzeugt dist-ssr/entry-server.js)
+// Vorgerenderte React-Seiten (npm run build erzeugt dist-ssr/entry-server.js).
+// Wird beim ersten Seitenaufruf geladen und gecacht. KEIN top-level await: Hostinger
+// (LiteSpeed lsnode) lädt server.js per require(), das bricht bei top-level await ab.
 let ssrRenderPage = null;
+let ssrLoading = null;
 const ssrEntry = path.join(__dirname, "dist-ssr", "entry-server.js");
-if (fs.existsSync(ssrEntry)) {
-  try {
-    ({ renderPage: ssrRenderPage } = await import(ssrEntry));
-  } catch (err) {
-    console.error("⚠️ SSR-Bundle konnte nicht geladen werden:", err.message);
+
+function loadSsrRenderer() {
+  if (!ssrLoading) {
+    ssrLoading = fs.existsSync(ssrEntry)
+      ? import(pathToFileURL(ssrEntry).href)
+          .then((mod) => { ssrRenderPage = mod.renderPage; })
+          .catch((err) => console.error("⚠️ SSR-Bundle konnte nicht geladen werden:", err.message))
+      : Promise.resolve();
   }
+  return ssrLoading;
 }
 
 function renderPageShell(html, meta, internalPath, lang, publicPath) {
@@ -1184,12 +1191,14 @@ if (fs.existsSync(distDir)) {
     index: false,
     maxAge: "30d"
   }));
-  app.get("*", (req, res) => {
+  app.get("*", async (req, res) => {
+    await loadSsrRenderer();
     serveHtmlWithCanonical(req, res, path.join(distDir, "index.html"));
   });
 } else {
   // In development / preview without dist build
-  app.get("*", (req, res) => {
+  app.get("*", async (req, res) => {
+    await loadSsrRenderer();
     serveHtmlWithCanonical(req, res, path.join(__dirname, "index.html"));
   });
 }
