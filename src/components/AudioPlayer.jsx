@@ -5,54 +5,54 @@ import { useLanguage } from "../context/LanguageContext";
 
 const PLAYLIST = [
   {
+    id: "fuer-immer-heut",
+    title: "Für immer Heut!",
+    genre: "Hochzeitslied & Liebesballade",
+    categoryLabel: "💍 Hochzeit",
+    vocal: "Emotionales Duett",
+    youtubeId: "MCL9AYpNQa0",
+    description: "Emotionaler Hochzeitssong für Trauung, Eröffnungstanz und unvergessliche Gänsehaut-Momente.",
+    en: { genre: "Wedding song & love ballad", categoryLabel: "💍 Wedding", vocal: "Emotional duet", description: "Emotional wedding song for the ceremony, first dance and unforgettable goosebump moments." },
+  },
+  {
+    id: "schoen-dass-du-da-bist",
+    title: "Schön, dass du da bist!",
+    genre: "Geburtstagslied & Herzensmensch",
+    categoryLabel: "🎂 Geburtstag",
+    vocal: "Modern Pop & Beat",
+    youtubeId: "07dkXAHJ68A",
+    description: "Mitreißender Geburtstags- & Liebes-Song voller Freude, Wertschätzung und persönlichen Erinnerungen.",
+    en: { genre: "Birthday & appreciation song", categoryLabel: "🎂 Birthday", vocal: "Modern pop & beat", description: "Upbeat birthday & love song full of joy, appreciation and personal memories." },
+  },
+  {
     id: "tanzt-der-floh",
     title: "Auf der Wiese tanzt der Floh",
     genre: "Kinderlied & Familie",
-    categoryLabel: "Familie & Kinder",
+    categoryLabel: "👨‍👩‍👧 Familie",
     vocal: "Fröhlich & Herzlich",
     file: "/audio/auf-der-wiese-tanzt-der-floh.mp3",
     description: "Liebevolles, fröhliches Familien- & Kinderlied zum Mitsingen, Tanzen und Verschenken.",
-    en: { genre: "Children's song & family", categoryLabel: "Family & Kids", vocal: "Cheerful & warm", description: "A loving, cheerful family & children's song to sing, dance along to and gift." },
+    en: { genre: "Children's song & family", categoryLabel: "👨‍👩‍👧 Family", vocal: "Cheerful & warm", description: "A loving, cheerful family & children's song to sing, dance along to and gift." },
   },
   {
     id: "brustring-herza",
     title: "Brustring und Herza",
     genre: "Hymne, Jubiläum & Verein",
-    categoryLabel: "Hymne & Team",
+    categoryLabel: "🏆 Jubiläum & Team",
     vocal: "Emotional & Mitreißend",
     file: "/audio/brustring-und-herza.mp3",
     description: "Gänsehaut-Hymne voller Herzblut, Zusammenhalt und Stolz – ideal für Jubiläen, Teams & Freunde.",
-    en: { genre: "Anthem, anniversary & club", categoryLabel: "Anthem & Team", vocal: "Emotional & rousing", description: "A goosebump anthem full of heart, team spirit and pride – ideal for anniversaries, teams & friends." },
+    en: { genre: "Anthem, anniversary & club", categoryLabel: "🏆 Anniversary", vocal: "Emotional & rousing", description: "A goosebump anthem full of heart, team spirit and pride – ideal for anniversaries, teams & friends." },
   },
   {
     id: "snoopy-groove",
     title: "Snoopy's Groove",
     genre: "Geburtstags-Party & Dance",
-    categoryLabel: "Party & Dance",
+    categoryLabel: "🎉 Party & Dance",
     vocal: "Club & Feier-Beat",
     file: "/audio/snoopy-s-groove.mp3",
     description: "Treibender Party-Track mit pulsierendem Groove – perfekt zum Feiern und Anstoßen.",
-    en: { genre: "Birthday party & dance", categoryLabel: "Party & Dance", vocal: "Club & party beat", description: "A driving party track with a pulsing groove – perfect for celebrating." },
-  },
-  {
-    id: "game-over",
-    title: "Game Over (Gorillaz Mode)",
-    genre: "Urban Pop / Hip-Hop & Style",
-    categoryLabel: "Urban & Style",
-    vocal: "Moderne Beats & Flow",
-    file: "/audio/game-over-gorillaz-mode.mp3",
-    description: "Moderner Urban-Sound im unverwechselbaren Gorillaz-Style mit coolem Beat.",
-    en: { genre: "Urban pop / Hip-hop & style", categoryLabel: "Urban & Style", vocal: "Modern beats & flow", description: "A modern urban sound in the distinctive Gorillaz style with a cool beat." },
-  },
-  {
-    id: "squad-warzone",
-    title: "Squad in der Zone (Warzone)",
-    genre: "Deutschrap & Freunde-Song",
-    categoryLabel: "Rap & Gaming",
-    vocal: "Deutschrap & Action",
-    file: "/audio/squad-in-der-zone-warzone.mp3",
-    description: "Packender Deutschrap-Beat über Freundschaft, gemeinsame Nächte, Gaming-Squads und Insider.",
-    en: { genre: "German rap & friends song", categoryLabel: "Rap & Gaming", vocal: "German rap & action", description: "A gripping rap beat about friendship, gaming squads and inside jokes." },
+    en: { genre: "Birthday party & dance", categoryLabel: "🎉 Party & Dance", vocal: "Club & party beat", description: "A driving party track with a pulsing groove – perfect for celebrating." },
   },
 ];
 
@@ -75,18 +75,24 @@ export default function AudioPlayer() {
 
   // Sync track change
   useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      // Skip automatic load on first page mount to save 5MB mobile network payload
+      return;
+    }
     if (audioRef.current) {
-      if (isFirstMount.current) {
-        isFirstMount.current = false;
-        // Skip automatic load on first page mount to save 5MB mobile network payload
-        return;
-      }
-      audioRef.current.src = currentTrack.file;
-      audioRef.current.load();
-      setCurrentTime(0);
-      setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
-      if (isPlaying) {
-        audioRef.current.play().catch(() => setIsPlaying(false));
+      if (currentTrack.file) {
+        audioRef.current.src = currentTrack.file;
+        audioRef.current.load();
+        setCurrentTime(0);
+        setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
+        if (isPlaying) {
+          audioRef.current.play().catch(() => setIsPlaying(false));
+        }
+      } else {
+        audioRef.current.pause();
+        setCurrentTime(0);
+        setDuration(0);
       }
     }
   }, [currentTrackIndex]);
@@ -99,6 +105,18 @@ export default function AudioPlayer() {
   }, [isMuted]);
 
   const handleTogglePlay = () => {
+    if (currentTrack.youtubeId && !currentTrack.file) {
+      if (audioRef.current) audioRef.current.pause();
+      if (isPlaying) {
+        setIsPlaying(false);
+        trackAudioEvent("pause", currentTrack.title, { current_time: 0 });
+      } else {
+        setIsPlaying(true);
+        trackAudioEvent("play", currentTrack.title, { genre: currentTrack.genre });
+      }
+      return;
+    }
+
     if (!audioRef.current) return;
 
     if (isPlaying) {
@@ -154,17 +172,26 @@ export default function AudioPlayer() {
       handleTogglePlay();
       return;
     }
+    const nextTrack = PLAYLIST[index];
     setCurrentTrackIndex(index);
     setCurrentTime(0);
     setMilestonesFired({ 25: false, 50: false, 75: false, 100: false });
-    if (audioRef.current) {
-      audioRef.current.src = PLAYLIST[index].file;
+
+    if (nextTrack.youtubeId && !nextTrack.file) {
+      if (audioRef.current) audioRef.current.pause();
+      setIsPlaying(true);
+      trackAudioEvent("play", nextTrack.title, { genre: nextTrack.genre });
+      return;
+    }
+
+    if (audioRef.current && nextTrack.file) {
+      audioRef.current.src = nextTrack.file;
       audioRef.current.load();
       audioRef.current
         .play()
         .then(() => {
           setIsPlaying(true);
-          trackAudioEvent("play", PLAYLIST[index].title, { genre: PLAYLIST[index].genre });
+          trackAudioEvent("play", nextTrack.title, { genre: nextTrack.genre });
         })
         .catch(() => {
           setIsPlaying(false);
@@ -213,7 +240,7 @@ export default function AudioPlayer() {
         {/* Hidden HTML5 Audio Element */}
         <audio
           ref={audioRef}
-          src={currentTrack.file}
+          src={currentTrack.file || undefined}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
@@ -275,27 +302,51 @@ export default function AudioPlayer() {
             </button>
           </div>
 
-          {/* Progress Bar (Touch-friendly height) */}
-          <div className="space-y-1.5">
-            <div
-              className="relative w-full h-3 sm:h-3.5 bg-stone-200 rounded-full overflow-hidden cursor-pointer"
-              onClick={handleSeek}
-              role="slider"
-              aria-label={en ? "Playback position" : "Wiedergabeposition"}
-              aria-valuemin={0}
-              aria-valuemax={duration || 100}
-              aria-valuenow={currentTime}
-            >
+          {currentTrack.youtubeId && !currentTrack.file ? (
+            isPlaying ? (
+              <div className="relative w-full aspect-video max-h-64 rounded-xl overflow-hidden border border-stone-200 bg-black shadow-md">
+                <iframe
+                  key={`${currentTrack.youtubeId}-${isMuted ? "muted" : "unmuted"}`}
+                  src={`https://www.youtube-nocookie.com/embed/${currentTrack.youtubeId}?autoplay=1&rel=0${isMuted ? "&mute=1" : ""}`}
+                  title={currentTrack.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={handleTogglePlay}
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-semibold transition cursor-pointer"
+              >
+                <span>▶ {en ? `Click to listen to "${currentTrack.title}"` : `Jetzt reinhören: „${currentTrack.title}“`}</span>
+                <span className="text-[11px] font-mono text-amber-700">{ shownTrack.categoryLabel }</span>
+              </button>
+            )
+          ) : (
+            /* Progress Bar (Touch-friendly height) */
+            <div className="space-y-1.5">
               <div
-                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-200"
-                style={{ width: `${progressPercent}%` }}
-              />
+                className="relative w-full h-3 sm:h-3.5 bg-stone-200 rounded-full overflow-hidden cursor-pointer"
+                onClick={handleSeek}
+                role="slider"
+                aria-label={en ? "Playback position" : "Wiedergabeposition"}
+                aria-valuemin={0}
+                aria-valuemax={duration || 100}
+                aria-valuenow={currentTime}
+              >
+                <div
+                  className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-200"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-[11px] font-mono text-stone-500">
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
+              </div>
             </div>
-            <div className="flex justify-between text-[11px] font-mono text-stone-500">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-          </div>
+          )}
         </div>
 
       </div>
