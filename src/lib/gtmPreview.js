@@ -119,7 +119,10 @@ export function trackBeginCheckout(item) {
 export function trackPurchase(transactionId, item) {
   const numericPrice = Number(item.price) || 19.99;
 
-  // 1. GA4 / GTM E-Commerce Purchase Event
+  // GA4 / GTM E-Commerce Purchase Event.
+  // Die Google-Ads-Conversion (AW-17340697742) feuert ausschließlich im GTM
+  // (Tag "Google Ads Conversions", Trigger auf dieses "purchase"-Event, mit Consent-Prüfung).
+  // Kein direkter gtag("event","conversion") hier, sonst wird doppelt gezählt.
   pushEvent("purchase", {
     ecommerce: {
       transaction_id: transactionId,
@@ -136,22 +139,5 @@ export function trackPurchase(transactionId, item) {
       ],
     },
   });
-
-  // 2. Google Ads Conversion Event (AW-17340697742)
-  pushEvent("conversion", {
-    send_to: "AW-17340697742",
-    value: numericPrice,
-    currency: "EUR",
-    transaction_id: transactionId,
-  });
-
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", "conversion", {
-      send_to: "AW-17340697742",
-      value: numericPrice,
-      currency: "EUR",
-      transaction_id: transactionId,
-    });
-  }
 }
 
