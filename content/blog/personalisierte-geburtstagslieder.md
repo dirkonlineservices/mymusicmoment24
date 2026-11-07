@@ -1,5 +1,6 @@
 ---
 title: "Personalisiertes Geburtstagslied mit Namen erstellen lassen: 19,99 € Festpreis"
+metaTitle: "Geburtstagslied mit Namen erstellen | MyMusicMoment24"
 date: "2026-09-11"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

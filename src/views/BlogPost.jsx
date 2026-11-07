@@ -1,15 +1,16 @@
 import React from "react";
 import { ArrowLeft, Calendar, User, Clock, Music, ArrowRight, BookOpen, Sparkles } from "lucide-react";
-import { getBlogPostBySlug, getAllBlogPosts } from "../lib/blog";
+import { getBlogPostByKey, getAllBlogPosts } from "../lib/blog";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
 export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNavigateBlog }) {
-  const { language } = useLanguage();
-  const post = getBlogPostBySlug(slug);
-  const allPosts = getAllBlogPosts();
-  const otherPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  const { language, lp } = useLanguage();
+  // slug = deutscher Slug (interne Kennung), Inhalt in der aktuellen Sprache
+  const post = getBlogPostByKey(slug, language);
+  const allPosts = getAllBlogPosts(language);
+  const otherPosts = allPosts.filter((p) => p.key !== slug).slice(0, 3);
 
   if (!post) {
     return (
@@ -21,20 +22,20 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
           onClick={onBackToHome}
           className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex items-center gap-2"
         >
-          <ArrowLeft className="w-5 h-5" /> {language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}
+          <ArrowLeft className="w-5 h-5" /> {language === "en" ? "Back to home page" : "Zurück zur Startseite"}
         </button>
       </div>
     );
   }
 
   const ctaTitle = language === "en"
-    ? (post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
-        ? "Would you like to hear your custom wedding song?"
-        : post.category === "Geburtstag"
-        ? "Would you like to create a personalized birthday song?"
-        : post.category === "Jubiläum"
-        ? "Would you like to gift a custom anniversary song?"
-        : "Would you like to hear your custom personalized song?")
+    ? (/^Wedding/.test(post.category || "")
+        ? "Would you like to hear your own wedding song?"
+        : post.category === "Birthday"
+        ? "Would you like to create a personal birthday song?"
+        : post.category === "Anniversary"
+        ? "Would you like to give a personal anniversary song?"
+        : "Would you like to hear your own personal song?")
     : (post.category === "Hochzeit" || post.category === "Hochzeit & Liebe"
         ? "Möchtest du euren eigenen Hochzeitssong hören?"
         : post.category === "Geburtstag"
@@ -55,7 +56,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
             className="flex items-center gap-2 text-sm text-stone-600 hover:text-stone-900 transition font-medium"
           >
             <ArrowLeft className="w-4 h-4 text-amber-600" />
-            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
+            <span>{language === "en" ? "Back to home page" : "Zurück zur Startseite"}</span>
           </button>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
@@ -123,7 +124,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
                 {post.category || (language === "en" ? "Guide" : "Ratgeber")}
               </span>
               <span className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg border border-stone-200 text-stone-800 font-semibold shadow">
-                MyMusicMoment24 • Seit 2024
+                MyMusicMoment24 • {language === "en" ? "Since 2024" : "Seit 2024"}
               </span>
             </div>
           </div>
@@ -143,7 +144,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
           <h3 className="text-2xl font-bold text-stone-900">{ctaTitle}</h3>
           <p className="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed">
             {language === "en"
-              ? "Configure your custom song in 5 simple steps from €19.99. Usually ready within 24 hours – includes 1 free revision loop."
+              ? "Set up your song in 5 steps from €19.99, with no obligation. Usually ready within 24 hours, including 1 free round of changes."
               : "Konfiguriere jetzt unverbindlich deinen Song in 5 Schritten ab 19,99 €. Meist innerhalb von 24 Stunden fertig – inklusive 1 kostenloser Verbesserungsschleife."}
           </p>
           <button
@@ -156,7 +157,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
             }}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black rounded-xl transition shadow-xl shadow-amber-500/20 active:scale-95"
           >
-            <span>{language === "en" ? "Configure Song Now" : "Jetzt Song konfigurieren"}</span>
+            <span>{language === "en" ? "Create your song now" : "Jetzt Song konfigurieren"}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
@@ -166,25 +167,23 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
           <div className="mt-16 pt-12 border-t border-stone-200">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 mb-6">
               <BookOpen className="w-4 h-4 text-amber-600" />
-              <span>{language === "en" ? "Related Guides & Song Topics" : "Weitere Ratgeber & Song-Themen"}</span>
+              <span>{language === "en" ? "More guides & song topics" : "Weitere Ratgeber & Song-Themen"}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {otherPosts.map((op) => (
-                <button
-                  key={op.slug}
-                  onClick={() => {
-                    if (onNavigateBlog) {
-                      onNavigateBlog(op.slug);
-                    } else {
-                      window.history.pushState({}, "", `/${op.slug}`);
-                      window.location.reload();
-                    }
+                <a
+                  key={op.key}
+                  href={lp(`/${op.key}`)}
+                  onClick={(e) => {
+                    if (!onNavigateBlog || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                    e.preventDefault();
+                    onNavigateBlog(op.key);
                   }}
                   className="text-left bg-white hover:bg-stone-50 border border-stone-200 hover:border-amber-400 p-4 rounded-2xl transition group flex flex-col justify-between shadow-sm hover:shadow-md"
                 >
                   <div>
                     <span className="text-[10px] text-amber-700 font-bold uppercase tracking-wider block mb-1.5">
-                      {op.category || "Ratgeber"}
+                      {op.category || (language === "en" ? "Guide" : "Ratgeber")}
                     </span>
                     <h4 className="text-sm font-bold text-stone-900 group-hover:text-amber-700 transition line-clamp-2 mb-2">
                       {op.title}
@@ -194,10 +193,10 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
                     </p>
                   </div>
                   <div className="pt-3 mt-3 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
-                    <span>{op.readTime || "5 Min."}</span>
+                    <span>{op.readTime || (language === "en" ? "5 min" : "5 Min.")}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-amber-600 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </button>
+                </a>
               ))}
             </div>
           </div>

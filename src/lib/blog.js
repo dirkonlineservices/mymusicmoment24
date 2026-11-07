@@ -1,11 +1,10 @@
 import { marked } from "marked";
 
 // Raw markdown imports from content/blog directory
-const blogFiles = import.meta.glob("/content/blog/*.md", {
-  query: "?raw",
-  import: "default",
-  eager: true,
-});
+const blogFiles = {
+  de: import.meta.glob("/content/blog/*.md", { query: "?raw", import: "default", eager: true }),
+  en: import.meta.glob("/content/blog/en/*.md", { query: "?raw", import: "default", eager: true }),
+};
 
 /**
  * Lightweight frontmatter parser
@@ -42,11 +41,12 @@ function parseFrontmatter(rawContent) {
 /**
  * Returns all published blog posts with metadata
  */
-export function getAllBlogPosts() {
+export function getAllBlogPosts(lang = "de") {
   const posts = [];
+  const files = blogFiles[lang === "en" ? "en" : "de"];
 
-  for (const path in blogFiles) {
-    const rawContent = blogFiles[path];
+  for (const path in files) {
+    const rawContent = files[path];
     const { data, content } = parseFrontmatter(rawContent);
     const slug = data.slug || path.replace(/^.*[\\\/]/, "").replace(/\.md$/, "");
 
@@ -55,6 +55,9 @@ export function getAllBlogPosts() {
 
     posts.push({
       ...data,
+      lang: lang === "en" ? "en" : "de",
+      // deutscher Slug = interne Kennung, gleich in beiden Sprachen
+      key: lang === "en" ? data.deSlug || slug : slug,
       slug,
       content: cleanedContent,
       html: marked.parse(cleanedContent),
@@ -67,7 +70,11 @@ export function getAllBlogPosts() {
 /**
  * Get a specific post by slug
  */
-export function getBlogPostBySlug(slug) {
-  const allPosts = getAllBlogPosts();
-  return allPosts.find((p) => p.slug === slug) || null;
+export function getBlogPostBySlug(slug, lang = "de") {
+  return getAllBlogPosts(lang).find((p) => p.slug === slug) || null;
+}
+
+/** Artikel über den deutschen Slug in der gewünschten Sprache */
+export function getBlogPostByKey(key, lang = "de") {
+  return getAllBlogPosts(lang).find((p) => p.key === key) || null;
 }

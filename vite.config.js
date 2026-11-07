@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
+// isSsrBuild: beim SSR-Build (dist-ssr) keine Vendor-Chunks, dort bleibt React extern
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   server: {
     port: 3000,
@@ -16,9 +17,10 @@ export default defineConfig({
   assetsInclude: ['**/*.md'],
   build: {
     target: 'es2020',
+    copyPublicDir: !isSsrBuild,
     cssCodeSplit: true,
     rollupOptions: {
-      output: {
+      output: isSsrBuild ? {} : {
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-icons': ['lucide-react', 'react-icons'],
@@ -28,4 +30,4 @@ export default defineConfig({
       }
     }
   }
-});
+}));

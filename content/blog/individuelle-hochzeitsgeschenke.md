@@ -1,5 +1,6 @@
 ---
 title: "Individuelle Hochzeitsgeschenke: Warum ein persönlicher Hochzeitssong so gut ankommt"
+metaTitle: "Song als Hochzeitsgeschenk | MyMusicMoment24"
 date: "2026-09-11"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

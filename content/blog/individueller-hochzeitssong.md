@@ -1,5 +1,6 @@
 ---
 title: "Individueller Hochzeitssong mit KI: So entsteht euer persönlicher Liebessong"
+metaTitle: "Individueller Hochzeitssong | MyMusicMoment24"
 date: "2026-09-10"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

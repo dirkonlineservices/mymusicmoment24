@@ -1,5 +1,6 @@
 node_modules/
 dist/
+dist-ssr/
 .DS_Store
 *.local
 npm-debug.log*
@@ -9,3 +10,6 @@ yarn-error.log*
 .env.*
 /data/
 *.zip
+
+# Private Claude-Anweisungen
+CLAUDE.local.md

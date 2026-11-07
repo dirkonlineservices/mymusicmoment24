@@ -1,5 +1,6 @@
 ---
 title: "Song zum 18. Geburtstag: Ein persönliches Lied zur Volljährigkeit"
+metaTitle: "Song zum 18. Geburtstag | MyMusicMoment24"
 date: "2026-10-16"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

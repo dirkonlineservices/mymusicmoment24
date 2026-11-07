@@ -8,8 +8,9 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { translations } from "./src/i18n/translations.js";
 import {
-  SITE_URL, DEFAULT_IMAGE, NOT_FOUND_META, blogPostMeta, staticPageMeta,
+  SITE_URL, DEFAULT_IMAGE, notFoundMeta, blogPostMeta, staticPageMeta,
 } from "./src/lib/pageMeta.js";
+import { langFromPath, toInternalPath, localizePath, alternatePath } from "./src/lib/i18nRoutes.js";
 import { orderKind, calculatePrice, promoRate } from "./src/lib/pricing.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -941,21 +942,26 @@ app.use(express.static(path.join(__dirname, "public"), {
 
 const BLOG_DIR = path.join(__dirname, "content", "blog");
 
-function loadBlogPosts() {
-  if (!fs.existsSync(BLOG_DIR)) return [];
-  return fs.readdirSync(BLOG_DIR)
+function loadBlogPosts(dir, lang) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
     .filter((f) => f.endsWith(".md"))
     .map((file) => {
-      const { data, content } = matter(fs.readFileSync(path.join(BLOG_DIR, file), "utf8"));
+      const { data, content } = matter(fs.readFileSync(path.join(dir, file), "utf8"));
       const slug = data.slug || file.replace(/\.md$/, "");
       // Doppelte H1 am Anfang entfernen (wird separat ausgegeben)
       const body = content.replace(/^\s*#\s+[^\r\n]+\r?\n+/, "");
-      return { ...data, slug, html: marked.parse(body) };
+      return { ...data, slug, lang, key: lang === "en" ? data.deSlug || slug : slug, html: marked.parse(body) };
     });
 }
 
-const BLOG_POSTS = loadBlogPosts();
-const BLOG_BY_SLUG = new Map(BLOG_POSTS.map((p) => [p.slug, p]));
+// Deutsche Artikel liegen unter /slug, englische (content/blog/en) unter /en/slug
+const BLOG_POSTS = {
+  de: loadBlogPosts(BLOG_DIR, "de"),
+  en: loadBlogPosts(path.join(BLOG_DIR, "en"), "en"),
+};
+const BLOG_BY_SLUG = new Map(BLOG_POSTS.de.map((p) => [p.slug, p]));
+const BLOG_BY_SLUG_EN = new Map(BLOG_POSTS.en.map((p) => [p.slug, p]));
 
 function escapeHtml(value = "") {
   return String(value)
@@ -965,75 +971,145 @@ function escapeHtml(value = "") {
     .replace(/"/g, "&quot;");
 }
 
-function findBlogPost(cleanPath) {
+function findBlogPost(cleanPath, lang) {
+  if (lang === "en") return BLOG_BY_SLUG_EN.get(cleanPath.replace(/^\/en\//, "")) || null;
   return BLOG_BY_SLUG.get(cleanPath.slice(1)) || null;
 }
 
-function blogLinksHtml() {
-  return BLOG_POSTS
-    .map((p) => `<li><a href="/${escapeHtml(p.slug)}">${escapeHtml(p.title)}</a></li>`)
+function postUrl(post) {
+  return post.lang === "en" ? `/en/${post.slug}` : `/${post.slug}`;
+}
+
+function blogLinksHtml(lang) {
+  return BLOG_POSTS[lang]
+    .map((p) => `<li><a href="${escapeHtml(postUrl(p))}">${escapeHtml(p.title)}</a></li>`)
     .join("");
 }
 
-function renderHomeShell(html) {
-  const de = translations.de;
-  const faq = (de.faq.items || [])
+// Feste Texte der statischen Shells
+const SHELL_TEXT = {
+  de: {
+    guides: "Ratgeber", moreGuides: "Weitere Ratgeber", by: "Von", updated: "Aktualisiert am",
+    cta: "Jetzt persönlichen Song gestalten (19,99 €)", home: "Zur Startseite", legal: "Rechtliches",
+    legalLinks: [["/impressum", "Impressum"], ["/datenschutz", "Datenschutzerklärung"], ["/agb", "AGB"], ["/widerruf", "Widerrufsbelehrung"]],
+    otherLang: ["/en", "English version"],
+  },
+  en: {
+    guides: "Guides", moreGuides: "More guides", by: "By", updated: "updated on",
+    cta: "Create your personal song now (€19.99)", home: "Back to homepage", legal: "Legal",
+    legalLinks: [["/impressum", "Legal Notice"], ["/datenschutz", "Privacy Policy"], ["/agb", "Terms and Conditions"], ["/widerruf", "Right of Withdrawal"]],
+    otherLang: ["/", "Deutsche Version"],
+  },
+};
+
+// Rechtliche Links auch im statischen HTML (für Crawler ohne JavaScript)
+function legalLinksHtml(lang) {
+  const t = SHELL_TEXT[lang];
+  const items = t.legalLinks
+    .map(([p, label]) => `<li><a href="${localizePath(p, lang)}">${escapeHtml(label)}</a></li>`)
+    .join("");
+  return `<nav aria-label="${t.legal}"><ul>${items}</ul></nav>`;
+}
+
+function renderHomeShell(html, lang = "de") {
+  const tr = translations[lang];
+  const t = SHELL_TEXT[lang];
+  const faq = (tr.faq.items || [])
     .map((item) => `<h3>${escapeHtml(item.q)}</h3><p>${escapeHtml(item.a)}</p>`)
     .join("");
-  const occasions = Object.values(de.home.occasions)
+  const occasions = Object.values(tr.home.occasions)
     .map((o) => `<li><strong>${escapeHtml(o.label)}:</strong> ${escapeHtml(o.desc)}</li>`)
     .join("");
-  const steps = de.home.steps
+  const steps = tr.home.steps
     .map((s) => `<li><strong>${escapeHtml(s.title)}:</strong> ${escapeHtml(s.desc)}</li>`)
     .join("");
-  const included = de.home.priceIncluded.map((i) => `<li>${escapeHtml(i)}</li>`).join("");
+  const included = tr.home.priceIncluded.map((i) => `<li>${escapeHtml(i)}</li>`).join("");
   const seoContent = `
         <section class="max-w-3xl mx-auto px-4 pb-16 text-stone-700 space-y-4">
-          <h2>${escapeHtml(de.home.occasionsTitle)}</h2><ul>${occasions}</ul>
-          <h2>${escapeHtml(de.home.stepsTitle)}</h2><ol>${steps}</ol>
-          <h2>${escapeHtml(de.home.priceTitle)}</h2><ul>${included}</ul>
-          <h2>${escapeHtml(de.faq.title)}</h2>${faq}
-          <h2>Ratgeber</h2><ul>${blogLinksHtml()}</ul>
+          <h2>${escapeHtml(tr.home.occasionsTitle)}</h2><ul>${occasions}</ul>
+          <h2>${escapeHtml(tr.home.stepsTitle)}</h2><ol>${steps}</ol>
+          <h2>${escapeHtml(tr.home.priceTitle)}</h2><ul>${included}</ul>
+          <h2>${escapeHtml(tr.faq.title)}</h2>${faq}
+          <h2>${t.guides}</h2><ul>${blogLinksHtml(lang)}</ul>
+          ${legalLinksHtml(lang)}
+          <p><a href="${t.otherLang[0]}" hreflang="${lang === "en" ? "de" : "en"}">${t.otherLang[1]}</a></p>
         </section>`;
-  return html.replace("<!--seo-content-->", seoContent);
+  html = html.replace("<!--seo-content-->", seoContent);
+  if (lang === "en") {
+    // Hero der statischen Shell (index.html ist deutsch) durch die englischen Texte ersetzen
+    html = html
+      .replace(/(<h1[^>]*>)[\s\S]*?(<\/h1>)/, `$1\n              ${escapeHtml(tr.home.heroTitle)} <span class="block text-amber-600">${escapeHtml(tr.home.heroTitleHighlight)}</span>\n            $2`)
+      .replace(/(<\/h1>\s*<p[^>]*>)[\s\S]*?(<\/p>)/, `$1${escapeHtml(tr.home.heroText)}$2`)
+      .replace('alt="Hörprobe: Hochzeitslied „Für immer Heut!“"', 'alt="Audio sample: wedding song „Für immer Heut!“"');
+  }
+  return html;
 }
 
 function renderBlogShell(html, post) {
+  const lang = post.lang;
+  const t = SHELL_TEXT[lang];
+  const date = post.dateModified || post.date;
   const article = `
       <div class="min-h-screen bg-[#faf8f5] text-stone-900">
         <article class="max-w-3xl mx-auto px-4 py-10 blog-content">
-          <p><a href="/">MyMusicMoment24</a> › Ratgeber</p>
+          <p><a href="${localizePath("/", lang)}">MyMusicMoment24</a> › ${t.guides}</p>
           <h1>${escapeHtml(post.title)}</h1>
-          ${post.author ? `<p>Von ${escapeHtml(post.author)}${post.dateModified || post.date ? ` · Aktualisiert am ${escapeHtml(post.dateModified || post.date)}` : ""}</p>` : ""}
+          ${post.author ? `<p>${t.by} ${escapeHtml(post.author)}${date ? ` · ${t.updated} ${escapeHtml(date)}` : ""}</p>` : ""}
           ${post.html}
-          <p><a href="/#konfigurator">Jetzt persönlichen Song gestalten (19,99 €)</a></p>
-          <h2>Weitere Ratgeber</h2><ul>${blogLinksHtml()}</ul>
+          <p><a href="${localizePath("/#konfigurator", lang)}">${t.cta}</a></p>
+          <h2>${t.moreGuides}</h2><ul>${blogLinksHtml(lang)}</ul>
+          ${legalLinksHtml(lang)}
         </article>
       </div>`;
-  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, article);
+  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, () => article);
 }
 
-function renderPageShell(html, meta) {
+// Vorgerenderte React-Seiten (npm run build erzeugt dist-ssr/entry-server.js)
+let ssrRenderPage = null;
+const ssrEntry = path.join(__dirname, "dist-ssr", "entry-server.js");
+if (fs.existsSync(ssrEntry)) {
+  try {
+    ({ renderPage: ssrRenderPage } = await import(ssrEntry));
+  } catch (err) {
+    console.error("⚠️ SSR-Bundle konnte nicht geladen werden:", err.message);
+  }
+}
+
+function renderPageShell(html, meta, internalPath, lang, publicPath) {
+  let rendered = null;
+  if (ssrRenderPage) {
+    try {
+      rendered = ssrRenderPage(internalPath, lang, publicPath);
+    } catch (err) {
+      console.error(`⚠️ Vorrendern von ${publicPath} fehlgeschlagen:`, err.message);
+    }
+  }
+  if (rendered) {
+    return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, () => rendered);
+  }
+
   const shell = `
       <div class="min-h-screen bg-[#faf8f5] text-stone-900">
         <main class="max-w-3xl mx-auto px-4 py-10">
           <h1>${escapeHtml(meta.title.replace(/\s*\|\s*MyMusicMoment24$/, ""))}</h1>
           <p>${escapeHtml(meta.description)}</p>
-          <p><a href="/">Zur Startseite</a></p>
+          <p><a href="${localizePath("/", lang)}">${SHELL_TEXT[lang].home}</a></p>
         </main>
       </div>`;
-  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, shell);
+  return html.replace(/<!--app-shell-start-->[\s\S]*<!--app-shell-end-->/, () => shell);
 }
 
-function setMeta(html, meta) {
+function setMeta(html, meta, lang = "de") {
   const url = `${SITE_URL}${meta.canonicalPath === "/" ? "/" : meta.canonicalPath}`;
   const image = meta.image.startsWith("http") ? meta.image : `${SITE_URL}${meta.image}`;
   const title = escapeHtml(meta.title);
   const description = escapeHtml(meta.description);
   const swaps = [
+    [/<html lang="[^"]*">/i, `<html lang="${lang}">`],
     [/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`],
     [/<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${description}" />`],
-    [/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${url}" />`],
+    [/<link rel="canonical" href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${url}" />${hreflangLinks(meta)}`],
+    [/<meta property="og:locale" content="[^"]*"\s*\/?>/i, `<meta property="og:locale" content="${lang === "en" ? "en_US" : "de_DE"}" />`],
     [/<meta property="og:url" content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${url}" />`],
     [/<meta property="og:type" content="[^"]*"\s*\/?>/i, `<meta property="og:type" content="${meta.type}" />`],
     [/<meta property="og:title" content="[^"]*"\s*\/?>/i, `<meta property="og:title" content="${title}" />`],
@@ -1050,30 +1126,48 @@ function setMeta(html, meta) {
   return html;
 }
 
+// hreflang-Paare (de, en, x-default = de) für Seiten, die es in beiden Sprachen gibt
+function hreflangLinks(meta) {
+  if (meta.noindex) return "";
+  const de = alternatePath(meta.canonicalPath, "de");
+  const en = alternatePath(meta.canonicalPath, "en");
+  if (!de || !en) return "";
+  return [
+    `\n    <link rel="alternate" hreflang="de" href="${SITE_URL}${de}" />`,
+    `\n    <link rel="alternate" hreflang="en" href="${SITE_URL}${en}" />`,
+    `\n    <link rel="alternate" hreflang="x-default" href="${SITE_URL}${de}" />`,
+  ].join("");
+}
+
 function serveHtmlWithCanonical(req, res, htmlPath) {
   if (!fs.existsSync(htmlPath)) {
     return res.status(404).send("Build or index.html not found. Please run 'npm run build' first.");
   }
   let html = fs.readFileSync(htmlPath, "utf8");
   const cleanPath = req.path === "/" ? "/" : req.path.replace(/\/$/, "");
+  const lang = langFromPath(cleanPath);
+  // Interner (deutscher) Pfad, z. B. /en/privacy → /datenschutz; null = unbekannte /en-Adresse
+  const internalPath = toInternalPath(cleanPath);
 
-  const post = findBlogPost(cleanPath);
+  const post = findBlogPost(cleanPath, lang);
   let meta;
   let status = 200;
 
   if (post) {
     meta = blogPostMeta(post);
     html = renderBlogShell(html, post);
-  } else if ((meta = staticPageMeta(cleanPath))) {
-    html = cleanPath === "/" ? renderHomeShell(html) : renderPageShell(html, meta);
+  } else if (internalPath && (meta = staticPageMeta(internalPath, lang))) {
+    html = internalPath === "/"
+      ? renderHomeShell(html, lang)
+      : renderPageShell(html, meta, internalPath, lang, cleanPath);
   } else {
     // Unbekannte Adresse: echte 404 statt Startseite mit Status 200
     status = 404;
-    meta = { ...NOT_FOUND_META, image: DEFAULT_IMAGE, canonicalPath: cleanPath, type: "website", noindex: true };
-    html = renderHomeShell(html);
+    meta = { ...notFoundMeta(lang), image: DEFAULT_IMAGE, canonicalPath: cleanPath, type: "website", noindex: true };
+    html = renderHomeShell(html, lang);
   }
 
-  html = setMeta(html, meta);
+  html = setMeta(html, meta, lang);
   res.setHeader("Cache-Control", "no-cache, must-revalidate");
   res.status(status).send(html);
 }

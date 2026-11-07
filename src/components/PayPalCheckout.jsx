@@ -16,7 +16,11 @@ export const BANK_DETAILS = {
 };
 
 export default function PayPalCheckout({ isOpen, onClose, order }) {
-  const { t, language } = useLanguage();
+  const { t, language, lp } = useLanguage();
+  const en = language === "en";
+  const money = (n) => (en ? `€${n.toFixed(2)}` : `${n.toFixed(2).replace(".", ",")} €`);
+  // Platzhalter des Gutscheins ("Wahl beim Einlösen") in der Anzeige übersetzen
+  const shownDetail = (v) => (en && v === "Wahl beim Einlösen" ? "Chosen when redeeming" : v);
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
@@ -150,11 +154,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   const handlePayment = async (e) => {
     e.preventDefault();
     if (!customerEmail) {
-      alert(language === "en" ? "Please enter your email address for song delivery." : "Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
+      alert(language === "en" ? "Please enter your email address so I can deliver your song." : "Bitte gib deine E-Mail-Adresse für die Zustellung des Songs an.");
       return;
     }
     if (!agreedTerms) {
-      alert(language === "en" ? "Please accept the terms and conditions and start of production." : "Bitte bestätige die Geschäftsbedingungen und den Beginn der sofortigen Produktion.");
+      alert(language === "en" ? "Please confirm the terms and that production starts right away." : "Bitte bestätige die Geschäftsbedingungen und den Beginn der sofortigen Produktion.");
       return;
     }
 
@@ -172,7 +176,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           window.location.href = data.url;
           return;
         } else {
-          alert(data.error || "Fehler beim Starten von Stripe Checkout. Bitte prüfe die Konfiguration.");
+          alert(data.error || (en ? "Error starting Stripe Checkout. Please check the configuration." : "Fehler beim Starten von Stripe Checkout. Bitte prüfe die Konfiguration."));
           setIsProcessing(false);
           return;
         }
@@ -198,7 +202,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Kasse & Checkout"
+      aria-label={en ? "Checkout" : "Kasse & Checkout"}
       className="fixed inset-0 z-50 overflow-hidden"
     >
       <div
@@ -210,7 +214,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         {/* Bezahlhilfe Side Panel - DESKTOP: Appears to the LEFT of the main checkout form */}
         {showPaymentHelp && (
           <aside
-            aria-label="Bezahlhilfe & Anleitung"
+            aria-label={en ? "Payment help & instructions" : "Bezahlhilfe & Anleitung"}
             className="hidden md:flex flex-col w-80 lg:w-96 bg-white/98 backdrop-blur-md border-l border-r border-stone-200 shadow-2xl p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-right duration-300 z-10 justify-between text-stone-900"
           >
             <div>
@@ -221,7 +225,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-stone-900">
-                      {language === "en" ? "Payment Guide & Help" : "Bezahlhilfe & Anleitung"}
+                      {language === "en" ? "Payment help & instructions" : "Bezahlhilfe & Anleitung"}
                     </h3>
                     <p className="text-[10px] text-stone-500">
                       {language === "en" ? "Step by step to your song" : "Schritt für Schritt zum Wunschsong"}
@@ -232,7 +236,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   type="button"
                   onClick={() => setShowPaymentHelp(false)}
                   className="text-stone-400 hover:text-stone-700 p-1.5 rounded-lg hover:bg-stone-100 transition"
-                  aria-label="Schließen"
+                  aria-label={en ? "Close" : "Schließen"}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -243,11 +247,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
                   <div className="flex items-center gap-2 text-amber-700 font-bold">
                     <span className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center text-[11px] text-amber-800">1</span>
-                    <span>{language === "en" ? "Email & Consent Required" : "E-Mail & Häkchen setzen"}</span>
+                    <span>{language === "en" ? "Enter email & tick the box" : "E-Mail & Häkchen setzen"}</span>
                   </div>
                   <p className="text-[11px] text-stone-600 leading-relaxed pl-7">
                     {language === "en"
-                      ? "Enter your delivery email and check the consent box (waiver of statutory withdrawal for custom songs). The payment buttons will activate immediately!"
+                      ? "Enter the email for your song delivery and tick the box for the terms. Only then do the payment buttons become active."
                       : "Trage deine E-Mail für die Song-Lieferung ein und setze das Häkchen bei den AGB. Erst danach schalten sich die Bezahl-Buttons aktiv frei!"}
                   </p>
                 </div>
@@ -256,18 +260,18 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 space-y-1.5">
                   <div className="flex items-center gap-2 text-amber-800 font-bold">
                     <span className="w-5 h-5 rounded-full bg-amber-200 flex items-center justify-center text-[11px] text-amber-900">2</span>
-                    <span>{language === "en" ? "PayPal or SEPA Direct Debit" : "PayPal oder Bankeinzug (SEPA)"}</span>
+                    <span>{language === "en" ? "PayPal or direct debit (SEPA)" : "PayPal oder Bankeinzug (SEPA)"}</span>
                   </div>
                   <p className="text-[11px] text-stone-700 font-medium pl-7 leading-relaxed">
                     {language === "en"
-                      ? "No PayPal account needed! You can easily pay as a guest via SEPA bank debit:"
+                      ? "You do NOT need a PayPal account. You can simply pay by direct debit without signing up:"
                       : "Du brauchst KEIN PayPal-Konto! Du kannst ganz einfach ohne Registrierung per Bankeinzug zahlen:"}
                   </p>
                   <ol className="text-[11px] text-stone-600 pl-7 space-y-1 list-decimal list-inside">
                     <li>{language === "en" ? "Click the yellow PayPal button" : "Auf den gelben PayPal-Button klicken"}</li>
-                    <li>{language === "en" ? "Select 'Pay with Debit or Credit Card' / 'Pay as Guest'" : "Im PayPal-Fenster auf „Mit Debit- oder Kreditkarte zahlen“ bzw. „Als Gast zahlen“ klicken"}</li>
-                    <li>{language === "en" ? "Enter your IBAN for direct debit" : "Deine IBAN für Lastschrift oder Kartendaten eingeben"}</li>
-                    <li>{language === "en" ? "Confirm payment – finished!" : "Zahlung bestätigen – fertig!"}</li>
+                    <li>{language === "en" ? "In the PayPal window, click 'Pay with Debit or Credit Card' or 'Pay as Guest'" : "Im PayPal-Fenster auf „Mit Debit- oder Kreditkarte zahlen“ bzw. „Als Gast zahlen“ klicken"}</li>
+                    <li>{language === "en" ? "Enter your IBAN for direct debit or your card details" : "Deine IBAN für Lastschrift oder Kartendaten eingeben"}</li>
+                    <li>{language === "en" ? "Confirm the payment. Done." : "Zahlung bestätigen – fertig!"}</li>
                   </ol>
                 </div>
 
@@ -275,11 +279,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
                   <div className="flex items-center gap-2 text-stone-900 font-bold">
                     <span className="w-5 h-5 rounded-full bg-stone-200 flex items-center justify-center text-[11px] text-stone-700">3</span>
-                    <span>{language === "en" ? "Credit Card, Apple Pay, Klarna" : "Kreditkarte, Apple Pay, Klarna"}</span>
+                    <span>{language === "en" ? "Credit card, Apple Pay, Klarna" : "Kreditkarte, Apple Pay, Klarna"}</span>
                   </div>
                   <p className="text-[11px] text-stone-600 leading-relaxed pl-7">
                     {language === "en"
-                      ? "Choose 'Credit Card & Online Payment' to check out via Stripe with Visa, Mastercard, Apple Pay, Google Pay or Klarna."
+                      ? "Choose 'Credit card & online payment' to pay directly with Visa, Mastercard, Apple Pay, Google Pay or Klarna."
                       : "Wähle 'Kreditkarte & Online-Zahlung', um direkt per Visa, Mastercard, Apple Pay, Google Pay oder Klarna zu bezahlen."}
                   </p>
                 </div>
@@ -288,11 +292,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
                   <div className="flex items-center gap-2 text-stone-900 font-bold">
                     <Landmark className="w-4 h-4 text-emerald-600" />
-                    <span>{language === "en" ? "Bank Transfer (Advance Payment)" : "Klassische Banküberweisung"}</span>
+                    <span>{language === "en" ? "Regular bank transfer" : "Klassische Banküberweisung"}</span>
                   </div>
                   <p className="text-[11px] text-stone-600 leading-relaxed pl-6">
                     {language === "en"
-                      ? "Select 'Bank Transfer' in checkout to place your order. You will immediately receive your Order ID and our IBAN. Important: Production starts upon payment receipt on our bank account (usually 1 business day)."
+                      ? "Choose 'Bank transfer' at checkout and order right away. You'll get your personal order number and my IBAN immediately. Important: production of your song starts as soon as the money arrives in my account (usually 1 business day)."
                       : "Wähle 'Banküberweisung' im Kassenfenster und bestelle direkt. Du erhältst sofort deine persönliche Bestellnummer und meine IBAN. Wichtig: Die Produktion deines Liedes beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag)."}
                   </p>
                 </div>
@@ -302,20 +306,20 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             {/* Bottom Support Callout */}
             <div className="pt-4 border-t border-stone-200 mt-4 space-y-2">
               <a
-                href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"
+                href={en ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%20need%20help%20with%20the%20payment" : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>{language === "en" ? "WhatsApp Direct Support" : "WhatsApp Direkthilfe mit Dirk"}</span>
+                <span>{language === "en" ? "WhatsApp help directly from Dirk" : "WhatsApp Direkthilfe mit Dirk"}</span>
               </a>
               <div className="text-center">
                 <a
-                  href="/support"
+                  href={lp("/support")}
                   className="text-[11px] text-stone-500 hover:text-amber-600 underline transition inline-flex items-center gap-1"
                 >
-                  <span>{language === "en" ? "Open full Support & Help Page" : "Zur ausführlichen Support-Seite"}</span>
+                  <span>{language === "en" ? "Go to the full support page" : "Zur ausführlichen Support-Seite"}</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -336,7 +340,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 />
                 <div>
                   <h3 className="text-base sm:text-lg font-extrabold text-stone-900">{t("checkout.step")}</h3>
-                  <p className="text-[11px] text-stone-500">MyMusicMoment24 • {language === "en" ? "Immediate Production" : "Sofortige Produktion"}</p>
+                  <p className="text-[11px] text-stone-500">MyMusicMoment24 • {language === "en" ? "Immediate production" : "Sofortige Produktion"}</p>
                 </div>
               </div>
               <button
@@ -357,11 +361,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <CheckCircle className="w-7 h-7" />
                       </div>
                       <h4 className="text-xl sm:text-2xl font-black text-stone-900">
-                        {language === "en" ? "Order Successfully Received!" : "Bestellung erfolgreich aufgegeben!"}
+                        {language === "en" ? "Order placed successfully" : "Bestellung erfolgreich aufgegeben!"}
                       </h4>
                       <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-md mx-auto">
                         {language === "en"
-                          ? "Thank you for your order! Please transfer the amount using your Order ID as the reference. Production starts upon payment receipt."
+                          ? "Thank you for your order. Please transfer the amount now and use your order number as the payment reference."
                           : "Vielen Dank für deine Bestellung! Bitte überweise den Betrag nun unter Angabe deiner Bestellnummer als Verwendungszweck."}
                       </p>
                     </div>
@@ -371,7 +375,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       <div className="flex items-center justify-between pb-2.5 border-b border-stone-200">
                         <span className="text-xs sm:text-sm font-black text-stone-900 flex items-center gap-1.5">
                           <Landmark className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <span>{language === "en" ? "Bank Wire Transfer Details:" : "Überweisungsdaten (Vorkasse):"}</span>
+                          <span>{language === "en" ? "Bank transfer details (prepayment):" : "Überweisungsdaten (Vorkasse):"}</span>
                         </span>
                         <span className="text-[10px] font-black text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full">
                           {language === "en" ? "Prepayment" : "Vorkasse"}
@@ -383,7 +387,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <div className="p-3 bg-amber-100/70 border-2 border-amber-400 rounded-xl flex items-center justify-between gap-2 shadow-sm">
                           <div className="min-w-0">
                             <span className="text-[10px] font-black text-amber-900 uppercase block tracking-wider">
-                              {language === "en" ? "Payment Reference / Order ID (Important!):" : "Verwendungszweck (Wichtig!):"}
+                              {language === "en" ? "Payment reference (important):" : "Verwendungszweck (Wichtig!):"}
                             </span>
                             <span className="text-sm sm:text-base font-mono font-black text-stone-900 tracking-wider truncate block">
                               {transactionId}
@@ -395,30 +399,30 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs rounded-lg transition flex items-center gap-1 shrink-0 shadow-sm active:scale-95"
                           >
                             {copiedField === "txId" ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                            <span>{copiedField === "txId" ? "Kopiert!" : "Kopieren"}</span>
+                            <span>{copiedField === "txId" ? (en ? "Copied" : "Kopiert!") : (en ? "Copy" : "Kopieren")}</span>
                           </button>
                         </div>
 
                         {/* Amount */}
                         <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                           <div>
-                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Total Amount:" : "Zu überweisender Betrag:"}</span>
-                            <span className="text-sm font-black text-emerald-700">{currentPrice.toFixed(2).replace(".", ",")} €</span>
+                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Amount to transfer:" : "Zu überweisender Betrag:"}</span>
+                            <span className="text-sm font-black text-emerald-700">{money(currentPrice)}</span>
                           </div>
                           <button
                             type="button"
-                            onClick={() => copyToClipboard(currentPrice.toFixed(2).replace(".", ",") + " €", "amount")}
+                            onClick={() => copyToClipboard(money(currentPrice), "amount")}
                             className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                           >
                             {copiedField === "amount" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                            <span>{copiedField === "amount" ? "Kopiert!" : "Kopieren"}</span>
+                            <span>{copiedField === "amount" ? (en ? "Copied" : "Kopiert!") : (en ? "Copy" : "Kopieren")}</span>
                           </button>
                         </div>
 
                         {/* Account Holder */}
                         <div className="p-2.5 bg-white border border-stone-200 rounded-xl flex items-center justify-between gap-2">
                           <div className="min-w-0">
-                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Recipient / Account Holder:" : "Empfänger / Kontoinhaber:"}</span>
+                            <span className="text-[10px] text-stone-500 block">{language === "en" ? "Recipient / account holder:" : "Empfänger / Kontoinhaber:"}</span>
                             <span className="text-xs font-bold text-stone-900 truncate block">{BANK_DETAILS.holder}</span>
                           </div>
                           <button
@@ -427,7 +431,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                             className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                           >
                             {copiedField === "holder" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                            <span>{copiedField === "holder" ? "Kopiert!" : "Kopieren"}</span>
+                            <span>{copiedField === "holder" ? (en ? "Copied" : "Kopiert!") : (en ? "Copy" : "Kopieren")}</span>
                           </button>
                         </div>
 
@@ -446,7 +450,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                               className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                             >
                               {copiedField === "iban" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              <span>{copiedField === "iban" ? "Kopiert!" : "Kopieren"}</span>
+                              <span>{copiedField === "iban" ? (en ? "Copied" : "Kopiert!") : (en ? "Copy" : "Kopieren")}</span>
                             </button>
                           )}
                         </div>
@@ -464,7 +468,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                               className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg border border-stone-300 transition flex items-center gap-1 shrink-0"
                             >
                               {copiedField === "bic" ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              <span>{copiedField === "bic" ? "Kopiert!" : "Kopieren"}</span>
+                              <span>{copiedField === "bic" ? (en ? "Copied" : "Kopiert!") : (en ? "Copy" : "Kopieren")}</span>
                             </button>
                           </div>
                         )}
@@ -474,24 +478,24 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs space-y-1">
                         <span className="font-black text-amber-900 block flex items-center gap-1.5">
                           <span>⏳</span>
-                          <span>{language === "en" ? "Production Start Notice:" : "Wichtiger Produktionshinweis:"}</span>
+                          <span>{language === "en" ? "Important note on production:" : "Wichtiger Produktionshinweis:"}</span>
                         </span>
                         <p className="text-[11px] text-stone-700 leading-relaxed font-medium">
                           {language === "en"
-                            ? `The creation of your custom song begins immediately upon receipt of your payment on our bank account (usually 1 business day). A confirmation will be sent to ${customerEmail}.`
+                            ? `I start creating your personal song as soon as your payment arrives in my account (usually 1 business day). Once it has arrived, you'll get a confirmation at ${customerEmail}.`
                             : `Die Erstellung deines persönlichen Songs beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag). Du erhältst nach Eingang eine Bestätigung an ${customerEmail}.`}
                         </p>
                       </div>
 
                       <div className="pt-2 text-center">
                         <a
-                          href={`https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20gerade%20per%20Bank%C3%BCberweisung%20bestellt%20(Bestellnummer:%20${transactionId})`}
+                          href={en ? `https://wa.me/4915906122744?text=Hi%20Dirk,%20I%20just%20ordered%20by%20bank%20transfer%20(order%20number:%20${transactionId})` : `https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20gerade%20per%20Bank%C3%BCberweisung%20bestellt%20(Bestellnummer:%20${transactionId})`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs text-emerald-700 hover:text-emerald-800 font-bold underline"
                         >
                           <MessageCircle className="w-3.5 h-3.5" />
-                          <span>{language === "en" ? "Notify Dirk via WhatsApp" : "Dirk kurz per WhatsApp Bescheid geben"}</span>
+                          <span>{language === "en" ? "Let Dirk know on WhatsApp" : "Dirk kurz per WhatsApp Bescheid geben"}</span>
                         </a>
                       </div>
                     </div>
@@ -500,7 +504,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       onClick={onClose}
                       className="w-full py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold rounded-xl transition text-sm shadow-md"
                     >
-                      {language === "en" ? "Back to Shop" : "Zurück zum Shop"}
+                      {language === "en" ? "Back to the shop" : "Zurück zum Shop"}
                     </button>
                   </div>
                 ) : (
@@ -516,14 +520,14 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     <div className="bg-stone-50 p-4 rounded-xl text-left text-xs font-mono text-stone-700 space-y-1.5 border border-stone-200">
                       <div>{t("checkout.orderNumber")}: <span className="text-amber-700 font-bold">{transactionId}</span></div>
                       <div>{language === "en" ? "Recipient" : "Empfänger"}: <span className="text-stone-900">{customerEmail}</span></div>
-                      <div>{language === "en" ? "Delivery via" : "Zustellung via"}: <span className="text-emerald-700 font-bold">E-Mail {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
-                      <div>{language === "en" ? "Total Amount" : "Gesamtbetrag"}: <span className="text-stone-900 font-bold">{currentPrice.toFixed(2).replace(".", ",")} €</span></div>
+                      <div>{language === "en" ? "Delivery via" : "Zustellung via"}: <span className="text-emerald-700 font-bold">{en ? "Email" : "E-Mail"} {customerPhone ? `& WhatsApp (${customerPhone})` : ""}</span></div>
+                      <div>{language === "en" ? "Total" : "Gesamtbetrag"}: <span className="text-stone-900 font-bold">{money(currentPrice)}</span></div>
                     </div>
                     <button
                       onClick={onClose}
                       className="w-full py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold rounded-xl transition text-sm shadow-md"
                     >
-                      {language === "en" ? "Back to Shop" : "Zurück zum Shop"}
+                      {language === "en" ? "Back to the shop" : "Zurück zum Shop"}
                     </button>
                   </div>
                 )}
@@ -537,18 +541,18 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                     <div className="min-w-0">
                       <h4 className="font-bold text-stone-900 text-xs sm:text-sm truncate">{order.name}</h4>
                       <p className="text-[11px] text-stone-500 truncate">
-                        {order.details?.genre ? `${order.details.genre} • ${order.details.voice}` : t("footer.stickyTitle")}
+                        {order.details?.genre ? `${shownDetail(order.details.genre)} • ${shownDetail(order.details.voice)}` : t("footer.stickyTitle")}
                       </p>
                     </div>
                     <span className="text-sm font-black text-amber-700 shrink-0">
-                      {PRICES[kind].toFixed(2).replace(".", ",")} €
+                      {money(PRICES[kind])}
                     </span>
                   </div>
 
                   {order.details?.express && (
                     <div className="flex justify-between text-xs text-stone-600">
                       <span>{t("configurator.summary.expressTitle")}</span>
-                      <span className="font-semibold text-amber-700">+9,99 €</span>
+                      <span className="font-semibold text-amber-700">{en ? "+€9.99" : "+9,99 €"}</span>
                     </div>
                   )}
 
@@ -558,7 +562,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <span>📜</span>
                         <span>{t("checkout.certificateLineItem", "Offizielle Song-Urkunde mit QR-Code")}</span>
                       </span>
-                      <span className="font-semibold text-amber-700">+9,99 €</span>
+                      <span className="font-semibold text-amber-700">{en ? "+€9.99" : "+9,99 €"}</span>
                     </div>
                   )}
 
@@ -633,9 +637,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                   )}
 
                   <div className="border-t border-stone-200 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-stone-900">
-                    <span>{t("configurator.summary.totalPrice")} <span className="text-[10px] font-normal text-stone-500">({language === "en" ? "incl. VAT" : "inkl. MwSt."})</span></span>
+                    <span>{t("configurator.summary.totalPrice")}</span>
                     <span className="text-lg sm:text-xl font-black text-amber-700">
-                      {currentPrice.toFixed(2).replace(".", ",")} €
+                      {money(currentPrice)}
                     </span>
                   </div>
                 </div>
@@ -709,7 +713,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         className="text-[11px] text-amber-800 hover:text-amber-900 font-bold flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 transition shadow-sm"
                       >
                         <HelpCircle className="w-3.5 h-3.5 text-amber-700" />
-                        <span>{showPaymentHelp ? (language === "en" ? "Hide Help" : "Hilfe schließen") : (language === "en" ? "💡 Payment Guide" : "💡 Bezahlhilfe & Anleitung")}</span>
+                        <span>{showPaymentHelp ? (language === "en" ? "Close help" : "Hilfe schließen") : (language === "en" ? "💡 Payment help" : "💡 Bezahlhilfe & Anleitung")}</span>
                       </button>
                     </div>
 
@@ -806,12 +810,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                               </span>
                             </div>
                             <p className="text-[10px] text-stone-500 mt-0.5 leading-snug">
-                              {language === "en" ? "Prepayment via IBAN" : "Vorkasse per IBAN"}
+                              {language === "en" ? "Prepayment to my IBAN" : "Vorkasse per IBAN"}
                             </p>
                             <div className="flex items-center gap-1.5 pt-1.5">
                               <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 text-[9px] font-bold rounded flex items-center gap-1">
                                 <Landmark className="w-2.5 h-2.5" />
-                                <span>IBAN & Verwendungszweck</span>
+                                <span>{en ? "IBAN & payment reference" : "IBAN & Verwendungszweck"}</span>
                               </span>
                             </div>
                           </div>
@@ -826,7 +830,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <div className="flex items-center justify-between border-b border-stone-200 pb-2">
                           <span className="font-bold text-stone-900 flex items-center gap-1.5">
                             <span>💡</span>
-                            <span>{language === "en" ? "Payment Guide" : "Bezahlhilfe & Anleitung"}</span>
+                            <span>{language === "en" ? "Payment help & instructions" : "Bezahlhilfe & Anleitung"}</span>
                           </span>
                           <button
                             type="button"
@@ -838,26 +842,26 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         </div>
                         <div className="space-y-2 text-[11px] text-stone-700">
                           <div className="p-2.5 rounded-lg bg-white border border-stone-200">
-                            <span className="font-bold text-amber-800">1. E-Mail & Häkchen: </span>
-                            <span>E-Mail eingeben & AGB abhaken – erst dann werden die Bezahl-Buttons aktiv!</span>
+                            <span className="font-bold text-amber-800">{en ? "1. Email & checkbox: " : "1. E-Mail & Häkchen: "}</span>
+                            <span>{en ? "Enter your email & tick the terms box. Only then do the payment buttons become active." : "E-Mail eingeben & AGB abhaken – erst dann werden die Bezahl-Buttons aktiv!"}</span>
                           </div>
                           <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
-                            <span className="font-bold text-amber-800">2. PayPal ohne Konto (Bankeinzug): </span>
-                            <span>PayPal anklicken -&gt; „Als Gast zahlen“ oder „Mit Karte zahlen“ wählen -&gt; IBAN eingeben -&gt; Fertig!</span>
+                            <span className="font-bold text-amber-800">{en ? "2. PayPal without an account (direct debit): " : "2. PayPal ohne Konto (Bankeinzug): "}</span>
+                            <span>{en ? "Click PayPal -> choose 'Pay as Guest' or 'Pay with Card' -> enter your IBAN -> done." : "PayPal anklicken -> „Als Gast zahlen“ oder „Mit Karte zahlen“ wählen -> IBAN eingeben -> Fertig!"}</span>
                           </div>
                           <div className="p-2.5 rounded-lg bg-white border border-stone-200">
-                            <span className="font-bold text-stone-900">3. Überweisung (Vorkasse): </span>
-                            <span>Bestellung aufgeben, per IBAN & Bestellnummer überweisen. Produktion startet sofort nach Geldeingang!</span>
+                            <span className="font-bold text-stone-900">{en ? "3. Bank transfer (prepayment): " : "3. Überweisung (Vorkasse): "}</span>
+                            <span>{en ? "Place your order, then transfer the amount to my IBAN with your order number. Production starts as soon as the money arrives." : "Bestellung aufgeben, per IBAN & Bestellnummer überweisen. Produktion startet sofort nach Geldeingang!"}</span>
                           </div>
                         </div>
                         <a
-                          href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"
+                          href={en ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%20need%20help%20with%20the%20payment" : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20brauche%20Hilfe%20bei%20der%20Bezahlung"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md transition"
                         >
                           <MessageCircle className="w-3.5 h-3.5" />
-                          <span>WhatsApp Direkthilfe mit Dirk</span>
+                          <span>{en ? "WhatsApp help directly from Dirk" : "WhatsApp Direkthilfe mit Dirk"}</span>
                         </a>
                       </div>
                     )}
@@ -889,10 +893,10 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           <div className="flex items-center justify-between gap-2 flex-wrap">
                             <span className="text-xs font-black text-stone-900 flex items-center gap-1.5">
                               <span className="text-amber-600 text-sm">✓</span>
-                              <span>{language === "en" ? "Payment Methods Included:" : "Enthaltene Zahlungsarten:"}</span>
+                              <span>{language === "en" ? "Payment methods included:" : "Enthaltene Zahlungsarten:"}</span>
                             </span>
                             <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded shadow-sm">
-                              {language === "en" ? "No account needed" : "Kein PayPal-Konto nötig"}
+                              {language === "en" ? "No PayPal account needed" : "Kein PayPal-Konto nötig"}
                             </span>
                           </div>
 
@@ -904,7 +908,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
 
                           <p className="text-[11px] text-stone-600 font-medium leading-relaxed">
                             {language === "en"
-                              ? "With PayPal account OR choose 'Pay with Debit or Credit Card / As Guest' below for direct SEPA bank debit."
+                              ? "With your PayPal account, OR simply choose 'Pay with Debit or Credit Card' / 'As Guest' below to pay easily by direct debit (SEPA)."
                               : "Mit deinem PayPal-Konto ODER wähle unten einfach „Mit Debit- oder Kreditkarte zahlen“ / „Als Gast“, um bequem per Bankeinzug (SEPA) zu bezahlen."}
                           </p>
                         </div>
@@ -913,7 +917,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         {(!customerEmail || !agreedTerms) && (
                           <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-amber-200 border-2 border-amber-300 shadow-sm animate-pulse">
                             {language === "en"
-                              ? "👉 Please enter your email above & check the consent box to activate PayPal & SEPA!"
+                              ? "👉 Please enter your email above & tick the box to unlock PayPal, SEPA & debit card."
                               : "👉 Bitte oben E-Mail eintragen & Häkchen setzen, um PayPal, SEPA & Debitkarte freizuschalten!"}
                           </div>
                         )}
@@ -938,7 +942,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                                 trackPurchase(txId, { ...order, price: currentPrice });
                               } catch (err) {
                                 console.error("PayPal Capture Error:", err);
-                                alert(language === "en" ? "Error during payment capture. Please try again." : "Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
+                                alert(language === "en" ? "Error while processing the payment. Please try again." : "Fehler bei der Zahlungsabwicklung. Bitte versuche es erneut.");
                                 setIsProcessing(false);
                               }
                             }}
@@ -958,10 +962,10 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         <div className="flex items-center justify-between pb-2 border-b border-emerald-200">
                           <span className="text-xs font-black text-stone-900 flex items-center gap-1.5">
                             <Landmark className="w-4 h-4 text-emerald-600" />
-                            <span>{language === "en" ? "Payment via Bank Transfer:" : "Ablauf der Banküberweisung:"}</span>
+                            <span>{language === "en" ? "How the bank transfer works:" : "Ablauf der Banküberweisung:"}</span>
                           </span>
                           <span className="text-[10px] font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">
-                            {language === "en" ? "Prepayment" : "Vorkasse per IBAN"}
+                            {language === "en" ? "Prepayment to my IBAN" : "Vorkasse per IBAN"}
                           </span>
                         </div>
 
@@ -969,19 +973,31 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                           <div className="flex items-start gap-2.5">
                             <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">1</span>
                             <p className="leading-relaxed">
-                              Klicke unten auf <strong>„Bestellung jetzt aufgeben“</strong>. Du erhältst sofort deine persönliche <strong>Bestellnummer</strong>.
+                              {en ? (
+                                <>Click <strong>"Place order"</strong> below. You'll get your personal <strong>order number</strong> right away.</>
+                              ) : (
+                                <>Klicke unten auf <strong>„Bestellung jetzt aufgeben“</strong>. Du erhältst sofort deine persönliche <strong>Bestellnummer</strong>.</>
+                              )}
                             </p>
                           </div>
                           <div className="flex items-start gap-2.5">
                             <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">2</span>
                             <p className="leading-relaxed">
-                              Überweise den Betrag von <strong>{currentPrice.toFixed(2).replace(".", ",")} €</strong> unter Angabe deiner <strong>Bestellnummer als Verwendungszweck</strong> auf meine IBAN.
+                              {en ? (
+                                <>Transfer <strong>{money(currentPrice)}</strong> to my IBAN and use your <strong>order number as the payment reference</strong>.</>
+                              ) : (
+                                <>Überweise den Betrag von <strong>{money(currentPrice)}</strong> unter Angabe deiner <strong>Bestellnummer als Verwendungszweck</strong> auf meine IBAN.</>
+                              )}
                             </p>
                           </div>
                           <div className="flex items-start gap-2.5">
                             <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-[11px] shrink-0 mt-0.5">3</span>
                             <p className="leading-relaxed text-amber-900 font-medium">
-                              <strong>Wichtig:</strong> Die Produktion deines Liedes beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag).
+                              {en ? (
+                                <><strong>Important:</strong> Production of your song starts as soon as the money arrives in my account (usually 1 business day).</>
+                              ) : (
+                                <><strong>Wichtig:</strong> Die Produktion deines Liedes beginnt sofort nach Geldeingang auf meinem Konto (in der Regel 1 Werktag).</>
+                              )}
                             </p>
                           </div>
                         </div>
@@ -989,7 +1005,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                         {(!customerEmail || !agreedTerms) && (
                           <div className="text-xs text-amber-950 font-black text-center py-3 px-3.5 rounded-xl bg-amber-200 border-2 border-amber-300 shadow-sm animate-pulse">
                             {language === "en"
-                              ? "👉 Please enter your email above & check the consent box to place order!"
+                              ? "👉 Please enter your email above & tick the box to place your order."
                               : "👉 Bitte oben E-Mail eintragen & Häkchen setzen, um die Bestellung aufzugeben!"}
                           </div>
                         )}
@@ -1013,9 +1029,9 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                       {isProcessing ? (
                         <span>{t("checkout.processing")} ⏳</span>
                       ) : paymentMethod === "bank_transfer" ? (
-                        <span>{language === "en" ? "Place Order (Bank Transfer)" : "Bestellung jetzt aufgeben (Überweisung)"} ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
+                        <span>{language === "en" ? "Place order (bank transfer)" : "Bestellung jetzt aufgeben (Überweisung)"} ({money(currentPrice)})</span>
                       ) : (
-                        <span>{language === "en" ? "Order Now with Obligation to Pay" : "Jetzt zahlungspflichtig bestellen"} ({currentPrice.toFixed(2).replace(".", ",")} €)</span>
+                        <span>{language === "en" ? "Order now with obligation to pay" : "Jetzt zahlungspflichtig bestellen"} ({money(currentPrice)})</span>
                       )}
                     </button>
                   )}
@@ -1049,7 +1065,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
           </div>
 
           <div className="pt-4 text-center text-[11px] text-stone-400">
-            MyMusicMoment24 • {language === "en" ? "From the Heart to the Ears" : "Von Herzen für die Ohren"}
+            MyMusicMoment24 • {language === "en" ? "From the heart, for your ears" : "Von Herzen für die Ohren"}
           </div>
 
         </div>
@@ -1070,7 +1086,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             <button
               onClick={() => setShowCertificateModal(false)}
               className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-700 rounded-full bg-stone-100 hover:bg-stone-200 transition"
-              aria-label="Schließen"
+              aria-label={en ? "Close" : "Schließen"}
             >
               <X className="w-5 h-5" />
             </button>
@@ -1078,14 +1094,14 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             <div className="text-center mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
-                {language === "en" ? "Official Keepsake Add-on" : "Offizielles Song-Zusatzprodukt"}
+                {language === "en" ? "Official song add-on" : "Offizielles Song-Zusatzprodukt"}
               </span>
               <h3 className="text-lg sm:text-xl font-black text-stone-900">
-                {language === "en" ? "Official Song Certificate with QR Code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
+                {language === "en" ? "Official song certificate with lyrics & QR code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
               </h3>
               <p className="text-xs text-stone-500 mt-1 max-w-md mx-auto">
                 {language === "en"
-                  ? "Print-ready DIN A4 PDF with your personal lyrics, golden seal and scannable QR code to play the song anytime."
+                  ? "Print-ready A4 PDF with your personal lyrics, a golden seal & a playable QR code, ready to frame."
                   : "Druckfertiges DIN A4 PDF mit persönlichem Liedtext, goldenem Siegel & abspielbarem QR-Code zum Einrahmen."}
               </p>
             </div>
@@ -1093,7 +1109,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             <div className="rounded-2xl overflow-hidden border border-amber-300 shadow-md mb-4 bg-stone-50">
               <img
                 src="/images/urkunde-beispiel.jpg"
-                alt="Song-Urkunde Muster"
+                alt={en ? "Song certificate sample" : "Song-Urkunde Muster"}
                 className="w-full h-auto object-contain max-h-[44vh] mx-auto"
               />
             </div>
@@ -1101,15 +1117,15 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-stone-700 mb-5 bg-stone-50 p-3 rounded-xl border border-stone-200">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span>{language === "en" ? "Print-ready DIN A4 PDF" : "Druckfertig DIN A4"}</span>
+                <span>{language === "en" ? "Print-ready A4" : "Druckfertig DIN A4"}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span>{language === "en" ? "Play & Download QR Code" : "QR-Code: Anhören & Download"}</span>
+                <span>{language === "en" ? "QR code: listen & download" : "QR-Code: Anhören & Download"}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span>{language === "en" ? "Golden Seal" : "Goldenes Siegel"}</span>
+                <span>{language === "en" ? "Golden seal" : "Goldenes Siegel"}</span>
               </div>
             </div>
 
@@ -1130,7 +1146,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5 transition"
               >
                 <CheckCircle2 className="w-4 h-4" />
-                <span>{language === "en" ? "Add to Order (+€9.99)" : "Urkunde hinzufügen (+9,99 €)"}</span>
+                <span>{language === "en" ? "Add certificate (+€9.99)" : "Urkunde hinzufügen (+9,99 €)"}</span>
               </button>
             </div>
           </div>

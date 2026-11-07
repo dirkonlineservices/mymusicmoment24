@@ -1,5 +1,6 @@
 ---
 title: "Song zum 50. Geburtstag: Ein persönliches Lied für ein halbes Jahrhundert"
+metaTitle: "Song zum 50. Geburtstag | MyMusicMoment24"
 date: "2026-10-16"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

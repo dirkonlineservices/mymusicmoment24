@@ -17,7 +17,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
             className="flex items-center gap-2 text-xs sm:text-sm text-stone-600 hover:text-stone-900 transition font-medium"
           >
             <ArrowLeft className="w-4 h-4 text-emerald-600" />
-            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
+            <span>{language === "en" ? "Back to home page" : "Zurück zur Startseite"}</span>
           </button>
           
           <button
@@ -46,12 +46,12 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-5">
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>{language === "en" ? "Customer Service & Assistance" : "Kundenservice & Support"}</span>
+            <span>{language === "en" ? "Customer service & support" : "Kundenservice & Support"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black text-stone-900 tracking-tight leading-tight mb-4">
             {language === "en" ? (
-              <>We're here to help you personally</>
+              <>I'm here for you personally</>
             ) : (
               <>Ich bin persönlich für dich da</>
             )}
@@ -59,7 +59,7 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
 
           <p className="text-sm sm:text-base text-stone-600 max-w-2xl mx-auto leading-relaxed">
             {language === "en"
-              ? "Do you have questions about your order, wish to clarify details, or need assistance with PayPal or bank transfers? Reach out to founder Dirk Schmetzer directly."
+              ? "Do you have questions about your order, want to talk through special details, or are you stuck paying with PayPal or Stripe? I'm happy to help, and quickly."
               : "Du hast Fragen zu Deiner Bestellung, möchtest besondere Details besprechen oder kommst bei der Bezahlung mit PayPal oder Stripe nicht weiter? Ich helfe dir gern und schnell."}
           </p>
         </div>
@@ -78,28 +78,28 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 <MessageSquare className="w-6 h-6" />
               </div>
               <div className="inline-block text-[11px] font-bold text-emerald-700 uppercase tracking-wider mb-1">
-                {language === "en" ? "Fastest Response" : "Schnellste Antwortzeit"}
+                {language === "en" ? "Fastest reply" : "Schnellste Antwortzeit"}
               </div>
-              <h3 className="text-xl font-black text-stone-900 mb-2">WhatsApp-Support</h3>
+              <h3 className="text-xl font-black text-stone-900 mb-2">{language === "en" ? "WhatsApp support" : "WhatsApp-Support"}</h3>
               <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
                 {language === "en"
-                  ? "Chat directly with founder Dirk Schmetzer. Perfect for quick questions, lyrics changes, or immediate payment assistance."
+                  ? "Send me a message on WhatsApp. Good for urgent questions about your song, changes to the lyrics, or when the payment isn't going through."
                   : "Schreib mir direkt eine Nachricht auf WhatsApp. Ideal für eilige Fragen zum Song, Textanpassungen oder wenn die Zahlung hakt."}
               </p>
             </div>
 
             <div>
               <a
-                href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zu%20MyMusicMoment24"
+                href={language === "en" ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%20have%20a%20question%20about%20MyMusicMoment24" : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zu%20MyMusicMoment24"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 active:scale-95"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>{language === "en" ? "Start WhatsApp Chat" : "WhatsApp-Chat starten"}</span>
+                <span>{language === "en" ? "Start WhatsApp chat" : "WhatsApp-Chat starten"}</span>
               </a>
               <span className="block text-center text-[11px] text-stone-500 mt-2">
-                {language === "en" ? "Usually replies within a few minutes / hours" : "Antwort meist innerhalb weniger Minuten oder Stunden"}
+                {language === "en" ? "Usually a reply within a few minutes or hours" : "Antwort meist innerhalb weniger Minuten oder Stunden"}
               </span>
             </div>
           </div>
@@ -111,12 +111,12 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 <Mail className="w-6 h-6" />
               </div>
               <div className="inline-block text-[11px] font-bold text-amber-800 uppercase tracking-wider mb-1">
-                {language === "en" ? "Official Contact" : "Schriftlicher Kontakt"}
+                {language === "en" ? "Written contact" : "Schriftlicher Kontakt"}
               </div>
-              <h3 className="text-xl font-black text-stone-900 mb-2">E-Mail Kundenservice</h3>
+              <h3 className="text-xl font-black text-stone-900 mb-2">{language === "en" ? "Email customer service" : "E-Mail Kundenservice"}</h3>
               <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
                 {language === "en"
-                  ? "Prefer writing an email? Send us your questions, order references, or custom audio wishes anytime."
+                  ? "Would you rather write an email? Send me your question, order number or special requests anytime."
                   : "Du schreibst lieber eine E-Mail? Schick mir deine Anfrage, Bestellnummer oder individuelle Sonderwünsche jederzeit per Mail."}
               </p>
             </div>
@@ -142,14 +142,14 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
           <div className="border-b border-stone-200 pb-5">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 border border-amber-300 px-3 py-1 rounded-full mb-3 inline-block">
               <HelpCircle className="w-3.5 h-3.5 inline mr-1 text-amber-700" />
-              {language === "en" ? "Payment Guide & Instructions" : "Bezahlhilfe & Zahlungsanleitung"}
+              {language === "en" ? "Payment help & instructions" : "Bezahlhilfe & Zahlungsanleitung"}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
-              {language === "en" ? "How payment works & Alternatives" : "So funktioniert die Bezahlung – Schritt für Schritt"}
+              {language === "en" ? "How payment works, step by step" : "So funktioniert die Bezahlung – Schritt für Schritt"}
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 mt-1">
               {language === "en"
-                ? "Everything you need to know about PayPal, SEPA Direct Debit, Credit Card, and Bank Transfer."
+                ? "Everything you need to know about PayPal, SEPA direct debit, credit card and regular bank transfer."
                 : "Alles Wissenswerte zu PayPal, SEPA-Lastschrift, Kreditkarte und klassischer Banküberweisung."}
             </p>
           </div>
@@ -162,11 +162,11 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 1
               </div>
               <h4 className="font-bold text-stone-900 text-sm">
-                {language === "en" ? "E-Mail & Terms Agreement" : "E-Mail & AGB-Zustimmung"}
+                {language === "en" ? "Email & agreeing to the terms" : "E-Mail & AGB-Zustimmung"}
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed">
                 {language === "en"
-                  ? "Why is the payment button inactive? Legally, custom-made digital songs require your email and agreement to the terms before payment is unlocked."
+                  ? "Why is the payment button inactive at first? For custom-made digital songs, the law requires your email address and a checkbox for starting production right away before you pay."
                   : "Warum ist der Bezahl-Button anfangs inaktiv? Bei individuell erstellten digitalen Songs verlangt der Gesetzgeber vorab die E-Mail-Angabe und das Häkchen für den sofortigen Produktionsstart."}
               </p>
             </div>
@@ -177,11 +177,11 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 2
               </div>
               <h4 className="font-bold text-stone-900 text-sm">
-                {language === "en" ? "PayPal & SEPA Direct Debit" : "PayPal & SEPA-Lastschrift"}
+                {language === "en" ? "PayPal & SEPA direct debit" : "PayPal & SEPA-Lastschrift"}
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed">
                 {language === "en"
-                  ? "You don't need a PayPal account! In the PayPal window, simply choose 'Pay with Debit or Credit Card' or SEPA bank debit as a guest."
+                  ? "You don't need your own PayPal account. In the PayPal window you can simply pay as a guest by SEPA direct debit from your bank account or by debit card."
                   : "Du brauchst kein eigenes PayPal-Konto! Im PayPal-Fenster kannst Du ganz einfach als Gast per SEPA-Lastschrift vom Bankkonto oder Debitkarte zahlen."}
               </p>
             </div>
@@ -192,11 +192,11 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                 3
               </div>
               <h4 className="font-bold text-stone-900 text-sm">
-                {language === "en" ? "Stripe, Apple Pay or Transfer" : "Kreditkarte, Apple Pay & Überweisung"}
+                {language === "en" ? "Credit card, Apple Pay & bank transfer" : "Kreditkarte, Apple Pay & Überweisung"}
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed">
                 {language === "en"
-                  ? "Pay seamlessly via Apple Pay, Google Pay, Visa, Mastercard, Klarna, or contact us for classic bank wire transfer."
+                  ? "Pay easily with Apple Pay, Google Pay, credit card or Klarna, or write to me if you'd like to pay by regular bank transfer to my IBAN."
                   : "Zahle bequem mit Apple Pay, Google Pay, Kreditkarte, Klarna oder schreib mir für eine klassische Banküberweisung per IBAN."}
               </p>
             </div>
@@ -209,16 +209,16 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
               <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-bold text-stone-900 text-sm mb-1">
-                  {language === "en" ? "Prefer paying by classic Bank Transfer (Prepayment)?" : "Möchtest Du per normaler Banküberweisung (Vorkasse) zahlen?"}
+                  {language === "en" ? "Would you like to pay by regular bank transfer (prepayment)?" : "Möchtest Du per normaler Banküberweisung (Vorkasse) zahlen?"}
                 </h4>
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed mb-3">
                   {language === "en"
-                    ? "You can choose 'Bank Transfer' directly in our checkout to immediately receive your Order ID and our bank details. Important: Production begins immediately once the payment is credited to our bank account (usually 1 business day)."
+                    ? "You can choose bank transfer directly at checkout and you'll get your personal order number to use as the payment reference right away. Please note: with a manual bank transfer, production of your song starts as soon as the money arrives in my bank account (usually 1 business day)."
                     : "Du kannst die Banküberweisung direkt in der Kasse auswählen und erhältst sofort deine persönliche Bestellnummer als Verwendungszweck. Wichtiger Hinweis: Bei manueller Banküberweisung beginnt die Produktion Deines Songs sofort nach Geldeingang auf unserem Bankkonto (in der Regel 1 Werktag)."}
                 </p>
                 <div className="bg-white p-3.5 rounded-xl border border-stone-200 text-xs space-y-1.5 mb-3 font-mono shadow-sm">
                   <div className="flex flex-col sm:flex-row sm:justify-between text-stone-700 font-sans gap-0.5">
-                    <span className="text-stone-500">Kontoinhaber:</span>
+                    <span className="text-stone-500">{language === "en" ? "Account holder:" : "Kontoinhaber:"}</span>
                     <span className="font-bold text-stone-900">Dirk Schmetzer</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:justify-between text-stone-700 font-sans gap-0.5">
@@ -234,25 +234,29 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
                     <span className="font-bold text-stone-900 font-mono">INGDDEFFXXX</span>
                   </div>
                   <div className="text-[11px] text-amber-900 font-sans pt-1 border-t border-stone-200">
-                    💡 <strong>Wichtig:</strong> Bitte als Verwendungszweck immer Deine persönliche <strong>Bestellnummer (z.B. MMM-XXXXXX)</strong> aus dem Checkout angeben!
+                    {language === "en" ? (
+                      <>💡 <strong>Important:</strong> Please always use your personal <strong>order number (e.g. MMM-XXXXXX)</strong> from checkout as the payment reference.</>
+                    ) : (
+                      <>💡 <strong>Wichtig:</strong> Bitte als Verwendungszweck immer Deine persönliche <strong>Bestellnummer (z.B. MMM-XXXXXX)</strong> aus dem Checkout angeben!</>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zur%20Bank%C3%BCberweisung"
+                    href={language === "en" ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%20have%20a%20question%20about%20paying%20by%20bank%20transfer" : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20habe%20eine%20Frage%20zur%20Bank%C3%BCberweisung"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow-sm"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Frage per WhatsApp stellen</span>
+                    <span>{language === "en" ? "Ask on WhatsApp" : "Frage per WhatsApp stellen"}</span>
                   </a>
                   <a
-                    href="mailto:info@mymusicmoment24.de?subject=Anfrage%20Bank%C3%BCberweisung"
+                    href={language === "en" ? "mailto:info@mymusicmoment24.de?subject=Question%20about%20bank%20transfer" : "mailto:info@mymusicmoment24.de?subject=Anfrage%20Bank%C3%BCberweisung"}
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium text-xs transition border border-stone-300"
                   >
                     <Mail className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Per E-Mail kontaktieren</span>
+                    <span>{language === "en" ? "Contact me by email" : "Per E-Mail kontaktieren"}</span>
                   </a>
                 </div>
               </div>
@@ -262,13 +266,13 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span className="text-xs text-stone-500">Geprüfte Zahlungsdienstleister • Käuferschutz garantiert</span>
+              <span className="text-xs text-stone-500">{language === "en" ? "Verified payment providers • Buyer protection included" : "Geprüfte Zahlungsdienstleister • Käuferschutz garantiert"}</span>
             </div>
             <button
               onClick={onGoToConfigurator}
               className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              <span>Song-Konfigurator starten (19,99 €)</span>
+              <span>{language === "en" ? "Start the song configurator (€19.99)" : "Song-Konfigurator starten (19,99 €)"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

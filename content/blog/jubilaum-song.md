@@ -1,5 +1,6 @@
 ---
 title: "Jubiläumssong erstellen lassen: Lied zum Hochzeitstag, zur Goldenen Hochzeit & zum Firmenjubiläum"
+metaTitle: "Jubiläumssong & Lied zum Hochzeitstag | MyMusicMoment24"
 date: "2026-09-11"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

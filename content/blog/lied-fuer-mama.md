@@ -1,5 +1,6 @@
 ---
 title: "Lied für Mama: Ein persönlicher Song zum Geburtstag, Muttertag oder als Dankeschön"
+metaTitle: "Lied für Mama mit Namen | MyMusicMoment24"
 date: "2026-10-16"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

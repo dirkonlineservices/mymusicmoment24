@@ -30,7 +30,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
     if (!formData.contactName || !formData.companyName || !formData.email || !formData.message) {
       setErrorMessage(
         language === "en"
-          ? "Please fill in all required fields (Name, Company, Email, Message)."
+          ? "Please fill in all required fields (name, company, email, message)."
           : "Bitte füllen Sie alle erforderlichen Pflichtfelder (Name, Firma, E-Mail, Nachricht) aus."
       );
       return;
@@ -63,7 +63,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
         setErrorMessage(
           data.error ||
             (language === "en"
-              ? "An error occurred while sending your request. Please try again or reach out via WhatsApp."
+              ? "Something went wrong while sending your request. Please try again or contact me directly on WhatsApp."
               : "Beim Versenden der Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per WhatsApp.")
         );
       }
@@ -71,7 +71,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
       console.error("B2B Inquiry error:", err);
       setErrorMessage(
         language === "en"
-          ? "Network error. Please contact us directly via WhatsApp (+49 1590 6122744) or Email (info@mymusicmoment24.de)."
+          ? "Network error while sending. Please contact me directly on WhatsApp (+49 1590 6122744) or by email (info@mymusicmoment24.de)."
           : "Netzwerkfehler beim Absenden. Bitte kontaktieren Sie uns direkt per WhatsApp (01590 6122744) oder E-Mail (info@mymusicmoment24.de)."
       );
     } finally {
@@ -253,11 +253,11 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
               rel="noopener noreferrer"
               className="px-5 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-blue-600/20"
             >
-              <span>Zur Agentur: SichtbarMitKI</span>
+              <span>{language === "en" ? "Visit the agency: SichtbarMitKI" : "Zur Agentur: SichtbarMitKI"}</span>
               <ExternalLink className="w-4 h-4" />
             </a>
             <a
-              href="https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20B2B-Kooperation%20bei%20MyMusicMoment24."
+              href={language === "en" ? "https://wa.me/4915906122744?text=Hi%20Dirk,%20I%27m%20interested%20in%20a%20B2B%20collaboration%20with%20MyMusicMoment24." : "https://wa.me/4915906122744?text=Hallo%20Dirk,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20B2B-Kooperation%20bei%20MyMusicMoment24."}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 shadow-lg shadow-emerald-600/20"
@@ -438,7 +438,7 @@ export default function B2BPage({ onBackToHome, onGoToConfigurator }) {
             </div>
             <div className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4 text-emerald-600" />
-              <span>WhatsApp: 01590 6122744</span>
+              <span>WhatsApp: {language === "en" ? "+49 1590 6122744" : "01590 6122744"}</span>
             </div>
             <div>
               <span className="text-stone-500">{t("b2b.locationNote", "Stuttgart (Deutschland)")}</span>

@@ -3,8 +3,24 @@ import { ShieldCheck, Settings, X, Check } from "lucide-react";
 import { updateConsent } from "../lib/gtmPreview";
 import { useLanguage } from "../context/LanguageContext";
 
+const STORAGE_KEY = "mmm24_cookie_consent";
+
+// Bei Widerruf bereits gesetzte Google-Cookies entfernen (_ga*, _gcl*)
+function removeCookies(prefixes) {
+  if (typeof document === "undefined") return;
+  const host = window.location.hostname;
+  const domains = ["", host, `.${host}`, `.${host.replace(/^www\./, "")}`];
+  document.cookie.split(";").forEach((entry) => {
+    const name = entry.split("=")[0].trim();
+    if (!prefixes.some((p) => name.startsWith(p))) return;
+    domains.forEach((d) => {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d ? `; domain=${d}` : ""}`;
+    });
+  });
+}
+
 export default function ConsentBanner() {
-  const { t } = useLanguage();
+  const { t, lp } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -14,14 +30,19 @@ export default function ConsentBanner() {
   });
 
   useEffect(() => {
-    const saved = localStorage.getItem("mmm24_cookie_consent");
+    let saved = null;
+    try {
+      saved = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      saved = null;
+    }
     if (!saved) {
-      const timer = setTimeout(() => setIsOpen(true), 800);
-      return () => clearTimeout(timer);
+      // Erster Besuch: Banner sofort zeigen, Consent bleibt bis zur Entscheidung "denied"
+      setIsOpen(true);
     } else {
       try {
         const parsed = JSON.parse(saved);
-        setPreferences(parsed);
+        setPreferences({ essential: true, analytics: Boolean(parsed.analytics), marketing: Boolean(parsed.marketing) });
         updateConsent(parsed);
       } catch (e) {
         setIsOpen(true);
@@ -37,9 +58,15 @@ export default function ConsentBanner() {
   }, []);
 
   const saveConsent = (settings) => {
-    localStorage.setItem("mmm24_cookie_consent", JSON.stringify(settings));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...settings, savedAt: new Date().toISOString() }));
+    } catch (e) {
+      // Ohne Speicher gilt die Wahl nur für diesen Seitenaufruf
+    }
     setPreferences(settings);
     updateConsent(settings);
+    if (!settings.analytics) removeCookies(["_ga"]);
+    if (!settings.marketing) removeCookies(["_gcl"]);
     setIsOpen(false);
     setShowSettings(false);
   };
@@ -157,25 +184,35 @@ export default function ConsentBanner() {
               </>
             ) : (
               <>
-                <button
-                  onClick={handleAcceptAll}
-                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 rounded-lg text-xs sm:text-sm font-black transition shadow-md shadow-amber-500/20"
-                >
-                  {t("cookieBanner.acceptAll", "Alle akzeptieren")}
-                </button>
-                <button
-                  onClick={handleRejectAll}
-                  className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-lg text-xs sm:text-sm font-semibold transition border border-stone-200"
-                >
-                  {t("cookieBanner.rejectAll", "Nur notwendige")}
-                </button>
-                <button
-                  onClick={() => setShowSettings(true)}
-                  className="px-2.5 py-2 text-stone-500 hover:text-stone-800 text-xs flex items-center gap-1 transition ml-auto"
-                >
-                  <Settings className="w-3.5 h-3.5" />
-                  <span>{t("cookieBanner.settings", "Anpassen")}</span>
-                </button>
+                <div className="grid grid-cols-2 gap-2 w-full">
+                  <button
+                    onClick={handleRejectAll}
+                    className="px-3 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-xs sm:text-sm font-bold transition"
+                  >
+                    {t("cookieBanner.rejectAll", "Nur notwendige")}
+                  </button>
+                  <button
+                    onClick={handleAcceptAll}
+                    className="px-3 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-xs sm:text-sm font-bold transition"
+                  >
+                    {t("cookieBanner.acceptAll", "Alle akzeptieren")}
+                  </button>
+                </div>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 pt-1">
+                  <button
+                    onClick={() => setShowSettings(true)}
+                    className="flex items-center gap-1 underline decoration-dotted hover:text-stone-800 transition"
+                  >
+                    <Settings className="w-3.5 h-3.5" />
+                    <span>{t("cookieBanner.settings", "Einstellungen")}</span>
+                  </button>
+                  <a href={lp("/datenschutz")} className="underline decoration-dotted hover:text-stone-800 transition">
+                    {t("cookieBanner.privacyLink", "Datenschutzerklärung")}
+                  </a>
+                  <a href={lp("/impressum")} className="underline decoration-dotted hover:text-stone-800 transition">
+                    {t("cookieBanner.imprintLink", "Impressum")}
+                  </a>
+                </div>
               </>
             )}
           </div>

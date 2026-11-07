@@ -12,6 +12,7 @@ const PLAYLIST = [
     vocal: "Club & Party-Beat",
     file: "/audio/snoopy-s-groove.mp3",
     description: "Treibender House-Track mit pulsierendem Groove und Club-Vibes.",
+    en: { genre: "House / Electronic dance", vocal: "Club & party beat", description: "A driving house track with a pulsing groove and club vibes." },
   },
   {
     id: "squad-warzone",
@@ -21,6 +22,7 @@ const PLAYLIST = [
     vocal: "Deutschrap & Action",
     file: "/audio/squad-in-der-zone-warzone.mp3",
     description: "Speziell für Gamer: Packender Beat über Warzone-Battles, Squads und Siege.",
+    en: { genre: "Gamer & gaming song", vocal: "German rap & action", description: "Made for gamers: a gripping beat about Warzone battles, squads and wins." },
   },
   {
     id: "game-over",
@@ -30,6 +32,7 @@ const PLAYLIST = [
     vocal: "Gorillaz-Vibes",
     file: "/audio/game-over-gorillaz-mode.mp3",
     description: "Einzigartiger Gaming-Sound im unverwechselbaren Gorillaz-Style.",
+    en: { genre: "Gaming / Hip-hop & style", vocal: "Gorillaz vibes", description: "A unique gaming sound in the distinctive Gorillaz style." },
   },
   {
     id: "brustring-herza",
@@ -39,6 +42,7 @@ const PLAYLIST = [
     vocal: "Stadion & Leidenschaft",
     file: "/audio/brustring-und-herza.mp3",
     description: "Für Vereine, Teams und Fans: Ein Song voller Herzblut, Zusammenhalt und Stolz.",
+    en: { genre: "Club song & fan anthem", categoryLabel: "Clubs", vocal: "Stadium & passion", description: "For clubs, teams and fans: a song full of heart, team spirit and pride." },
   },
   {
     id: "tanzt-der-floh",
@@ -48,11 +52,14 @@ const PLAYLIST = [
     vocal: "Fröhlich & Spielerisch",
     file: "/audio/auf-der-wiese-tanzt-der-floh.mp3",
     description: "Liebevolles, fröhliches Kinderlied zum Mitsingen und Tanzen für die Kleinen.",
+    en: { genre: "Children's song & family", categoryLabel: "Kids", vocal: "Cheerful & playful", description: "A loving, cheerful children's song for little ones to sing and dance along to." },
   },
 ];
 
 export default function AudioPlayer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const en = language === "en";
+  const localize = (track) => (en && track.en ? { ...track, ...track.en } : track);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -61,6 +68,7 @@ export default function AudioPlayer() {
   const [milestonesFired, setMilestonesFired] = useState({ 25: false, 50: false, 75: false, 100: false });
 
   const currentTrack = PLAYLIST[currentTrackIndex];
+  const shownTrack = localize(currentTrack);
   const audioRef = useRef(null);
 
   const isFirstMount = useRef(true);
@@ -197,7 +205,7 @@ export default function AudioPlayer() {
 
         {/* Playlist Selector Buttons (Responsive 5-track Grid) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5 mb-6 sm:mb-8">
-          {PLAYLIST.map((track, idx) => (
+          {PLAYLIST.map(localize).map((track, idx) => (
             <button
               key={track.id}
               onClick={() => selectTrack(idx)}
@@ -225,7 +233,7 @@ export default function AudioPlayer() {
             <div className="flex items-center gap-3 sm:gap-4 min-w-0">
               <button
                 onClick={handleTogglePlay}
-                aria-label={isPlaying ? "Pause" : "Abspielen"}
+                aria-label={isPlaying ? "Pause" : en ? "Play" : "Abspielen"}
                 className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:scale-105 active:scale-95 transition flex items-center justify-center text-slate-950 shadow-xl shadow-amber-500/30 cursor-pointer"
               >
                 {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-slate-950 translate-x-0.5" />}
@@ -233,18 +241,18 @@ export default function AudioPlayer() {
               <div className="min-w-0">
                 <h3 className="text-sm sm:text-base font-bold text-stone-900 truncate">{currentTrack.title}</h3>
                 <p className="text-xs text-stone-500 flex items-center gap-1.5 truncate">
-                  <span>{currentTrack.genre}</span>
+                  <span>{shownTrack.genre}</span>
                   <span>•</span>
-                  <span>Stimme: {currentTrack.vocal}</span>
+                  <span>{en ? "Voice" : "Stimme"}: {shownTrack.vocal}</span>
                 </p>
-                <p className="text-[11px] text-stone-600 mt-0.5 line-clamp-1">{currentTrack.description}</p>
+                <p className="text-[11px] text-stone-600 mt-0.5 line-clamp-1">{shownTrack.description}</p>
               </div>
             </div>
 
             <button
               onClick={() => setIsMuted(!isMuted)}
               className="text-stone-400 hover:text-stone-700 p-2 rounded-lg transition shrink-0 cursor-pointer"
-              aria-label={isMuted ? "Ton an" : "Stummschalten"}
+              aria-label={en ? (isMuted ? "Unmute" : "Mute") : (isMuted ? "Ton an" : "Stummschalten")}
             >
               {isMuted ? <VolumeX className="w-5 h-5 text-red-500" /> : <Volume2 className="w-5 h-5" />}
             </button>
@@ -256,7 +264,7 @@ export default function AudioPlayer() {
               className="relative w-full h-3 sm:h-3.5 bg-stone-200 rounded-full overflow-hidden cursor-pointer"
               onClick={handleSeek}
               role="slider"
-              aria-label="Wiedergabeposition"
+              aria-label={en ? "Playback position" : "Wiedergabeposition"}
               aria-valuemin={0}
               aria-valuemax={duration || 100}
               aria-valuenow={currentTime}

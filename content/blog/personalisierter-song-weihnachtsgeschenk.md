@@ -1,5 +1,6 @@
 ---
 title: "Personalisierter Song als Weihnachtsgeschenk: Das Lied, das unter dem Baum alle berührt"
+metaTitle: "Song als Weihnachtsgeschenk | MyMusicMoment24"
 date: "2026-10-16"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

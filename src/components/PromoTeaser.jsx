@@ -23,7 +23,7 @@ export function rememberPromoCode(code) {
  * nach 20 Sekunden oder halber Seite, einmal pro Besucher. Kein Vollbild-Pop-up.
  */
 export default function PromoTeaser() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const promo = activePromo();
   const [visible, setVisible] = useState(false);
 
@@ -57,8 +57,10 @@ export default function PromoTeaser() {
   if (!promo || !visible) return null;
 
   const percent = Math.round(promo.rate * 100);
-  const reduced = calculatePrice({ kind: "song", discountRate: promo.rate }).toFixed(2).replace(".", ",");
-  const until = new Date(promo.validUntil).toLocaleDateString("de-DE", { day: "numeric", month: "numeric" });
+  const en = language === "en";
+  const fmtPrice = (n) => (en ? n.toFixed(2) : n.toFixed(2).replace(".", ","));
+  const reduced = fmtPrice(calculatePrice({ kind: "song", discountRate: promo.rate }));
+  const until = new Date(promo.validUntil).toLocaleDateString(en ? "en-US" : "de-DE", en ? { day: "numeric", month: "short" } : { day: "numeric", month: "numeric" });
 
   const close = () => {
     writeStorage("localStorage", SEEN_KEY, "1");
@@ -94,7 +96,7 @@ export default function PromoTeaser() {
           <p className="text-sm text-stone-600 mt-1">
             {t("home.promoText")
               .replace("{price}", reduced)
-              .replace("{old}", PRICES.song.toFixed(2).replace(".", ","))
+              .replace("{old}", fmtPrice(PRICES.song))
               .replace("{until}", until)}
           </p>
         </div>

@@ -7,6 +7,9 @@
   <!-- Hauptseite / Homepage -->
   <url>
     <loc>https://www.mymusicmoment24.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -19,6 +22,9 @@
   <!-- Top-Ranking SEO Landingpages & Ratgeber -->
   <url>
     <loc>https://www.mymusicmoment24.de/personalisierte-geburtstagslieder</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierte-geburtstagslieder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierte-geburtstagslieder" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -30,6 +36,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/personalisierte-lieder</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierte-lieder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierte-lieder" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -41,6 +50,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/wedding-gift-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -52,6 +64,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/christmas-gift-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -63,6 +78,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/lied-fuer-mama</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/lied-fuer-mama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/song-for-mom" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/lied-fuer-mama" />
     <lastmod>2026-10-17T10:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -74,6 +92,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/song-zum-50-geburtstag</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-50-geburtstag" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/50th-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-50-geburtstag" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -85,6 +106,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/song-zum-18-geburtstag</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-18-geburtstag" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/18th-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-18-geburtstag" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -96,6 +120,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/lied-fuer-papa</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/lied-fuer-papa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/song-for-dad" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/lied-fuer-papa" />
     <lastmod>2026-10-17T10:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -107,6 +134,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/song-zum-ruhestand</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-ruhestand" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/retirement-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-ruhestand" />
     <lastmod>2026-10-17T10:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -118,6 +148,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/jubilaum-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/jubilaum-song" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/anniversary-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/jubilaum-song" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -129,6 +162,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/individueller-hochzeitssong</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/individueller-hochzeitssong" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/custom-wedding-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/individueller-hochzeitssong" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -140,6 +176,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/10-tipps-fuer-personalisierte-geschenke</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/10-tipps-fuer-personalisierte-geschenke" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-gift-ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/10-tipps-fuer-personalisierte-geschenke" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -147,6 +186,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/ki-musik-revolution</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/ki-musik-revolution" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/real-or-ai-personalized-music" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/ki-musik-revolution" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -154,6 +196,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/was-ist-ki-musik</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/was-ist-ki-musik" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/what-is-ai-music" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/was-ist-ki-musik" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -161,6 +206,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/ki-musik-studien-trends</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/ki-musik-studien-trends" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/ai-music-trends" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/ki-musik-studien-trends" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -169,6 +217,9 @@
   <!-- Service- & Über-uns-Seiten -->
   <url>
     <loc>https://www.mymusicmoment24.de/autor-dirk-schmetzer</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/autor-dirk-schmetzer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/about-dirk-schmetzer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/autor-dirk-schmetzer" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -180,6 +231,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/b2b</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/b2b" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/b2b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/b2b" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -187,6 +241,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/support</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/support" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/support" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/support" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -194,6 +251,9 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/impressum</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/impressum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/legal-notice" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/impressum" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -201,7 +261,276 @@
 
   <url>
     <loc>https://www.mymusicmoment24.de/datenschutz</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/datenschutz" />
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/agb</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/agb" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/agb" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/widerruf</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/widerruf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/withdrawal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/widerruf" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- English / Englisch -->
+  <url>
+    <loc>https://www.mymusicmoment24.de/en</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hochzeit.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/personalized-birthday-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierte-geburtstagslieder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierte-geburtstagslieder" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/geburtstag.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/personalized-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierte-lieder" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierte-lieder" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hochzeit.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/wedding-gift-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/wedding-gift-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/individuelle-hochzeitsgeschenke" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hochzeit.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/christmas-gift-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/christmas-gift-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/personalisierter-song-weihnachtsgeschenk" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/gutschein.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/song-for-mom</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/lied-fuer-mama" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/song-for-mom" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/lied-fuer-mama" />
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hero-step-3.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/50th-birthday-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-50-geburtstag" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/50th-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-50-geburtstag" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/party.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/18th-birthday-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-18-geburtstag" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/18th-birthday-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-18-geburtstag" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hero-step-2.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/song-for-dad</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/lied-fuer-papa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/song-for-dad" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/lied-fuer-papa" />
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hero-step-1.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/retirement-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/song-zum-ruhestand" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/retirement-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/song-zum-ruhestand" />
+    <lastmod>2026-10-17T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/party.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/anniversary-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/jubilaum-song" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/anniversary-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/jubilaum-song" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/jubilaeum.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/custom-wedding-song</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/individueller-hochzeitssong" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/custom-wedding-song" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/individueller-hochzeitssong" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/hochzeit.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/personalized-gift-ideas</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/10-tipps-fuer-personalisierte-geschenke" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/personalized-gift-ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/10-tipps-fuer-personalisierte-geschenke" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/real-or-ai-personalized-music</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/ki-musik-revolution" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/real-or-ai-personalized-music" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/ki-musik-revolution" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/what-is-ai-music</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/was-ist-ki-musik" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/what-is-ai-music" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/was-ist-ki-musik" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/ai-music-trends</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/ki-musik-studien-trends" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/ai-music-trends" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/ki-musik-studien-trends" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/about-dirk-schmetzer</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/autor-dirk-schmetzer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/about-dirk-schmetzer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/autor-dirk-schmetzer" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.mymusicmoment24.de/images/dirk-schmetzer.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/b2b</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/b2b" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/b2b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/b2b" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/support</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/support" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/support" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/support" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/legal-notice</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/impressum" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/legal-notice" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/impressum" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/datenschutz" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/datenschutz" />
+    <lastmod>2026-10-16T21:00:00+02:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/agb" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/agb" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/withdrawal</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/widerruf" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/withdrawal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/widerruf" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

@@ -21,12 +21,12 @@ export default function ProductCatalog({ onSelectProduct }) {
 
   const categoryLabels = {
     all: t("catalog.allCategories", "Alle Produkte"),
-    hochzeit: language === "en" ? "Wedding Music AI" : "Hochzeitsmusik KI",
-    geburtstag: language === "en" ? "Birthday Music AI" : "Geburtstagsmusik KI",
-    jubilaeum: language === "en" ? "Anniversary & Milestone" : "Jubiläum & Hochzeitstag",
-    liebe: language === "en" ? "Love Songs AI" : "Liebeslieder KI",
-    party: language === "en" ? "Party Tracks AI" : "Partytracks KI",
-    urkunde: language === "en" ? "Keepsake Certificate" : "Song-Urkunde",
+    hochzeit: language === "en" ? "AI wedding music" : "Hochzeitsmusik KI",
+    geburtstag: language === "en" ? "AI birthday music" : "Geburtstagsmusik KI",
+    jubilaeum: language === "en" ? "Anniversary & wedding anniversary" : "Jubiläum & Hochzeitstag",
+    liebe: language === "en" ? "AI love songs" : "Liebeslieder KI",
+    party: language === "en" ? "AI party tracks" : "Partytracks KI",
+    urkunde: language === "en" ? "Song certificate" : "Song-Urkunde",
   };
 
   const getLocalizedProduct = (prod) => {
@@ -127,7 +127,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     {prod.categoryLabel}
                   </span>
                   <span className="text-base sm:text-lg font-black text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-md shadow whitespace-nowrap shrink-0">
-                    {prod.id === "urkunde" ? t("catalog.urkundeTag", "+ 9,99 €") : `${prod.price.toFixed(2).replace(".", ",")} €`}
+                    {prod.id === "urkunde" ? t("catalog.urkundeTag", "+ 9,99 €") : (language === "en" ? `€${prod.price.toFixed(2)}` : `${prod.price.toFixed(2).replace(".", ",")} €`)}
                   </span>
                 </div>
               </div>
@@ -177,7 +177,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                     className="mb-2 w-full py-2 px-3 rounded-xl bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 text-xs font-bold flex items-center justify-center gap-2 transition"
                   >
                     <Play className="w-3.5 h-3.5 fill-red-600 text-red-600" />
-                    <span>{t("catalog.videoPreviewBtn")} „{prod.youtubeTitle || t("showcase.watchVideo", "Video ansehen")}“</span>
+                    <span>{t("catalog.videoPreviewBtn")} {language === "en" ? "\u201C" : "\u201E"}{prod.youtubeTitle || t("showcase.watchVideo", "Video ansehen")}{"\u201C"}</span>
                   </button>
                 )}
               </div>
@@ -190,7 +190,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                   {prod.id === "urkunde" ? t("catalog.addonPriceLabel", "Song-Zusatz") : t("catalog.fixedPrice", "Festpreis")}
                 </span>
                 <span className="text-xl sm:text-2xl font-black text-stone-950 whitespace-nowrap block">
-                  {prod.id === "urkunde" ? "+ 9,99 €" : `${prod.price.toFixed(2).replace(".", ",")} €`}
+                  {prod.id === "urkunde" ? (language === "en" ? "+ €9.99" : "+ 9,99 €") : (language === "en" ? `€${prod.price.toFixed(2)}` : `${prod.price.toFixed(2).replace(".", ",")} €`)}
                 </span>
               </div>
               {prod.id === "urkunde" ? (
@@ -262,7 +262,7 @@ export default function ProductCatalog({ onSelectProduct }) {
               onClick={() =>
                 onSelectProduct({
                   id: "gutschein",
-                  title: language === "en" ? "Gift Voucher for a Custom Song" : "Geschenkgutschein für ein Wunschlied",
+                  title: language === "en" ? "Gift voucher for a custom song" : "Geschenkgutschein für ein Wunschlied",
                   price: 19.99,
                   category: "gutschein",
                 })
@@ -274,7 +274,7 @@ export default function ProductCatalog({ onSelectProduct }) {
               <ArrowRight className="w-4 h-4" />
             </button>
             <span className="text-xs text-stone-500 font-medium">
-              {language === "en" ? "Fixed price €19.99 • Instant PDF by Email" : "19,99 € Festpreis • Sofort per E-Mail"}
+              {language === "en" ? "Fixed price €19.99 • Sent right away by email" : "19,99 € Festpreis • Sofort per E-Mail"}
             </span>
           </div>
         </div>
@@ -284,12 +284,12 @@ export default function ProductCatalog({ onSelectProduct }) {
           <div className="relative rounded-2xl overflow-hidden border border-amber-300 shadow-xl group">
             <img
               src="/images/gutschein.jpg"
-              alt="Geschenkgutschein MyMusicMoment24"
+              alt={language === "en" ? "MyMusicMoment24 gift voucher" : "Geschenkgutschein MyMusicMoment24"}
               className="w-full h-56 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent pointer-events-none" />
             <span className="absolute bottom-3 left-3 right-3 text-center text-xs font-bold text-amber-800 bg-white/95 backdrop-blur-md py-1 px-3 rounded-lg border border-stone-200 shadow-sm">
-              {language === "en" ? "Gift Voucher (€19.99)" : "Geschenkgutschein (19,99 €)"}
+              {language === "en" ? "Gift voucher (€19.99)" : "Geschenkgutschein (19,99 €)"}
             </span>
           </div>
         </div>
@@ -317,7 +317,7 @@ export default function ProductCatalog({ onSelectProduct }) {
               <button
                 onClick={() => setVideoModal(null)}
                 className="p-1.5 rounded-lg hover:bg-stone-200 text-stone-500 hover:text-stone-900 transition"
-                aria-label="Schließen"
+                aria-label={language === "en" ? "Close" : "Schließen"}
               >
                 <X className="w-5 h-5" />
               </button>
@@ -350,7 +350,7 @@ export default function ProductCatalog({ onSelectProduct }) {
             <button
               onClick={() => setCertificateModalOpen(false)}
               className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-900 rounded-full bg-stone-100 hover:bg-stone-200 transition"
-              aria-label="Schließen"
+              aria-label={language === "en" ? "Close" : "Schließen"}
             >
               <X className="w-5 h-5" />
             </button>
@@ -358,14 +358,14 @@ export default function ProductCatalog({ onSelectProduct }) {
             <div className="text-center mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                {language === "en" ? "Official Keepsake Add-on" : "Offizielles Song-Zusatzprodukt"}
+                {language === "en" ? "Official song add-on" : "Offizielles Song-Zusatzprodukt"}
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-stone-900">
-                {language === "en" ? "Official Song Certificate with QR Code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
+                {language === "en" ? "Official song certificate with lyrics & QR code" : "Offizielle Song-Urkunde mit Liedtext & QR-Code"}
               </h3>
               <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-lg mx-auto">
                 {language === "en"
-                  ? "The tangible gift to frame: High-resolution DIN A4 document with golden seal and scannable audio QR code to play the song anytime on your smartphone."
+                  ? "A gift you can hold and frame: a high-resolution A4 document with a golden seal and a QR code you can scan to play the song right on your smartphone."
                   : "Das greifbare Geschenk zum Einrahmen: Hochauflösendes DIN A4 Dokument mit goldenem Siegel und scannbarem QR-Code zum direkten Abspielen auf dem Smartphone."}
               </p>
             </div>
@@ -373,7 +373,7 @@ export default function ProductCatalog({ onSelectProduct }) {
             <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-xl mb-5 bg-stone-100">
               <img
                 src="/images/urkunde-beispiel.jpg"
-                alt="Offizielle Song-Urkunde mit QR-Code"
+                alt={language === "en" ? "Official song certificate with QR code" : "Offizielle Song-Urkunde mit QR-Code"}
                 className="w-full h-auto object-contain max-h-[48vh] mx-auto"
               />
             </div>
@@ -381,22 +381,22 @@ export default function ProductCatalog({ onSelectProduct }) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-stone-700 mb-6 bg-stone-50 p-3.5 rounded-xl border border-stone-200">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>{language === "en" ? "Print-ready DIN A4 PDF" : "Druckfertiges DIN A4 PDF"}</span>
+                <span>{language === "en" ? "Print-ready A4 PDF" : "Druckfertiges DIN A4 PDF"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>{language === "en" ? "QR Code: Play & Download" : "Audio-QR-Code: Anhören & Download"}</span>
+                <span>{language === "en" ? "Audio QR code: listen & download" : "Audio-QR-Code: Anhören & Download"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>{language === "en" ? "Custom Lyrics & Seal" : "Songtext & goldenes Siegel"}</span>
+                <span>{language === "en" ? "Lyrics & golden seal" : "Songtext & goldenes Siegel"}</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-stone-200">
               <div>
-                <span className="text-[11px] text-amber-700 font-semibold block">{language === "en" ? "Only available with a custom song" : "Nur in Kombination mit Song bestellbar"}</span>
-                <span className="text-lg font-black text-stone-900">+ 9,99 € Aufpreis</span>
+                <span className="text-[11px] text-amber-700 font-semibold block">{language === "en" ? "Can only be ordered together with a song" : "Nur in Kombination mit Song bestellbar"}</span>
+                <span className="text-lg font-black text-stone-900">{language === "en" ? "+ €9.99 extra" : "+ 9,99 € Aufpreis"}</span>
               </div>
               <button
                 type="button"
@@ -408,7 +408,7 @@ export default function ProductCatalog({ onSelectProduct }) {
                 }}
                 className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition active:scale-95"
               >
-                <span>{language === "en" ? "Configure Song & Add Certificate" : "Song konfigurieren & Urkunde wählen"}</span>
+                <span>{language === "en" ? "Create your song & add the certificate" : "Song konfigurieren & Urkunde wählen"}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

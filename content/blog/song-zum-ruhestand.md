@@ -1,5 +1,6 @@
 ---
 title: "Song zum Ruhestand: Ein persönliches Abschiedslied für Kollegen"
+metaTitle: "Song zum Ruhestand | MyMusicMoment24"
 date: "2026-10-17"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

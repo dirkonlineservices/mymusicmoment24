@@ -203,11 +203,15 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
 
       schemaItems.push(faqSchema);
     } else if (type === "blog" && blogPost) {
+      // Öffentliche Adresse (englische Artikel unter /en/...); Produktzuordnung über den deutschen Slug
+      const postPath = blogPost.lang === "en" ? `en/${blogPost.slug}` : blogPost.slug;
+      const postKey = blogPost.key || blogPost.slug;
       // BlogPosting Schema
       const blogPostingSchema = {
         "@type": "BlogPosting",
-        "@id": `https://www.mymusicmoment24.de/${blogPost.slug}#article`,
+        "@id": `https://www.mymusicmoment24.de/${postPath}#article`,
         headline: blogPost.title,
+        inLanguage: blogPost.lang === "en" ? "en" : "de",
         description: blogPost.excerpt,
         image: blogPost.image || "https://www.mymusicmoment24.de/images/hochzeit.jpg",
         author: {
@@ -229,26 +233,26 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         },
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `https://www.mymusicmoment24.de/${blogPost.slug}`,
+          "@id": `https://www.mymusicmoment24.de/${postPath}`,
         },
       };
 
       schemaItems.push(blogPostingSchema);
 
       // Match blog post with corresponding product for Google Merchant Center
-      if (blogPost.slug.includes("geburtstag")) {
+      if (postKey.includes("geburtstag")) {
         const p = allCatalogProducts.find((x) => x.id === "geburtstag");
-        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${blogPost.slug}` }));
-      } else if (blogPost.slug.includes("hochzeit")) {
+        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${postPath}` }));
+      } else if (postKey.includes("hochzeit")) {
         const p = allCatalogProducts.find((x) => x.id === "hochzeit");
-        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${blogPost.slug}` }));
-      } else if (blogPost.slug.includes("jubilaum") || blogPost.slug.includes("jubilaeum")) {
+        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${postPath}` }));
+      } else if (postKey.includes("jubilaum") || postKey.includes("jubilaeum")) {
         const p = allCatalogProducts.find((x) => x.id === "jubilaeum");
-        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${blogPost.slug}` }));
+        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${postPath}` }));
       } else {
         // Fallback song product
         const p = allCatalogProducts.find((x) => x.id === "hochzeit");
-        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${blogPost.slug}` }));
+        if (p) schemaItems.push(createProductSchema({ ...p, url: `https://www.mymusicmoment24.de/${postPath}` }));
       }
     } else if (type === "streaming") {
       const streamingProd = allCatalogProducts.find((x) => x.id === "streaming");

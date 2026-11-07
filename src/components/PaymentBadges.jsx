@@ -1,6 +1,7 @@
 import React from "react";
 import { SiPaypal, SiVisa } from "react-icons/si";
 import { FaApplePay, FaGooglePay } from "react-icons/fa6";
+import { useLanguage } from "../context/LanguageContext";
 
 export function PayPalBadge({ className = "h-4" }) {
   return (
@@ -17,10 +18,11 @@ export function PayPalBadge({ className = "h-4" }) {
 }
 
 export function SepaBadge({ className = "h-4" }) {
+  const { language } = useLanguage();
   return (
     <div
       className="bg-white rounded-md px-2.5 py-1 h-7 flex items-center justify-center gap-1 shadow-md border border-slate-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-400/25 hover:scale-105 transition-all cursor-default"
-      title="SEPA Überweisung / Lastschrift"
+      title={language === "en" ? "SEPA bank transfer / direct debit" : "SEPA Überweisung / Lastschrift"}
     >
       <span className="font-black tracking-wider text-[11px] text-[#003A70] font-sans">
         SEPA
@@ -30,10 +32,11 @@ export function SepaBadge({ className = "h-4" }) {
 }
 
 export function DebitCardBadge({ className = "h-4" }) {
+  const { language } = useLanguage();
   return (
     <div
       className="bg-white rounded-md px-2.5 py-1 h-7 flex items-center justify-center gap-1.5 shadow-md border border-slate-200 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-105 transition-all cursor-default"
-      title="Debitkarte / Bankkarte (ohne PayPal-Konto)"
+      title={language === "en" ? "Debit card / bank card (no PayPal account needed)" : "Debitkarte / Bankkarte (ohne PayPal-Konto)"}
     >
       <svg
         viewBox="0 0 24 24"
@@ -48,7 +51,7 @@ export function DebitCardBadge({ className = "h-4" }) {
         <line x1="2" x2="22" y1="10" y2="10" />
       </svg>
       <span className="font-extrabold text-[11px] tracking-tight text-[#006699] font-sans">
-        Debitkarte
+        {language === "en" ? "Debit card" : "Debitkarte"}
       </span>
     </div>
   );
@@ -115,10 +118,11 @@ export function GooglePayBadge({ className = "h-4" }) {
 }
 
 export function KlarnaBadge({ className = "h-4" }) {
+  const { language } = useLanguage();
   return (
     <div
       className="bg-[#FFB3C7] rounded-md px-2.5 py-1 h-7 flex items-center justify-center shadow-md border border-pink-300 hover:scale-105 transition-all cursor-default"
-      title="Klarna Sofort / Rechnung"
+      title={language === "en" ? "Klarna instant / invoice" : "Klarna Sofort / Rechnung"}
     >
       <span className="font-black tracking-tight text-[11px] text-slate-950 font-sans">
         Klarna.

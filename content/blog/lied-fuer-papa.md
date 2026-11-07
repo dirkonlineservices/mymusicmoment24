@@ -1,5 +1,6 @@
 ---
 title: "Lied für Papa: Ein persönlicher Song zum Geburtstag, Vatertag oder als Dankeschön"
+metaTitle: "Lied für Papa mit Namen | MyMusicMoment24"
 date: "2026-10-17"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

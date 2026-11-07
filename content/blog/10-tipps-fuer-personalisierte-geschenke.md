@@ -1,5 +1,6 @@
 ---
 title: "10 Tipps für personalisierte Geschenkideen, die wirklich in Erinnerung bleiben"
+metaTitle: "10 Tipps für persönliche Geschenke | MyMusicMoment24"
 date: "2026-01-25"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

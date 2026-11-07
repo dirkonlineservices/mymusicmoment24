@@ -1,31 +1,32 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { translations } from "../i18n/translations";
+import { localizePath, alternatePath } from "../lib/i18nRoutes";
 
 const LanguageContext = createContext();
 
-export function LanguageProvider({ children }) {
-  const [language, setLanguageState] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("mmm24_lang");
-      // Englisch nur nach bewusster Auswahl; Browsersprache wird ignoriert,
-      // damit Google (meldet "en-US") die deutsche Seite indexiert
-      if (saved === "de" || saved === "en") return saved;
-    }
-    return "de";
-  });
+/**
+ * Die Sprache ergibt sich aus der Adresse (/en = Englisch). App und Server geben sie als
+ * "language" herein; "onChangeLanguage" wechselt zur Adresse in der anderen Sprache.
+ */
+export function LanguageProvider({ children, language: languageProp = "de", onChangeLanguage, path = "/" }) {
+  const language = languageProp === "en" ? "en" : "de";
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("mmm24_lang", language);
+    if (typeof document !== "undefined") {
       document.documentElement.lang = language;
     }
   }, [language]);
 
   const setLanguage = (lang) => {
-    if (lang === "de" || lang === "en") {
-      setLanguageState(lang);
+    if ((lang === "de" || lang === "en") && lang !== language && onChangeLanguage) {
+      onChangeLanguage(lang);
     }
   };
+
+  // Interner (deutscher) Pfad → Adresse in der aktuellen Sprache, z. B. lp("/impressum") = "/en/legal-notice"
+  const lp = (internalPath) => localizePath(internalPath, language);
+  // Adresse der aktuellen Seite in einer Sprache (für den Umschalter)
+  const altHref = (lang) => (lang === language ? path : alternatePath(path, lang) || localizePath("/", lang));
 
   /**
    * Helper to look up translation by dot-path (e.g. 'nav.shop')
@@ -56,7 +57,7 @@ export function LanguageProvider({ children }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, lp, altHref }}>
       {children}
     </LanguageContext.Provider>
   );

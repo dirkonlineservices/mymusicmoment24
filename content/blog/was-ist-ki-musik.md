@@ -1,5 +1,6 @@
 ---
 title: "Was ist KI-Musik? So entsteht dein personalisierter Song, verständlich erklärt"
+metaTitle: "Was ist KI-Musik? | MyMusicMoment24"
 date: "2026-01-10"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

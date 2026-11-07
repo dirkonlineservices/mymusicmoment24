@@ -24,16 +24,16 @@ const OCCASION_TILES = [
 
 // Ratgeber-Seiten pro Anlass (Fußzeile)
 const OCCASION_GUIDES = [
-  { slug: "personalisierter-song-weihnachtsgeschenk", label: "Song als Weihnachtsgeschenk" },
-  { slug: "individueller-hochzeitssong", label: "Hochzeitslied" },
-  { slug: "personalisierte-geburtstagslieder", label: "Geburtstagslied mit Namen" },
-  { slug: "song-zum-18-geburtstag", label: "Song zum 18. Geburtstag" },
-  { slug: "song-zum-50-geburtstag", label: "Song zum 50. Geburtstag" },
-  { slug: "lied-fuer-mama", label: "Lied für Mama" },
-  { slug: "lied-fuer-papa", label: "Lied für Papa" },
-  { slug: "song-zum-ruhestand", label: "Song zum Ruhestand" },
-  { slug: "jubilaum-song", label: "Jubiläum & Hochzeitstag" },
-  { slug: "personalisierte-lieder", label: "Personalisierten Song erstellen lassen" },
+  { slug: "personalisierter-song-weihnachtsgeschenk", label: "Song als Weihnachtsgeschenk", labelEn: "Song as a Christmas gift" },
+  { slug: "individueller-hochzeitssong", label: "Hochzeitslied", labelEn: "Wedding song" },
+  { slug: "personalisierte-geburtstagslieder", label: "Geburtstagslied mit Namen", labelEn: "Birthday song with a name" },
+  { slug: "song-zum-18-geburtstag", label: "Song zum 18. Geburtstag", labelEn: "18th birthday song" },
+  { slug: "song-zum-50-geburtstag", label: "Song zum 50. Geburtstag", labelEn: "50th birthday song" },
+  { slug: "lied-fuer-mama", label: "Lied für Mama", labelEn: "Song for Mom" },
+  { slug: "lied-fuer-papa", label: "Lied für Papa", labelEn: "Song for Dad" },
+  { slug: "song-zum-ruhestand", label: "Song zum Ruhestand", labelEn: "Retirement song" },
+  { slug: "jubilaum-song", label: "Jubiläum & Hochzeitstag", labelEn: "Anniversary song" },
+  { slug: "personalisierte-lieder", label: "Personalisierten Song erstellen lassen", labelEn: "Have a personalized song made" },
 ];
 
 // Letzter Bestelltag für Weihnachten; Banner erscheint von Oktober bis zu diesem Tag
@@ -75,7 +75,7 @@ function scrollToConfigurator() {
   if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigateAuthor, onNavigateLegal, onNavigateSupport, onNavigateB2B }) {
-  const { t, language } = useLanguage();
+  const { t, language, lp } = useLanguage();
   const [activeFaq, setActiveFaq] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -86,12 +86,13 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
   const priceExtras = t("home.priceExtras", []);
   const googleReviews = t("testimonials.googleItems", []);
   const promo = activePromo();
+  const fmtPrice = (n) => (language === "en" ? n.toFixed(2) : n.toFixed(2).replace(".", ","));
   const promoNote = promo
     ? t("home.promoPriceNote")
         .replace("{code}", promo.code)
-        .replace("{price}", calculatePrice({ kind: "song", discountRate: promo.rate }).toFixed(2).replace(".", ","))
-        .replace("{old}", PRICES.song.toFixed(2).replace(".", ","))
-        .replace("{until}", new Date(promo.validUntil).toLocaleDateString("de-DE", { day: "numeric", month: "numeric" }))
+        .replace("{price}", fmtPrice(calculatePrice({ kind: "song", discountRate: promo.rate })))
+        .replace("{old}", fmtPrice(PRICES.song))
+        .replace("{until}", new Date(promo.validUntil).toLocaleDateString(language === "en" ? "en-US" : "de-DE", language === "en" ? { day: "numeric", month: "short" } : { day: "numeric", month: "numeric" }))
     : "";
   const handleUsePromo = () => {
     rememberPromoCode(promo.code);
@@ -139,7 +140,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <span className="font-black text-amber-200">
               {xmasDaysLeft === 0 ? t("home.xmasLastDay") : t("home.xmasDaysLeft").replace("{n}", xmasDaysLeft)}
             </span>
-            <a href="/personalisierter-song-weihnachtsgeschenk" className="underline underline-offset-2 font-bold hover:text-amber-200">
+            <a href={lp("/personalisierter-song-weihnachtsgeschenk")} className="underline underline-offset-2 font-bold hover:text-amber-200">
               {t("home.xmasCta")}
             </a>
           </div>
@@ -150,7 +151,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="/" className="flex items-center gap-2.5 sm:gap-3 group">
+          <a href={lp("/")} className="flex items-center gap-2.5 sm:gap-3 group">
             <img
               src="/images/logo-icon.png"
               alt="MyMusicMoment24 Logo"
@@ -202,7 +203,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="xl:hidden p-2 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 hover:text-stone-900"
-              aria-label="Menü öffnen"
+              aria-label={language === "en" ? (mobileMenuOpen ? "Close menu" : "Open menu") : "Menü öffnen"}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -261,7 +262,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 }}
                 className="text-left px-3 py-2 rounded-lg text-amber-700 hover:bg-stone-50 transition font-semibold"
               >
-                💼 Für Agenturen &amp; B2B
+                💼 {t("footer.b2bLink", "Für Agenturen & B2B")}
               </button>
               <button
                 onClick={() => {
@@ -571,7 +572,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             </ul>
           </div>
           <div className="md:col-span-2 bg-gradient-to-b from-amber-50 to-orange-50/60 border-t md:border-t-0 md:border-l border-amber-200 p-6 sm:p-10 flex flex-col">
-            <div className="text-5xl font-black text-stone-900 tracking-tight">19,99 €</div>
+            <div className="text-5xl font-black text-stone-900 tracking-tight">{language === "en" ? "€19.99" : "19,99 €"}</div>
             {promo && (
               <button
                 type="button"
@@ -753,7 +754,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   rel="noopener noreferrer"
                   className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors text-xs"
                 >
-                  <span>Digitalagentur: sichtbarmitKI.agency</span>
+                  <span>{language === "en" ? "Digital agency" : "Digitalagentur"}: sichtbarmitKI.agency</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -777,7 +778,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <ul className="space-y-2 text-xs">
                 {OCCASION_GUIDES.map((guide) => (
                   <li key={guide.slug}>
-                    <a href={`/${guide.slug}`} className="hover:text-white transition">{guide.label}</a>
+                    <a href={lp(`/${guide.slug}`)} className="hover:text-white transition">{language === "en" ? guide.labelEn : guide.label}</a>
                   </li>
                 ))}
                 <li><a href="#gutschein" className="hover:text-white transition">{t("footer.giftVoucher")}</a></li>
@@ -814,18 +815,28 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 {t("footer.legalHeader")}
               </h3>
               <ul className="space-y-2.5 text-xs">
-                <li>
-                  <button onClick={() => onNavigateLegal("impressum")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
-                    <span>⚖️</span>
-                    <span>{t("footer.impressum")}</span>
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => onNavigateLegal("datenschutz")} className="hover:text-white font-medium transition text-left flex items-center gap-1.5">
-                    <span>🛡️</span>
-                    <span>{t("footer.privacy")}</span>
-                  </button>
-                </li>
+                {[
+                  { type: "impressum", icon: "⚖️", label: t("footer.impressum") },
+                  { type: "datenschutz", icon: "🛡️", label: t("footer.privacy") },
+                  { type: "agb", icon: "📄", label: t("footer.terms", "AGB") },
+                  { type: "widerruf", icon: "↩️", label: t("footer.withdrawal", "Widerrufsbelehrung") },
+                ].map((link) => (
+                  <li key={link.type}>
+                    <a
+                      href={lp(`/${link.type}`)}
+                      onClick={(e) => {
+                        // Normaler Klick: ohne Neuladen wechseln; Strg/Cmd-Klick öffnet wie gewohnt einen neuen Tab
+                        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                        e.preventDefault();
+                        onNavigateLegal(link.type);
+                      }}
+                      className="hover:text-white font-medium transition text-left flex items-center gap-1.5"
+                    >
+                      <span aria-hidden="true">{link.icon}</span>
+                      <span>{link.label}</span>
+                    </a>
+                  </li>
+                ))}
                 <li>
                   <button onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))} className="hover:text-amber-400 transition text-left underline decoration-dotted flex items-center gap-1.5">
                     <span>🍪</span>
@@ -874,7 +885,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
         <div>
           <span className="text-[10px] text-stone-500 block uppercase font-bold tracking-wider">{t("footer.stickyTitle")}</span>
-          <span className="text-lg font-black text-amber-600">19,99 €</span>
+          <span className="text-lg font-black text-amber-600">{language === "en" ? "€19.99" : "19,99 €"}</span>
         </div>
         <a
           href="#konfigurator"

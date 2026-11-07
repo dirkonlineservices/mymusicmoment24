@@ -1,5 +1,6 @@
 ---
 title: "Echt oder KI? Die Revolution der personalisierten Musik und warum das Herz entscheidet"
+metaTitle: "Echt oder KI? Personalisierte Musik | MyMusicMoment24"
 date: "2026-02-18"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

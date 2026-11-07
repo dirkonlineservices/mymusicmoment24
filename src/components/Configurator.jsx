@@ -71,7 +71,7 @@ const VOICES_DATA = [
 ];
 
 export default function Configurator({ initialOccasion = "hochzeit", onOpenCheckout }) {
-  const { t, language } = useLanguage();
+  const { t, language, lp } = useLanguage();
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState({
     occasion: initialOccasion,
@@ -150,10 +150,19 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
     if (elem) elem.scrollIntoView({ behavior: "smooth" });
   };
 
+  const en = language === "en";
+  const money = (n) => (en ? `€${n.toFixed(2)}` : `${n.toFixed(2).replace(".", ",")} €`);
+  // Anzeige der Auswahl in Schritt 5: auf Englisch die Bezeichnungen statt der internen Kennungen
+  const labelOf = (list, id) => (en ? list.find((item) => item.id === id)?.label || id : id);
+  const songLanguageLabel = (id) =>
+    en ? ({ Deutsch: "German", Englisch: "English", "Zweisprachig (DE/EN)": "Bilingual (DE/EN)" }[id] || id) : id;
+
   const handleFinish = () => {
     const finalOrder = {
       id: `song-${Date.now()}`,
-      name: `Personalisierter Song (${config.occasion})`,
+      name: en
+        ? `Personalized song (${labelOf(occasionsList, config.occasion)})`
+        : `Personalisierter Song (${config.occasion})`,
       price: totalPrice,
       details: config,
     };
@@ -389,7 +398,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <h3 className="text-xl sm:text-3xl font-bold text-stone-900">{t("configurator.stepTitles.4")}</h3>
             <p className="text-xs sm:text-sm text-stone-600">
               {language === "en"
-                ? "The more personal details and anecdotes you share, the more emotional and unique the lyrics will be."
+                ? "The more personal details you share, the more unique the lyrics will be."
                 : "Je mehr persönliche Details du nennst, desto einzigartiger wird der Text."}
             </p>
 
@@ -453,15 +462,15 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
             <div className="bg-stone-50 p-4 sm:p-5 rounded-2xl border border-stone-200 space-y-2.5 text-xs sm:text-sm">
               <div className="flex justify-between border-b border-stone-200/80 pb-2">
                 <span className="text-stone-500">{t("configurator.summary.occasion")}:</span>
-                <span className="font-semibold text-stone-900 capitalize">{config.occasion}</span>
+                <span className="font-semibold text-stone-900 capitalize">{labelOf(occasionsList, config.occasion)}</span>
               </div>
               <div className="flex justify-between border-b border-stone-200/80 pb-2">
                 <span className="text-stone-500">{t("configurator.summary.genre")}:</span>
-                <span className="font-semibold text-stone-900 capitalize">{config.genre}</span>
+                <span className="font-semibold text-stone-900 capitalize">{labelOf(genresList, config.genre)}</span>
               </div>
               <div className="flex justify-between border-b border-stone-200/80 pb-2">
                 <span className="text-stone-500">{t("configurator.summary.voice")}:</span>
-                <span className="font-semibold text-stone-900 capitalize">{config.voice} ({config.language})</span>
+                <span className="font-semibold text-stone-900 capitalize">{labelOf(voicesList, config.voice)} ({songLanguageLabel(config.language)})</span>
               </div>
               {config.names && (
                 <div className="flex justify-between border-b border-stone-200/80 pb-2">
@@ -489,7 +498,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     <span className="text-[11px] sm:text-xs text-stone-500">{t("configurator.summary.expressDesc")}</span>
                   </div>
                 </div>
-                <span className="font-bold text-amber-600 text-sm sm:text-base shrink-0 ml-2">+9,99 €</span>
+                <span className="font-bold text-amber-600 text-sm sm:text-base shrink-0 ml-2">{en ? "+€9.99" : "+9,99 €"}</span>
               </label>
 
               <div className="flex items-center justify-between p-3.5 sm:p-4 bg-stone-50 hover:bg-stone-100/80 rounded-xl border border-stone-200 transition">
@@ -522,16 +531,29 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
                     <Eye className="w-3.5 h-3.5 text-amber-600" />
                     <span>{t("configurator.summary.previewBtn", "Vorschau")}</span>
                   </button>
-                  <span className="font-bold text-amber-600 text-sm sm:text-base">+9,99 €</span>
+                  <span className="font-bold text-amber-600 text-sm sm:text-base">{en ? "+€9.99" : "+9,99 €"}</span>
                 </div>
               </div>
             </div>
+
+            {/* Hinweis auf AGB & Widerruf vor dem Kauf (öffnet in neuem Tab, Konfiguration bleibt erhalten) */}
+            <p className="text-xs text-stone-500 leading-relaxed">
+              {t("configurator.legalNotice.before", "Bitte lies vor deiner Bestellung unsere")}{" "}
+              <a href={lp("/agb")} target="_blank" rel="noopener" className="underline text-stone-700 hover:text-stone-900">
+                {t("configurator.legalNotice.terms", "AGB")}
+              </a>{" "}
+              {t("configurator.legalNotice.and", "und die")}{" "}
+              <a href={lp("/widerruf")} target="_blank" rel="noopener" className="underline text-stone-700 hover:text-stone-900">
+                {t("configurator.legalNotice.withdrawal", "Widerrufsbelehrung")}
+              </a>
+              {t("configurator.legalNotice.after", ".")}
+            </p>
 
             {/* Total price & Checkout Button */}
             <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50/60 border-2 border-amber-300 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
               <div>
                 <span className="text-xs sm:text-sm text-stone-600 block">{t("configurator.summary.totalPrice")}</span>
-                <span className="text-2xl sm:text-3xl font-extrabold text-stone-950">{totalPrice.toFixed(2).replace(".", ",")} €</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-stone-950">{money(totalPrice)}</span>
               </div>
               <button
                 onClick={handleFinish}
@@ -617,7 +639,7 @@ export default function Configurator({ initialOccasion = "hochzeit", onOpenCheck
               <div className="relative rounded-2xl overflow-hidden border border-stone-200 bg-stone-100 shadow-lg group">
                 <img
                   src="/images/urkunde-beispiel.jpg"
-                  alt="Beispiel: Offizielle Song-Urkunde im edlen Rahmen"
+                  alt={en ? "Example: official song certificate in an elegant frame" : "Beispiel: Offizielle Song-Urkunde im edlen Rahmen"}
                   className="w-full h-auto max-h-[420px] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               </div>

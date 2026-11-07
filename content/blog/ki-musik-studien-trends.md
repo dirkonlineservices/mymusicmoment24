@@ -1,5 +1,6 @@
 ---
 title: "KI-Musik 2025: Aktuelle Trends und was sie für personalisierte Songs bedeuten"
+metaTitle: "KI-Musik: Studien & Trends | MyMusicMoment24"
 date: "2026-03-02"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

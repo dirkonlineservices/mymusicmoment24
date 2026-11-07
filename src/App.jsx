@@ -11,15 +11,18 @@ import ConsentBanner from "./components/ConsentBanner";
 import { trackPurchase } from "./lib/gtmPreview";
 import { LanguageProvider } from "./context/LanguageContext";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import { getBlogPostBySlug } from "./lib/blog";
-import { SITE_URL, blogPostMeta, staticPageMeta, NOT_FOUND_META } from "./lib/pageMeta";
+import { getBlogPostBySlug, getBlogPostByKey } from "./lib/blog";
+import { SITE_URL, blogPostMeta, staticPageMeta, notFoundMeta } from "./lib/pageMeta";
+import { langFromPath, toInternalPath, localizePath, alternatePath } from "./lib/i18nRoutes";
 
 // Titel, Beschreibung und Canonical beim Seitenwechsel im Browser aktualisieren
-function syncDocumentMeta() {
-  const path = window.location.pathname === "/" ? "/" : window.location.pathname.replace(/\/$/, "");
-  const slug = path.startsWith("/blog/") ? path.slice(6) : path.slice(1);
-  const post = slug ? getBlogPostBySlug(slug) : null;
-  const meta = post ? blogPostMeta(post) : staticPageMeta(path) || { ...NOT_FOUND_META, canonicalPath: path };
+function syncDocumentMeta(route) {
+  const lang = route.lang;
+  const internal = toInternalPath(window.location.pathname) || "/";
+  const post = route.view === "blog" ? getBlogPostByKey(route.slug, lang) : null;
+  const meta = post
+    ? blogPostMeta(post)
+    : staticPageMeta(internal, lang) || { ...notFoundMeta(lang), canonicalPath: window.location.pathname };
   const url = `${SITE_URL}${meta.canonicalPath}`;
 
   document.title = meta.title;
@@ -32,13 +35,21 @@ function syncDocumentMeta() {
   set('meta[property="og:url"]', "content", url);
   set('meta[property="og:title"]', "content", meta.title);
   set('meta[property="og:description"]', "content", meta.description);
+  set('meta[name="twitter:title"]', "content", meta.title);
+  set('meta[name="twitter:description"]', "content", meta.description);
 }
 
 // Seite aus der aktuellen Adresse bestimmen (auch für den ersten Render)
 function routeFromLocation() {
-  if (typeof window === "undefined") return { view: "home", slug: null };
-  const path = window.location.pathname;
+  if (typeof window === "undefined") return { view: "home", slug: null, lang: "de" };
+  const lang = langFromPath(window.location.pathname);
+  // Intern wird mit deutschen Pfaden gearbeitet (/en/privacy → /datenschutz)
+  const path = toInternalPath(window.location.pathname) || "/";
   const hash = window.location.hash;
+  return { ...matchRoute(path, hash), lang };
+}
+
+function matchRoute(path, hash) {
   if (
     path === "/streaming" || 
     path === "/spotify-release" || 
@@ -66,6 +77,10 @@ function routeFromLocation() {
     return ({ view: "legal", slug: "impressum" });
   } else if (path === "/datenschutz") {
     return ({ view: "legal", slug: "datenschutz" });
+  } else if (path === "/agb") {
+    return ({ view: "legal", slug: "agb" });
+  } else if (path === "/widerruf") {
+    return ({ view: "legal", slug: "widerruf" });
   } else {
     // Check if path matches a blog post slug directly (e.g. /personalisierte-geburtstagslieder)
     const cleanPath = path.replace(/^\//, "").replace(/\/$/, "");
@@ -80,12 +95,26 @@ function routeFromLocation() {
 
 function AppMain() {
   const [currentRoute, setCurrentRoute] = useState(routeFromLocation);
+  const lang = currentRoute.lang;
 
   const [checkoutOrder, setCheckoutOrder] = useState(null);
 
   useEffect(() => {
-    syncDocumentMeta();
+    syncDocumentMeta(currentRoute);
   }, [currentRoute]);
+
+  // Interne (deutsche) Adresse in der aktuellen Sprache öffnen
+  const go = (internalPath, route) => {
+    window.history.pushState({}, "", localizePath(internalPath, lang));
+    setCurrentRoute({ ...route, lang });
+  };
+
+  // Sprachumschalter: gleiche Seite in der anderen Sprache
+  const changeLanguage = (newLang) => {
+    const target = alternatePath(window.location.pathname, newLang) || localizePath("/", newLang);
+    window.history.pushState({}, "", `${target}${window.location.hash}`);
+    setCurrentRoute(routeFromLocation());
+  };
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   // Sync with browser URL & routing
@@ -123,11 +152,11 @@ function AppMain() {
         })
         .catch(console.error)
         .finally(() => {
-          window.history.replaceState({}, "", "/");
+          window.history.replaceState({}, "", localizePath("/", langFromPath(window.location.pathname)));
         });
     } else if (!isStreamingRoute && urlParams.get("stripe_cancel") === "true") {
       alert("Die Zahlung via Stripe wurde abgebrochen. Du kannst es jederzeit erneut versuchen.");
-      window.history.replaceState({}, "", "/");
+      window.history.replaceState({}, "", localizePath("/", langFromPath(window.location.pathname)));
     }
 
     return () => {
@@ -137,38 +166,32 @@ function AppMain() {
   }, []);
 
   const navigateToBlog = (slug) => {
-    window.history.pushState({}, "", `/${slug}`);
-    setCurrentRoute({ view: "blog", slug });
+    go(`/${slug}`, { view: "blog", slug });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigateToAuthor = () => {
-    window.history.pushState({}, "", "/autor-dirk-schmetzer");
-    setCurrentRoute({ view: "author", slug: null });
+    go("/autor-dirk-schmetzer", { view: "author", slug: null });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigateToSupport = () => {
-    window.history.pushState({}, "", "/support");
-    setCurrentRoute({ view: "support", slug: null });
+    go("/support", { view: "support", slug: null });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigateToB2B = () => {
-    window.history.pushState({}, "", "/b2b");
-    setCurrentRoute({ view: "b2b", slug: null });
+    go("/b2b", { view: "b2b", slug: null });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigateToLegal = (type = "impressum") => {
-    window.history.pushState({}, "", `/${type}`);
-    setCurrentRoute({ view: "legal", slug: type });
+    go(`/${type}`, { view: "legal", slug: type });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigateToHome = (hash = "") => {
-    window.history.pushState({}, "", hash ? `/${hash}` : "/");
-    setCurrentRoute({ view: "home", slug: null });
+    go(hash ? `/${hash}` : "/", { view: "home", slug: null });
     if (hash) {
       setTimeout(() => {
         const el = document.querySelector(hash);
@@ -191,6 +214,7 @@ function AppMain() {
   };
 
   return (
+    <LanguageProvider language={lang} onChangeLanguage={changeLanguage} path={window.location.pathname}>
     <div className="relative min-h-screen bg-[#faf8f5] text-stone-900">
       {currentRoute.view === "home" && (
         <LandingPage
@@ -281,13 +305,10 @@ function AppMain() {
       {/* GDPR Consent Banner with Google Consent Mode v2 */}
       <ConsentBanner />
     </div>
+    </LanguageProvider>
   );
 }
 
 export default function App() {
-  return (
-    <LanguageProvider>
-      <AppMain />
-    </LanguageProvider>
-  );
+  return <AppMain />;
 }

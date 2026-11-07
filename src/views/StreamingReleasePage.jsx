@@ -14,7 +14,8 @@ import { trackPurchase } from "../lib/gtmPreview";
 import SchemaJsonLd from "../components/SchemaJsonLd";
 
 export default function StreamingReleasePage({ onBackToHome }) {
-  const { language } = useLanguage();
+  const { language, lp } = useLanguage();
+  const en = language === "en";
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID || "";
 
   // Form states for DistroKid upload
@@ -61,28 +62,28 @@ export default function StreamingReleasePage({ onBackToHome }) {
         })
         .catch((err) => {
           console.error("Stripe Verification Error:", err);
-          setErrorMessage(language === "en" ? "Error verifying Stripe session." : "Fehler beim Verifizieren der Zahlung.");
+          setErrorMessage(language === "en" ? "Error while verifying the payment." : "Fehler beim Verifizieren der Zahlung.");
         })
         .finally(() => {
           setIsProcessing(false);
-          window.history.replaceState({}, "", "/streaming");
+          window.history.replaceState({}, "", lp("/streaming"));
         });
     } else if (urlParams.get("stripe_cancel") === "true") {
       setErrorMessage(language === "en" ? "Payment was cancelled. You can try again anytime." : "Die Zahlung wurde abgebrochen. Du kannst es jederzeit erneut versuchen.");
-      window.history.replaceState({}, "", "/streaming");
+      window.history.replaceState({}, "", lp("/streaming"));
     }
   }, [language]);
 
   const genres = [
     { value: "Pop", label: "Pop / Modern Pop" },
-    { value: "Ballade", label: "Ballade / Akustik & Emotion" },
-    { value: "Deutschrap", label: "Deutschrap / Hip-Hop" },
-    { value: "Schlager", label: "Schlager / Partymusik" },
+    { value: "Ballade", label: en ? "Ballad / Acoustic & Emotional" : "Ballade / Akustik & Emotion" },
+    { value: "Deutschrap", label: en ? "German rap / Hip-hop" : "Deutschrap / Hip-Hop" },
+    { value: "Schlager", label: en ? "Schlager / Party music" : "Schlager / Partymusik" },
     { value: "Dance / EDM", label: "Dance / Electronic (EDM)" },
     { value: "Rock", label: "Rock / Pop-Rock" },
     { value: "R&B / Soul", label: "R&B / Soul" },
-    { value: "Kinderlied", label: "Kinderlied / Family" },
-    { value: "Sonstiges", label: "Sonstiges / Individuell" },
+    { value: "Kinderlied", label: en ? "Children's song / Family" : "Kinderlied / Family" },
+    { value: "Sonstiges", label: en ? "Other / Custom" : "Sonstiges / Individuell" },
   ];
 
   // Helper to compile DistroKid text for clipboard copy
@@ -91,15 +92,17 @@ export default function StreamingReleasePage({ onBackToHome }) {
     const title = details.songTitle || formData.songTitle || "Song";
     const g = details.genre || formData.genre || "Pop";
     const lang = details.language || formData.songLanguage || "Deutsch";
-    const exp = details.explicitLyrics !== undefined ? (details.explicitLyrics ? "Ja (Explicit)" : "Nein (Clean)") : (formData.explicitLyrics ? "Ja (Explicit)" : "Nein (Clean)");
-    const name = order?.customerName || formData.customerName || "Kunde";
+    const yes = en ? "Yes (Explicit)" : "Ja (Explicit)";
+    const no = en ? "No (Clean)" : "Nein (Clean)";
+    const exp = details.explicitLyrics !== undefined ? (details.explicitLyrics ? yes : no) : (formData.explicitLyrics ? yes : no);
+    const name = order?.customerName || formData.customerName || (en ? "Customer" : "Kunde");
     const email = order?.customerEmail || formData.customerEmail || "";
-    const phone = order?.customerPhone || formData.customerPhone || "Keine";
-    const ref = details.originalOrderNumber || formData.originalOrderNumber || "Keine Angabe";
-    const n = details.notes || formData.notes || "Keine besonderen Wünsche";
+    const phone = order?.customerPhone || formData.customerPhone || (en ? "None" : "Keine");
+    const ref = details.originalOrderNumber || formData.originalOrderNumber || (en ? "Not given" : "Keine Angabe");
+    const n = details.notes || formData.notes || (en ? "No special requests" : "Keine besonderen Wünsche");
     const tx = order?.transactionId || "N/A";
 
-    return `=== DISTROKID UPLOAD-DATEN ===
+    return `=== DISTROKID ${en ? "UPLOAD DATA" : "UPLOAD-DATEN"} ===
 Artist Name: MyMusicMoment24
 Song Title: ${title}
 Primary Genre: ${g}
@@ -110,7 +113,7 @@ Phone/WhatsApp: ${phone}
 Order Reference: ${ref}
 Notes / Artwork: ${n}
 Transaction-ID: ${tx}
-Amount Paid: 4,99 €
+Amount Paid: ${en ? "€4.99" : "4,99 €"}
 ==============================`;
   };
 
@@ -149,11 +152,11 @@ Amount Paid: 4,99 €
 
   const handleStripeCheckout = async () => {
     if (!formData.songTitle.trim()) {
-      alert(language === "en" ? "Please enter the song title for Spotify." : "Bitte gib den gewünschten Songtitel für Spotify an.");
+      alert(language === "en" ? "Please enter the song title you want on Spotify." : "Bitte gib den gewünschten Songtitel für Spotify an.");
       return;
     }
     if (!formData.customerName.trim()) {
-      alert(language === "en" ? "Please enter your full name." : "Bitte gib deinen Namen an.");
+      alert(language === "en" ? "Please enter your name." : "Bitte gib deinen Namen an.");
       return;
     }
     if (!formData.customerEmail.trim()) {
@@ -161,7 +164,7 @@ Amount Paid: 4,99 €
       return;
     }
     if (!agreedTerms) {
-      alert(language === "en" ? "Please agree to the terms and privacy policy." : "Bitte bestätige die AGB und den Beginn der sofortigen Ausführung.");
+      alert(language === "en" ? "Please confirm the terms and that work starts right away." : "Bitte bestätige die AGB und den Beginn der sofortigen Ausführung.");
       return;
     }
 
@@ -191,8 +194,8 @@ Amount Paid: 4,99 €
             express: false,
             pdfLyrics: false,
           },
-          successUrl: `${window.location.origin}/streaming?stripe_success=true&session_id={CHECKOUT_SESSION_ID}`,
-          cancelUrl: `${window.location.origin}/streaming?stripe_cancel=true`,
+          successUrl: `${window.location.origin}${lp("/streaming")}?stripe_success=true&session_id={CHECKOUT_SESSION_ID}`,
+          cancelUrl: `${window.location.origin}${lp("/streaming")}?stripe_cancel=true`,
         }),
       });
 
@@ -200,12 +203,12 @@ Amount Paid: 4,99 €
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setErrorMessage(data.error || "Fehler beim Starten von Stripe. Bitte prüfe die Konfiguration.");
+        setErrorMessage(data.error || (en ? "Error starting Stripe. Please check the configuration." : "Fehler beim Starten von Stripe. Bitte prüfe die Konfiguration."));
         setIsProcessing(false);
       }
     } catch (err) {
       console.error("Stripe Error:", err);
-      setErrorMessage(language === "en" ? "Network error connecting to Stripe." : "Verbindungsfehler zu Stripe. Bitte erneut versuchen.");
+      setErrorMessage(language === "en" ? "Connection error with Stripe. Please try again." : "Verbindungsfehler zu Stripe. Bitte erneut versuchen.");
       setIsProcessing(false);
     }
   };
@@ -230,7 +233,7 @@ Amount Paid: 4,99 €
             className="flex items-center gap-2 text-xs sm:text-sm text-stone-600 hover:text-stone-900 transition font-medium"
           >
             <ArrowLeft className="w-4 h-4 text-amber-500" />
-            <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
+            <span>{language === "en" ? "Back to home page" : "Zurück zur Startseite"}</span>
           </button>
 
           <button
@@ -259,12 +262,12 @@ Amount Paid: 4,99 €
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
             <Radio className="w-4 h-4 text-emerald-600" />
-            <span>{language === "en" ? "Exclusive After-Sales Service" : "Exklusiver Release-Service für Kunden"}</span>
+            <span>{language === "en" ? "Exclusive release service for customers" : "Exklusiver Release-Service für Kunden"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight mb-6">
             {language === "en" ? (
-              <>Your Custom Song on <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Spotify & Co.</span></>
+              <>Your personal song on <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Spotify, Apple Music & YouTube</span></>
             ) : (
               <>Dein persönlicher Song auf <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600">Spotify, Apple Music & YouTube</span></>
             )}
@@ -272,7 +275,7 @@ Amount Paid: 4,99 €
 
           <p className="text-sm sm:text-lg text-stone-600 font-normal max-w-2xl mx-auto leading-relaxed mb-8">
             {language === "en" 
-              ? "Make your customized song permanently available worldwide. We handle the entire release process through our music distribution network (DistroKid) under our verified artist label 'MyMusicMoment24' — for a one-time fee of only €4.99."
+              ? "Make your personal song streamable worldwide on all the major platforms. I take care of the whole release through the music distributor DistroKid under the artist profile 'MyMusicMoment24'. It stays online permanently for a one-time fee of €4.99."
               : "Mache deinen persönlichen Song weltweit auf allen großen Plattformen streambar! Ich übernehme die komplette Veröffentlichung über den Musikvertrieb DistroKid unter dem Künstlerprofil „MyMusicMoment24“ – dauerhaft online für einmalig nur 4,99 €."}
           </p>
 
@@ -300,11 +303,11 @@ Amount Paid: 4,99 €
               <Globe className="w-6 h-6" />
             </div>
             <h3 className="font-bold text-stone-900 text-base sm:text-lg mb-2">
-              {language === "en" ? "Worldwide Distribution" : "Weltweit verfügbar"}
+              {language === "en" ? "Available worldwide" : "Weltweit verfügbar"}
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               {language === "en"
-                ? "Your song can be found, streamed, and added to playlists on Spotify, Apple Music, YouTube Music, Deezer, and TikTok."
+                ? "Your song can be found on Spotify, Apple Music, YouTube Music, Deezer and in the Instagram/TikTok sound library."
                 : "Dein Song wird suchbar auf Spotify, Apple Music, YouTube Music, Deezer und in der Instagram/TikTok-Sound-Bibliothek."}
             </p>
           </div>
@@ -314,11 +317,11 @@ Amount Paid: 4,99 €
               <Disc className="w-6 h-6" />
             </div>
             <h3 className="font-bold text-stone-900 text-base sm:text-lg mb-2">
-              {language === "en" ? "Official Release Label" : "Offizielles Künstlerprofil"}
+              {language === "en" ? "Official artist profile" : "Offizielles Künstlerprofil"}
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               {language === "en"
-                ? "Published under 'MyMusicMoment24' (e.g. MyMusicMoment24 – Your Song Title) including cover artwork & ISRC codes."
+                ? "Released officially under the verified artist profile 'MyMusicMoment24', including professional cover artwork & ISRC codes."
                 : "Erscheint offiziell unter dem verifizierten Künstlerprofil „MyMusicMoment24“ inklusive professionellem Cover-Artwork & ISRC-Codes."}
             </p>
           </div>
@@ -328,11 +331,11 @@ Amount Paid: 4,99 €
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="font-bold text-stone-900 text-base sm:text-lg mb-2">
-              {language === "en" ? "One-Time €4.99 • No Subscriptions" : "Einmalig 4,99 € • Kein Abo"}
+              {language === "en" ? "One-time €4.99 • No subscription" : "Einmalig 4,99 € • Kein Abo"}
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               {language === "en"
-                ? "Pay once, stay online forever. No hidden monthly distributor fees or renewal fees."
+                ? "A one-time fixed price with no ongoing costs. Your song stays online on the streaming services permanently."
                 : "Einmaliger Festpreis ohne laufende Kosten. Dein Song bleibt dauerhaft auf den Streaming-Diensten online."}
             </p>
           </div>
@@ -342,10 +345,10 @@ Amount Paid: 4,99 €
         <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-10 mb-16 shadow-sm relative overflow-hidden">
           <div className="max-w-2xl mb-8">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full mb-3 inline-block">
-              {language === "en" ? "Process Overview" : "So einfach funktioniert's"}
+              {language === "en" ? "How it works" : "So einfach funktioniert's"}
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
-              {language === "en" ? "From Song Creation to Spotify" : "In 3 Schritten zur weltweiten Veröffentlichung"}
+              {language === "en" ? "Released worldwide in 3 steps" : "In 3 Schritten zur weltweiten Veröffentlichung"}
             </h2>
           </div>
 
@@ -356,11 +359,11 @@ Amount Paid: 4,99 €
               </div>
               <div>
                 <h4 className="font-bold text-stone-900 text-sm sm:text-base mb-1">
-                  {language === "en" ? "Submit Details & Order" : "Angaben & Buchung (4,99 €)"}
+                  {language === "en" ? "Details & booking (€4.99)" : "Angaben & Buchung (4,99 €)"}
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
-                    ? "Fill out the form below with your song title, recipient name, and order email."
+                    ? "Fill in the short form below with the song title you want and your email address."
                     : "Fülle unten das kurze Formular mit deinem Wunsch-Songtitel und deiner E-Mail-Adresse aus."}
                 </p>
               </div>
@@ -372,11 +375,11 @@ Amount Paid: 4,99 €
               </div>
               <div>
                 <h4 className="font-bold text-stone-900 text-sm sm:text-base mb-1">
-                  {language === "en" ? "Cover & DistroKid Upload" : "Artwork & DistroKid-Upload"}
+                  {language === "en" ? "Artwork & DistroKid upload" : "Artwork & DistroKid-Upload"}
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
-                    ? "We generate the 3000x3000px artwork, master the audio, and distribute via DistroKid to all stores."
+                    ? "I create the cover artwork, check the audio metadata and submit the song through DistroKid."
                     : "Ich erstelle das Cover-Artwork, prüfe die Audio-Metadaten und übermittle den Song via DistroKid."}
                 </p>
               </div>
@@ -388,11 +391,11 @@ Amount Paid: 4,99 €
               </div>
               <div>
                 <h4 className="font-bold text-stone-900 text-sm sm:text-base mb-1">
-                  {language === "en" ? "Live in 3 to 7 days" : "Live in ca. 3 bis 7 Tagen"}
+                  {language === "en" ? "Live in about 3 to 7 days" : "Live in ca. 3 bis 7 Tagen"}
                 </h4>
                 <p className="text-xs text-stone-600 leading-relaxed">
                   {language === "en"
-                    ? "Spotify and Apple Music review and publish the song. You'll receive your direct streaming links via email!"
+                    ? "Once the platforms have approved the song, I'll email you your Spotify link."
                     : "Sobald die Plattformen den Song freigegeben haben, schicke ich dir deinen Spotify-Link per E-Mail."}
                 </p>
               </div>
@@ -415,11 +418,11 @@ Amount Paid: 4,99 €
                 <CheckCircle2 className="w-9 h-9" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-stone-900 mb-2">
-                {language === "en" ? "Payment Successful! Streaming Release Booked" : "Zahlung über 4,99 € erfolgreich!"}
+                {language === "en" ? "Payment of €4.99 successful" : "Zahlung über 4,99 € erfolgreich!"}
               </h2>
               <p className="text-xs sm:text-sm text-stone-600">
                 {language === "en" 
-                  ? "We received your streaming release order and sent a confirmation email. Production and DistroKid distribution are starting now." 
+                  ? "I've received your streaming order. A confirmation is on its way to you by email." 
                   : "Ich habe deinen Streaming-Auftrag erhalten. Eine Bestätigung ist per E-Mail an dich unterwegs."}
               </p>
               <div className="mt-3 inline-block bg-stone-100 px-3 py-1 rounded-lg text-xs font-mono text-emerald-800 border border-stone-200">
@@ -432,10 +435,10 @@ Amount Paid: 4,99 €
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-stone-200">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block">
-                    DistroKid Upload-Daten
+                    {en ? "DistroKid upload data" : "DistroKid Upload-Daten"}
                   </span>
                   <span className="text-xs text-stone-500">
-                    {language === "en" ? "Ready to copy into DistroKid distribution:" : "Sofort bereit zum Übertragen & Rauskopieren:"}
+                    {language === "en" ? "Ready to copy:" : "Sofort bereit zum Übertragen & Rauskopieren:"}
                   </span>
                 </div>
                 <button
@@ -445,12 +448,12 @@ Amount Paid: 4,99 €
                   {copied ? (
                     <>
                       <Check className="w-4 h-4" />
-                      <span>{language === "en" ? "Copied to Clipboard!" : "In Zwischenablage kopiert! ✅"}</span>
+                      <span>{language === "en" ? "Copied to clipboard" : "In Zwischenablage kopiert! ✅"}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4" />
-                      <span>{language === "en" ? "Copy DistroKid Data" : "📋 DistroKid-Daten kopieren"}</span>
+                      <span>{language === "en" ? "Copy DistroKid data" : "📋 DistroKid-Daten kopieren"}</span>
                     </>
                   )}
                 </button>
@@ -459,11 +462,11 @@ Amount Paid: 4,99 €
               {/* Data Table */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
                 <div className="bg-white p-3 rounded-xl border border-stone-200">
-                  <span className="text-stone-500 block text-[11px]">Artist Name (Künstler):</span>
+                  <span className="text-stone-500 block text-[11px]">{en ? "Artist name:" : "Artist Name (Künstler):"}</span>
                   <span className="font-bold text-stone-900 text-sm">MyMusicMoment24</span>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-stone-200">
-                  <span className="text-stone-500 block text-[11px]">Song Title (Titel auf Spotify):</span>
+                  <span className="text-stone-500 block text-[11px]">{en ? "Song title (title on Spotify):" : "Song Title (Titel auf Spotify):"}</span>
                   <span className="font-bold text-emerald-700 text-sm">
                     {completedOrder.orderDetails?.songTitle || formData.songTitle || "Song"}
                   </span>
@@ -481,15 +484,15 @@ Amount Paid: 4,99 €
                   </span>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-stone-200">
-                  <span className="text-stone-500 block text-[11px]">Kunde / Kontakt:</span>
+                  <span className="text-stone-500 block text-[11px]">{en ? "Customer / contact:" : "Kunde / Kontakt:"}</span>
                   <span className="font-semibold text-stone-800">
                     {completedOrder.customerName} ({completedOrder.customerEmail})
                   </span>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-stone-200">
-                  <span className="text-stone-500 block text-[11px]">Bestell-Referenz:</span>
+                  <span className="text-stone-500 block text-[11px]">{en ? "Order reference:" : "Bestell-Referenz:"}</span>
                   <span className="font-semibold text-stone-800">
-                    {completedOrder.orderDetails?.originalOrderNumber || formData.originalOrderNumber || "Keine"}
+                    {completedOrder.orderDetails?.originalOrderNumber || formData.originalOrderNumber || (en ? "None" : "Keine")}
                   </span>
                 </div>
               </div>
@@ -508,10 +511,21 @@ Amount Paid: 4,99 €
                 <Sparkles className="w-4 h-4 text-emerald-600" />
                 {language === "en" ? "What happens now?" : "Wie geht es nun weiter?"}
               </h4>
-              <p>1. 🎨 <strong>Cover-Artwork:</strong> Ich erstelle das 3000x3000px Titelbild für deinen Release.</p>
-              <p>2. 🚀 <strong>DistroKid-Upload:</strong> Ich lade den Track hoch und vergebe die ISRC-Codes.</p>
-              <p>3. ⏳ <strong>Verfügbarkeit:</strong> Je nach Musikvertrieb ist dein Song nach 3 bis 7 Tagen auf Spotify, Apple Music & Co. live.</p>
-              <p>4. 📩 <strong>Streaming-Link:</strong> Ich schicke dir den Spotify-Link per E-Mail.</p>
+              {en ? (
+                <>
+                  <p>1. 🎨 <strong>Cover artwork:</strong> I create the 3000x3000px cover image for your release.</p>
+                  <p>2. 🚀 <strong>DistroKid upload:</strong> I upload the track and assign the ISRC codes.</p>
+                  <p>3. ⏳ <strong>Availability:</strong> Depending on the distributor, your song goes live on Spotify, Apple Music & co. after 3 to 7 days.</p>
+                  <p>4. 📩 <strong>Streaming link:</strong> I'll email you the Spotify link.</p>
+                </>
+              ) : (
+                <>
+                  <p>1. 🎨 <strong>Cover-Artwork:</strong> Ich erstelle das 3000x3000px Titelbild für deinen Release.</p>
+                  <p>2. 🚀 <strong>DistroKid-Upload:</strong> Ich lade den Track hoch und vergebe die ISRC-Codes.</p>
+                  <p>3. ⏳ <strong>Verfügbarkeit:</strong> Je nach Musikvertrieb ist dein Song nach 3 bis 7 Tagen auf Spotify, Apple Music & Co. live.</p>
+                  <p>4. 📩 <strong>Streaming-Link:</strong> Ich schicke dir den Spotify-Link per E-Mail.</p>
+                </>
+              )}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -532,13 +546,13 @@ Amount Paid: 4,99 €
                 }}
                 className="px-5 py-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold transition text-center"
               >
-                {language === "en" ? "Submit Another Song" : "Weiteren Release anlegen"}
+                {language === "en" ? "Set up another release" : "Weiteren Release anlegen"}
               </button>
               <button
                 onClick={onBackToHome}
                 className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition text-center shadow-sm"
               >
-                {language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}
+                {language === "en" ? "Back to home page" : "Zurück zur Startseite"}
               </button>
             </div>
           </div>
@@ -551,14 +565,14 @@ Amount Paid: 4,99 €
             <div className="max-w-2xl mx-auto text-center mb-8">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                {language === "en" ? "Streaming Upload Form" : "DistroKid Upload-Formular"}
+                {language === "en" ? "DistroKid upload form" : "DistroKid Upload-Formular"}
               </span>
               <h3 className="text-2xl sm:text-3xl font-black text-stone-900">
-                {language === "en" ? "Release Your Song on Spotify & Co." : "Jetzt Song auf Spotify & Co. bringen"}
+                {language === "en" ? "Get your song on Spotify & co." : "Jetzt Song auf Spotify & Co. bringen"}
               </h3>
               <p className="text-xs sm:text-sm text-stone-600 mt-1">
                 {language === "en"
-                  ? "Fixed one-time price of €4.99 • Official artist profile 'MyMusicMoment24' • Direct checkout via PayPal or Stripe"
+                  ? "One-time fixed price of €4.99 • Official profile 'MyMusicMoment24' • Pay securely by PayPal or credit card"
                   : "Einmalig 4,99 € Festpreis • Offizielles Profil „MyMusicMoment24“ • Direkt sicher per PayPal oder Kreditkarte"}
               </p>
             </div>
@@ -569,24 +583,24 @@ Amount Paid: 4,99 €
               <div className="space-y-4 bg-stone-50/80 p-5 rounded-2xl border border-stone-200">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
                   <Disc className="w-3.5 h-3.5" />
-                  <span>1. Song & DistroKid-Angaben</span>
+                  <span>{en ? "1. Song & DistroKid details" : "1. Song & DistroKid-Angaben"}</span>
                 </h4>
 
                 <div>
                   <label className="block text-xs font-semibold text-stone-800 mb-1">
-                    {language === "en" ? "Song Title on Spotify *" : "Wunsch-Songtitel auf Spotify & Apple Music *"}
+                    {language === "en" ? "Song title on Spotify & Apple Music *" : "Wunsch-Songtitel auf Spotify & Apple Music *"}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="z. B. Für immer wir (Lisa & Max)"
+                    placeholder={en ? "e.g. Forever Us (Lisa & Max)" : "z. B. Für immer wir (Lisa & Max)"}
                     value={formData.songTitle}
                     onChange={(e) => setFormData({ ...formData, songTitle: e.target.value })}
                     className="w-full bg-white border border-stone-300 rounded-xl px-4 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                   />
                   <span className="text-[11px] text-stone-500 mt-1 block">
                     {language === "en" 
-                      ? "Will be published as: 'MyMusicMoment24 – [Your Song Title]'" 
+                      ? "Will appear as: 'MyMusicMoment24 - [Your song title]'" 
                       : "Erscheint als: „MyMusicMoment24 – [Dein Songtitel]“"}
                   </span>
                 </div>
@@ -594,7 +608,7 @@ Amount Paid: 4,99 €
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-semibold text-stone-800 mb-1">
-                      {language === "en" ? "Primary Genre *" : "Musikrichtung (Genre) *"}
+                      {language === "en" ? "Music style (genre) *" : "Musikrichtung (Genre) *"}
                     </label>
                     <select
                       value={formData.genre}
@@ -609,18 +623,18 @@ Amount Paid: 4,99 €
 
                   <div>
                     <label className="block text-xs font-semibold text-stone-800 mb-1">
-                      {language === "en" ? "Song Language" : "Sprache der Lyrics"}
+                      {language === "en" ? "Language of the lyrics" : "Sprache der Lyrics"}
                     </label>
                     <select
                       value={formData.songLanguage}
                       onChange={(e) => setFormData({ ...formData, songLanguage: e.target.value })}
                       className="w-full bg-white border border-stone-300 rounded-xl px-3 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                     >
-                      <option value="Deutsch">Deutsch</option>
-                      <option value="Englisch">Englisch</option>
-                      <option value="Spanisch">Spanisch</option>
-                      <option value="Italienisch">Italienisch</option>
-                      <option value="Sonstige">Sonstige</option>
+                      <option value="Deutsch">{en ? "German" : "Deutsch"}</option>
+                      <option value="Englisch">{en ? "English" : "Englisch"}</option>
+                      <option value="Spanisch">{en ? "Spanish" : "Spanisch"}</option>
+                      <option value="Italienisch">{en ? "Italian" : "Italienisch"}</option>
+                      <option value="Sonstige">{en ? "Other" : "Sonstige"}</option>
                     </select>
                   </div>
                 </div>
@@ -633,7 +647,7 @@ Amount Paid: 4,99 €
                       onChange={(e) => setFormData({ ...formData, explicitLyrics: e.target.checked })}
                       className="rounded bg-white border-stone-300 text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0"
                     />
-                    <span>{language === "en" ? "Contains explicit language / profanity" : "Enthält explizite Sprache (Schimpfwörter) [Explicit Tag]"}</span>
+                    <span>{language === "en" ? "Contains explicit language (swear words) [Explicit tag]" : "Enthält explizite Sprache (Schimpfwörter) [Explicit Tag]"}</span>
                   </label>
                 </div>
               </div>
@@ -642,18 +656,18 @@ Amount Paid: 4,99 €
               <div className="space-y-4 bg-stone-50/80 p-5 rounded-2xl border border-stone-200">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
                   <Radio className="w-3.5 h-3.5" />
-                  <span>2. Kontaktdaten & Zuordnung</span>
+                  <span>{en ? "2. Contact details & order reference" : "2. Kontaktdaten & Zuordnung"}</span>
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-semibold text-stone-800 mb-1">
-                      {language === "en" ? "Your Full Name *" : "Dein Vor- & Nachname *"}
+                      {language === "en" ? "Your first & last name *" : "Dein Vor- & Nachname *"}
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Max Mustermann"
+                      placeholder={en ? "John Smith" : "Max Mustermann"}
                       value={formData.customerName}
                       onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
                       className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
@@ -662,12 +676,12 @@ Amount Paid: 4,99 €
 
                   <div>
                     <label className="block text-xs font-semibold text-stone-800 mb-1">
-                      {language === "en" ? "Your Email Address *" : "Deine E-Mail-Adresse *"}
+                      {language === "en" ? "Your email address *" : "Deine E-Mail-Adresse *"}
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="deine-email@beispiel.de"
+                      placeholder={en ? "your-email@example.com" : "deine-email@beispiel.de"}
                       value={formData.customerEmail}
                       onChange={(e) => setFormData({ ...formData, customerEmail: e.target.value })}
                       className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
@@ -691,11 +705,11 @@ Amount Paid: 4,99 €
 
                   <div>
                     <label className="block text-xs font-semibold text-stone-800 mb-1">
-                      {language === "en" ? "Order ID or Song Theme" : "Ursprungs-Bestell-Nr. oder Song-Thema"}
+                      {language === "en" ? "Original order no. or song topic" : "Ursprungs-Bestell-Nr. oder Song-Thema"}
                     </label>
                     <input
                       type="text"
-                      placeholder="z. B. Hochzeitssong Sarah & Tim"
+                      placeholder={en ? "e.g. wedding song Sarah & Tim" : "z. B. Hochzeitssong Sarah & Tim"}
                       value={formData.originalOrderNumber}
                       onChange={(e) => setFormData({ ...formData, originalOrderNumber: e.target.value })}
                       className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
@@ -705,11 +719,11 @@ Amount Paid: 4,99 €
 
                 <div>
                   <label className="block text-xs font-semibold text-stone-800 mb-1">
-                    {language === "en" ? "Notes / Cover Wishes (optional)" : "Besondere Notizen / Cover-Wünsche (optional)"}
+                    {language === "en" ? "Special notes / cover wishes (optional)" : "Besondere Notizen / Cover-Wünsche (optional)"}
                   </label>
                   <textarea
                     rows={2}
-                    placeholder={language === "en" ? "Special notes for the artwork..." : "z. B. Foto-Wunsch oder Widmung fürs Cover..."}
+                    placeholder={language === "en" ? "e.g. a photo you'd like or a dedication for the cover..." : "z. B. Foto-Wunsch oder Widmung fürs Cover..."}
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className="w-full bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-stone-900 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
@@ -722,9 +736,9 @@ Amount Paid: 4,99 €
                 <div className="flex items-center justify-between pb-2 border-b border-stone-200">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>3. Zahlungsart wählen (4,99 €)</span>
+                    <span>{en ? "3. Choose a payment method (€4.99)" : "3. Zahlungsart wählen (4,99 €)"}</span>
                   </h4>
-                  <span className="text-lg font-black text-stone-900">4,99 €</span>
+                  <span className="text-lg font-black text-stone-900">{en ? "€4.99" : "4,99 €"}</span>
                 </div>
 
                 {/* PayPal Express Option */}
@@ -740,9 +754,9 @@ Amount Paid: 4,99 €
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-extrabold text-stone-900 text-xs sm:text-sm">PayPal Express & SEPA</span>
-                        <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-black rounded border border-emerald-200">Ohne Konto möglich</span>
+                        <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-black rounded border border-emerald-200">{en ? "No account needed" : "Ohne Konto möglich"}</span>
                       </div>
-                      <span className="text-[11px] text-stone-600 block mt-0.5 font-medium">Mit PayPal-Konto oder ganz ohne Konto per SEPA-Bankeinzug / Debitkarte</span>
+                      <span className="text-[11px] text-stone-600 block mt-0.5 font-medium">{en ? "With a PayPal account, or without one by SEPA direct debit / debit card" : "Mit PayPal-Konto oder ganz ohne Konto per SEPA-Bankeinzug / Debitkarte"}</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
@@ -765,8 +779,8 @@ Amount Paid: 4,99 €
                       className="text-emerald-600 w-4 h-4"
                     />
                     <div>
-                      <span className="font-bold text-xs sm:text-sm block text-stone-900">Kreditkarte / Apple Pay / Klarna</span>
-                      <span className="text-[11px] text-stone-500">Direkte Zahlung via Stripe Checkout</span>
+                      <span className="font-bold text-xs sm:text-sm block text-stone-900">{en ? "Credit card / Apple Pay / Klarna" : "Kreditkarte / Apple Pay / Klarna"}</span>
+                      <span className="text-[11px] text-stone-500">{en ? "Pay directly with Stripe Checkout" : "Direkte Zahlung via Stripe Checkout"}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-1 shrink-0 scale-90 sm:scale-100">
@@ -786,7 +800,9 @@ Amount Paid: 4,99 €
                       className="rounded bg-white border-stone-300 text-emerald-600 mt-0.5 w-4 h-4 shrink-0 focus:ring-emerald-500"
                     />
                     <span>
-                      Ich stimme den Allgemeinen Geschäftsbedingungen (AGB) und der Datenschutzerklärung zu. Ich beauftrage die sofortige Veröffentlichung auf den Streaming-Plattformen und nehme zur Kenntnis, dass das Widerrufsrecht bei individueller digitaler Erstellung erlischt.
+                      {en
+                        ? "I agree to the terms and conditions and the privacy policy. I request immediate release on the streaming platforms and acknowledge that my right of withdrawal expires for individually created digital content."
+                        : "Ich stimme den Allgemeinen Geschäftsbedingungen (AGB) und der Datenschutzerklärung zu. Ich beauftrage die sofortige Veröffentlichung auf den Streaming-Plattformen und nehme zur Kenntnis, dass das Widerrufsrecht bei individueller digitaler Erstellung erlischt."}
                     </span>
                   </label>
                 </div>
@@ -794,7 +810,9 @@ Amount Paid: 4,99 €
                 {/* Validation Reminder */}
                 {(!formData.songTitle || !formData.customerName || !formData.customerEmail || !agreedTerms) && (
                   <p className="text-[11px] text-amber-900 text-center py-2 px-3 bg-amber-50 rounded-xl border border-amber-200 font-medium">
-                    💡 Bitte Songtitel, Name, E-Mail ausfüllen und das AGB-Kästchen abhaken, um die Zahlung zu aktivieren.
+                    💡 {en
+                      ? "Please fill in the song title, name and email and tick the terms box to enable payment."
+                      : "Bitte Songtitel, Name, E-Mail ausfüllen und das AGB-Kästchen abhaken, um die Zahlung zu aktivieren."}
                   </p>
                 )}
 
@@ -827,7 +845,7 @@ Amount Paid: 4,99 €
                                 });
                               } catch (err) {
                                 console.error("PayPal Error:", err);
-                                alert("Zahlungsfehler bei PayPal. Bitte erneut versuchen.");
+                                alert(en ? "PayPal payment error. Please try again." : "Zahlungsfehler bei PayPal. Bitte erneut versuchen.");
                               } finally {
                                 setIsProcessing(false);
                               }
@@ -835,7 +853,7 @@ Amount Paid: 4,99 €
                           />
                         </PayPalScriptProvider>
                       ) : (
-                        <p className="text-xs text-red-500 text-center">PayPal Client ID nicht konfiguriert.</p>
+                        <p className="text-xs text-red-500 text-center">{en ? "PayPal client ID is not configured." : "PayPal Client ID nicht konfiguriert."}</p>
                       )}
                     </div>
                   ) : (
@@ -846,7 +864,7 @@ Amount Paid: 4,99 €
                       className="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black text-sm sm:text-base rounded-2xl shadow-md transition flex items-center justify-center gap-2 active:scale-[0.99]"
                     >
                       <span>
-                        {isProcessing ? "Verbindung zu Stripe..." : "Mit Kreditkarte / Apple Pay zahlen (4,99 €)"}
+                        {isProcessing ? (en ? "Connecting to Stripe..." : "Verbindung zu Stripe...") : (en ? "Pay with credit card / Apple Pay (€4.99)" : "Mit Kreditkarte / Apple Pay zahlen (4,99 €)")}
                       </span>
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -855,7 +873,7 @@ Amount Paid: 4,99 €
 
                 <div className="flex items-center justify-center gap-2 text-[11px] text-stone-500 pt-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Sichere 256-Bit SSL-Verschlüsselung • Keine Abos oder versteckte Gebühren</span>
+                  <span>{en ? "Secure 256-bit SSL encryption • No subscriptions or hidden fees" : "Sichere 256-Bit SSL-Verschlüsselung • Keine Abos oder versteckte Gebühren"}</span>
                 </div>
               </div>
 

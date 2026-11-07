@@ -1,5 +1,6 @@
 ---
 title: "Personalisierten Song erstellen lassen: Persönliche Lieder mit Namen für 19,99 €"
+metaTitle: "Personalisierten Song erstellen lassen | MyMusicMoment24"
 date: "2026-09-11"
 dateModified: "2026-10-17"
 author: "Dirk Schmetzer"

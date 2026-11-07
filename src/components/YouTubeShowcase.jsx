@@ -13,6 +13,12 @@ const YOUTUBE_TRACKS = [
     thumbnail: "https://img.youtube.com/vi/MCL9AYpNQa0/hqdefault.jpg",
     description: "Der emotionale Hochzeitssong für Trauung, Eröffnungstanz und den schönsten Tag im Leben.",
     durationBadge: "Hochzeit",
+    en: {
+      badge: "Wedding song • Ceremony & first dance",
+      genreDetail: "Emotional wedding song & declaration of love",
+      description: "The emotional wedding song for the ceremony, the first dance and the most beautiful day of your life.",
+      durationBadge: "Wedding",
+    },
   },
   {
     id: "island-sky",
@@ -24,6 +30,12 @@ const YOUTUBE_TRACKS = [
     thumbnail: "https://img.youtube.com/vi/5xZLQT0uXlY/hqdefault.jpg",
     description: "Kraftvoller EDM-Sommertrack mit mitreißender Gospel-Lead-Sängerin, packenden Beats und purer Festival-Energie.",
     durationBadge: "EDM Gospel",
+    en: {
+      badge: "EDM • Vocal House • Gospel Lead",
+      genreDetail: "EDM style with a gospel lead singer",
+      description: "A powerful EDM summer track with a stirring gospel lead singer, driving beats and festival energy.",
+      durationBadge: "EDM Gospel",
+    },
   },
   {
     id: "schoen-dass-du-da-bist",
@@ -35,6 +47,12 @@ const YOUTUBE_TRACKS = [
     thumbnail: "https://img.youtube.com/vi/07dkXAHJ68A/hqdefault.jpg",
     description: "Gefühlvoller Deutschrap kombiniert mit tanzbaren Rhythmen und tiefgehender Liebesbotschaft. Ehrlich, modern und direkt ins Herz.",
     durationBadge: "Deutschrap",
+    en: {
+      badge: "German rap • Love • Dance music",
+      genreDetail: "Love & friendship with a beat",
+      description: "Heartfelt German rap combined with danceable rhythms and a deep message of love. Honest, modern and straight to the heart.",
+      durationBadge: "German rap",
+    },
   },
   {
     id: "von-der-schule-ins-leben",
@@ -46,12 +64,20 @@ const YOUTUBE_TRACKS = [
     thumbnail: "https://img.youtube.com/vi/kG70K67jVo8/hqdefault.jpg",
     description: "Authentischer deutscher Hip-Hop über Schulabschluss, Freundschaft, Meilensteine und den mutigen Schritt in die eigene Zukunft.",
     durationBadge: "Hip-Hop",
+    en: {
+      badge: "German hip-hop",
+      genreDetail: "Graduation & a new beginning",
+      description: "Authentic German hip-hop about graduating from school, friendship, milestones and the brave step into your own future.",
+      durationBadge: "Hip-hop",
+    },
   },
 ];
 
 export default function YouTubeShowcase() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const en = language === "en";
   const [activeVideo, setActiveVideo] = useState(null);
+  const tracks = YOUTUBE_TRACKS.map((track) => (en && track.en ? { ...track, ...track.en } : track));
 
   // Close modal with Escape key
   useEffect(() => {
@@ -107,7 +133,7 @@ export default function YouTubeShowcase() {
 
         {/* Video Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10">
-          {YOUTUBE_TRACKS.map((video) => (
+          {tracks.map((video) => (
             <div
               key={video.id}
               className="group flex flex-col bg-stone-50 rounded-2xl border border-stone-200 hover:border-red-400 overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl"
@@ -178,7 +204,7 @@ export default function YouTubeShowcase() {
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700 transition"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>Jetzt anhören</span>
+                    <span>{en ? "Listen now" : "Jetzt anhören"}</span>
                   </button>
 
                   <a
@@ -186,9 +212,9 @@ export default function YouTubeShowcase() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[11px] text-stone-500 hover:text-stone-900 transition"
-                    title="Auf YouTube ansehen"
+                    title={en ? "Watch on YouTube" : "Auf YouTube ansehen"}
                   >
-                    <span>Auf YouTube</span>
+                    <span>{en ? "On YouTube" : "Auf YouTube"}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -235,7 +261,7 @@ export default function YouTubeShowcase() {
                   className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 hover:text-stone-900 text-xs font-semibold rounded-lg transition border border-stone-200"
                 >
                   <Youtube className="w-3.5 h-3.5 text-red-600" />
-                  <span>Auf YouTube öffnen</span>
+                  <span>{en ? "Open on YouTube" : "Auf YouTube öffnen"}</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
 
@@ -243,7 +269,7 @@ export default function YouTubeShowcase() {
                   type="button"
                   onClick={() => setActiveVideo(null)}
                   className="w-8 h-8 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 flex items-center justify-center transition"
-                  aria-label="Schließen"
+                  aria-label={en ? "Close" : "Schließen"}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -263,14 +289,14 @@ export default function YouTubeShowcase() {
 
             {/* Modal Footer / Privacy info */}
             <div className="px-4 py-2.5 bg-stone-50 border-t border-stone-200 flex items-center justify-between text-[11px] text-stone-500">
-              <span>Datenschutzkonforme Wiedergabe via youtube-nocookie.com</span>
+              <span>{en ? "Privacy-friendly playback via youtube-nocookie.com" : "Datenschutzkonforme Wiedergabe via youtube-nocookie.com"}</span>
               <a
                 href={activeVideo.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-red-600 hover:underline inline-flex items-center gap-1 sm:hidden font-medium"
               >
-                <span>YouTube öffnen</span>
+                <span>{en ? "Open YouTube" : "YouTube öffnen"}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
