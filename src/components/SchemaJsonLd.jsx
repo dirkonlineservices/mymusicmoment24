@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { PRODUCTS } from "../data/products";
 import { translations } from "../i18n/translations";
+import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Helper to build Google Merchant Center & Rich Results compliant Product Schema
@@ -99,6 +100,9 @@ function createProductSchema(prod) {
 }
 
 export default function SchemaJsonLd({ type = "home", blogPost = null }) {
+  const { language } = useLanguage();
+  const isEn = language === "en";
+
   useEffect(() => {
     const schemaItems = [];
 
@@ -116,7 +120,9 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         height: "512",
       },
       image: "https://www.mymusicmoment24.de/images/hochzeit.jpg",
-      description: "Personalisierte Musikstücke und Songs mit KI und echter menschlicher Qualitätsprüfung. Dein Unikat für Hochzeit, Geburtstag und Jubiläum.",
+      description: isEn
+        ? "Personalized custom songs with AI and human quality control. Your one-of-a-kind musical gift for weddings, birthdays and anniversaries."
+        : "Personalisierte Musikstücke und Songs mit KI und echter menschlicher Qualitätsprüfung. Dein Unikat für Hochzeit, Geburtstag und Jubiläum.",
       telephone: "+49-1590-6122744",
       email: "info@mymusicmoment24.de",
       priceRange: "€€",
@@ -146,7 +152,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         "@type": "Person",
         "@id": "https://www.mymusicmoment24.de/autor-dirk-schmetzer#person",
         name: "Dirk Schmetzer",
-        jobTitle: "Gründer, Musikproduzent & Webentwickler",
+        jobTitle: isEn ? "Founder, Music Producer & Web Developer" : "Gründer, Musikproduzent & Webentwickler",
         image: "https://www.mymusicmoment24.de/images/dirk-schmetzer.png",
         sameAs: [
           "https://www.mymusicmoment24.de/autor-dirk-schmetzer",
@@ -167,19 +173,23 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       ...PRODUCTS.filter((p) => p.id !== "urkunde"),
       {
         id: "gutschein",
-        title: "Geschenkgutschein für ein Wunschlied",
+        title: isEn ? "Gift Voucher for a Custom Song" : "Geschenkgutschein für ein Wunschlied",
         price: 19.99,
         image: "/images/gutschein.jpg",
-        url: "https://www.mymusicmoment24.de/#gutschein",
-        description: "Geschenkgutschein für einen persönlichen Song nach Wahl, als druckfertiges PDF per E-Mail, einlösbar für jeden Anlass und jedes Genre.",
+        url: isEn ? "https://www.mymusicmoment24.de/en#gutschein" : "https://www.mymusicmoment24.de/#gutschein",
+        description: isEn
+          ? "Gift voucher for a custom song of your choice, delivered as a printable PDF by email, redeemable for any occasion and music genre."
+          : "Geschenkgutschein für einen persönlichen Song nach Wahl, als druckfertiges PDF per E-Mail, einlösbar für jeden Anlass und jedes Genre.",
       },
       {
         id: "streaming",
         title: "Spotify & Streaming-Release (Apple Music, YouTube Music)",
         price: 4.99,
         image: "/images/logo.png",
-        url: "https://www.mymusicmoment24.de/streaming",
-        description: "Offizielle Veröffentlichung deines personalisierten Songs auf Spotify, Apple Music, YouTube Music & Amazon Music.",
+        url: isEn ? "https://www.mymusicmoment24.de/en/streaming" : "https://www.mymusicmoment24.de/streaming",
+        description: isEn
+          ? "Official release of your personalized song on Spotify, Apple Music, YouTube Music & Amazon Music."
+          : "Offizielle Veröffentlichung deines personalisierten Songs auf Spotify, Apple Music, YouTube Music & Amazon Music.",
       },
     ];
 
@@ -189,12 +199,13 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
         schemaItems.push(createProductSchema(p));
       });
 
+      const faqSource = isEn ? translations.en?.faq?.items : translations.de?.faq?.items;
       // FAQ Schema
       const faqSchema = {
         "@type": "FAQPage",
-        "@id": "https://www.mymusicmoment24.de/#faq",
+        "@id": isEn ? "https://www.mymusicmoment24.de/en#faq" : "https://www.mymusicmoment24.de/#faq",
         // Gleiche Fragen und Antworten wie die sichtbare FAQ auf der Startseite
-        mainEntity: (translations.de.faq.items || []).map((item) => ({
+        mainEntity: (faqSource || translations.de.faq.items || []).map((item) => ({
           "@type": "Question",
           name: item.q,
           acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -277,7 +288,7 @@ export default function SchemaJsonLd({ type = "home", blogPost = null }) {
       const script = document.getElementById(scriptId);
       if (script) script.remove();
     };
-  }, [type, blogPost]);
+  }, [type, blogPost, isEn]);
 
   return null;
 }

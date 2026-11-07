@@ -15,7 +15,7 @@ export default function BlogPost({ slug, onBackToHome, onGoToConfigurator, onNav
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-bold text-white mb-4">
+        <h1 className="text-3xl font-bold text-stone-900 mb-4">
           {language === "en" ? "Article not found" : "Artikel nicht gefunden"}
         </h1>
         <button

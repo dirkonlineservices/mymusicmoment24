@@ -20,17 +20,20 @@ export default function AuthorPage({ onBackToHome, onGoToConfigurator }) {
             <ArrowLeft className="w-4 h-4 text-amber-600" />
             <span>{language === "en" ? "Back to home page" : "Zurück zur Startseite"}</span>
           </button>
-          <button
-            onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
-          >
-            <img
-              src="/images/logo-icon.png"
-              alt="MyMusicMoment24 Logo"
-              className="w-7 h-7 object-contain"
-            />
-            <span>MyMusicMoment<span className="text-amber-500">24</span></span>
-          </button>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <button
+              onClick={onBackToHome}
+              className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
+            >
+              <img
+                src="/images/logo-icon.png"
+                alt="MyMusicMoment24 Logo"
+                className="w-7 h-7 object-contain"
+              />
+              <span className="hidden sm:inline">MyMusicMoment<span className="text-amber-500">24</span></span>
+            </button>
+          </div>
         </div>
       </header>
 

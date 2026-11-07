@@ -129,7 +129,8 @@ function AppMain() {
 
     // Check for Stripe Checkout return (only for standard home page orders)
     const urlParams = new URLSearchParams(window.location.search);
-    const isStreamingRoute = window.location.pathname.startsWith("/streaming") || window.location.hash.includes("streaming");
+    const currentLang = langFromPath(window.location.pathname);
+    const isStreamingRoute = stripLangPrefix(window.location.pathname).startsWith("/streaming") || window.location.hash.includes("streaming");
     
     if (!isStreamingRoute && urlParams.get("stripe_success") === "true" && urlParams.get("session_id")) {
       const sessionId = urlParams.get("session_id");
@@ -147,16 +148,24 @@ function AppMain() {
               name: data.order?.orderName || "Personalisierter Song",
               id: "personalized-song",
             });
-            alert(`🎉 Vielen Dank! Deine Zahlung via Stripe war erfolgreich (Bestell-Nr: ${txId}). Wir haben deinen Auftrag erhalten und eine Bestätigung an deine E-Mail gesendet!`);
+            alert(
+              currentLang === "en"
+                ? `🎉 Thank you! Your Stripe payment was successful (Order ID: ${txId}). We have received your order and sent a confirmation to your email!`
+                : `🎉 Vielen Dank! Deine Zahlung via Stripe war erfolgreich (Bestell-Nr: ${txId}). Wir haben deinen Auftrag erhalten und eine Bestätigung an deine E-Mail gesendet!`
+            );
           }
         })
         .catch(console.error)
         .finally(() => {
-          window.history.replaceState({}, "", localizePath("/", langFromPath(window.location.pathname)));
+          window.history.replaceState({}, "", localizePath("/", currentLang));
         });
     } else if (!isStreamingRoute && urlParams.get("stripe_cancel") === "true") {
-      alert("Die Zahlung via Stripe wurde abgebrochen. Du kannst es jederzeit erneut versuchen.");
-      window.history.replaceState({}, "", localizePath("/", langFromPath(window.location.pathname)));
+      alert(
+        currentLang === "en"
+          ? "The Stripe payment was cancelled. You can try again at any time."
+          : "Die Zahlung via Stripe wurde abgebrochen. Du kannst es jederzeit erneut versuchen."
+      );
+      window.history.replaceState({}, "", localizePath("/", currentLang));
     }
 
     return () => {
@@ -286,17 +295,13 @@ function AppMain() {
         </Suspense>
       )}
 
-      {/* Floating Language Switcher on the Top Right */}
+      {/* Floating Language Switcher on the Top Right (Startseite; alle Unterseiten haben ihn direkt im eigenen Header) */}
       <aside
         aria-label="Sprachauswahl / Language Selection"
         className={
-          currentRoute.view === "blog"
-            // Artikel haben die Umschaltung schon in der eigenen Kopfzeile
-            ? "hidden"
-            : currentRoute.view === "home"
-            // Startseite: Platz für das Weihnachtsbanner; mobil steckt die Umschaltung im Menü
+          currentRoute.view === "home"
             ? "hidden sm:block fixed sm:top-28 sm:right-6 z-40 transition-all duration-300"
-            : "fixed top-20 right-3 sm:top-20 sm:right-6 z-40 transition-all duration-300"
+            : "hidden"
         }
       >
         <LanguageSwitcher />

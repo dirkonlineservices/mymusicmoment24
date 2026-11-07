@@ -177,18 +177,28 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
             <a href="#preise" className="hover:text-amber-600 transition">{t("nav.prices", "Preise")}</a>
             <a href="#kundenstimmen" className="hover:text-amber-600 transition">{t("nav.reviews")}</a>
             <a href="#faq" className="hover:text-amber-600 transition">{t("nav.faq")}</a>
-            <button
-              onClick={() => onNavigateBlog("individueller-hochzeitssong")}
+            <a
+              href={lp("/individueller-hochzeitssong")}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                onNavigateBlog("individueller-hochzeitssong");
+              }}
               className="text-amber-600 hover:text-amber-700 transition font-semibold"
             >
               {t("nav.guide")}
-            </button>
-            <button
-              onClick={onNavigateAuthor}
+            </a>
+            <a
+              href={lp("/autor-dirk-schmetzer")}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                onNavigateAuthor();
+              }}
               className="hover:text-amber-600 transition font-medium"
             >
               {t("nav.about")}
-            </button>
+            </a>
           </nav>
 
           {/* Desktop Action Button & Mobile Toggle */}
@@ -237,51 +247,90 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               <a href="#faq" onClick={closeMobileMenu} className="px-3 py-2 rounded-lg hover:bg-stone-50 transition">
                 {t("nav.faq")}
               </a>
-              <button
-                onClick={() => {
+              <a
+                href={lp("/individueller-hochzeitssong")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
                   closeMobileMenu();
                   onNavigateBlog("individueller-hochzeitssong");
                 }}
                 className="text-left px-3 py-2 rounded-lg text-amber-600 hover:bg-stone-50 transition font-semibold"
               >
                 {t("nav.guide")} &amp; Blog
-              </button>
-              <button
-                onClick={() => {
+              </a>
+              <a
+                href={lp("/autor-dirk-schmetzer")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
                   closeMobileMenu();
                   onNavigateAuthor();
                 }}
                 className="text-left px-3 py-2 rounded-lg hover:bg-stone-50 transition"
               >
                 {t("footer.aboutLink")}
-              </button>
-              <button
-                onClick={() => {
+              </a>
+              <a
+                href={lp("/b2b")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
                   closeMobileMenu();
                   onNavigateB2B();
                 }}
                 className="text-left px-3 py-2 rounded-lg text-amber-700 hover:bg-stone-50 transition font-semibold"
               >
                 💼 {t("footer.b2bLink", "Für Agenturen & B2B")}
-              </button>
-              <button
-                onClick={() => {
+              </a>
+              <a
+                href={lp("/impressum")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
                   closeMobileMenu();
                   onNavigateLegal("impressum");
                 }}
                 className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
               >
                 {t("nav.impressum")}
-              </button>
-              <button
-                onClick={() => {
+              </a>
+              <a
+                href={lp("/datenschutz")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
                   closeMobileMenu();
                   onNavigateLegal("datenschutz");
                 }}
                 className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
               >
                 {t("nav.privacy")}
-              </button>
+              </a>
+              <a
+                href={lp("/agb")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
+                  closeMobileMenu();
+                  onNavigateLegal("agb");
+                }}
+                className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
+              >
+                {t("footer.terms", "AGB")}
+              </a>
+              <a
+                href={lp("/widerruf")}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
+                  closeMobileMenu();
+                  onNavigateLegal("widerruf");
+                }}
+                className="text-left px-3 py-2 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition"
+              >
+                {t("footer.withdrawal", "Widerrufsbelehrung")}
+              </a>
             </nav>
 
             <a
@@ -796,15 +845,31 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                 <li><a href="#konfigurator" className="hover:text-white transition">{t("footer.startConfigurator")}</a></li>
                 <li><a href="#faq" className="hover:text-white transition">{t("footer.faq")}</a></li>
                 <li>
-                  <button onClick={onNavigateAuthor} className="hover:text-white transition text-left">
+                  <a
+                    href={lp("/autor-dirk-schmetzer")}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                      e.preventDefault();
+                      onNavigateAuthor();
+                    }}
+                    className="hover:text-white transition text-left"
+                  >
                     {t("footer.aboutLink")}
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button onClick={onNavigateB2B} className="hover:text-amber-400 transition text-left flex items-center gap-1.5 font-medium text-amber-400/90">
+                  <a
+                    href={lp("/b2b")}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                      e.preventDefault();
+                      onNavigateB2B();
+                    }}
+                    className="hover:text-amber-400 transition text-left flex items-center gap-1.5 font-medium text-amber-400/90"
+                  >
                     <span>💼</span>
                     <span>{t("footer.b2bLink", "Für Agenturen & B2B")}</span>
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -844,16 +909,32 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
                   </button>
                 </li>
                 <li className="pt-1.5">
-                  <button onClick={onNavigateSupport} className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs">
+                  <a
+                    href={lp("/support")}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                      e.preventDefault();
+                      onNavigateSupport();
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs w-fit"
+                  >
                     <span>💬</span>
                     <span>{t("footer.supportLink", "WhatsApp-Support & Hilfe")}</span>
-                  </button>
+                  </a>
                 </li>
                 <li className="pt-1">
-                  <button onClick={onNavigateB2B} className="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs">
+                  <a
+                    href={lp("/b2b")}
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                      e.preventDefault();
+                      onNavigateB2B();
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 font-bold transition text-left flex items-center gap-1.5 text-xs w-fit"
+                  >
                     <span>🤝</span>
                     <span>{t("footer.b2bButton", "B2B & Kooperationsanfrage")}</span>
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>

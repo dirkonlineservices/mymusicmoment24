@@ -131,6 +131,7 @@ Amount Paid: ${en ? "€4.99" : "4,99 €"}
   // Stripe Checkout Initiator
   // Bestelldaten für den Server (Betrag berechnet der Server)
   const streamingPayload = () => ({
+    locale: language,
     customerEmail: formData.customerEmail,
     customerName: formData.customerName,
     customerPhone: formData.customerPhone,
@@ -177,6 +178,7 @@ Amount Paid: ${en ? "€4.99" : "4,99 €"}
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: 4.99,
+          locale: language,
           customerEmail: formData.customerEmail,
           customerName: formData.customerName,
           customerPhone: formData.customerPhone,

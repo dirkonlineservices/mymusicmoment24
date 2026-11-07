@@ -240,6 +240,16 @@
   </url>
 
   <url>
+    <loc>https://www.mymusicmoment24.de/streaming</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/streaming" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/streaming" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/streaming" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.mymusicmoment24.de/support</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/support" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/support" />
@@ -488,6 +498,15 @@
     <lastmod>2026-10-16T21:00:00+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mymusicmoment24.de/en/streaming</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.mymusicmoment24.de/streaming" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mymusicmoment24.de/en/streaming" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mymusicmoment24.de/streaming" />
+    <lastmod>2026-11-07T18:00:00+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.mymusicmoment24.de/en/support</loc>

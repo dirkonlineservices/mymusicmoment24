@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2, HelpCircle, MessageCircle, Landmark, CreditCard, ChevronRight, ExternalLink, Copy, Check } from "lucide-react";
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
-import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge, DebitCardBadge } from "./PaymentBadges";
+import { PayPalBadge, StripeBadge, VisaBadge, ApplePayBadge, SepaBadge, DebitCardBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useLanguage } from "../context/LanguageContext";
 import { PRICES, orderKind, calculatePrice } from "../lib/pricing";
@@ -52,8 +52,16 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
       trackBeginCheckout(order);
       setIsCompleted(false);
       setIncludeCertificate(Boolean(order?.details?.pdfLyrics));
+      const initialDetails = [
+        order?.details?.names ? `${language === "en" ? "Names" : "Namen"}: ${order.details.names}` : "",
+        order?.details?.story ? order.details.story : "",
+        order?.details?.notes ? order.details.notes : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
+      setSongDetailsText(initialDetails);
     }
-  }, [isOpen, order]);
+  }, [isOpen, order, language]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -120,6 +128,7 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
   // Bestelldaten für den Server (ohne Betrag – den berechnet der Server)
   const orderPayload = () => ({
     category: order.category,
+    locale: language,
     customerEmail,
     customerName,
     customerPhone,
@@ -169,7 +178,11 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
         const response = await fetch("/api/create-stripe-checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(orderPayload()),
+          body: JSON.stringify({
+            ...orderPayload(),
+            successUrl: `${window.location.origin}${lp("/")}?session_id={CHECKOUT_SESSION_ID}&stripe_success=true`,
+            cancelUrl: `${window.location.origin}${lp("/")}?stripe_cancel=true`,
+          }),
         });
         const data = await response.json();
         if (data.url) {
@@ -279,12 +292,12 @@ export default function PayPalCheckout({ isOpen, onClose, order }) {
                 <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
                   <div className="flex items-center gap-2 text-stone-900 font-bold">
                     <span className="w-5 h-5 rounded-full bg-stone-200 flex items-center justify-center text-[11px] text-stone-700">3</span>
-                    <span>{language === "en" ? "Credit card, Apple Pay, Klarna" : "Kreditkarte, Apple Pay, Klarna"}</span>
+                    <span>{language === "en" ? "Credit card, Apple Pay & Google Pay" : "Kreditkarte, Apple Pay & Google Pay"}</span>
                   </div>
                   <p className="text-[11px] text-stone-600 leading-relaxed pl-7">
                     {language === "en"
-                      ? "Choose 'Credit card & online payment' to pay directly with Visa, Mastercard, Apple Pay, Google Pay or Klarna."
-                      : "Wähle 'Kreditkarte & Online-Zahlung', um direkt per Visa, Mastercard, Apple Pay, Google Pay oder Klarna zu bezahlen."}
+                      ? "Choose 'Credit card & Pay' to pay directly with Visa, Mastercard, Apple Pay or Google Pay."
+                      : "Wähle 'Kreditkarte & Pay', um direkt per Visa, Mastercard, Apple Pay oder Google Pay zu bezahlen."}
                   </p>
                 </div>
 

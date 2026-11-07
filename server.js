@@ -45,7 +45,6 @@ const REDIRECT_MAP = {
   // Core Trust & Author routes
   "/kontakt-fur-personalisierte-songs": "/support",
   "/partner-fuer-songprojekt": "/#kontakt",
-  "/b2b-dienstleistungen": "/#kontakt",
   "/faq-seite": "/#faq",
   "/ueber-uns-musikservice": "/autor-dirk-schmetzer",
   "/ueber-uns": "/autor-dirk-schmetzer",
@@ -301,6 +300,19 @@ async function processOrderAndSendEmails(orderData) {
     }
     
     const isBankTransfer = orderData.paymentProvider === "bank_transfer";
+    const isEn = orderData.locale === "en";
+
+    const extraStoryParts = [];
+    if (orderData.orderDetails?.names && !String(orderData.songDetailsText || "").includes(orderData.orderDetails.names)) {
+      extraStoryParts.push(`Namen: ${orderData.orderDetails.names}`);
+    }
+    if (orderData.orderDetails?.story && !String(orderData.songDetailsText || "").includes(orderData.orderDetails.story)) {
+      extraStoryParts.push(orderData.orderDetails.story);
+    }
+    if (orderData.songDetailsText) {
+      extraStoryParts.push(orderData.songDetailsText);
+    }
+    const fullCustomerText = extraStoryParts.join("\n\n").trim() || "Keine zusätzlichen Anmerkungen.";
 
     // 1. Email to Dirk / Admin
     let adminHtml = "";
@@ -401,8 +413,10 @@ Notes: ${notes}</pre>
           <h3 style="color: #0f172a; margin-top: 20px;">🎵 Song-Konfiguration:</h3>
           <ul style="line-height: 1.6;">
             <li><strong>Anlass:</strong> ${orderData.orderDetails?.occasion || 'Personalisierter Song'}</li>
+            ${orderData.orderDetails?.names ? `<li><strong>Beschenkte Person / Namen:</strong> ${orderData.orderDetails.names}</li>` : ''}
             <li><strong>Genre:</strong> ${orderData.orderDetails?.genre || 'Standard'}</li>
             <li><strong>Stimme:</strong> ${orderData.orderDetails?.voice || 'Duett'}</li>
+            ${orderData.orderDetails?.mood ? `<li><strong>Stimmung:</strong> ${orderData.orderDetails.mood}</li>` : ''}
             <li><strong>Sprache:</strong> ${orderData.orderDetails?.language || 'Deutsch'}</li>
             <li><strong>Express-Lieferung (<12h):</strong> ${orderData.orderDetails?.express ? '✅ JA (Express)' : '❌ Nein (Standard)'}</li>
             <li><strong>PDF Songtext-Urkunde:</strong> ${orderData.orderDetails?.pdfLyrics ? '✅ JA' : '❌ Nein'}</li>
@@ -410,7 +424,7 @@ Notes: ${notes}</pre>
 
           <h3 style="color: #0f172a; margin-top: 20px;">📝 Wunschtext & Details des Kunden:</h3>
           <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid #059669; white-space: pre-wrap;">
-  ${orderData.songDetailsText || 'Keine zusätzlichen Anmerkungen.'}
+  ${fullCustomerText}
           </div>
         </div>
       `;
@@ -432,8 +446,10 @@ Notes: ${notes}</pre>
           <h3 style="color: #0f172a; margin-top: 20px;">🎵 Song-Konfiguration:</h3>
           <ul style="line-height: 1.6;">
             <li><strong>Anlass:</strong> ${orderData.orderDetails?.occasion || 'Personalisierter Song'}</li>
+            ${orderData.orderDetails?.names ? `<li><strong>Beschenkte Person / Namen:</strong> ${orderData.orderDetails.names}</li>` : ''}
             <li><strong>Genre:</strong> ${orderData.orderDetails?.genre || 'Standard'}</li>
             <li><strong>Stimme:</strong> ${orderData.orderDetails?.voice || 'Duett'}</li>
+            ${orderData.orderDetails?.mood ? `<li><strong>Stimmung:</strong> ${orderData.orderDetails.mood}</li>` : ''}
             <li><strong>Sprache:</strong> ${orderData.orderDetails?.language || 'Deutsch'}</li>
             <li><strong>Express-Lieferung (<12h):</strong> ${orderData.orderDetails?.express ? '✅ JA (Express)' : '❌ Nein (Standard)'}</li>
             <li><strong>PDF Songtext-Urkunde:</strong> ${orderData.orderDetails?.pdfLyrics ? '✅ JA' : '❌ Nein'}</li>
@@ -441,7 +457,7 @@ Notes: ${notes}</pre>
 
           <h3 style="color: #0f172a; margin-top: 20px;">📝 Wunschtext & Details des Kunden:</h3>
           <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid #d97706; white-space: pre-wrap;">
-  ${orderData.songDetailsText || 'Keine zusätzlichen Anmerkungen.'}
+  ${fullCustomerText}
           </div>
         </div>
       `;
@@ -510,6 +526,24 @@ Notes: ${notes}</pre>
           <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk von MyMusicMoment24<br><span style="font-size: 12px;">Fragen? Antworte einfach auf diese Mail oder schreib mir per WhatsApp.</span></p>
         </div>
       `;
+    } else if (isEn) {
+      customerSubject = `Your song order at MyMusicMoment24 (#${orderData.transactionId})`;
+      customerHtml = `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+          <h2 style="color: #d97706;">Thank you for your order at MyMusicMoment24! 🎵</h2>
+          <p>Hi ${orderData.customerName || 'Music Lover'},</p>
+          <p>Your payment of <strong>€${orderData.amount}</strong> has been received. I am now starting work on your custom song.</p>
+          
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0 0 8px;"><strong>Order ID:</strong> ${orderData.transactionId}</p>
+            <p style="margin: 0 0 8px;"><strong>Song:</strong> ${orderData.orderName || 'Custom Song'}</p>
+            <p style="margin: 0;"><strong>Delivery to:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
+          </div>
+
+          <p><strong>What happens next:</strong> First, I will write your custom lyrics based on your story and send you a draft by email for your approval. Once you are happy with the lyrics, I will produce and master your finished MP3 song.</p>
+          <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Best regards,<br>Dirk from MyMusicMoment24<br><span style="font-size: 12px;">Questions? Simply reply to this email or message me on WhatsApp.</span></p>
+        </div>
+      `;
     } else {
       customerSubject = `Deine Song-Bestellung bei MyMusicMoment24 (#${orderData.transactionId})`;
       customerHtml = `
@@ -524,7 +558,7 @@ Notes: ${notes}</pre>
             <p style="margin: 0;"><strong>Zustellung an:</strong> ${orderData.customerEmail} ${orderData.customerPhone ? `& WhatsApp (${orderData.customerPhone})` : ''}</p>
           </div>
 
-          <p>Sobald dein Song fertiggestellt und menschlich klanggeprüft ist, schicke ich dir die fertige MP3-Datei.</p>
+          <p><strong>So geht es weiter:</strong> Ich schreibe nun zuerst deinen individuellen Songtext auf Basis deiner Angaben und schicke ihn dir vorab per E-Mail zur Freigabe. Erst wenn dir der Text gefällt, produziere ich den fertigen Song als MP3-Datei.</p>
           <p style="color: #64748b; font-size: 13px; margin-top: 30px;">Herzliche Grüße,<br>Dirk von MyMusicMoment24<br><span style="font-size: 12px;">Fragen? Antworte einfach auf diese Mail oder schreib mir per WhatsApp.</span></p>
         </div>
       `;
@@ -845,9 +879,13 @@ app.post("/api/create-stripe-checkout", async (req, res) => {
       mode: "payment",
       customer_email: customerEmail,
       metadata: {
+        locale: req.body?.locale === "en" ? "en" : "de",
         customerName: customerName || "",
         customerPhone: customerPhone || "",
-        songDetailsText: (songDetailsText || "").substring(0, 450),
+        songDetailsText: (songDetailsText || "").substring(0, 480),
+        names: (orderDetails?.names || "").substring(0, 450),
+        story: (orderDetails?.story || "").substring(0, 480),
+        mood: (orderDetails?.mood || "").substring(0, 200),
         occasion: orderDetails?.occasion || "",
         genre: orderDetails?.genre || "",
         voice: orderDetails?.voice || "",
@@ -892,6 +930,7 @@ app.post("/api/verify-stripe-session", async (req, res) => {
       const orderData = {
         transactionId: session.id,
         paymentProvider: "stripe",
+        locale: metadata.locale || "de",
         amount: (session.amount_total / 100).toFixed(2),
         customerName: metadata.customerName || session.customer_details?.name || "",
         customerEmail: session.customer_details?.email || session.customer_email || "",
@@ -900,6 +939,9 @@ app.post("/api/verify-stripe-session", async (req, res) => {
         category: isStreamingOrder ? "streaming" : metadata.kind === "gutschein" ? "gutschein" : "song",
         orderDetails: {
           occasion: metadata.occasion,
+          names: metadata.names || "",
+          story: metadata.story || "",
+          mood: metadata.mood || "",
           genre: metadata.genre,
           voice: metadata.voice,
           express: metadata.express === "true",

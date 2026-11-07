@@ -196,8 +196,8 @@ export default function SupportPage({ onBackToHome, onGoToConfigurator }) {
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed">
                 {language === "en"
-                  ? "Pay easily with Apple Pay, Google Pay, credit card or Klarna, or write to me if you'd like to pay by regular bank transfer to my IBAN."
-                  : "Zahle bequem mit Apple Pay, Google Pay, Kreditkarte, Klarna oder schreib mir für eine klassische Banküberweisung per IBAN."}
+                  ? "Pay easily with Apple Pay, Google Pay or credit card, or select regular bank transfer (IBAN) directly at checkout."
+                  : "Zahle bequem mit Apple Pay, Google Pay, Kreditkarte oder wähle direkt im Checkout die klassische Banküberweisung per IBAN."}
               </p>
             </div>
 

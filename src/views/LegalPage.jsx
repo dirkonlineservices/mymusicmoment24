@@ -285,7 +285,7 @@ function TermsEn() {
           (3) Finished songs are delivered electronically as <strong>digital audio files</strong> (typically MP3 and/or WAV) via a secure download link, email or WhatsApp. No physical media (CDs, vinyl, USB drives) are shipped by default.
         </p>
         <p>
-          (4) <strong>Optional Add-ons:</strong> Depending on the booking, the Provider offers options such as express 24h turnaround or digital release on major streaming platforms (Spotify, Apple Music, etc.) via music distributors. Platform guidelines and processing timelines apply to streaming releases.
+          (4) <strong>Optional Add-ons:</strong> Depending on the booking, the Provider offers options such as express 12h turnaround (on working days), a personalized PDF song certificate with lyrics and QR code, or digital release on major streaming platforms (Spotify, Apple Music, etc.) via music distributors. Platform guidelines and processing timelines apply to streaming releases.
         </p>
       </section>
 
@@ -334,7 +334,7 @@ function TermsEn() {
           (1) Delivery takes place digitally without any shipping fees.
         </p>
         <p>
-          (2) Standard production time is approximately 24 to 48 hours following approval of the lyrics by the customer. If express delivery was booked, delivery occurs within the agreed express timeframe.
+          (2) Standard production time is usually within 24 hours on working days following approval of the lyrics by the customer. If 12h express delivery was booked, delivery occurs within 12 hours on working days (for orders placed before 6:00 p.m.).
         </p>
       </section>
 
@@ -516,7 +516,7 @@ function TermsDe() {
           (3) Die Auslieferung des fertigen Musikstücks erfolgt als <strong>digitale Audiodatei</strong> (in der Regel im Format MP3 und/oder WAV) über einen sicheren Download-Link oder elektronisch per E-Mail bzw. WhatsApp. Ein Versand auf physischen Tonträgern (CD, Vinyl, USB-Stick) erfolgt standardmäßig nicht.
         </p>
         <p>
-          (4) <strong>Optionale Zusatzleistungen:</strong> Der Anbieter bietet je nach Buchung zusätzliche Optionen an, wie z. B. Express-Fertigstellung (Lieferung innerhalb von 24 Stunden) oder die Veröffentlichung auf Streaming-Plattformen (Spotify, Apple Music, etc.) über externe Musikdistributoren. Bei Streaming-Releases gelten zusätzlich die Vorgaben und Bearbeitungszeiten der jeweiligen Plattformen.
+          (4) <strong>Optionale Zusatzleistungen:</strong> Der Anbieter bietet je nach Buchung zusätzliche Optionen an, wie z. B. Express-Fertigstellung (Lieferung innerhalb von 12 Stunden an Werktagen), eine offizielle Song-Urkunde mit Liedtext &amp; QR-Code als PDF oder die Veröffentlichung auf Streaming-Plattformen (Spotify, Apple Music, etc.) über externe Musikdistributoren. Bei Streaming-Releases gelten zusätzlich die Vorgaben und Bearbeitungszeiten der jeweiligen Plattformen.
         </p>
       </section>
 
@@ -568,7 +568,7 @@ function TermsDe() {
           (1) Die Bereitstellung der fertigen Musikstücke erfolgt digital. Es entstehen keine Versandkosten.
         </p>
         <p>
-          (2) Die reguläre Produktionszeit beträgt ca. 24 bis 48 Stunden ab erfolgreicher Freigabe des Liedtextes durch den Kunden. Bei gebuchter Express-Option erfolgt die Bereitstellung innerhalb der dort vereinbarten Frist (in der Regel bis zu 24 Stunden).
+          (2) Die reguläre Produktionszeit beträgt in der Regel bis zu 24 Stunden an Werktagen ab erfolgreicher Freigabe des Liedtextes durch den Kunden. Bei gebuchter 12h-Express-Option erfolgt die Bereitstellung innerhalb von 12 Stunden an Werktagen (bei Bestellung vor 18:00 Uhr).
         </p>
         <p>
           (3) Verzögerungen, die auf einer verspäteten Mitwirkung oder Freigabe durch den Kunden beruhen, gehen nicht zu Lasten des Anbieters.
@@ -739,17 +739,20 @@ export default function LegalPage({ type = "impressum", onBackToHome, onSwitchTa
             <ArrowLeft className="w-4 h-4 text-amber-600" />
             <span>{language === "en" ? "Back to Homepage" : "Zurück zur Startseite"}</span>
           </button>
-          <button
-            onClick={onBackToHome}
-            className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
-          >
-            <img
-              src="/images/logo-icon.png"
-              alt="MyMusicMoment24 Logo"
-              className="w-7 h-7 object-contain"
-            />
-            <span>MyMusicMoment<span className="text-amber-500">24</span></span>
-          </button>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <button
+              onClick={onBackToHome}
+              className="flex items-center gap-2 text-sm font-bold text-stone-900 hover:opacity-90 transition"
+            >
+              <img
+                src="/images/logo-icon.png"
+                alt="MyMusicMoment24 Logo"
+                className="w-7 h-7 object-contain"
+              />
+              <span className="hidden sm:inline">MyMusicMoment<span className="text-amber-500">24</span></span>
+            </button>
+          </div>
         </div>
       </header>
 

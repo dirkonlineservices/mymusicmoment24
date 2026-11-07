@@ -10,6 +10,7 @@ import LegalPage from "./views/LegalPage";
 import SupportPage from "./views/SupportPage";
 import B2BPage from "./views/B2BPage";
 import AuthorPage from "./views/AuthorPage";
+import StreamingReleasePage from "./views/StreamingReleasePage";
 
 const noop = () => {};
 
@@ -24,6 +25,9 @@ const PAGES = {
   "/kooperation": () => <B2BPage onBackToHome={noop} onGoToConfigurator={noop} />,
   "/agenturen": () => <B2BPage onBackToHome={noop} onGoToConfigurator={noop} />,
   "/autor-dirk-schmetzer": () => <AuthorPage onBackToHome={noop} onGoToConfigurator={noop} />,
+  "/streaming": () => <StreamingReleasePage onBackToHome={noop} onOpenCheckout={noop} />,
+  "/spotify": () => <StreamingReleasePage onBackToHome={noop} onOpenCheckout={noop} />,
+  "/streaming-release": () => <StreamingReleasePage onBackToHome={noop} onOpenCheckout={noop} />,
 };
 
 /**
