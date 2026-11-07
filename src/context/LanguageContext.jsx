@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { translations } from "../i18n/translations";
 import { localizePath, alternatePath } from "../lib/i18nRoutes";
 

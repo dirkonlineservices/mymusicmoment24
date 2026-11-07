@@ -17,6 +17,7 @@ const noop = () => {};
 const PAGES = {
   "/black-week": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
   "/blackweek": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
+  "/black-deal": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
   "/black-friday": () => <BlackWeekPage onBackToHome={noop} onOpenCheckout={noop} />,
   "/impressum": () => <LegalPage type="impressum" onBackToHome={noop} onSwitchTab={noop} />,
   "/datenschutz": () => <LegalPage type="datenschutz" onBackToHome={noop} onSwitchTab={noop} />,

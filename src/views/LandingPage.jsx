@@ -129,12 +129,12 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-amber-400 selection:text-stone-950">
       <SchemaJsonLd type="home" />
 
-      {/* Black Week / Weihnachts-Banner */}
+      {/* Black Deal Monat / Weihnachts-Banner */}
       {promo?.code === "BLACK25" ? (
         <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white border-b border-amber-500/30">
           <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-center">
             <span className="inline-flex items-center gap-1.5 font-black uppercase tracking-wider text-[11px] bg-amber-400 text-stone-950 px-2.5 py-0.5 rounded">
-              <Sparkles className="w-3.5 h-3.5" /> BLACK WEEK -25 %
+              <Sparkles className="w-3.5 h-3.5" /> {language === "en" ? "BLACK DEAL MONTH -25%" : "BLACK DEAL MONAT -25 %"}
             </span>
             <span className="font-medium">
               {language === "en"
@@ -145,7 +145,7 @@ export default function LandingPage({ onOpenCheckout, onNavigateBlog, onNavigate
               href={lp("/black-week")}
               className="underline underline-offset-2 font-black text-amber-300 hover:text-amber-200"
             >
-              {language === "en" ? "View Black Week Deal →" : "Zum Black-Week-Deal →"}
+              {language === "en" ? "View Black Deal →" : "Zum Black-Deal-Monat →"}
             </a>
           </div>
         </div>

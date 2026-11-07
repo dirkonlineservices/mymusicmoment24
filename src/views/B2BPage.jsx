@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { 
   ArrowLeft, Sparkles, Building2, Briefcase, Megaphone, 
-  CheckCircle2, Send, Clock, ShieldCheck, Mail, MessageSquare, 
+  CheckCircle2, Send, ShieldCheck, Mail, MessageSquare, 
   ArrowRight, Users, Radio, Award, ExternalLink
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";

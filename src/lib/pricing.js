@@ -14,8 +14,7 @@ export const PRICES = {
 
 // Öffentliche Aktionscodes (werden auf der Website beworben, dürfen daher im Code stehen)
 export const PROMO_CODES = {
-  BLACK25: { rate: 0.25, validUntil: "2026-12-01T23:59:59+01:00" },
-  MOMENT25: { rate: 0.25, validUntil: "2026-12-23T23:59:59+01:00" },
+  BLACK25: { rate: 0.25, validUntil: "2026-11-30T23:59:59+01:00" },
 };
 
 /** Aktuell beworbene Aktion oder null, wenn abgelaufen */

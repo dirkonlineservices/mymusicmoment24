@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { 
-  ArrowLeft, Sparkles, CheckCircle2, Music, Radio, Disc, Globe, 
+  ArrowLeft, Sparkles, CheckCircle2, Radio, Disc, Globe, 
   ShieldCheck, ArrowRight, Award, Heart,
   Copy, Check
 } from "lucide-react";

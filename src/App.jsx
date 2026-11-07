@@ -54,6 +54,7 @@ function matchRoute(path, hash) {
   if (
     path === "/black-week" ||
     path === "/blackweek" ||
+    path === "/black-deal" ||
     path === "/black-friday" ||
     hash === "#/black-week"
   ) {

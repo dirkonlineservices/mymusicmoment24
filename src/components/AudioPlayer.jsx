@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Sparkles, Disc, Music } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Play, Pause, Volume2, VolumeX, Sparkles, Disc } from "lucide-react";
 import { trackAudioEvent } from "../lib/gtmPreview";
 import { useLanguage } from "../context/LanguageContext";
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   ArrowLeft, Sparkles, Gift, Check, Copy, ShieldCheck, Clock,
-  Heart, Music, Star, ArrowRight, FileText, MessageCircle
+  Music, ArrowRight, FileText, MessageCircle
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -103,12 +103,12 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
         </div>
       </header>
 
-      {/* Black Week Hero Section */}
+      {/* Black Deal Monat Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 text-white py-12 sm:py-20 px-4 border-b border-amber-500/30">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-wider mb-6">
             <Sparkles className="w-4 h-4 text-amber-400" />
-            <span>{en ? "Black Week Special • 25% OFF Everything" : "Black Week Special • 25 % Rabatt auf alles"}</span>
+            <span>{en ? "Black Deal Month • 25% OFF Everything" : "Black Deal Monat • 25 % Rabatt auf alles"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] mb-5">
@@ -131,8 +131,8 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
 
           <p className="text-base sm:text-xl text-stone-300 max-w-2xl mx-auto leading-relaxed mb-8">
             {en
-              ? "Save 25% during Black Week! Tell me your story in 2 minutes – I write the custom lyrics first for your approval, then produce your studio-quality MP3 song within 24 hours."
-              : "Sichere dir jetzt 25 % Black-Week-Rabatt auf dein unvergessliches Geschenk für Weihnachten, Hochzeit oder Geburtstag! Inklusive Songtext-Freigabe vorab per E-Mail."}
+              ? "Save 25% all month long during our Black Deal Month! Tell me your story in 2 minutes – I write the custom lyrics first for your approval, then produce your studio-quality MP3 song within 24 hours."
+              : "Unser Black Deal Monat für euch: Sichere dir den ganzen Monat 25 % Rabatt auf dein unvergessliches Geschenk für Weihnachten, Hochzeit oder Geburtstag! Inklusive Songtext-Freigabe vorab per E-Mail."}
           </p>
 
           {/* Interactive Code + CTA Box */}
@@ -190,11 +190,11 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
         </div>
       </section>
 
-      {/* 3 Black Week Deal Packages */}
+      {/* 3 Black Deal Month Packages */}
       <section className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-4xl font-black text-stone-900 mb-3">
-            {en ? "3 Black Week Deals – 25% off everything" : "Unsere 3 Black-Week-Angebote (-25 %)"}
+            {en ? "3 Black Deal Month Offers – 25% off everything" : "Unsere 3 Black-Deal-Monat Angebote (-25 %)"}
           </h2>
           <p className="text-sm sm:text-base text-stone-600">
             {en
@@ -337,7 +337,7 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{en ? "Lock in the 25% Black Week price today" : "Jetzt 25 % Black-Week-Vorteil sichern, später einlösen"}</span>
+                  <span>{en ? "Lock in the 25% Black Deal price today" : "Jetzt 25 % Black-Deal-Vorteil sichern, später einlösen"}</span>
                 </li>
               </ul>
             </div>
@@ -364,7 +364,7 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
         <div className="bg-white border border-stone-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
           <div>
             <h3 className="font-bold text-stone-900 text-sm sm:text-base">
-              {en ? "Questions about your Black Week song order?" : "Fragen zu deiner Black-Week-Bestellung?"}
+              {en ? "Questions about your Black Deal song order?" : "Fragen zu deiner Bestellung im Black Deal Monat?"}
             </h3>
             <p className="text-xs text-stone-600 mt-0.5">
               {en
@@ -389,3 +389,4 @@ export default function BlackWeekPage({ onBackToHome, onOpenCheckout }) {
     </div>
   );
 }
+

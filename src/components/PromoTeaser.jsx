@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Gift, X } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { activePromo, PRICES, calculatePrice } from "../lib/pricing";
