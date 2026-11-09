@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, CheckCircle, ShieldCheck, Music, Sparkles, Lock, Eye, CheckCircle2, HelpCircle, MessageCircle, Landmark, CreditCard, ChevronRight, ExternalLink, Copy, Check } from "lucide-react";
 import { trackAddToCart, trackBeginCheckout, trackPurchase } from "../lib/gtmPreview";
-import { PayPalBadge, StripeBadge, VisaBadge, ApplePayBadge, SepaBadge, DebitCardBadge } from "./PaymentBadges";
+import { PayPalBadge, StripeBadge, VisaBadge, MastercardBadge, ApplePayBadge, GooglePayBadge, SepaBadge, KlarnaBadge, DebitCardBadge } from "./PaymentBadges";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useLanguage } from "../context/LanguageContext";
 import { PRICES, orderKind, calculatePrice } from "../lib/pricing";
